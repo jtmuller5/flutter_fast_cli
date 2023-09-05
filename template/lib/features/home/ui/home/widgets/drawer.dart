@@ -24,6 +24,13 @@ class HomeDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
+                  title: const Text('Profile'),
+                  onTap: () {
+                    router.push(const ProfileRoute());
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.star),
                   title: const Text('Subscriptions'),
                   onTap: () {
                     router.push(const SubscriptionRoute());

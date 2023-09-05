@@ -12,4 +12,9 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   String? get email => FirebaseAuth.instance.currentUser?.email;
+
+  @override
+  Future<void> signOut() {
+    return FirebaseAuth.instance.signOut();
+  }
 }

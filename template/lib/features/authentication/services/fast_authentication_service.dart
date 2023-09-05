@@ -6,4 +6,6 @@ abstract class FastAuthenticationService {
   String? get id => FirebaseAuth.instance.currentUser?.uid;
 
   String? get email => FirebaseAuth.instance.currentUser?.email;
+
+  Future<void> signOut();
 }
