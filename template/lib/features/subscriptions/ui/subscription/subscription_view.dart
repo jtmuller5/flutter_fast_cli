@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:template/app/constants.dart';
 import 'package:template/app/services.dart';
-import 'package:template/features/subscriptions/ui/subscription/widgets/feature_card.dart';
 import 'package:template/features/subscriptions/ui/subscription/widgets/plan_card.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,7 +45,7 @@ class SubscriptionView extends StatelessWidget {
                       children: [
                         FadeInImage(
                           placeholder: MemoryImage(kTransparentImage),
-                          image: const AssetImage('assets/workstation.png'),
+                          image: const AssetImage('assets/images/logo.png'),
                           height: 300,
                         ),
                         gap16,
@@ -71,7 +70,7 @@ class SubscriptionView extends StatelessWidget {
                         return PlanCard(
                           name: 'Monthly',
                           price: monthly?.storeProduct.price ?? 999,
-                          benefits: [
+                          benefits: const [
                             'Unlimited access to all features',
                             'Unlimited access to all features',
                             'Unlimited access to all features',
@@ -92,7 +91,7 @@ class SubscriptionView extends StatelessWidget {
                           name: 'Annual',
                           price: annual?.storeProduct.price ?? 999,
                           featured: true,
-                          benefits: [
+                          benefits: const [
                             'Unlimited access to all features',
                             'Unlimited access to all features',
                             'Unlimited access to all features',

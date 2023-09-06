@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:template/app/services.dart';
-import 'package:template/features/shared/app_logo.dart';
+import 'package:template/features/shared/ui/app_logo.dart';
 import 'settings_view_model.dart';
 
 @RoutePage()
