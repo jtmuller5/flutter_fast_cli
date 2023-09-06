@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:template/app/services.dart';
+import 'package:template/app/text_theme.dart';
 import 'package:template/features/shared/ui/app_logo.dart';
 import 'settings_view_model.dart';
 
@@ -16,6 +17,7 @@ class SettingsView extends StatelessWidget {
           appBar: AppBar(title: const Text('Settings')),
           body: ListView(
             children: [
+              ListTile(title: Text('Display',style: context.titleMedium.bold,),),
               ValueListenableBuilder(
                   valueListenable: settingsService.themeMode,
                   builder: (context, mode, child) {
@@ -48,12 +50,6 @@ class SettingsView extends StatelessWidget {
                       ],
                     );
                   }),
-              const AboutListTile(
-                applicationName: 'Template',
-                applicationIcon: AppLogo(),
-                aboutBoxChildren: [
-                  Text('Template is a Flutter template.'),],
-              ),
             ],
           ),
         );

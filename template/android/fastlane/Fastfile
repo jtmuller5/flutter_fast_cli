@@ -11,7 +11,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:android)
 
@@ -21,18 +21,38 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+  lane :bump_version_code do
+    versionCode = File.read("metadata/versionCode").to_i
+         versionCode = versionCode +1
+
+         f = File.new("metadata/versionCode", "w")
+         f.write(versionCode)
+         f.close
+         versionCode
   end
 
+  desc "Deploy a new version to the beta test track of Google Play"
+  lane :internal do
+       versionCode = bump_version_code
+
+       sh("flutter","build","appbundle","--build-number=#{versionCode}","--dart-define-from-file=assets/config.json")
+
+       upload_to_play_store(
+          track: 'internal',
+          aab: '../build/app/outputs/bundle/release/app-release.aab',
+        )
+    end
+
   desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+  lane :prod do
+     versionCode = bump_version_code
+
+     sh("flutter","build","appbundle","--build-number=#{versionCode}","--dart-define-from-file=assets/config.json")
+
+     upload_to_play_store(
+        track: 'production',
+        aab: '../build/app/outputs/bundle/release/app-release.aab',
+      )
   end
 end
+

@@ -1,5 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:template/app/router.dart';
+import 'package:template/app/services.dart';
+import 'package:template/features/home/ui/home/widgets/ai_chat.dart';
 import 'package:template/features/home/ui/home/widgets/drawer.dart';
 import 'home_view_model.dart';
 
@@ -14,11 +17,17 @@ class HomeView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Home'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  router.push(const SettingsRoute());
+                },
+              ),
+            ],
           ),
           drawer: const HomeDrawer(),
-          body: Center(
-            child: Text('Home'),
-          ),
+          body: const AiChat(),
         );
       },
     );

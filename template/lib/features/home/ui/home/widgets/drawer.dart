@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
+import 'package:template/features/shared/ui/app_logo.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: ListView(
@@ -36,20 +38,23 @@ class HomeDrawer extends StatelessWidget {
                     router.push(const SubscriptionRoute());
                   },
                 ),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Settings'),
-                  onTap: () {
-                    router.push(const SettingsRoute());
-                  },
-                ),
+
 
               ],
             ),
           ),
+          const AboutListTile(
+            applicationName: 'Template',
+            applicationIcon: AppLogo(),
+            aboutBoxChildren: [
+              Text('Template is a Flutter template.'),],
+          ),
           FutureBuilder(future: PackageInfo.fromPlatform(), builder: (context, snapshot) {
             if(snapshot.hasData) {
-              return Text('Version: ${snapshot.data!.version}');
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('Version: ${snapshot.data!.version}'),
+              );
             } else {
               return const SizedBox();
             }

@@ -2,39 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:template/app/services.dart';
 
 extension FastTextStyle on BuildContext {
-  TextStyle get bodySmall => Theme.of(this).textTheme.bodySmall!;
+  TextTheme get textTheme => Theme.of(this).textTheme;
 
-  TextStyle get bodyMedium => Theme.of(this).textTheme.bodyMedium!;
+  TextStyle get bodySmall => textTheme.bodySmall!;
 
-  TextStyle get bodyLarge => Theme.of(this).textTheme.bodyLarge!;
+  TextStyle get bodyMedium => textTheme.bodyMedium!;
 
-  TextStyle get labelSmall => Theme.of(this).textTheme.labelSmall!;
+  TextStyle get bodyLarge => textTheme.bodyLarge!;
 
-  TextStyle get labelMedium => Theme.of(this).textTheme.labelMedium!;
+  TextStyle get labelSmall => textTheme.labelSmall!;
 
-  TextStyle get labelLarge => Theme.of(this).textTheme.labelLarge!;
+  TextStyle get labelMedium => textTheme.labelMedium!;
 
-  TextStyle get titleSmall => Theme.of(this).textTheme.titleSmall!;
+  TextStyle get labelLarge => textTheme.labelLarge!;
 
-  TextStyle get titleMedium => Theme.of(this).textTheme.titleMedium!;
+  TextStyle get titleSmall => textTheme.titleSmall!;
 
-  TextStyle get titleLarge => Theme.of(this).textTheme.titleLarge!;
+  TextStyle get titleMedium => textTheme.titleMedium!;
 
-  TextStyle get headlineSmall => Theme.of(this).textTheme.headlineSmall!;
+  TextStyle get titleLarge => textTheme.titleLarge!;
 
-  TextStyle get headlineMedium => Theme.of(this).textTheme.headlineMedium!;
+  TextStyle get headlineSmall => textTheme.headlineSmall!;
 
-  TextStyle get headlineLarge => Theme.of(this).textTheme.headlineLarge!;
+  TextStyle get headlineMedium => textTheme.headlineMedium!;
 
-  TextStyle get displaySmall => Theme.of(this).textTheme.displaySmall!;
+  TextStyle get headlineLarge => textTheme.headlineLarge!;
 
-  TextStyle get displayMedium => Theme.of(this).textTheme.displayMedium!;
+  TextStyle get displaySmall => textTheme.displaySmall!;
 
-  TextStyle get displayLarge => Theme.of(this).textTheme.displayLarge!;
+  TextStyle get displayMedium => textTheme.displayMedium!;
+
+  TextStyle get displayLarge => textTheme.displayLarge!;
 }
 
 extension FastTextColor on TextStyle {
-
   BuildContext get context => router.navigatorKey.currentContext!;
 
   TextStyle get primary => copyWith(color: Theme.of(context).colorScheme.primary);
