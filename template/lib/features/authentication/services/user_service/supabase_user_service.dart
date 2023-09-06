@@ -12,14 +12,19 @@ class SupabaseUserService extends FastUserService {
 
   @override
   Future<void> createUser() async {
-    final user = _supabase.auth.currentUser;
+    try {
+      final user = _supabase.auth.currentUser;
 
-    FastUser newUser = FastUser(
-      id: user!.id,
-      createdAt: DateTime.now(),
-    );
+      FastUser newUser = FastUser(
+        id: user!.id,
+        createdAt: DateTime.now(),
+      );
 
-    await _supabase.from('users').insert(newUser.toJson());
+      await _supabase.from('users').insert(newUser.toJson());
+    } catch (e) {
+      debugPrint('Error creating user: ' + e.toString());
+      rethrow;
+    }
   }
 
   @override

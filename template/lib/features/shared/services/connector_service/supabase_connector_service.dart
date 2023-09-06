@@ -3,7 +3,7 @@ import 'package:template/features/shared/services/connector_service/fast_connect
 import 'package:template/main.dart';
 
 @supabase
-@injectable
+@Injectable(as: FastConnectorService)
 class SupabaseConnectorService extends FastConnectorService {
   @override
   DateTime? getDateTimeFromTimestamp(timestamp) {

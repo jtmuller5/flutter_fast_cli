@@ -4,7 +4,7 @@ import 'package:template/features/shared/services/connector_service/fast_connect
 import 'package:template/main.dart';
 
 @firebase
-@injectable
+@Injectable(as: FastConnectorService)
 class FirebaseConnectorService extends FastConnectorService {
   @override
   DateTime? getDateTimeFromTimestamp(dynamic timestamp) {
