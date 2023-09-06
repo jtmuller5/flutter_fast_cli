@@ -44,6 +44,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeView(),
       );
     },
+    NewFeedbackRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NewFeedbackView(),
+      );
+    },
     OnboardingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -159,6 +165,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [NewFeedbackView]
+class NewFeedbackRoute extends PageRouteInfo<void> {
+  const NewFeedbackRoute({List<PageRouteInfo>? children})
+      : super(
+          NewFeedbackRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NewFeedbackRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

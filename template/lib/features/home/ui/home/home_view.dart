@@ -31,6 +31,7 @@ class HomeView extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.smart_toy),
                 title: const Text('AI Chat'),
+                subtitle: const Text('Firebase Only'),
                 onTap: (){
                   router.push(const ChatRoute());
                 },

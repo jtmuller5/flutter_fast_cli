@@ -69,7 +69,7 @@ class SubscriptionView extends StatelessWidget {
                       builder: (context, monthly, child) {
                         return PlanCard(
                           name: 'Monthly',
-                          price: monthly?.storeProduct.price ?? 999,
+                          price: monthly?.storeProduct.price ?? 9.99,
                           benefits: const [
                             'Unlimited access to all features',
                             'Unlimited access to all features',
@@ -89,7 +89,7 @@ class SubscriptionView extends StatelessWidget {
                       builder: (context, annual, child) {
                         return PlanCard(
                           name: 'Annual',
-                          price: annual?.storeProduct.price ?? 999,
+                          price: annual?.storeProduct.price ?? 99,
                           featured: true,
                           benefits: const [
                             'Unlimited access to all features',

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:template/app/router.dart';
@@ -31,23 +32,32 @@ class HomeDrawer extends StatelessWidget {
                   leading: const Icon(Icons.person),
                   title: const Text('Profile'),
                   onTap: () {
-                    router.push(const ProfileRoute());
+                    router.popAndPush(const ProfileRoute());
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
                   title: const Text('Subscriptions'),
                   onTap: () {
-                    router.push(const SubscriptionRoute());
+                    router.popAndPush(const SubscriptionRoute());
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.thumb_up),
                   title: const Text('Leave Feedback'),
                   onTap: () {
-                    router.push(const FeedbackRoute());
+                    router.popAndPush(const NewFeedbackRoute());
                   },
                 ),
+                if (kDebugMode)
+                  ListTile(
+                    leading: const Icon(Icons.visibility),
+                    title: const Text('View Feedback'),
+                    subtitle: const Text('Debug only'),
+                    onTap: () {
+                      router.popAndPush(const FeedbackRoute());
+                    },
+                  ),
               ],
             ),
           ),

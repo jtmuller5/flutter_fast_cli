@@ -5,9 +5,10 @@ import 'package:template/features/authentication/ui/firebase/profile_view.dart';
 import 'package:template/features/authentication/ui/firebase/register_view.dart';
 import 'package:template/features/authentication/ui/firebase/sign_in_view.dart';
 import 'package:template/features/chat/ui/chat/chat_view.dart';
+import 'package:template/features/feedback/ui/feedback/feedback_view.dart';
+import 'package:template/features/feedback/ui/new_feedback/new_feedback_view.dart';
 import 'package:template/features/home/ui/home/home_view.dart';
 import 'package:template/features/home/ui/onboarding/onboarding_view.dart';
-import 'package:template/features/monitoring/ui/feedback/feedback_view.dart';
 import 'package:template/features/settings/ui/settings/settings_view.dart';
 import 'package:template/features/shared/utils/navigation/auth_guard.dart';
 import 'package:template/features/subscriptions/ui/subscription/subscription_view.dart';
@@ -28,5 +29,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: ChatRoute.page),
         AutoRoute(page: FeedbackRoute.page),
+        AutoRoute(page: NewFeedbackRoute.page),
       ];
 }
