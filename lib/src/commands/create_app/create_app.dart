@@ -51,9 +51,20 @@ class CreateApp extends Command {
       return;
     }
 
+    stdout.writeln('Creating app $appName...');
     await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
 
+    stdout.writeln('Copying template...');
     await copyTemplate(appName);
+
+    stdout.writeln('Creating root files...');
+    await createRootFiles(appName);
+
+    stdout.writeln('Running flutter pub get...');
+    await Process.run('flutter', ['pub', 'get']);
+
+    stdout.writeln('Running build_runner...');
+    await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
 
     /*Directory.current = Directory(appName);
     await createRootFiles(appName);
@@ -70,8 +81,5 @@ class CreateApp extends Command {
     await createShared(appName);
     await createSubscriptions(appName);
     await createMain(appName);*/
-
-    await Process.run('flutter', ['pub', 'get']);
-    await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
   }
 }

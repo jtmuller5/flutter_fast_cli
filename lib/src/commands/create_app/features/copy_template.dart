@@ -1,12 +1,21 @@
-import 'dart:io' ;
+import 'dart:io';
 import 'package:io/io.dart';
 
 Future<void> copyTemplate(String appName) async {
-  ProcessResult result = await Process.run('ls', []);
-  print(result.stdout);
   Directory.current = Directory(appName);
-  copyPath('../template/lib', 'lib');
+  await copyPath('../template/lib', 'lib');
 
-  // Replace all instances of template with the app name
-  Process.runSync('find', ['.', '-type', 'f', '-exec', 'sed', '-i', 's/template/$appName/g', '{}', ';']);
+  try {
+    // Replace all instances of template with the app name
+    // find lib -type f -exec sed -i "" "s/template/test/" {} \;
+    ProcessResult out = await Process.run(
+      'find',
+      ['lib', '-type', 'f', '-exec', 'sed', '-i', '', 's/template/$appName/', '{}', ';'],
+      workingDirectory: Directory.current.path,
+    );
+    if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
+    if (out.stderr != null && out.stderr != '') stderr.write(out.stderr);
+  } catch (e) {
+    stderr.writeln(e);
+  }
 }
