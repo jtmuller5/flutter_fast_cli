@@ -6,7 +6,7 @@ import 'package:template/features/authentication/models/fast_user.dart';
 import 'package:template/features/authentication/services/fast_user_service.dart';
 
 @LazySingleton(as: FastUserService)
-class UserService extends FastUserService {
+class FirebaseUserService extends FastUserService {
   @override
   Future<void> createUser() async {
     DocumentReference docRef = FirebaseFirestore.instance.collection('users').doc(authenticationService.id);

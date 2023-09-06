@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:template/features/monitoring/services/fast_analytics_service.dart';
 
 @Singleton(as: FastAnalyticsService)
-class AnalyticsService extends FastAnalyticsService {
+class AmplitudeAnalyticsService extends FastAnalyticsService {
 
   final Amplitude amplitude = Amplitude.getInstance();
 

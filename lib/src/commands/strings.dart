@@ -18,9 +18,9 @@ String getRouterText(String appName) => File('../../template/lib/app/router.dart
 
 /// Authentication
 String getFastUserText(String appName) => File('../../template/lib/features/authentication/models/fast_user.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
-String getAuthenticationServiceText(String appName) => File('../../template/lib/features/authentication/services/authentication_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
+String getAuthenticationServiceText(String appName) => File('../../template/lib/features/authentication/services/firebase_authentication_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getFastAuthenticationServiceText(String appName) => File('../../template/lib/features/authentication/services/fast_authentication_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
-String getUserServiceText(String appName) => File('../../template/lib/features/authentication/services/user_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
+String getUserServiceText(String appName) => File('../../template/lib/features/authentication/services/firebase_user_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getFastUserServiceText(String appName) => File('../../template/lib/features/authentication/services/fast_user_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getForgotPasswordViewText(String appName) => File('../../template/lib/features/authentication/ui/forgot_password_view.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getSignInViewText(String appName) => File('../../template/lib/features/authentication/ui/sign_in_view.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
@@ -46,7 +46,7 @@ String getMessageText(String appName) => File('../../template/lib/features/home/
 String getResponseStatusText(String appName) => File('../../template/lib/features/home/models/response_status.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 
 /// Monitoring
-String getAnalyticsServiceText(String appName) => File('../../template/lib/features/monitoring/services/analytics_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
+String getAnalyticsServiceText(String appName) => File('../../template/lib/features/monitoring/services/amplitude_analytics_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getCrashServiceText(String appName) => File('../../template/lib/features/monitoring/services/crash_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getFastAnalyticsServiceText(String appName) => File('../../template/lib/features/monitoring/services/fast_analytics_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getFastCrashServiceText(String appName) => File('../../template/lib/features/monitoring/services/fast_crash_service.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());

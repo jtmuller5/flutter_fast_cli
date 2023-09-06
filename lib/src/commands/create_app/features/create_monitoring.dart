@@ -18,7 +18,7 @@ Future<void> createMonitoring(String appName) async {
   File feedbackViewModelFile = File('${monitoringUiDirectory.path}/feedback/feedback_view_model.dart');
   await feedbackViewModelFile.writeAsString(getFeedbackViewModelText(appName), mode: FileMode.write);
 
-  File analyticsServiceFile = File('${monitoringServicesDirectory.path}/analytics_service.dart');
+  File analyticsServiceFile = File('${monitoringServicesDirectory.path}/amplitude_analytics_service.dart');
   await analyticsServiceFile.writeAsString(getAnalyticsServiceText(appName), mode: FileMode.write);
 
   File fastAnalyticsServiceFile = File('${monitoringServicesDirectory.path}/fast_analytics_service.dart');

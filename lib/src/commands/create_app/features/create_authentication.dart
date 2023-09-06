@@ -14,13 +14,13 @@ Future<void> createAuthentication(String appName) async {
   File fastUserFile = File('${authenticationModelsDirectory.path}/fast_user.dart');
   await fastUserFile.writeAsString(getFastUserText(appName), mode: FileMode.write);
 
-  File authenticationServiceFile = File('${authenticationServicesDirectory.path}/authentication_service.dart');
+  File authenticationServiceFile = File('${authenticationServicesDirectory.path}/firebase_authentication_service.dart');
   await authenticationServiceFile.writeAsString(getAuthenticationServiceText(appName), mode: FileMode.write);
 
   File fastAuthenticationServiceFile = File('${authenticationServicesDirectory.path}/fast_authentication_service.dart');
   await fastAuthenticationServiceFile.writeAsString(getFastAuthenticationServiceText(appName), mode: FileMode.write);
 
-  File userServiceFile = File('${authenticationServicesDirectory.path}/user_service.dart');
+  File userServiceFile = File('${authenticationServicesDirectory.path}/firebase_user_service.dart');
   await userServiceFile.writeAsString(getUserServiceText(appName), mode: FileMode.write);
 
   File fastUserServiceFile = File('${authenticationServicesDirectory.path}/fast_user_service.dart');
