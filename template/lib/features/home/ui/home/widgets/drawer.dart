@@ -16,7 +16,10 @@ class HomeDrawer extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                DrawerHeader(child: Center(child: Image.asset('assets/images/logo.png'),)),
+                DrawerHeader(
+                    child: Center(
+                  child: Image.asset('assets/images/logo.png'),
+                )),
                 ListTile(
                   leading: const Icon(Icons.home),
                   title: const Text('Home'),
@@ -38,8 +41,6 @@ class HomeDrawer extends StatelessWidget {
                     router.push(const SubscriptionRoute());
                   },
                 ),
-
-
               ],
             ),
           ),
@@ -47,18 +48,22 @@ class HomeDrawer extends StatelessWidget {
             applicationName: 'Template',
             applicationIcon: AppLogo(),
             aboutBoxChildren: [
-              Text('Template is a Flutter template.'),],
+              Text('Template is a Flutter template.'),
+            ],
           ),
-          FutureBuilder(future: PackageInfo.fromPlatform(), builder: (context, snapshot) {
-            if(snapshot.hasData) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('Version: ${snapshot.data!.version}'),
-              );
-            } else {
-              return const SizedBox();
-            }
-          },)
+          FutureBuilder(
+            future: PackageInfo.fromPlatform(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text('Version: ${snapshot.data!.version}'),
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
+          )
         ],
       ),
     );

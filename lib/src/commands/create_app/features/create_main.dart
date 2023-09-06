@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter_fast_cli/src/strings/strings.dart';
+import 'package:flutter_fast_cli/src/commands/strings.dart';
 
-void createMain(){
+Future<void> createMain(String appName) async {
   File mainFile = File('main.dart');
-  mainFile.writeAsString(getMainText(), mode: FileMode.write);
+  await mainFile.writeAsString(getMainText(appName), mode: FileMode.write);
 }

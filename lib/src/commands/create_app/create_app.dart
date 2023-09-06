@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_authentication.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_navigation.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/create_home.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/create_main.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/create_monitoring.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_settings.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/create_shared.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_subscriptions.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_utils.dart';
 
@@ -49,20 +52,23 @@ class CreateApp extends Command {
 
     await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
 
-    Directory.current = Directory('my_app');
-    await createRootFiles();
+    Directory.current = Directory(appName);
+    await createRootFiles(appName);
 
     Directory.current = Directory('lib');
     var appDirectory = await Directory('app').create();
     var featuresDirectory = await Directory('features').create();
 
     await createUtils(appName);
-    await createNavigation(appName);
-    await createSettings();
     await createAuthentication(appName);
-    await createSubscriptions();
+    await createHome(appName);
+    await createMonitoring(appName);
+    await createSettings(appName);
+    await createShared(appName);
+    await createSubscriptions(appName);
+    await createMain(appName);
 
-    // await Process.run('flutter', ['pub', 'get']);
-    // await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+    await Process.run('flutter', ['pub', 'get']);
+    await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
   }
 }

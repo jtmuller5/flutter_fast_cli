@@ -1,15 +1,14 @@
 targets:
   $default:
     builders:
-      auto_route_generator:auto_route_generator:
-        generate_for:
-          - lib/**/**_view.dart
-          - lib/**/**_picker.dart
-      auto_route_generator:auto_router_generator:
-        generate_for:
-          - lib/app/router.dart
-      injectable_generator:injectable_builder:
-        options:
+      # auto_route_generator:auto_route_generator:
+      #   generate_for:
+      #     - lib/**/**_view.dart
+      # auto_route_generator:auto_router_generator:
+      #    generate_for:
+      #      - lib/app/router.dart
+      # injectable_generator:injectable_builder:
+      #  options:
         # auto_register: true
         # auto registers any class with a name matches the given pattern
         # class_name_pattern:

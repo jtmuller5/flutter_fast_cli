@@ -1,17 +1,18 @@
 import 'dart:io';
 
-import 'package:flutter_fast_cli/src/strings/config.dart';
+import 'package:flutter_fast_cli/src/commands/strings.dart';
 
-import '../../../strings/strings.dart';
-
-Future<void> createRootFiles() async {
+Future<void> createRootFiles(String appName) async {
   File analysisOptions = File('analysis_options.yaml');
-  await analysisOptions.writeAsString(analysisOptionsText, mode: FileMode.write);
+  await analysisOptions.writeAsString(getAnalysisOptionsText(), mode: FileMode.write);
 
   File pubspec = File('pubspec.yaml');
-  await pubspec.writeAsString(pubspecText, mode: FileMode.write);
+  await pubspec.writeAsString(getPubspecText(appName), mode: FileMode.write);
 
-  Directory assetsDirectory = await Directory('assets').create();
-  File config = File('${assetsDirectory.path}/config.json');
+  File build = File('build.yaml');
+  await build.writeAsString(getBuildYamlText(), mode: FileMode.write);
+
+  await Directory('assets/images').create(recursive: true);
+  File config = File('assets/config.json');
   await config.writeAsString(getConfigText(), mode: FileMode.write);
 }

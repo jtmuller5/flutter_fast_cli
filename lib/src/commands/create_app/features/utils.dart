@@ -1,13 +1,13 @@
 import 'dart:io';
 
 /// Return Models, Services, and UI directories
-(Directory, Directory, Directory) createFeature(String name){
+Future<(Directory, Directory, Directory)> createFeature(String name) async {
   var featuresDirectory = Directory('features');
 
-  var featureDirectory = Directory('${featuresDirectory.path}/$name');
-  var featureServicesDirectory = Directory('${featureDirectory.path}/services');
-  var featureUiDirectory = Directory('${featureDirectory.path}/ui');
-  var featureModelsDirectory = Directory('${featureDirectory.path}/models');
+  var featureDirectory = await Directory('${featuresDirectory.path}/$name').create();
+  var featureServicesDirectory = await Directory('${featureDirectory.path}/services').create();
+  var featureUiDirectory = await Directory('${featureDirectory.path}/ui').create();
+  var featureModelsDirectory = await Directory('${featureDirectory.path}/models').create();
 
   return (featureModelsDirectory, featureServicesDirectory, featureUiDirectory);
 }

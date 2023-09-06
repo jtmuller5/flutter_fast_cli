@@ -1,9 +1,23 @@
 import 'dart:io';
 
-Future<void> createSettings() async {
-  var featuresDirectory = Directory('features');
+import 'package:flutter_fast_cli/src/commands/create_app/features/utils.dart';
+import 'package:flutter_fast_cli/src/commands/strings.dart';
 
-  var settingsDirectory = await Directory('${featuresDirectory.path}/settings').create();
-  var settingsServicesDirectory = await Directory('${settingsDirectory.path}/services').create();
-  var settingsUiDirectory = await Directory('${settingsDirectory.path}/ui').create();
+Future<void> createSettings(String appName) async {
+  Directory settingsServicesDirectory;
+  Directory settingsUiDirectory;
+  Directory settingsModelsDirectory;
+
+  (settingsModelsDirectory, settingsServicesDirectory, settingsUiDirectory) = await createFeature('settings');
+
+  await Directory('features/settings/ui/settings').create(recursive: true);
+
+  File settingsViewFile = File('${settingsUiDirectory.path}/settings/settings_view.dart');
+  await settingsViewFile.writeAsString(getSettingsViewText(appName), mode: FileMode.write);
+
+  File settingsViewModelFile = File('${settingsUiDirectory.path}/settings/settings_view_model.dart');
+  await settingsViewModelFile.writeAsString(getSettingsViewModelText(appName), mode: FileMode.write);
+
+  File settingsServiceFile = File('${settingsServicesDirectory.path}/settings_service.dart');
+  await settingsServiceFile.writeAsString(getSettingsServiceText(appName), mode: FileMode.write);
 }
