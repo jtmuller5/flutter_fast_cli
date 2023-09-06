@@ -6,6 +6,7 @@ String getAnalysisOptionsText() => File('../template/analysis_options.yaml').rea
 String getGitIgnoreText() => File('../template/.gitignore').readAsStringSync();
 String getBuildYamlText() => File('../template/build.yaml').readAsStringSync();
 String getConfigText() => File('../template/assets/config.json').readAsStringSync();
+String getReadmeText(String appName) => File('../template/README.md').readAsStringSync().replaceAll('template', appName.toLowerCase());
 
 /// App
 String getConstantsText() => File('../../template/lib/app/constants.dart').readAsStringSync();
@@ -74,3 +75,9 @@ String getSubscriptionServiceText(String appName) => File('../../template/lib/fe
 
 /// Main
 String getMainText(String appName) => File('../../template/lib/main.dart').readAsStringSync().replaceAll('template', appName.toLowerCase());
+
+/// Fastlane
+String getAndroidFastfileText() => File('../../template/android/fastlane/Fastfile').readAsStringSync();
+String getAndroidAppfileText() => File('../../template/android/fastlane/Appfile').readAsStringSync();
+String getIOSFastfileText() => File('../../template/ios/fastlane/Fastfile').readAsStringSync();
+String getIOSAppfileText() => File('../../template/ios/fastlane/Appfile').readAsStringSync();

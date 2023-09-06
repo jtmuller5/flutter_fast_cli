@@ -12,6 +12,9 @@ Future<void> createRootFiles(String appName) async {
   File build = File('build.yaml');
   await build.writeAsString(getBuildYamlText(), mode: FileMode.write);
 
+  File readme = File('README.md');
+  await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
+
   await Directory('assets/images').create(recursive: true);
   File config = File('assets/config.json');
   await config.writeAsString(getConfigText(), mode: FileMode.write);
