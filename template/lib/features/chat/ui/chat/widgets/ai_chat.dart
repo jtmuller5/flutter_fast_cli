@@ -1,9 +1,9 @@
 import 'package:code_on_the_rocks/code_on_the_rocks.dart';
 import 'package:flutter/material.dart';
 import 'package:template/app/services.dart';
+import 'package:template/features/chat/ui/chat/chat_view_model.dart';
+import 'package:template/features/chat/ui/chat/widgets/message_bubble.dart';
 import 'package:template/features/home/models/message.dart';
-import 'package:template/features/home/ui/chat/chat_view_model.dart';
-import 'package:template/features/home/ui/chat/widgets/message_bubble.dart';
 
 class AiChat extends StatelessWidget {
   const AiChat({Key? key}) : super(key: key);

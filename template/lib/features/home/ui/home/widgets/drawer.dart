@@ -41,6 +41,13 @@ class HomeDrawer extends StatelessWidget {
                     router.push(const SubscriptionRoute());
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.thumb_up),
+                  title: const Text('Leave Feedback'),
+                  onTap: () {
+                    router.push(const FeedbackRoute());
+                  },
+                ),
               ],
             ),
           ),

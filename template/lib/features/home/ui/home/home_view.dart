@@ -2,7 +2,6 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
-import 'package:template/features/home/ui/chat/chat_view.dart';
 import 'package:template/features/home/ui/home/widgets/drawer.dart';
 import 'home_view_model.dart';
 
@@ -27,7 +26,17 @@ class HomeView extends StatelessWidget {
             ],
           ),
           drawer: const HomeDrawer(),
-          body: const ChatView(),
+          body: ListView(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.smart_toy),
+                title: const Text('AI Chat'),
+                onTap: (){
+                  router.push(const ChatRoute());
+                },
+              )
+            ],
+          ),
         );
       },
     );

@@ -3,7 +3,7 @@ import 'package:template/app/get_it.dart';
 import 'package:template/app/router.dart';
 import 'package:template/features/authentication/services/fast_authentication_service.dart';
 import 'package:template/features/authentication/services/fast_user_service.dart';
-import 'package:template/features/home/services/fast_chat_service.dart';
+import 'package:template/features/chat/services/fast_chat_service.dart';
 import 'package:template/features/monitoring/services/fast_analytics_service.dart';
 import 'package:template/features/monitoring/services/fast_crash_service.dart';
 import 'package:template/features/settings/services/settings_service.dart';

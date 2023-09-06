@@ -12,8 +12,8 @@ import 'package:template/firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await analyticsService.initialize();
   await configureDependencies();
+  await analyticsService.initialize();
   GetIt.instance.registerSingleton(AppRouter());
   await subscriptionService.initialize();
 

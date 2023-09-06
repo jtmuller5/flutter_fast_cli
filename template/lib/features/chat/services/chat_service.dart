@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:template/app/services.dart';
+import 'package:template/features/chat/services/fast_chat_service.dart';
 import 'package:template/features/home/models/message.dart';
-import 'package:template/features/home/services/fast_chat_service.dart';
 
 @LazySingleton(as: FastChatService)
 class ChatService extends FastChatService {

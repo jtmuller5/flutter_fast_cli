@@ -18,8 +18,8 @@ import '../features/authentication/services/fast_authentication_service.dart'
     as _i5;
 import '../features/authentication/services/fast_user_service.dart' as _i11;
 import '../features/authentication/services/user_service.dart' as _i12;
-import '../features/home/services/chat_service.dart' as _i8;
-import '../features/home/services/fast_chat_service.dart' as _i7;
+import '../features/chat/services/chat_service.dart' as _i8;
+import '../features/chat/services/fast_chat_service.dart' as _i7;
 import '../features/monitoring/services/analytics_service.dart' as _i4;
 import '../features/monitoring/services/crash_service.dart' as _i10;
 import '../features/monitoring/services/fast_analytics_service.dart' as _i3;
@@ -41,8 +41,7 @@ Future<_i1.GetIt> $initGetIt(
   );
   final registerModule = _$RegisterModule();
   gh.singleton<_i3.FastAnalyticsService>(_i4.AnalyticsService());
-  gh.singleton<_i5.FastAuthenticationService>(
-      _i6.AuthenticationService());
+  gh.singleton<_i5.FastAuthenticationService>(_i6.AuthenticationService());
   gh.lazySingleton<_i7.FastChatService>(() => _i8.ChatService());
   gh.singleton<_i9.FastCrashService>(_i10.CrashService());
   gh.lazySingleton<_i11.FastUserService>(() => _i12.UserService());
