@@ -8,17 +8,29 @@ import 'package:template/app/router.dart';
 import 'dart:io' show Platform;
 
 import 'package:template/app/services.dart';
-import 'package:template/features/subscriptions/services/fast_subscription_service.dart';
 
-@Singleton(as: FastSubscriptionService)
-class SubscriptionService extends FastSubscriptionService {
-  @override
+@Singleton()
+class SubscriptionService {
   String premiumId = 'premium';
 
-  Package? monthly;
-  Package? annual;
+  ValueNotifier<bool> premium = ValueNotifier(false);
 
-  @override
+  void setPremium(bool val) {
+    premium.value = val;
+  }
+
+  ValueNotifier<Package?> monthly = ValueNotifier(null);
+
+  void setMonthly(Package? val){
+    monthly.value = val;
+  }
+
+  ValueNotifier<Package?> annual = ValueNotifier(null);
+
+  void setAnnual(Package? val){
+    annual.value = val;
+  }
+
   Future<void> initialize() async {
     await Purchases.setLogLevel(LogLevel.debug);
 
@@ -52,7 +64,6 @@ class SubscriptionService extends FastSubscriptionService {
     });
   }
 
-  @override
   Future<void> checkSubscription() async {
     try {
       CustomerInfo customerInfo = await Purchases.getCustomerInfo();
@@ -66,7 +77,6 @@ class SubscriptionService extends FastSubscriptionService {
     }
   }
 
-  @override
   Future<void> showPremiumPopup() async {
     await showModalBottomSheet(
       context: router.navigatorKey.currentContext!,
@@ -109,11 +119,10 @@ class SubscriptionService extends FastSubscriptionService {
     );
   }
 
-  @override
   Future<void> purchaseMonthlySubscription() async {
-    if (monthly == null) return;
+    if (monthly.value == null) return;
     try {
-      CustomerInfo customerInfo = await Purchases.purchasePackage(monthly!);
+      CustomerInfo customerInfo = await Purchases.purchasePackage(monthly.value!);
       var isPremium = customerInfo.entitlements.all[premiumId]?.isActive ?? false;
       if (isPremium) {
         setPremium(true);
@@ -126,11 +135,10 @@ class SubscriptionService extends FastSubscriptionService {
     }
   }
 
-  @override
   Future<void> purchaseAnnualSubscription() async {
-    if (annual == null) return;
+    if (annual.value == null) return;
     try {
-      CustomerInfo customerInfo = await Purchases.purchasePackage(annual!);
+      CustomerInfo customerInfo = await Purchases.purchasePackage(annual.value!);
       var isPremium = customerInfo.entitlements.all[premiumId]?.isActive ?? false;
       if (isPremium) {
         setPremium(true);
@@ -143,13 +151,12 @@ class SubscriptionService extends FastSubscriptionService {
     }
   }
 
-  @override
   Future<void> fetchOfferings() async {
     try {
       Offerings offerings = await Purchases.getOfferings();
       if (offerings.current != null) {
-        monthly = offerings.current!.monthly;
-        annual = offerings.current!.annual;
+        setMonthly(offerings.current!.monthly);
+        setAnnual(offerings.current!.annual);
       }
     } on PlatformException catch (e) {
       // optional error handling

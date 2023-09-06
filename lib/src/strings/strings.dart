@@ -5,3 +5,4 @@ export 'pubspec.dart';
 export 'modules.dart';
 export 'main.dart';
 export 'router.dart';
+export 'text_theme.dart';

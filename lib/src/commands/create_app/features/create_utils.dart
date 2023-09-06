@@ -10,4 +10,7 @@ Future<void> createUtils() async {
 
   File getItFile = File('${appDirectory.path}/get_it.dart');
   await getItFile.writeAsString(getItText, mode: FileMode.write);
+
+  File textThemeFile = File('${appDirectory.path}/text_theme.dart');
+  await textThemeFile.writeAsString(textThemeText, mode: FileMode.write);
 }

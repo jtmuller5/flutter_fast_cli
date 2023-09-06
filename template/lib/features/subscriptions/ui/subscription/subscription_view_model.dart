@@ -1,7 +1,5 @@
 import 'package:code_on_the_rocks/code_on_the_rocks.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:template/app/services.dart';
 
 class SubscriptionViewModelBuilder extends ViewModelBuilder<SubscriptionViewModel> {

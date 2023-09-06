@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:template/app/constants.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/subscriptions/ui/subscription/widgets/feature_card.dart';
+import 'package:template/features/subscriptions/ui/subscription/widgets/plan_card.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'subscription_view_model.dart';
@@ -62,43 +64,49 @@ class SubscriptionView extends StatelessWidget {
                 appBar: AppBar(title: const Text('Get Premium')),
                 body: ListView(
                   padding: const EdgeInsets.all(16.0),
-                  children: const [
-                    FeatureCard(
-                      asset: 'assets/images/logo.png',
-                      title: 'Unlimited Benefits',
-                      description: 'Get unlimited access to all features',
+                  children:  [
+                    ValueListenableBuilder<Package?>(
+                      valueListenable: subscriptionService.monthly,
+                      builder: (context, monthly, child) {
+                        return PlanCard(
+                          name: 'Monthly',
+                          price: monthly?.storeProduct.price ?? 999,
+                          benefits: [
+                            'Unlimited access to all features',
+                            'Unlimited access to all features',
+                            'Unlimited access to all features',
+                          ],
+                          onTap: () async {
+                            await subscriptionService.purchaseMonthlySubscription();
+                          },
+                          buttonText: 'Get Flutter Fast',
+                          buttonSubText: 'Pay once. Build forever.',
+                        );
+                      }
                     ),
-                    FeatureCard(
-                      asset: 'assets/images/logo.png',
-                      title: 'Unlimited Perks',
-                      description: 'Get unlimited access to all perks',
+                    gap24,
+                    ValueListenableBuilder<Package?>(
+                      valueListenable: subscriptionService.annual,
+                      builder: (context, annual, child) {
+                        return PlanCard(
+                          name: 'Annual',
+                          price: annual?.storeProduct.price ?? 999,
+                          featured: true,
+                          benefits: [
+                            'Unlimited access to all features',
+                            'Unlimited access to all features',
+                            'Unlimited access to all features',
+                          ],
+                          onTap: () async {
+                            await subscriptionService.purchaseAnnualSubscription();
+                          },
+                          buttonText: 'Get Flutter Fast',
+                          buttonSubText: 'Pay once. Build forever.',
+                        );
+                      }
                     ),
-                    FeatureCard(
-                      asset: 'assets/images/logo.png',
-                      title: 'Unlimited Fun',
-                      description: 'Get unlimited access to all fun',
-                    ),
-                    SizedBox(height: 100),
+                    const SizedBox(height: 100),
                   ],
-                ),
-                floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-                floatingActionButton: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: FloatingActionButton.extended(
-                            backgroundColor: Theme.of(context).colorScheme.primary,
-                            label: Text(
-                              'Get Premium',
-                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () async {
-                              await subscriptionService.purchaseMonthlySubscription();
-                            }),
-                      ),
-                    ],
-                  ),
                 ),
               );
             });

@@ -1,5 +1,4 @@
 import 'package:auto_route/annotations.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:template/app/router.dart';
@@ -13,13 +12,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProfileScreen(
       showMFATile: false,
-      avatar: const ColoredBox(
-        color: Colors.orange,
-        child: Icon(
-          Icons.person,
-          size: 48,
-        ),
-      ),
+      avatar: const SizedBox.shrink(),
       appBar: AppBar(title: const Text('Profile')),
       actions: [
         SignedOutAction((context) {
@@ -28,15 +21,6 @@ class ProfileView extends StatelessWidget {
             predicate: (route) => false,
           );
         }),
-      ],
-      children: [
-        ListTile(
-          leading: const Icon(Icons.logout),
-          title: const Text('Sign Out'),
-          onTap: () {
-            authenticationService.signOut();
-          },
-        )
       ],
     );
   }

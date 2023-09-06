@@ -8,6 +8,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:template/app/get_it.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
+import 'package:template/app/theme.dart';
 import 'package:template/features/shared/utils/navigation/basic_observer.dart';
 import 'package:template/firebase_options.dart';
 
@@ -38,8 +39,8 @@ class MainApp extends StatelessWidget {
       valueListenable: settingsService.themeMode,
       builder: (context, mode, child) {
         return MaterialApp.router(
-          theme: FlexThemeData.light(fontFamily: GoogleFonts.abhayaLibre().fontFamily),
-          darkTheme: FlexThemeData.dark(fontFamily: GoogleFonts.abhayaLibre().fontFamily),
+          theme: lightTheme,
+          darkTheme: darkTheme,
           themeMode: mode,
           routerConfig: router.config(
             navigatorObservers: () => [

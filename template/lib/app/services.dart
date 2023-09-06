@@ -5,12 +5,12 @@ import 'package:template/features/authentication/services/fast_authentication_se
 import 'package:template/features/monitoring/services/fast_analytics_service.dart';
 import 'package:template/features/monitoring/services/fast_crash_service.dart';
 import 'package:template/features/settings/services/settings_service.dart';
-import 'package:template/features/subscriptions/services/fast_subscription_service.dart';
+import 'package:template/features/subscriptions/services/subscription_service.dart';
 
 AppRouter get router => getIt.get<AppRouter>();
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
 FastAuthenticationService get authenticationService => getIt.get<FastAuthenticationService>();
 FastCrashService get crashService => getIt.get<FastCrashService>();
-FastSubscriptionService get subscriptionService => getIt.get<FastSubscriptionService>();
+SubscriptionService get subscriptionService => getIt.get<SubscriptionService>();
 SettingsService get settingsService => getIt.get<SettingsService>();
 SharedPreferences get sharedPrefs => getIt.get<SharedPreferences>();
