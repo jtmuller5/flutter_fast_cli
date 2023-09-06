@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/copy_template.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_authentication.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_home.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_main.dart';
@@ -52,7 +53,9 @@ class CreateApp extends Command {
 
     await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
 
-    Directory.current = Directory(appName);
+    await copyTemplate(appName);
+
+    /*Directory.current = Directory(appName);
     await createRootFiles(appName);
 
     Directory.current = Directory('lib');
@@ -66,7 +69,7 @@ class CreateApp extends Command {
     await createSettings(appName);
     await createShared(appName);
     await createSubscriptions(appName);
-    await createMain(appName);
+    await createMain(appName);*/
 
     await Process.run('flutter', ['pub', 'get']);
     await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
