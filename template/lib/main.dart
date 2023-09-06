@@ -13,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
+  await authenticationService.initialize();
   await analyticsService.initialize();
   GetIt.instance.registerSingleton(AppRouter());
   await subscriptionService.initialize();

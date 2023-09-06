@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/authentication/models/fast_user.dart';
-import 'package:template/features/authentication/services/fast_user_service.dart';
+import 'package:template/features/authentication/services/user_service/fast_user_service.dart';
 
 @LazySingleton(as: FastUserService)
 class FirebaseUserService extends FastUserService {

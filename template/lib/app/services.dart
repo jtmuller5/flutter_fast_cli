@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:template/app/get_it.dart';
 import 'package:template/app/router.dart';
-import 'package:template/features/authentication/services/fast_authentication_service.dart';
+import 'package:template/features/authentication/services/authentication_service/fast_authentication_service.dart';
 import 'package:template/features/authentication/services/fast_user_service.dart';
 import 'package:template/features/chat/services/fast_chat_service.dart';
 import 'package:template/features/feedback/services/fast_feedback_service.dart';

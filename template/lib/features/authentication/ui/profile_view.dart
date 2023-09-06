@@ -10,18 +10,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProfileScreen(
-      showMFATile: false,
-      avatar: const SizedBox.shrink(),
-      appBar: AppBar(title: const Text('Profile')),
-      actions: [
-        SignedOutAction((context) {
-          router.pushAndPopUntil(
-            const SignInRoute(),
-            predicate: (route) => false,
-          );
-        }),
-      ],
-    );
+    return authenticationService.profileScreen();
   }
 }
