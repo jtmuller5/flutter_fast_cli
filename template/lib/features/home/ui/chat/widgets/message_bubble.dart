@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:template/app/text_theme.dart';
 import 'package:template/features/home/models/message.dart';
 
@@ -23,6 +24,7 @@ class MessageBubble extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Flexible(child: Text(message.message, style: context.bodyLarge)),
                       ],
@@ -40,12 +42,13 @@ class MessageBubble extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
+                  constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8,),
                   child: DecoratedBox(
                     decoration: BoxDecoration(color: Colors.lightGreen.shade200, borderRadius: const BorderRadius.all(Radius.circular(8))),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Flexible(child: Text(message.response!, style: context.bodyLarge)),
                         ],
@@ -55,8 +58,18 @@ class MessageBubble extends StatelessWidget {
                 ),
               ],
             ),
-          ) else SizedBox.square(dimension: 24,
-        child: CircularProgressIndicator(),),
+          )
+        else
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: SizedBox.square(
+                dimension: 24,
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          ),
       ],
     );
   }

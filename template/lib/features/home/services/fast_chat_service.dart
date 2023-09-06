@@ -1,7 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:template/features/home/models/message.dart';
 
 abstract class FastChatService {
-  Future<void> submitMessage(String message);
+  ValueNotifier<List<Message>> messages = ValueNotifier([]);
 
-  Stream<List<Message>> messageStream();
+  void setMessages(List<Message> val) {
+    messages.value = val;
+  }
+
+  Future<void> getMessages();
+
+  Future<void> submitMessage(String message);
 }
