@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 abstract class FastAuthenticationService {
-  bool get loggedIn => FirebaseAuth.instance.currentUser != null;
+  bool get loggedIn;
 
-  String? get id => FirebaseAuth.instance.currentUser?.uid;
+  String? get id;
 
-  String? get email => FirebaseAuth.instance.currentUser?.email;
+  String? get email;
 
   Future<void> initialize();
 

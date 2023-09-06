@@ -5,12 +5,22 @@ import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/authentication/services/authentication_service/fast_authentication_service.dart';
+import 'package:template/features/shared/ui/app_logo.dart';
 import 'package:template/main.dart';
 
 @supabase
 @Singleton(as: FastAuthenticationService)
 class SupabaseAuthenticationService extends FastAuthenticationService {
   SupabaseClient get _supabase => Supabase.instance.client;
+
+  @override
+  bool get loggedIn => _supabase.auth.currentSession != null;
+
+  @override
+  String? get id => _supabase.auth.currentUser?.id;
+
+  @override
+  String? get email => _supabase.auth.currentUser?.email;
 
   @override
   Future<void> initialize() async {
@@ -54,59 +64,46 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
   }
 
   @override
-  Widget registerScreen() {
-    return Scaffold(
-      body: SupaEmailAuth(
-        redirectTo: kIsWeb ? null : 'io.mydomain.myapp://callback',
-        onSignInComplete: (response) {
-          router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
-        },
-        onSignUpComplete: (response) async {
-          await userService.createUser();
-          router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
-        },
-        metadataFields: [
-          MetaDataField(
-            prefixIcon: const Icon(Icons.person),
-            label: 'Username',
-            key: 'username',
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'Please enter something';
-              }
-              return null;
-            },
-          ),
-        ],
-      ),
-    );
-  }
+  Widget registerScreen() => signIn();
 
   @override
-  Widget signInScreen() {
+  Widget signInScreen() => signIn();
+
+  Widget signIn() {
     return Scaffold(
-      body: SupaEmailAuth(
-        redirectTo: kIsWeb ? null : 'io.mydomain.myapp://callback',
-        onSignInComplete: (response) {
-          router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
-        },
-        onSignUpComplete: (response) async {
-          await userService.createUser();
-          router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
-        },
-        metadataFields: [
-          MetaDataField(
-            prefixIcon: const Icon(Icons.person),
-            label: 'Username',
-            key: 'username',
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'Please enter something';
-              }
-              return null;
-            },
-          ),
-        ],
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(24),
+          children: [
+            const AppLogo(sideLength: 200),
+            SupaEmailAuth(
+              redirectTo: kIsWeb ? null : 'io.mydomain.myapp://callback',
+              onSignInComplete: (response) {
+                debugPrint('onSignInComplete');
+                router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
+              },
+              onSignUpComplete: (response) async {
+                debugPrint('onSignUpComplete');
+                await userService.createUser();
+                router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
+              },
+              metadataFields: [
+                MetaDataField(
+                  prefixIcon: const Icon(Icons.person),
+                  label: 'Username',
+                  key: 'username',
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Please enter something';
+                    }
+                    return null;
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:template/app/services.dart';
 
-DateTime? getDateTimeFromTimestamp(Timestamp? value) {
+DateTime? getDateTimeFromTimestamp(dynamic value) {
   if (value == null) return null;
-  return value.toDate();
+  return connectorService.getDateTimeFromTimestamp(value);
 }
 
-Timestamp? getTimestampFromDateTime(DateTime? value) {
+getTimestampFromDateTime(DateTime? value) {
   if (value == null) return null;
-  return Timestamp.fromDate(value);
+  return connectorService.getTimestampFromDateTime(value);
 }
