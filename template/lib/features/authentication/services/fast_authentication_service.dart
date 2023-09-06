@@ -8,4 +8,6 @@ abstract class FastAuthenticationService {
   String? get email => FirebaseAuth.instance.currentUser?.email;
 
   Future<void> signOut();
+
+  Future<void> signInWithEmailAndPassword(String email, String password);
 }

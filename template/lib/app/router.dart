@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:template/features/authentication/ui/forgot_password_view.dart';
-import 'package:template/features/authentication/ui/profile_view.dart';
-import 'package:template/features/authentication/ui/register_view.dart';
-import 'package:template/features/authentication/ui/sign_in_view.dart';
+import 'package:template/features/authentication/ui/firebase/forgot_password_view.dart';
+import 'package:template/features/authentication/ui/firebase/profile_view.dart';
+import 'package:template/features/authentication/ui/firebase/register_view.dart';
+import 'package:template/features/authentication/ui/firebase/sign_in_view.dart';
 import 'package:template/features/chat/ui/chat/chat_view.dart';
 import 'package:template/features/home/ui/home/home_view.dart';
 import 'package:template/features/home/ui/onboarding/onboarding_view.dart';

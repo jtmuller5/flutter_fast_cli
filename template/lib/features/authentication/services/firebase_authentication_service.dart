@@ -17,4 +17,9 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   Future<void> signOut() {
     return FirebaseAuth.instance.signOut();
   }
+
+  @override
+  Future<void> signInWithEmailAndPassword(String email, String password) {
+    return FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+  }
 }
