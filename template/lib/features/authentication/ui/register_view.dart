@@ -30,9 +30,9 @@ class RegisterView extends StatelessWidget {
         );
       },
       actions: [
-        AuthStateChangeAction<SignedIn>((context, state) {
-          debugPrint('state: $state');
-          router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
+        AuthStateChangeAction<UserCreated>((context, state) async {
+          await userService.createUser();
+          router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
         }),
       ],
     );

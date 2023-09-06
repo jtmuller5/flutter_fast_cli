@@ -32,8 +32,9 @@ class SignInView extends StatelessWidget {
         AuthStateChangeAction<SignedIn>((context, state) {
           router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
         }),
-        AuthStateChangeAction<UserCreated>((context, state) {
-          router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
+        AuthStateChangeAction<UserCreated>((context, state) async {
+          await userService.createUser();
+          router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
         })
       ],
     );

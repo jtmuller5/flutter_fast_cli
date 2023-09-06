@@ -23,7 +23,7 @@ class HomeDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.star),
+                  leading: const Icon(Icons.person),
                   title: const Text('Profile'),
                   onTap: () {
                     router.push(const ProfileRoute());

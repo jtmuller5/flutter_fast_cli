@@ -5,6 +5,7 @@ import 'package:template/features/authentication/ui/profile_view.dart';
 import 'package:template/features/authentication/ui/register_view.dart';
 import 'package:template/features/authentication/ui/sign_in_view.dart';
 import 'package:template/features/home/ui/home/home_view.dart';
+import 'package:template/features/home/ui/onboarding/onboarding_view.dart';
 import 'package:template/features/settings/ui/settings/settings_view.dart';
 import 'package:template/features/shared/utils/navigation/auth_guard.dart';
 import 'package:template/features/subscriptions/ui/subscription/subscription_view.dart';
@@ -16,10 +17,11 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: HomeRoute.page, initial: true, guards: [AuthGuard()]),
+    AutoRoute(page: OnboardingRoute.page, guards: [AuthGuard()]),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: RegisterRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
-    AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: ProfileRoute.page),
         AutoRoute(page: SubscriptionRoute.page),
         AutoRoute(page: SettingsRoute.page),
       ];
