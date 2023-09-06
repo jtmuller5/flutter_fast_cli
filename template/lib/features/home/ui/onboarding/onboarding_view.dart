@@ -17,23 +17,24 @@ class OnboardingView extends StatelessWidget {
     return OnboardingViewModelBuilder(
       builder: (context, model) {
         return Scaffold(
-            body: PageView(controller: model.pageController, children: const [
-              PageOne(),
-              PageTwo(),
-              PageThree(),
-            ]),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                if (model.pageController.page == 2) {
-                  router.replace(const HomeRoute());
-                } else if (model.pageController.page == 1) {
-                  model.pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-                } else if (model.pageController.page == 0) {
-                  model.pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-                }
-              },
-              child: const Icon(Icons.arrow_forward),
-            ));
+          body: PageView(controller: model.pageController, children: const [
+            PageOne(),
+            PageTwo(),
+            PageThree(),
+          ]),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              if (model.pageController.page == 2) {
+                router.replace(const HomeRoute());
+              } else if (model.pageController.page == 1) {
+                model.pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+              } else if (model.pageController.page == 0) {
+                model.pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+              }
+            },
+            child: const Icon(Icons.arrow_forward),
+          ),
+        );
       },
     );
   }
