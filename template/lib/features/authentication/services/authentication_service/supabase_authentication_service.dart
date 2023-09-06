@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:injectable/injectable.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/authentication/services/authentication_service/fast_authentication_service.dart';
+import 'package:template/main.dart';
 
+@supabase
+@Singleton(as: FastAuthenticationService)
 class SupabaseAuthenticationService extends FastAuthenticationService {
-  late final SupabaseClient supabase;
+  SupabaseClient get _supabase => Supabase.instance.client;
 
   @override
   Future<void> initialize() async {
@@ -15,15 +18,13 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
       url: const String.fromEnvironment('SUPABASE_URL'),
       anonKey: const String.fromEnvironment('SUPABASE_ANON_KEY'),
     );
-
-    supabase = Supabase.instance.client;
   }
 
   @override
   Widget forgotPasswordScreen(String? email) {
     return Scaffold(
       body: SupaResetPassword(
-        accessToken: supabase.auth.currentSession?.accessToken,
+        accessToken: _supabase.auth.currentSession?.accessToken,
         onSuccess: (UserResponse response) {
           // do something, for example: navigate('home');
         },
@@ -43,7 +44,7 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
           ListTile(
             title: const Text('Sign Out'),
             onTap: () async {
-              await supabase.auth.signOut();
+              await _supabase.auth.signOut();
               router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
             },
           ),
@@ -112,13 +113,11 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+    return _supabase.auth.signInWithPassword(email: email, password: password);
   }
 
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+    return _supabase.auth.signOut();
   }
 }

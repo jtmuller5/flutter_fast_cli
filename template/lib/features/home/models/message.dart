@@ -7,12 +7,11 @@ part 'message.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Message {
-
   final String id;
 
   final String message;
 
-  @JsonKey(fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   final DateTime? createdAt;
 
   String? response;

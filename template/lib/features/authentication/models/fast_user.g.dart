@@ -14,7 +14,7 @@ FastUser _$FastUserFromJson(Map<String, dynamic> json) => FastUser(
       lastName: json['last_name'] as String?,
       dateOfBirth:
           getDateTimeFromTimestamp(json['date_of_birth'] as Timestamp?),
-      createdAt: getDateTimeFromTimestamp(json['createdAt'] as Timestamp?),
+      createdAt: getDateTimeFromTimestamp(json['created_at'] as Timestamp?),
     );
 
 Map<String, dynamic> _$FastUserToJson(FastUser instance) => <String, dynamic>{
@@ -24,5 +24,5 @@ Map<String, dynamic> _$FastUserToJson(FastUser instance) => <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'date_of_birth': getTimestampFromDateTime(instance.dateOfBirth),
-      'createdAt': getTimestampFromDateTime(instance.createdAt),
+      'created_at': getTimestampFromDateTime(instance.createdAt),
     };

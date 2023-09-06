@@ -4,15 +4,17 @@ import 'package:template/app/services.dart';
 import 'package:template/features/feedback/models/feedback.dart';
 import 'package:template/features/feedback/services/fast_feedback_service.dart';
 import 'package:template/features/feedback/ui/new_feedback/new_feedback_view_model.dart';
+import 'package:template/main.dart';
 
+@firebase
 @LazySingleton(as: FastFeedbackService)
 class FirebaseFeedbackService extends FastFeedbackService {
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-DocumentReference feedbackDoc = FirebaseFirestore.instance.collection('feedback').doc();
+    DocumentReference feedbackDoc = FirebaseFirestore.instance.collection('feedback').doc();
 
     await feedbackDoc.set(Feedback(
-       id: feedbackDoc.id,
+      id: feedbackDoc.id,
       userId: authenticationService.id!,
       createdAt: DateTime.now(),
       message: feedback,

@@ -11,9 +11,10 @@ class Feedback {
 
   final String id;
 
+  @JsonKey(name: 'user_id')
   final String userId;
 
-  @JsonKey(fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   final DateTime? createdAt;
 
   /// bug, feature, other

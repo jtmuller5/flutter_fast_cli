@@ -21,7 +21,7 @@ class FastUser {
   @JsonKey(name: 'date_of_birth', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   DateTime? dateOfBirth;
 
-  @JsonKey(fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   DateTime? createdAt;
 
   FastUser({
