@@ -12,9 +12,8 @@ FastUser _$FastUserFromJson(Map<String, dynamic> json) => FastUser(
       username: json['username'] as String?,
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
-      dateOfBirth:
-          getDateTimeFromTimestamp(json['date_of_birth'] as Timestamp?),
-      createdAt: getDateTimeFromTimestamp(json['created_at'] as Timestamp?),
+      dateOfBirth: getDateTimeFromTimestamp(json['date_of_birth']),
+      createdAt: getDateTimeFromTimestamp(json['created_at']),
     );
 
 Map<String, dynamic> _$FastUserToJson(FastUser instance) => <String, dynamic>{

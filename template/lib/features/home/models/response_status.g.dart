@@ -8,10 +8,9 @@ part of 'response_status.dart';
 
 ResponseStatus _$ResponseStatusFromJson(Map<String, dynamic> json) =>
     ResponseStatus(
-      completeTime:
-          getDateTimeFromTimestamp(json['completeTime'] as Timestamp?),
-      startTime: getDateTimeFromTimestamp(json['startTime'] as Timestamp?),
-      updateTime: getDateTimeFromTimestamp(json['updateTime'] as Timestamp?),
+      completeTime: getDateTimeFromTimestamp(json['completeTime']),
+      startTime: getDateTimeFromTimestamp(json['startTime']),
+      updateTime: getDateTimeFromTimestamp(json['updateTime']),
       state: json['state'] as String?,
       error: json['error'] as String?,
     );

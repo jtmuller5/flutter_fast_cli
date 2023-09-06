@@ -11,7 +11,7 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) => Feedback(
       userId: json['user_id'] as String,
       id: json['id'] as String,
       type: $enumDecode(_$FeedbackTypeEnumMap, json['type']),
-      createdAt: getDateTimeFromTimestamp(json['created_at'] as Timestamp?),
+      createdAt: getDateTimeFromTimestamp(json['created_at']),
     );
 
 Map<String, dynamic> _$FeedbackToJson(Feedback instance) => <String, dynamic>{

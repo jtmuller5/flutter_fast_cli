@@ -9,7 +9,7 @@ part of 'message.dart';
 Message _$MessageFromJson(Map<String, dynamic> json) => Message(
       id: json['id'] as String,
       message: json['message'] as String,
-      createdAt: getDateTimeFromTimestamp(json['created_at'] as Timestamp?),
+      createdAt: getDateTimeFromTimestamp(json['created_at']),
       response: json['response'] as String?,
       status: json['status'] == null
           ? null
