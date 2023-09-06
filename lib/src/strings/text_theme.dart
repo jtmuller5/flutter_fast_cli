@@ -1,6 +1,10 @@
-String textThemeText = '''
+String getTextThemeText(String appName) {
+
+  appName = appName.toLowerCase();
+
+  return '''
 import 'package:flutter/material.dart';
-import 'package:template/app/services.dart';
+import 'package:$appName/app/services.dart';
 
 extension FastTextStyle on BuildContext {
   TextStyle get bodySmall => Theme.of(this).textTheme.bodySmall!;
@@ -73,3 +77,4 @@ extension FastTextColor on TextStyle {
   TextStyle get onInverseSurface => copyWith(color: Theme.of(context).colorScheme.onInverseSurface);
 }
 ''';
+}

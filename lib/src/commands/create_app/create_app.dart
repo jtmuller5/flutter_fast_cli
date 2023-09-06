@@ -18,7 +18,9 @@ class CreateApp extends Command {
 
   @override
   ArgParser get argParser {
-    return ArgParser();
+    return ArgParser()
+      ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
+      ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example');
     /*..addFlag(
         'get_it',
         abbr: 'g',
@@ -37,8 +39,15 @@ class CreateApp extends Command {
 
   @override
   Future<void> run() async {
+    final appName = argResults!['name'] as String;
+    final orgName = argResults!['org'] as String;
 
-    await Process.run('flutter', ['create', 'my_app','--empty', '--org', 'com.cotr']);
+    if (appName.isEmpty) {
+      print('Please provide a name for your app.');
+      return;
+    }
+
+    await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
 
     Directory.current = Directory('my_app');
     await createRootFiles();
@@ -47,10 +56,10 @@ class CreateApp extends Command {
     var appDirectory = await Directory('app').create();
     var featuresDirectory = await Directory('features').create();
 
-    await createUtils();
-    await createNavigation();
+    await createUtils(appName);
+    await createNavigation(appName);
     await createSettings();
-    await createAuthentication();
+    await createAuthentication(appName);
     await createSubscriptions();
 
     // await Process.run('flutter', ['pub', 'get']);

@@ -42,7 +42,7 @@ Future<_i1.GetIt> $initGetIt(
   final registerModule = _$RegisterModule();
   gh.singleton<_i3.FastAnalyticsService>(_i4.AnalyticsService());
   gh.singleton<_i5.FastAuthenticationService>(
-      _i6.FirebaseAuthenticationService());
+      _i6.AuthenticationService());
   gh.lazySingleton<_i7.FastChatService>(() => _i8.ChatService());
   gh.singleton<_i9.FastCrashService>(_i10.CrashService());
   gh.lazySingleton<_i11.FastUserService>(() => _i12.UserService());

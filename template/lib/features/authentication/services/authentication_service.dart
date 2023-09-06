@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:template/features/authentication/services/fast_authentication_service.dart';
 
 @Singleton(as: FastAuthenticationService)
-class FirebaseAuthenticationService extends FastAuthenticationService {
+class AuthenticationService extends FastAuthenticationService {
   @override
   bool get loggedIn => FirebaseAuth.instance.currentUser != null;
 

@@ -6,3 +6,4 @@ export 'modules.dart';
 export 'main.dart';
 export 'router.dart';
 export 'text_theme.dart';
+export 'fast_user.dart';
