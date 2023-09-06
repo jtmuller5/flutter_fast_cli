@@ -12,7 +12,7 @@ dependencies:
   amplitude_flutter: ^3.16.0
   auto_route: ^7.8.3
   cloud_firestore: ^4.9.1
-  code_on_the_rocks: ^0.1.1
+  code_on_the_rocks: ^0.1.2
   firebase_auth: ^4.9.0
   firebase_ui_auth: ^1.7.0
   firebase_core: ^2.15.1
@@ -31,6 +31,7 @@ dependencies:
   supabase_flutter: ^1.10.16
   transparent_image: ^2.0.1
   url_launcher: ^6.1.14
+  uuid: ^3.0.7
 
 # Build command
 # flutter pub run build_runner build --delete-conflicting-outputs

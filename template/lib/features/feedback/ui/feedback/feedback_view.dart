@@ -20,7 +20,7 @@ class FeedbackView extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : ListView.builder(
-            padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   itemCount: model.allFeedback.length,
                   itemBuilder: (BuildContext context, int index) {
                     Feedback feedback = model.allFeedback[index];

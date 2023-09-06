@@ -7,7 +7,7 @@ import 'package:template/main.dart';
 class SupabaseConnectorService extends FastConnectorService {
   @override
   DateTime? getDateTimeFromTimestamp(timestamp) {
-    return timestamp.toDate();
+    return (timestamp is String) ? DateTime.parse(timestamp): timestamp.toDate();
   }
 
   @override

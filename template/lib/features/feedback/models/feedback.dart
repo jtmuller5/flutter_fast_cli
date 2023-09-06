@@ -9,7 +9,7 @@ part 'feedback.g.dart';
 class Feedback {
   final String message;
 
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'user_id')
   final String userId;
