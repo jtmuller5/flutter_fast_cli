@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_fast_cli/src/commands/strings.dart';
+import 'package:io/io.dart';
 
 Future<void> createRootFiles(String appName) async {
   File analysisOptions = File('analysis_options.yaml');
@@ -15,7 +16,5 @@ Future<void> createRootFiles(String appName) async {
   File readme = File('README.md');
   await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
 
-  await Directory('assets/images').create(recursive: true);
-  File config = File('assets/config.json');
-  await config.writeAsString(getConfigText(), mode: FileMode.write);
+  await copyPath('../template/assets', 'assets');
 }

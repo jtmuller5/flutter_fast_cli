@@ -1,0 +1,29 @@
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new release build to the App Store"
+  lane :prod do
+    version_number = increment_version_number(
+      bump_type: "patch" # Automatically increment patch version number
+    )
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_number = get_build_number(xcodeproj: "Runner.xcodeproj")
+    sh("flutter","build","ipa","--build-name", "#{version_number}","--dart-define-from-file=assets/config.json")
+    upload_to_app_store(ipa: "../build/ios/ipa/templateApp.ipa",
+      submit_for_review: true,
+      automatic_release: true,
+      submission_information: {
+      "export_compliance_uses_encryption": false,
+       "add_id_info_uses_idfa": false}
+    )
+  end
+
+  lane :beta do
+      increment_build_number(xcodeproj: "Runner.xcodeproj")
+      build_number = get_build_number(xcodeproj: "Runner.xcodeproj")
+      sh("flutter","build","ipa","--build-number", "#{build_number}","--dart-define-from-file=assets/config.json")
+      upload_to_testflight(ipa: "../build/ios/ipa/templateApp.ipa")
+    end
+end

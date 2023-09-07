@@ -1,16 +1,3 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
 default_platform(:android)
@@ -31,18 +18,6 @@ platform :android do
          versionCode
   end
 
-  desc "Deploy a new version to the beta test track of Google Play"
-  lane :internal do
-       versionCode = bump_version_code
-
-       sh("flutter","build","appbundle","--build-number=#{versionCode}","--dart-define-from-file=assets/config.json")
-
-       upload_to_play_store(
-          track: 'internal',
-          aab: '../build/app/outputs/bundle/release/app-release.aab',
-        )
-    end
-
   desc "Deploy a new version to the Google Play"
   lane :prod do
      versionCode = bump_version_code
@@ -54,5 +29,16 @@ platform :android do
         aab: '../build/app/outputs/bundle/release/app-release.aab',
       )
   end
-end
 
+  desc "Deploy a new version to the beta test track of Google Play"
+  lane :internal do
+     versionCode = bump_version_code
+
+     sh("flutter","build","appbundle","--build-number=#{versionCode}","--dart-define-from-file=assets/config.json")
+
+     upload_to_play_store(
+        track: 'internal',
+        aab: '../build/app/outputs/bundle/release/app-release.aab',
+      )
+  end
+end

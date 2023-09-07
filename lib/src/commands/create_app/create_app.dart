@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/remove_injectable_environments.dart';
@@ -33,13 +34,13 @@ class CreateApp extends Command {
 
   @override
   Future<void> run() async {
-    final appName = argResults!['name'] as String;
+    final appName = argResults?['name'] as String?;
     final orgName = argResults!['org'] as String;
     final paas = argResults?['paas'] as String?;
 
     var logger = Logger.standard();
 
-    if (appName.isEmpty) {
+    if (appName == null || appName.isEmpty) {
       print('Please provide a name for your app.');
       return;
     }
@@ -58,6 +59,7 @@ class CreateApp extends Command {
 
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
+    await fastlaneSetup(appName);
     progress.finish(showTiming: true);
 
     if(paas != null){
