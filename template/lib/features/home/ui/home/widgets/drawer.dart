@@ -65,7 +65,7 @@ class HomeDrawer extends StatelessWidget {
             applicationName: 'Template',
             applicationIcon: AppLogo(),
             aboutBoxChildren: [
-              Text('Template is a Flutter template.'),
+              Text('Template is a Flutter application.'),
             ],
           ),
           FutureBuilder(
