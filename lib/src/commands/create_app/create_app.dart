@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/remo
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
+import 'package:flutter_fast_cli/src/commands/strings.dart';
 
 class CreateApp extends Command {
   @override
@@ -50,16 +52,24 @@ class CreateApp extends Command {
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
-    await copyTemplate(appName);
+    String? path = await loadTemplateFolder();
+
+    if(path == null){
+      logger.stdout('Template path is null');
+      return;
+    }
+
+    templatePath = path;
+    await copyTemplate(templatePath, appName);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Creating root files...');
-    await createRootFiles(appName);
+    await createRootFiles(templatePath, appName);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
-    await fastlaneSetup(appName);
+    await fastlaneSetup(templatePath, appName);
     progress.finish(showTiming: true);
 
     if(paas != null){

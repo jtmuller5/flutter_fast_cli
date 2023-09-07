@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:io/io.dart';
 
-Future<void> fastlaneSetup(String appName) async {
+Future<void> fastlaneSetup(String templatePath, String appName) async {
 
   Directory androidFastlane = Directory('android/fastlane');
   Directory iosFastlane = Directory('ios/fastlane');
 
-  await copyPath('../template/android/fastlane', androidFastlane.path);
-  await copyPath('../template/ios/fastlane', iosFastlane.path);
+  await copyPath('$templatePath/android/fastlane', androidFastlane.path);
+  await copyPath('$templatePath/ios/fastlane', iosFastlane.path);
 
   File iosFastfile = File('ios/fastlane/Fastfile');
 

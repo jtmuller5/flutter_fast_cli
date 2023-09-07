@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
 import 'package:io/io.dart';
 
-Future<void> createRootFiles(String appName) async {
+Future<void> createRootFiles(String templatePath, String appName) async {
   File analysisOptions = File('analysis_options.yaml');
   await analysisOptions.writeAsString(getAnalysisOptionsText(), mode: FileMode.write);
 
@@ -16,5 +16,5 @@ Future<void> createRootFiles(String appName) async {
   File readme = File('README.md');
   await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
 
-  await copyPath('../template/assets', 'assets');
+  await copyPath('$templatePath/assets', 'assets');
 }

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:io/io.dart';
 
-Future<void> copyTemplate(String appName) async {
+Future<void> copyTemplate(String templatePath, String appName) async {
   Directory.current = Directory(appName);
-  await copyPath('../template/lib', 'lib');
+  await copyPath('$templatePath/lib', 'lib');
 
   try {
     // Replace all instances of template with the app name
