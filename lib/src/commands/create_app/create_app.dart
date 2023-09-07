@@ -5,6 +5,7 @@ import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/copy_template.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_root_files.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/features/update_android_build_gradle.dart';
 
 class CreateApp extends Command {
   @override
@@ -46,6 +47,10 @@ class CreateApp extends Command {
     await createRootFiles(appName);
     progress.finish(showTiming: true);
 
+    progress = logger.progress('Updating native files...');
+    await updateAndroidBuildGradle(appName, orgName);
+    progress.finish(showTiming: true);
+
     progress = logger.progress('Running flutter pub get...');
     await Process.run('flutter', ['pub', 'get']);
     progress.finish(showTiming: true);
@@ -53,5 +58,7 @@ class CreateApp extends Command {
     progress = logger.progress('Running build_runner...');
     await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
     progress.finish(showTiming: true);
+
+    logger.stdout('Your app is ready! 🚀');
   }
 }

@@ -81,3 +81,6 @@ String getAndroidFastfileText() => File('../../template/android/fastlane/Fastfil
 String getAndroidAppfileText() => File('../../template/android/fastlane/Appfile').readAsStringSync();
 String getIOSFastfileText() => File('../../template/ios/fastlane/Fastfile').readAsStringSync();
 String getIOSAppfileText() => File('../../template/ios/fastlane/Appfile').readAsStringSync();
+
+/// Android
+String getAndroidBuildGradleText() => File('../template/android/app/build.gradle').readAsStringSync();
