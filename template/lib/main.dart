@@ -10,10 +10,6 @@ import 'package:template/app/theme.dart';
 import 'package:template/features/shared/utils/navigation/basic_observer.dart';
 import 'package:template/firebase_options.dart';
 
-const firebase = Environment('firebase');
-const supabase = Environment('supabase');
-const appwrite = Environment('appwrite');
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

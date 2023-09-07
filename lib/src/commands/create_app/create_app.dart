@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/copy_template.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_root_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/update_android_build_gradle.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/clear_unused_paas_files.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/remove_injectable_environments.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/update_pubspec_file.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 
 class CreateApp extends Command {
   @override
@@ -19,14 +22,20 @@ class CreateApp extends Command {
     return ArgParser()
       ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
       ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example')
-      ..addOption('paas', abbr: 'p', help: 'The PaaS to use for the app.', valueHelp: 'firebase', defaultsTo: 'firebase', allowed: ['firebase', 'supabase']);
+      ..addOption(
+        'paas',
+        abbr: 'p',
+        help: 'The PaaS to use for the app. If left blank, all files will be included and you can use --dart-define to choose which one to use.',
+        valueHelp: 'firebase',
+        allowed: ['firebase', 'supabase'],
+      );
   }
 
   @override
   Future<void> run() async {
     final appName = argResults!['name'] as String;
     final orgName = argResults!['org'] as String;
-    final paas = argResults!['paas'] as String;
+    final paas = argResults?['paas'] as String?;
 
     var logger = Logger.standard();
 
@@ -50,6 +59,14 @@ class CreateApp extends Command {
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
     progress.finish(showTiming: true);
+
+    if(paas != null){
+      progress = logger.progress('Removing unused PaaS files...');
+      await clearUnusedPaasFiles(paas);
+      await updatePubspecFile(appName ,paas);
+      await removeInjectableEnvironments();
+      progress.finish(showTiming: true);
+    }
 
     progress = logger.progress('Running flutter pub get...');
     await Process.run('flutter', ['pub', 'get']);

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:template/app/get_it.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/authentication/models/fast_user.dart';
 import 'package:template/features/authentication/services/user_service/fast_user_service.dart';
-import 'package:template/main.dart';
 
 @firebase
 @LazySingleton(as: FastUserService)

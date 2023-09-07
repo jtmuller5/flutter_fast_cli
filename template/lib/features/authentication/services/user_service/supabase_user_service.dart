@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
+import 'package:template/app/get_it.dart';
 import 'package:template/features/authentication/models/fast_user.dart';
 import 'package:template/features/authentication/services/user_service/fast_user_service.dart';
-import 'package:template/main.dart';
 
 @supabase
 @LazySingleton(as: FastUserService)

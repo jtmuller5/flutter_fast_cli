@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:template/app/get_it.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/feedback/models/feedback.dart';
 import 'package:template/features/feedback/services/fast_feedback_service.dart';
 import 'package:template/features/feedback/ui/new_feedback/new_feedback_view_model.dart';
-import 'package:template/main.dart';
 import 'package:uuid/uuid.dart';
 
 @supabase

@@ -4,6 +4,10 @@ import 'package:template/main.dart';
 
 import 'get_it.config.dart';
 
+const firebase = Environment('firebase');
+const supabase = Environment('supabase');
+const appwrite = Environment('appwrite');
+
 final getIt = GetIt.instance;
 
 @InjectableInit(

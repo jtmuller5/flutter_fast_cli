@@ -11,11 +11,7 @@ dependencies:
     sdk: flutter
   amplitude_flutter: ^3.16.0
   auto_route: ^7.8.3
-  cloud_firestore: ^4.9.1
   code_on_the_rocks: ^0.1.2
-  firebase_auth: ^4.9.0
-  firebase_ui_auth: ^1.7.0
-  firebase_core: ^2.15.1
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1
   get_it: ^7.6.4
@@ -27,11 +23,22 @@ dependencies:
   purchases_flutter: ^5.6.4
   sentry_flutter: ^7.9.0
   shared_preferences: ^2.2.1
-  supabase_auth_ui: ^0.2.1
-  supabase_flutter: ^1.10.16
   transparent_image: ^2.0.1
   url_launcher: ^6.1.14
+
+  # Firebase
+  cloud_firestore: ^4.9.1
+  firebase_auth: ^4.9.0
+  firebase_ui_auth: ^1.7.0
+  firebase_core: ^2.15.1
+  # Firebase
+
+  # Supabase
+  supabase_auth_ui: ^0.2.1
+  supabase_flutter: ^1.10.16
   uuid: ^3.0.7
+  # Supabase
+
 
 # Build command
 # flutter pub run build_runner build --delete-conflicting-outputs

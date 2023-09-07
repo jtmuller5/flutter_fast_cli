@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Firebase" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--dart-define-from-file=assets/config.json --dart-define=PAAS=firebase" />
+    <option name="additionalArgs" value="--dart-define=PAAS=firebase" />
     <option name="filePath" value="$PROJECT_DIR$/template/lib/main.dart" />
     <method v="2" />
   </configuration>
