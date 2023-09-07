@@ -13,5 +13,5 @@ final getIt = GetIt.instance;
 )
 Future<void> configureDependencies() async => await $initGetIt(
       getIt,
-      environment: supabase.name,
+      environment: const String.fromEnvironment('PAAS', defaultValue: 'firebase'),
     );

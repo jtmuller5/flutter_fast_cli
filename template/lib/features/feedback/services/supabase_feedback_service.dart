@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:template/app/services.dart';
@@ -27,7 +26,6 @@ class SupabaseFeedbackService extends FastFeedbackService {
 
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-
     return _supabase.from('feedback').insert(Feedback(
           userId: authenticationService.id!,
           createdAt: DateTime.now(),

@@ -2,16 +2,9 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:cli_util/cli_logging.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/copy_template.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_authentication.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_home.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_main.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_monitoring.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/features/create_root_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_settings.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_shared.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_subscriptions.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/features/create_utils.dart';
 
 class CreateApp extends Command {
   @override
@@ -24,62 +17,41 @@ class CreateApp extends Command {
   ArgParser get argParser {
     return ArgParser()
       ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
-      ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example');
-    /*..addFlag(
-        'get_it',
-        abbr: 'g',
-        defaultsTo: true,
-        negatable: true,
-        help: 'Set up get_it for dependency injection.',
-      )
-      ..addOption(
-        'nav',
-        abbr: 'n',
-        defaultsTo: 'auto_route',
-        help: 'Select the package to use for navigation',
-        allowed: ['auto_route', 'go_router', 'none'],
-      );*/
+      ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example')
+      ..addOption('paas', abbr: 'p', help: 'The PaaS to use for the app.', valueHelp: 'firebase', defaultsTo: 'firebase', allowed: ['firebase', 'supabase']);
   }
 
   @override
   Future<void> run() async {
     final appName = argResults!['name'] as String;
     final orgName = argResults!['org'] as String;
+    final paas = argResults!['paas'] as String;
+
+    var logger = Logger.standard();
 
     if (appName.isEmpty) {
       print('Please provide a name for your app.');
       return;
     }
 
-    stdout.writeln('Creating app $appName...');
+    var progress = logger.progress('Creating app $appName...');
     await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
+    progress.finish(showTiming: true);
 
-    stdout.writeln('Copying template...');
+    progress = logger.progress('Copying template...');
     await copyTemplate(appName);
+    progress.finish(showTiming: true);
 
-    stdout.writeln('Creating root files...');
+    progress = logger.progress('Creating root files...');
     await createRootFiles(appName);
+    progress.finish(showTiming: true);
 
-    stdout.writeln('Running flutter pub get...');
+    progress = logger.progress('Running flutter pub get...');
     await Process.run('flutter', ['pub', 'get']);
+    progress.finish(showTiming: true);
 
-    stdout.writeln('Running build_runner...');
+    progress = logger.progress('Running build_runner...');
     await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
-
-    /*Directory.current = Directory(appName);
-    await createRootFiles(appName);
-
-    Directory.current = Directory('lib');
-    var appDirectory = await Directory('app').create();
-    var featuresDirectory = await Directory('features').create();
-
-    await createUtils(appName);
-    await createAuthentication(appName);
-    await createHome(appName);
-    await createMonitoring(appName);
-    await createSettings(appName);
-    await createShared(appName);
-    await createSubscriptions(appName);
-    await createMain(appName);*/
+    progress.finish(showTiming: true);
   }
 }

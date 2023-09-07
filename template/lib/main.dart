@@ -23,14 +23,14 @@ Future<void> main() async {
   GetIt.instance.registerSingleton(AppRouter());
   await subscriptionService.initialize();
 
- /* await SentryFlutter.init(
+  await SentryFlutter.init(
     (options) {
       options.dsn = const String.fromEnvironment('SENTRY_DSN');
     },
     appRunner: () => runApp(const MainApp()),
-  );*/
+  );
 
-  runApp(const MainApp());
+  // runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
