@@ -1,18 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:template/app/get_it.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
 import 'package:template/app/theme.dart';
 import 'package:template/features/shared/utils/navigation/basic_observer.dart';
-import 'package:template/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
   await authenticationService.initialize();
   await analyticsService.initialize();

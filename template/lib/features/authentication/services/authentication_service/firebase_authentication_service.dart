@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -6,6 +7,7 @@ import 'package:template/app/get_it.dart';
 import 'package:template/app/router.dart';
 import 'package:template/app/services.dart';
 import 'package:template/features/authentication/services/authentication_service/fast_authentication_service.dart';
+import 'package:template/firebase_options.dart';
 
 @firebase
 @Singleton(as: FastAuthenticationService)
@@ -113,5 +115,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   }
 
   @override
-  Future<void> initialize() async {}
+  Future<void> initialize() async {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  }
 }
