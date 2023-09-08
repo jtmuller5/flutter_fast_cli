@@ -331,24 +331,24 @@
         <entry key="firebase_ui_auth">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.8.0/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.7.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.8.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="firebase_ui_localizations">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.1/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="firebase_ui_oauth">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.11/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.10/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.11/lib" />
             </list>
           </value>
         </entry>
@@ -1235,8 +1235,8 @@
         <entry key="webview_flutter_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.5.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
             </list>
           </value>
         </entry>
