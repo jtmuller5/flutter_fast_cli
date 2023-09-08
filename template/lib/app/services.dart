@@ -9,7 +9,10 @@ import 'package:template/features/monitoring/services/fast_analytics_service.dar
 import 'package:template/features/monitoring/services/fast_crash_service.dart';
 import 'package:template/features/settings/services/settings_service.dart';
 import 'package:template/features/shared/services/connector_service/fast_connector_service.dart';
+
+//x Subscriptions x//
 import 'package:template/features/subscriptions/services/subscription_service.dart';
+//x Subscriptions x//
 
 AppRouter get router => getIt.get<AppRouter>();
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
@@ -19,6 +22,10 @@ FastConnectorService get connectorService => getIt.get<FastConnectorService>();
 FastCrashService get crashService => getIt.get<FastCrashService>();
 FastFeedbackService get feedbackService => getIt.get<FastFeedbackService>();
 FastUserService get userService => getIt.get<FastUserService>();
+
+//* Subscriptions *//
 SubscriptionService get subscriptionService => getIt.get<SubscriptionService>();
+//* Subscriptions *//
+
 SettingsService get settingsService => getIt.get<SettingsService>();
 SharedPreferences get sharedPrefs => getIt.get<SharedPreferences>();

@@ -13,7 +13,10 @@ Future<void> main() async {
   await authenticationService.initialize();
   await analyticsService.initialize();
   GetIt.instance.registerSingleton(AppRouter());
+
+  //* Subscriptions *//
   await subscriptionService.initialize();
+  //* Subscriptions *//
 
   await SentryFlutter.init(
     (options) {

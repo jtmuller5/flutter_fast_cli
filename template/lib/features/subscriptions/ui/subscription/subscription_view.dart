@@ -61,52 +61,37 @@ class SubscriptionView extends StatelessWidget {
               }
               return Scaffold(
                 appBar: AppBar(title: const Text('Get Premium')),
-                body: ListView(
-                  padding: const EdgeInsets.all(16.0),
-                  children:  [
-                    ValueListenableBuilder<Package?>(
-                      valueListenable: subscriptionService.monthly,
-                      builder: (context, monthly, child) {
-                        return PlanCard(
-                          name: 'Monthly',
-                          price: monthly?.storeProduct.price ?? 9.99,
-                          benefits: const [
-                            'Unlimited access to all features',
-                            'Unlimited access to all features',
-                            'Unlimited access to all features',
-                          ],
-                          onTap: () async {
-                            await subscriptionService.purchaseMonthlySubscription();
-                          },
-                          buttonText: 'Get Flutter Fast',
-                          buttonSubText: 'Pay once. Build forever.',
-                        );
-                      }
-                    ),
-                    gap24,
-                    ValueListenableBuilder<Package?>(
-                      valueListenable: subscriptionService.annual,
-                      builder: (context, annual, child) {
-                        return PlanCard(
-                          name: 'Annual',
-                          price: annual?.storeProduct.price ?? 99,
-                          featured: true,
-                          benefits: const [
-                            'Unlimited access to all features',
-                            'Unlimited access to all features',
-                            'Unlimited access to all features',
-                          ],
-                          onTap: () async {
-                            await subscriptionService.purchaseAnnualSubscription();
-                          },
-                          buttonText: 'Get Flutter Fast',
-                          buttonSubText: 'Pay once. Build forever.',
-                        );
-                      }
-                    ),
-                    const SizedBox(height: 100),
-                  ],
-                ),
+                body: ValueListenableBuilder(
+                    valueListenable: subscriptionService.offering,
+                    builder: (context, offerings, child) {
+                      if (offerings == null) return const Center(child: CircularProgressIndicator());
+
+                      if (offerings.availablePackages.isEmpty) return const Center(child: Text('No subscriptions available'));
+
+                      return ListView.builder(
+                        itemCount: offerings.availablePackages.length,
+                        padding: const EdgeInsets.all(16.0),
+                        itemBuilder: (context, index) {
+                          final package = offerings.availablePackages[index];
+
+                          return PlanCard(
+                            name: package.identifier, // Monthly, Annual, etc.
+                            description: package.storeProduct.description,
+                            price: package.storeProduct.priceString,
+                            benefits: const [
+                              'Unlimited access to all features',
+                              'Unlimited access to all features',
+                              'Unlimited access to all features',
+                            ],
+                            onTap: () async {
+                              await subscriptionService.purchaseSubscription(package);
+                            },
+                            buttonText: 'Get ${package.identifier.substring(0,1).toUpperCase()}${package.identifier.substring(1)}',
+                            buttonSubText: package.packageType == PackageType.lifetime ? 'One time purchase' : 'Monthly subscription',
+                          );
+                        },
+                      );
+                    }),
               );
             });
       },

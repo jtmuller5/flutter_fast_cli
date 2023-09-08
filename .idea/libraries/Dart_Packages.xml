@@ -331,6 +331,7 @@
         <entry key="firebase_ui_auth">
           <value>
             <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.8.0/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.7.0/lib" />
             </list>
           </value>
@@ -338,6 +339,7 @@
         <entry key="firebase_ui_localizations">
           <value>
             <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.1/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.0/lib" />
             </list>
           </value>
@@ -345,6 +347,7 @@
         <entry key="firebase_ui_oauth">
           <value>
             <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.11/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.10/lib" />
             </list>
           </value>
@@ -1232,6 +1235,7 @@
         <entry key="webview_flutter_platform_interface">
           <value>
             <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.5.1/lib" />
             </list>
           </value>
@@ -1332,8 +1336,11 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_dynamic_links-5.3.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_dynamic_links_platform_interface-0.2.6+5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.7.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_auth-1.8.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_localizations-1.6.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.10/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_oauth-1.4.11/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_ui_shared-1.3.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/fixnum-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flex_color_scheme-7.3.1/lib" />
@@ -1460,6 +1467,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.2.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.9.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.5.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.7.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.0.7/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.3/lib" />

@@ -2,6 +2,8 @@ import 'dart:io';
 
 String templatePath = '../template';
 
+String getTemplateFileText(String path) => File('$templatePath/$path').readAsStringSync();
+
 /// Root
 String getPubspecText(String appName) => File('$templatePath/pubspec.yaml').readAsStringSync().replaceAll('template', appName.toLowerCase());
 String getAnalysisOptionsText() => File('$templatePath/analysis_options.yaml').readAsStringSync();

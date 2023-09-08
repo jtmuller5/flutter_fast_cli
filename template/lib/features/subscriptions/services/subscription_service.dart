@@ -19,16 +19,10 @@ class SubscriptionService {
     premium.value = val;
   }
 
-  ValueNotifier<Package?> monthly = ValueNotifier(null);
+  ValueNotifier<Offering?> offering = ValueNotifier(null);
 
-  void setMonthly(Package? val){
-    monthly.value = val;
-  }
-
-  ValueNotifier<Package?> annual = ValueNotifier(null);
-
-  void setAnnual(Package? val){
-    annual.value = val;
+  void setOfferings(Offering? val){
+    offering.value = val;
   }
 
   Future<void> initialize() async {
@@ -119,26 +113,9 @@ class SubscriptionService {
     );
   }
 
-  Future<void> purchaseMonthlySubscription() async {
-    if (monthly.value == null) return;
+  Future<void> purchaseSubscription(Package package) async {
     try {
-      CustomerInfo customerInfo = await Purchases.purchasePackage(monthly.value!);
-      var isPremium = customerInfo.entitlements.all[premiumId]?.isActive ?? false;
-      if (isPremium) {
-        setPremium(true);
-      }
-    } on PlatformException catch (e) {
-      var errorCode = PurchasesErrorHelper.getErrorCode(e);
-      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
-        // showError(e);
-      }
-    }
-  }
-
-  Future<void> purchaseAnnualSubscription() async {
-    if (annual.value == null) return;
-    try {
-      CustomerInfo customerInfo = await Purchases.purchasePackage(annual.value!);
+      CustomerInfo customerInfo = await Purchases.purchasePackage(package);
       var isPremium = customerInfo.entitlements.all[premiumId]?.isActive ?? false;
       if (isPremium) {
         setPremium(true);
@@ -154,10 +131,7 @@ class SubscriptionService {
   Future<void> fetchOfferings() async {
     try {
       Offerings offerings = await Purchases.getOfferings();
-      if (offerings.current != null) {
-        setMonthly(offerings.current!.monthly);
-        setAnnual(offerings.current!.annual);
-      }
+      setOfferings(offerings.current);
     } on PlatformException catch (e) {
       // optional error handling
     }

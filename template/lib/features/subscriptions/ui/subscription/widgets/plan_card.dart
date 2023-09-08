@@ -8,15 +8,16 @@ class PlanCard extends StatelessWidget {
     required this.name,
     required this.buttonSubText,
     required this.price,
-    required this.benefits,
+    this.benefits,
     this.featured = false, required this.onTap,
-    this.buttonText,
+    this.buttonText, required this.description,
   }) : super(key: key);
 
   final String name;
+  final String description;
   final String buttonSubText;
-  final double price;
-  final List<String> benefits;
+  final String price;
+  final List<String>? benefits;
   final bool featured;
   final Function onTap;
   final String? buttonText;
@@ -37,7 +38,7 @@ class PlanCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('\$$price', style: context.displaySmall),
+                  Text(price, style: context.displaySmall),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text('USD', style: context.titleSmall.outline),
@@ -45,7 +46,9 @@ class PlanCard extends StatelessWidget {
                 ],
               ),
               gap16,
-              ...benefits
+              Text(description, style: context.titleMedium),
+              gap8,
+              ...(benefits?.toList() ?? [])
                   .map((e) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(

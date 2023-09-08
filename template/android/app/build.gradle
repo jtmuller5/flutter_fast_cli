@@ -62,4 +62,8 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    //* Subscriptions *//
+    implementation 'com.android.billingclient:billing:6.0.1'
+    //* Subscriptions *//
+}

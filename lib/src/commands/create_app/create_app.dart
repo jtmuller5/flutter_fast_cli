@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/add_billing_dependency.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/remove_injectable_environments.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/paas_cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
 
@@ -25,6 +27,8 @@ class CreateApp extends Command {
     return ArgParser()
       ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
       ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example')
+      ..addFlag('subscriptions', abbr: 's', help: 'Whether to include subscriptions in the app.', defaultsTo: true, negatable: true)
+      ..addFlag('build', abbr: 'b', help: 'Whether to run the build_runner after the app has been created.', defaultsTo: true, negatable: true)
       ..addOption(
         'paas',
         abbr: 'p',
@@ -39,6 +43,8 @@ class CreateApp extends Command {
     final appName = argResults?['name'] as String?;
     final orgName = argResults!['org'] as String;
     final paas = argResults?['paas'] as String?;
+    final subscriptions = argResults?['subscriptions'] as bool;
+    final build = argResults?['build'] as bool;
 
     var logger = Logger.standard();
 
@@ -54,7 +60,7 @@ class CreateApp extends Command {
     progress = logger.progress('Copying template...');
     String? path = await loadTemplateFolder();
 
-    if(path == null){
+    if (path == null) {
       logger.stdout('Template path is null');
       return;
     }
@@ -70,23 +76,30 @@ class CreateApp extends Command {
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
     await fastlaneSetup(templatePath, appName);
+    if (!subscriptions) removeBillingDependency(templatePath, appName);
     progress.finish(showTiming: true);
 
-    if(paas != null){
-      progress = logger.progress('Removing unused PaaS files...');
+    progress = logger.progress('Performing cleanup...');
+    if (paas != null) {
       await clearUnusedPaasFiles(paas);
-      await updatePubspecFile(appName ,paas);
+      await updatePubspecFile(appName, paas);
       await removeInjectableEnvironments();
-      progress.finish(showTiming: true);
     }
+
+    if (!subscriptions) {
+      await removeSubscriptionFeature();
+    }
+    progress.finish(showTiming: true);
 
     progress = logger.progress('Running flutter pub get...');
     await Process.run('flutter', ['pub', 'get']);
     progress.finish(showTiming: true);
 
-    progress = logger.progress('Running build_runner...');
-    await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
-    progress.finish(showTiming: true);
+    if (build) {
+      progress = logger.progress('Running build_runner...');
+      await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+      progress.finish(showTiming: true);
+    }
 
     logger.stdout('Your app is ready! 🚀');
   }

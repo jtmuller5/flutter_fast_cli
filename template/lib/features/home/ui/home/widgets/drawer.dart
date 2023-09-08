@@ -35,6 +35,7 @@ class HomeDrawer extends StatelessWidget {
                     router.popAndPush(const ProfileRoute());
                   },
                 ),
+                //* Subscriptions *//
                 ListTile(
                   leading: const Icon(Icons.star),
                   title: const Text('Subscriptions'),
@@ -42,6 +43,7 @@ class HomeDrawer extends StatelessWidget {
                     router.popAndPush(const SubscriptionRoute());
                   },
                 ),
+                //* Subscriptions *//
                 ListTile(
                   leading: const Icon(Icons.thumb_up),
                   title: const Text('Leave Feedback'),
