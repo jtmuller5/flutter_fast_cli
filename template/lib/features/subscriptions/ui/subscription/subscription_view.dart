@@ -75,17 +75,14 @@ class SubscriptionView extends StatelessWidget {
                           final package = offerings.availablePackages[index];
 
                           return PlanCard(
-                            name: package.identifier, // Monthly, Annual, etc.
+                            name: package.packageType.name.substring(0,1).toUpperCase() + package.packageType.name.substring(1), // Monthly, Annual, etc.
                             description: package.storeProduct.description,
                             price: package.storeProduct.priceString,
-                            benefits: const [
-                              'Unlimited access to all features',
-                              'Unlimited access to all features',
-                              'Unlimited access to all features',
-                            ],
+                            benefits: model.premiumFeatures,
                             onTap: () async {
                               await subscriptionService.purchaseSubscription(package);
                             },
+                            featured: package.packageType == PackageType.monthly,
                             buttonText: 'Get ${package.identifier.substring(0,1).toUpperCase()}${package.identifier.substring(1)}',
                             buttonSubText: package.packageType == PackageType.lifetime ? 'One time purchase' : 'Monthly subscription',
                           );

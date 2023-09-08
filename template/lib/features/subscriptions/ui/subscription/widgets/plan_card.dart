@@ -71,6 +71,9 @@ class PlanCard extends StatelessWidget {
                 onPressed: () {
                   onTap();
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(featured ? Theme.of(context).colorScheme.primary : Colors.grey),
+                ),
                 child:  Text('Get Premium',
                 style: context.titleLarge.onPrimary.bold,),
               ),

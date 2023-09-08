@@ -14,6 +14,12 @@ class SubscriptionViewModelBuilder extends ViewModelBuilder<SubscriptionViewMode
 
 class SubscriptionViewModel extends ViewModel<SubscriptionViewModel> {
 
+  final List<String> premiumFeatures = [
+    'Unlimited access to all features',
+    'Unlimited access to all features',
+    'Unlimited access to all features',
+  ];
+
   @override
   void initState() {
     subscriptionService.fetchOfferings();
