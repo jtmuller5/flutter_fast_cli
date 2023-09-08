@@ -1,6 +1,6 @@
 name: flutter_fast_cli
 description: Build Flutter Apps Faster
-version: 1.0.1
+version: 1.0.2
 
 environment:
   sdk: ^3.1.0

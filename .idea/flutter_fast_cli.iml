@@ -18,6 +18,12 @@
       <excludeFolder url="file://$MODULE_DIR$/name/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/name/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/name/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterfast/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterfast/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutterfast/build" />
+      <excludeFolder url="file://$MODULE_DIR$/cool/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/cool/build" />
+      <excludeFolder url="file://$MODULE_DIR$/cool/.dart_tool" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

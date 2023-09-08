@@ -26,13 +26,32 @@ class CreateApp extends Command {
   ArgParser get argParser {
     return ArgParser()
       ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
-      ..addOption('org', abbr: 'o', help: 'The organization to use for the app.', valueHelp: 'com.example', defaultsTo: 'com.example')
-      ..addFlag('subs', abbr: 's', help: 'Whether to include subscriptions in the app.', defaultsTo: true, negatable: true)
-      ..addFlag('build', abbr: 'b', help: 'Whether to run the build_runner after the app has been created.', defaultsTo: true, negatable: true)
+      ..addOption(
+        'org',
+        abbr: 'o',
+        help: 'The organization to use for the app.',
+        valueHelp: 'com.example',
+        defaultsTo: 'com.example',
+      )
+      ..addFlag(
+        'subs',
+        abbr: 's',
+        help: 'Whether to include subscriptions in the app.',
+        defaultsTo: true,
+        negatable: true,
+      )
+      ..addFlag(
+        'build',
+        abbr: 'b',
+        help: 'Whether to run the build_runner after the app has been created.',
+        defaultsTo: true,
+        negatable: true,
+      )
       ..addOption(
         'paas',
         abbr: 'p',
-        help: 'The PaaS to use for the app. If left blank, all files will be included and you can use --dart-define to choose which one to use.',
+        help: 'The PaaS to use for the app. If left blank, all files will be '
+            'included and you can use --dart-define to choose which one to use.',
         valueHelp: 'firebase',
         allowed: ['firebase', 'supabase'],
       );

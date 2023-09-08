@@ -1,4 +1,3 @@
-import 'dart:cli';
 import 'dart:io';
 import 'dart:isolate';
 
@@ -11,7 +10,7 @@ Future<String?> loadTemplateFolder() async{
   final directory = Directory.fromUri(absoluteUri!);
   if (directory.existsSync()) {
 
-    Directory templateDirectory = Directory.fromUri(absoluteUri.resolve('../template'));
+    Directory templateDirectory = Directory.fromUri(absoluteUri.resolve('../flutterfast'));
 
     return templateDirectory.path;
   }
