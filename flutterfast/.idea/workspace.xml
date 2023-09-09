@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a51f2a60-4f66-4914-8806-00e713c3946b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/android_prod_fastlane.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ios_prod_fastlane.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,9 +45,10 @@
       <recent name="$PROJECT_DIR$/scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.iOS Beta Fastlane">
+  <component name="RunManager" selected="Flutter.Firebase">
     <list>
       <item itemvalue="Flutter.Firebase" />
+      <item itemvalue="Flutter.Firebase Release" />
       <item itemvalue="Shell Script.clean &amp; get" />
       <item itemvalue="Shell Script.flutter pub get" />
       <item itemvalue="Shell Script.Build Android" />

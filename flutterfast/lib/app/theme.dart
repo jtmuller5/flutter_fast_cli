@@ -1,6 +1,5 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfast/app/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 String? _fontFamily = GoogleFonts.quicksand().fontFamily;
@@ -10,9 +9,8 @@ ThemeData lightTheme = FlexThemeData.light(fontFamily: _fontFamily,scheme: FlexS
 ThemeData darkTheme = FlexThemeData.dark(fontFamily: _fontFamily,scheme: FlexScheme.flutterDash);
 
 extension FastColor on BuildContext {
-  BuildContext get context => router.navigatorKey.currentContext!;
   
-  ColorScheme get colorScheme => Theme.of(context).colorScheme;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
 
   Color get primary => colorScheme.primary;
 
