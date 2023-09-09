@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a51f2a60-4f66-4914-8806-00e713c3946b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "/Users/josephmuller/Dev/cotr/apps/flutter_fast_cli/flutterfast/scripts",
     "show.migrate.to.gradle.popup": "false"
   }
@@ -45,7 +47,7 @@
       <recent name="$PROJECT_DIR$/scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.Firebase">
+  <component name="RunManager" selected="Shell Script.Build Android">
     <list>
       <item itemvalue="Flutter.Firebase" />
       <item itemvalue="Flutter.Firebase Release" />
