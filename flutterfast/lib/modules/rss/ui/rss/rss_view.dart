@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -33,7 +35,7 @@ class RssView extends StatelessWidget {
                             effects: const [
                               ScaleEffect(begin: Offset(.8, .8)),
                             ],
-                            delay: Duration(milliseconds: 100 * index),
+                            delay: Duration(milliseconds: 100 * min(index, 5)),
                             child: AtomFeedItem(item: item),
                           );
                         },
@@ -54,7 +56,7 @@ class RssView extends StatelessWidget {
                             effects: const [
                               ScaleEffect(begin: Offset(.8, .8)),
                             ],
-                            delay: Duration(milliseconds: 100 * index),
+                            delay: Duration(milliseconds: 100 * min(index, 5)),
                             child: RssFeedItem(item: item));
                       },
                     ),
