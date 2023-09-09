@@ -7,6 +7,9 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   File analysisOptions = File('analysis_options.yaml');
   await analysisOptions.writeAsString(getAnalysisOptionsText(), mode: FileMode.write);
 
+  File pubspecLock = File('pubspec.lock');
+  if (pubspecLock.existsSync()) await pubspecLock.delete();
+
   File pubspec = File('pubspec.yaml');
   await pubspec.writeAsString(getPubspecText(appName), mode: FileMode.write);
 
