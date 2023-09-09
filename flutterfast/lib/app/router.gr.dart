@@ -44,12 +44,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeView(),
       );
     },
-    LibraryRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LibraryView(),
-      );
-    },
     NewFeedbackRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -72,6 +66,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RegisterView(),
+      );
+    },
+    RssRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RssView(),
       );
     },
     SettingsRoute.name: (routeData) {
@@ -176,20 +176,6 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LibraryView]
-class LibraryRoute extends PageRouteInfo<void> {
-  const LibraryRoute({List<PageRouteInfo>? children})
-      : super(
-          LibraryRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LibraryRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [NewFeedbackView]
 class NewFeedbackRoute extends PageRouteInfo<void> {
   const NewFeedbackRoute({List<PageRouteInfo>? children})
@@ -241,6 +227,20 @@ class RegisterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RssView]
+class RssRoute extends PageRouteInfo<void> {
+  const RssRoute({List<PageRouteInfo>? children})
+      : super(
+          RssRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RssRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

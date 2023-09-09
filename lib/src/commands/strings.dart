@@ -47,7 +47,7 @@ String getChatViewModelText(String appName) => File('$templatePath/lib/features/
 String getAiChat(String appName) => File('$templatePath/lib/features/home/ui/chat/widgets/ai_chat.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());
 String getMessageBubble(String appName) => File('$templatePath/lib/features/home/ui/chat/widgets/message_bubble.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());
 String getMessageText(String appName) => File('$templatePath/lib/features/home/models/message.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());
-String getResponseStatusText(String appName) => File('$templatePath/lib/features/home/models/response_status.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());
+String getResponseStatusText(String appName) => File('$templatePath/lib/features/home/models/palm_response_status.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());
 
 /// Monitoring
 String getAnalyticsServiceText(String appName) => File('$templatePath/lib/features/monitoring/services/amplitude_analytics_service.dart').readAsStringSync().replaceAll('flutterfast', appName.toLowerCase());

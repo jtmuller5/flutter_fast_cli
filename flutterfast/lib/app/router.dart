@@ -7,15 +7,16 @@ import 'package:flutterfast/features/authentication/ui/sign_in_view.dart';
 import 'package:flutterfast/features/feedback/ui/feedback/feedback_view.dart';
 import 'package:flutterfast/features/feedback/ui/new_feedback/new_feedback_view.dart';
 import 'package:flutterfast/features/home/ui/home/home_view.dart';
-import 'package:flutterfast/features/home/ui/onboarding/onboarding_view.dart';
-import 'package:flutterfast/features/settings/ui/settings/settings_view.dart';
-import 'package:flutterfast/features/shared/utils/navigation/auth_guard.dart';
 
 //x Subscriptions x//
 import 'package:flutterfast/features/subscriptions/ui/subscription/subscription_view.dart';
-import 'package:flutterfast/modules/chat/ui/chat/chat_view.dart';
-import 'package:flutterfast/modules/library/ui/library/library_view.dart';
 //x Subscriptions x//
+
+import 'package:flutterfast/features/home/ui/onboarding/onboarding_view.dart';
+import 'package:flutterfast/features/settings/ui/settings/settings_view.dart';
+import 'package:flutterfast/features/shared/utils/navigation/auth_guard.dart';
+import 'package:flutterfast/modules/rss/ui/rss/rss_view.dart';
+import 'package:flutterfast/modules/chat/ui/chat/chat_view.dart';
 
 part 'router.gr.dart';
 
@@ -33,6 +34,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: ChatRoute.page),
         AutoRoute(page: FeedbackRoute.page),
         AutoRoute(page: NewFeedbackRoute.page),
+        AutoRoute(page: RssRoute.page),
 
         //* Subscriptions *//
         AutoRoute(page: SubscriptionRoute.page),

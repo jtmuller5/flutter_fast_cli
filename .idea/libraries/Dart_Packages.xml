@@ -1208,6 +1208,13 @@
             </list>
           </value>
         </entry>
+        <entry key="webfeed_revised">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webfeed_revised-0.7.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="webkit_inspection_protocol">
           <value>
             <list>
@@ -1456,6 +1463,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/watcher-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web-0.1.4-beta/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket_channel-2.4.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webfeed_revised-0.7.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.2.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.9.5/lib" />

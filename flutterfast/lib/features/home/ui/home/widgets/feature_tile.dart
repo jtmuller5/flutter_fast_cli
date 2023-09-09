@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutterfast/app/theme.dart';
 
 class FeatureTile extends StatelessWidget {
@@ -11,24 +12,29 @@ class FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Material(
-          color: context.tertiaryContainer,
-          child: InkWell(
-            onTap: onTap,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(child: child),
-                ListTile(
-                  title: Text(title),
-                  subtitle: subtitle != null ? Text(subtitle!) : null,
-                  tileColor: context.background,
-                )
-              ],
+    return Animate(
+      effects: const [
+        ScaleEffect(begin: Offset(.8, .8)),
+      ],
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Material(
+            color: context.tertiaryContainer,
+            child: InkWell(
+              onTap: onTap,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(child: child),
+                  ListTile(
+                    title: Text(title),
+                    subtitle: subtitle != null ? Text(subtitle!) : null,
+                    tileColor: context.background,
+                  )
+                ],
+              ),
             ),
           ),
         ),
