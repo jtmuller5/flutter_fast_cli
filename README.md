@@ -15,7 +15,6 @@
   <a href="https://codeontherocks.gumroad.com/l/flutterfast">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
----
 
 # Table of Contents
 - [What?](#what-is-flutter-fast)

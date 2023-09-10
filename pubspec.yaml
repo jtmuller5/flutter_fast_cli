@@ -1,6 +1,8 @@
 name: flutter_fast_cli
 description: Build Flutter Apps Faster
 version: 1.0.3
+homepage: https://codeotr.github.io/flutter-fast-guide/
+repository: https://github.com/CodeOTR/flutter_fast_cli
 # flutter pub publish --dry-run
 
 environment:
@@ -24,3 +26,14 @@ executables:
 screenshots:
   - description: "Flutter Fast"
     path: assets/flutter-fast.png
+
+false_secrets:
+  - /flutterfast/android/app/google-services.json
+  - /flutterfast/ios/Runner/GoogleService-Info.plist
+  - /flutterfast/macos/Runner/GoogleService-Info.plist
+
+topics:
+  - boilerplate
+  - cli
+  - flutter
+  - template
