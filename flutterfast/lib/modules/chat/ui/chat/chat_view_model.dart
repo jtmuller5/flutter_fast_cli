@@ -28,5 +28,6 @@ class ChatViewModel extends ViewModel<ChatViewModel> {
     super.initState();
   }
 
-  static ChatViewModel of_(BuildContext context) => getModel<ChatViewModel>(context);
+  static ChatViewModel of_(BuildContext context) =>
+      getModel<ChatViewModel>(context);
 }

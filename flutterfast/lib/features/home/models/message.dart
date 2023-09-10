@@ -11,7 +11,10 @@ class Message {
 
   final String message;
 
-  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(
+      name: 'created_at',
+      fromJson: getDateTimeFromTimestamp,
+      toJson: getTimestampFromDateTime)
   final DateTime? createdAt;
 
   String? response;
@@ -26,7 +29,8 @@ class Message {
     this.status,
   });
 
-  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
+  factory Message.fromJson(Map<String, dynamic> json) =>
+      _$MessageFromJson(json);
 
   Map<String, dynamic> toJson() => _$MessageToJson(this);
 }

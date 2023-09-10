@@ -18,7 +18,8 @@ class RowyImage {
     this.type,
   });
 
-  factory RowyImage.fromJson(Map<String, dynamic> json) => _$RowyImageFromJson(json);
+  factory RowyImage.fromJson(Map<String, dynamic> json) =>
+      _$RowyImageFromJson(json);
 
   Map<String, dynamic> toJson() => _$RowyImageToJson(this);
 }

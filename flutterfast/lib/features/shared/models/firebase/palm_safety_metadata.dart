@@ -13,14 +13,14 @@ class PalmSafetyMetadata {
     required this.safetyFeedback,
   });
 
-  factory PalmSafetyMetadata.fromJson(Map<String, dynamic> json) => _$PalmSafetyMetadataFromJson(json);
+  factory PalmSafetyMetadata.fromJson(Map<String, dynamic> json) =>
+      _$PalmSafetyMetadataFromJson(json);
 
   Map<String, dynamic> toJson() => _$PalmSafetyMetadataToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
 class PalmSafetyFeedback {
-
   final PalmSafetyRating rating;
 
   final PalmSafetySetting setting;

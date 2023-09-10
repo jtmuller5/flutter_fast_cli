@@ -11,7 +11,8 @@ import 'package:flutterfast/features/feedback/ui/new_feedback/new_feedback_view_
 class FirebaseFeedbackService extends FastFeedbackService {
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-    DocumentReference feedbackDoc = FirebaseFirestore.instance.collection('feedback').doc();
+    DocumentReference feedbackDoc =
+        FirebaseFirestore.instance.collection('feedback').doc();
 
     await feedbackDoc.set(Feedback(
       id: feedbackDoc.id,
@@ -24,6 +25,12 @@ class FirebaseFeedbackService extends FastFeedbackService {
 
   @override
   Future<List<Feedback>> getLatestFeedback() {
-    return FirebaseFirestore.instance.collection('feedback').orderBy('createdAt', descending: true).limit(10).get().then((value) => value.docs.map((e) => Feedback.fromJson(e.data())).toList());
+    return FirebaseFirestore.instance
+        .collection('feedback')
+        .orderBy('createdAt', descending: true)
+        .limit(10)
+        .get()
+        .then((value) =>
+            value.docs.map((e) => Feedback.fromJson(e.data())).toList());
   }
 }

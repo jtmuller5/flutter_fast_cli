@@ -9,8 +9,10 @@ class PlanCard extends StatelessWidget {
     required this.buttonSubText,
     required this.price,
     this.benefits,
-    this.featured = false, required this.onTap,
-    this.buttonText, required this.description,
+    this.featured = false,
+    required this.onTap,
+    this.buttonText,
+    required this.description,
   }) : super(key: key);
 
   final String name;
@@ -26,7 +28,11 @@ class PlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
         decoration: BoxDecoration(
-          border: Border.all(color: featured ? Theme.of(context).colorScheme.primary : Colors.grey, width: featured ? 2 : 1),
+          border: Border.all(
+              color: featured
+                  ? Theme.of(context).colorScheme.primary
+                  : Colors.grey,
+              width: featured ? 2 : 1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
@@ -72,12 +78,17 @@ class PlanCard extends StatelessWidget {
                   onTap();
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(featured ? Theme.of(context).colorScheme.primary : Colors.grey),
+                  backgroundColor: MaterialStateProperty.all(featured
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey),
                 ),
-                child:  Text('Get Premium',
-                style: context.titleLarge.onPrimary.bold,),
+                child: Text(
+                  'Get Premium',
+                  style: context.titleLarge.onPrimary.bold,
+                ),
               ),
-              Center(child: Padding(
+              Center(
+                  child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(buttonSubText),
               ))

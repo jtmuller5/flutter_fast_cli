@@ -12,5 +12,6 @@ class SettingsViewModelBuilder extends ViewModelBuilder<SettingsViewModel> {
 }
 
 class SettingsViewModel extends ViewModel<SettingsViewModel> {
-  static SettingsViewModel of_(BuildContext context) => getModel<SettingsViewModel>(context);
+  static SettingsViewModel of_(BuildContext context) =>
+      getModel<SettingsViewModel>(context);
 }

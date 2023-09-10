@@ -18,10 +18,16 @@ class FastUser {
   @JsonKey(name: 'last_name')
   String? lastName;
 
-  @JsonKey(name: 'date_of_birth', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(
+      name: 'date_of_birth',
+      fromJson: getDateTimeFromTimestamp,
+      toJson: getTimestampFromDateTime)
   DateTime? dateOfBirth;
 
-  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(
+      name: 'created_at',
+      fromJson: getDateTimeFromTimestamp,
+      toJson: getTimestampFromDateTime)
   DateTime? createdAt;
 
   FastUser({
@@ -34,7 +40,8 @@ class FastUser {
     this.createdAt,
   });
 
-  factory FastUser.fromJson(Map<String, dynamic> json) => _$FastUserFromJson(json);
+  factory FastUser.fromJson(Map<String, dynamic> json) =>
+      _$FastUserFromJson(json);
 
   Map<String, dynamic> toJson() => _$FastUserToJson(this);
 }

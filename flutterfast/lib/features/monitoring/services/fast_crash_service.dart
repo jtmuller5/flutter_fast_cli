@@ -1,3 +1,1 @@
-abstract class FastCrashService {
-
-}
+abstract class FastCrashService {}

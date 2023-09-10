@@ -18,7 +18,8 @@ import 'package:flutter_fast_cli/src/commands/strings.dart';
 
 class CreateApp extends Command {
   @override
-  String get description => 'Create a new Flutter app with all the bells and whistles.';
+  String get description =>
+      'Create a new Flutter app with all the bells and whistles.';
 
   @override
   String get name => 'app';
@@ -74,7 +75,8 @@ class CreateApp extends Command {
     }
 
     var progress = logger.progress('Creating app $appName...');
-    await Process.run('flutter', ['create', appName, '--empty', '--org', orgName]);
+    await Process.run(
+        'flutter', ['create', appName, '--empty', '--org', orgName]);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
@@ -118,7 +120,13 @@ class CreateApp extends Command {
 
     if (build) {
       progress = logger.progress('Running build_runner...');
-      await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+      await Process.run('flutter', [
+        'pub',
+        'run',
+        'build_runner',
+        'build',
+        '--delete-conflicting-outputs'
+      ]);
       progress.finish(showTiming: true);
     }
 

@@ -17,15 +17,20 @@ class MessageBubble extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.8),
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Flexible(child: Text(message.message, style: context.bodyLarge)),
+                        Flexible(
+                            child: Text(message.message,
+                                style: context.bodyLarge)),
                       ],
                     ),
                   ),
@@ -41,15 +46,22 @@ class MessageBubble extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8,),
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.8,
+                  ),
                   child: DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.lightGreen.shade200, borderRadius: const BorderRadius.all(Radius.circular(8))),
+                    decoration: BoxDecoration(
+                        color: Colors.lightGreen.shade200,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8))),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Flexible(child: Text(message.response!, style: context.bodyLarge)),
+                          Flexible(
+                              child: Text(message.response!,
+                                  style: context.bodyLarge)),
                         ],
                       ),
                     ),

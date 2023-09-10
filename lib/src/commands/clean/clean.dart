@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Clean extends Command {
   @override
@@ -27,29 +27,36 @@ class Clean extends Command {
   Future<void> run() async {
     final ios = argResults?['ios'] as bool;
 
-    var logger = Logger.standard();
-
     if (ios) {
-      var progress = logger.progress('Running flutter clean...');
-      await Process.run('flutter', ['clean']);
-      progress.finish(showTiming: true);
+      await runWithProgress('Running flutter clean...', () async {
+        await Process.run('flutter', ['clean']);
+      });
 
-      progress = logger.progress('Removing pod files...');
-      await Process.run('rm', ['-rf', 'Pods', 'Podfile.lock'], workingDirectory: 'ios');
-      progress.finish(showTiming: true);
+      await runWithProgress('Removing iOS pods...', () async {
+        Directory podsDirectory = Directory('ios/Pods');
+        File podfileLock = File('ios/Podfile.lock');
 
-      progress = logger.progress('Running flutter pub get...');
-      await Process.run('flutter', ['pub', 'get']);
-      progress.finish(showTiming: true);
+        if (podsDirectory.existsSync())
+          await podsDirectory.delete(recursive: true);
+        if (podfileLock.existsSync()) await podfileLock.delete();
+      });
 
-      progress = logger.progress('Running pod install...');
-      await Process.run('pod', ['install'], workingDirectory: 'ios');
-      progress.finish(showTiming: true);
+      await runWithProgress('Running flutter pub get...', () async {
+        await Process.run('flutter', ['pub', 'get']);
+      });
+
+      await runWithProgress('Running pod install...', () async {
+        Directory iosDirectory = Directory('ios');
+
+        if (iosDirectory.existsSync()) {
+          await Process.run('pod', ['install'], workingDirectory: 'ios');
+        }
+      });
     } else {
-      var progress = logger.progress('Cleaning Flutter project...');
-      await Process.run('rm', ['pubspec.lock']);
-      await Process.run('flutter', ['pub', 'get']);
-      progress.finish(showTiming: true);
+      await runWithProgress('Cleaning Flutter project...', () async {
+        await Process.run('rm', ['pubspec.lock']);
+        await Process.run('flutter', ['pub', 'get']);
+      });
     }
   }
 }

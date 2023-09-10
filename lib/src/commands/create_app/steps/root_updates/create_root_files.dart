@@ -5,7 +5,8 @@ import 'package:io/io.dart';
 
 Future<void> createRootFiles(String templatePath, String appName) async {
   File analysisOptions = File('analysis_options.yaml');
-  await analysisOptions.writeAsString(getAnalysisOptionsText(), mode: FileMode.write);
+  await analysisOptions.writeAsString(getAnalysisOptionsText(),
+      mode: FileMode.write);
 
   File pubspecLock = File('pubspec.lock');
   if (pubspecLock.existsSync()) await pubspecLock.delete();

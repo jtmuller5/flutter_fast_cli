@@ -7,13 +7,14 @@ part 'gpt_choice_message.g.dart';
 /// "content":"\n\n\"Can't decide if I want to be productive today or just binge-watch my favorite show... #decisions "#procrastination\""},
 /// "finish_reason":"stop","index":0}
 @JsonSerializable(explicitToJson: true)
-class GptChoiceMessage{
+class GptChoiceMessage {
   String role;
 
   String content;
 
   // Stripped content
-  String get strippedContent => content.replaceAll('\n', '').replaceAll('"', '');
+  String get strippedContent =>
+      content.replaceAll('\n', '').replaceAll('"', '');
 
   // Constructor
   GptChoiceMessage({
@@ -22,8 +23,8 @@ class GptChoiceMessage{
   });
 
   // Factory
-  factory GptChoiceMessage.fromJson(Map<String, dynamic> json) => _$GptChoiceMessageFromJson(json);
-
+  factory GptChoiceMessage.fromJson(Map<String, dynamic> json) =>
+      _$GptChoiceMessageFromJson(json);
 
   // To Json
   Map<String, dynamic> toJson() => _$GptChoiceMessageToJson(this);

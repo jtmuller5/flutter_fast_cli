@@ -34,20 +34,19 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: settingsService.themeMode,
-      builder: (context, mode, child) {
-        return MaterialApp.router(
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          themeMode: mode,
-          routerConfig: router.config(
-            navigatorObservers: () => [
-              SentryNavigatorObserver(),
-              BasicObserver(),
-            ],
-          ),
-        );
-      }
-    );
+        valueListenable: settingsService.themeMode,
+        builder: (context, mode, child) {
+          return MaterialApp.router(
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: mode,
+            routerConfig: router.config(
+              navigatorObservers: () => [
+                SentryNavigatorObserver(),
+                BasicObserver(),
+              ],
+            ),
+          );
+        });
   }
 }

@@ -13,7 +13,8 @@ class FirebaseUserService extends FastUserService {
 
   @override
   Future<void> createUser() async {
-    DocumentReference docRef = firestore.collection('users').doc(authenticationService.id);
+    DocumentReference docRef =
+        firestore.collection('users').doc(authenticationService.id);
     await docRef.set(FastUser(
       id: docRef.id,
       createdAt: DateTime.now(),

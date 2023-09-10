@@ -39,7 +39,8 @@ class NewFeedbackView extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     label: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(type.name.toUpperCase()),
                                       ],
@@ -57,18 +58,25 @@ class NewFeedbackView extends StatelessWidget {
                   TextField(
                     controller: model.feedbackController,
                     maxLines: null,
-                    decoration: const InputDecoration(labelText: 'Feedback', border: OutlineInputBorder()),
+                    decoration: const InputDecoration(
+                        labelText: 'Feedback', border: OutlineInputBorder()),
                   ),
                   gap16,
                   ElevatedButton(
                       onPressed: () async {
-                        if (model.feedbackController.text.trim().isEmpty || model.type.value == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill out all fields.')));
+                        if (model.feedbackController.text.trim().isEmpty ||
+                            model.type.value == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content:
+                                      Text('Please fill out all fields.')));
                         } else {
                           FocusScope.of(context).unfocus();
                           await model.submitFeedback().then((value) {
                             router.pop();
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Feedback submitted!')));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Feedback submitted!')));
                           });
                         }
                       },
@@ -78,7 +86,8 @@ class NewFeedbackView extends StatelessWidget {
                       ))
                 ],
               ),
-              if (model.isLoading) const Positioned.fill(child: LoadingOverlay()),
+              if (model.isLoading)
+                const Positioned.fill(child: LoadingOverlay()),
             ],
           ),
         );

@@ -9,7 +9,8 @@ Future<String?> loadTemplateFolder() async {
 
   final directory = Directory.fromUri(absoluteUri!);
   if (directory.existsSync()) {
-    Directory templateDirectory = Directory.fromUri(absoluteUri.resolve('../flutterfast'));
+    Directory templateDirectory =
+        Directory.fromUri(absoluteUri.resolve('../flutterfast'));
 
     return templateDirectory.path;
   }

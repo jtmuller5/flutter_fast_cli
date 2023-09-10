@@ -34,7 +34,8 @@ class GptMessage {
     required this.choices,
   });
 
-  factory GptMessage.fromJson(Map<String, dynamic> json) => _$GptMessageFromJson(json);
+  factory GptMessage.fromJson(Map<String, dynamic> json) =>
+      _$GptMessageFromJson(json);
 
   Map<String, dynamic> toJson() => _$GptMessageToJson(this);
 }

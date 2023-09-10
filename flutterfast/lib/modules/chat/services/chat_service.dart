@@ -8,7 +8,12 @@ import 'package:flutterfast/features/home/models/message.dart';
 class ChatService extends FastChatService {
   @override
   Future<void> submitMessage(String message) async {
-    DocumentReference<Map<String, dynamic>> messageRef = FirebaseFirestore.instance.collection('users').doc(authenticationService.id).collection('messages').doc();
+    DocumentReference<Map<String, dynamic>> messageRef = FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc(authenticationService.id)
+        .collection('messages')
+        .doc();
 
     messages.value = List.from(messages.value
       ..insert(
@@ -26,14 +31,20 @@ class ChatService extends FastChatService {
     });
 
     messageRef.snapshots().listen((event) {
-      messages.value = List.from(messages.value..replaceRange(0, 1, [Message.fromJson(event.data()!)]));
+      messages.value = List.from(messages.value
+        ..replaceRange(0, 1, [Message.fromJson(event.data()!)]));
     });
   }
 
   @override
   Future<void> getMessages() async {
-    QuerySnapshot<Map<String, dynamic>> snap =
-        await FirebaseFirestore.instance.collection('users').doc(authenticationService.id).collection('messages').orderBy('createdAt', descending: true).limit(20).get();
+    QuerySnapshot<Map<String, dynamic>> snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(authenticationService.id)
+        .collection('messages')
+        .orderBy('createdAt', descending: true)
+        .limit(20)
+        .get();
 
     messages.value = snap.docs.map((e) => Message.fromJson(e.data())).toList();
   }

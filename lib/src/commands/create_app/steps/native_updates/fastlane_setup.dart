@@ -13,7 +13,18 @@ Future<void> fastlaneSetup(String templatePath, String appName) async {
 
   await Process.run(
     'find',
-    [iosFastfile.path, '-type', 'f', '-exec', 'sed', '-i', '', 's/flutterfastApp/$appName/', '{}', ';'],
+    [
+      iosFastfile.path,
+      '-type',
+      'f',
+      '-exec',
+      'sed',
+      '-i',
+      '',
+      's/flutterfastApp/$appName/',
+      '{}',
+      ';'
+    ],
     workingDirectory: Directory.current.path,
   );
 }

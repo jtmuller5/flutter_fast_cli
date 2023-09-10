@@ -34,10 +34,12 @@ class AiChat extends StatelessWidget {
 
                                       return Column(
                                         key: ValueKey(message.id),
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
                                         children: [
                                           MessageBubble(message: message),
-                                          if (index == 0) const SizedBox(height: 80),
+                                          if (index == 0)
+                                            const SizedBox(height: 80),
                                         ],
                                       );
                                     },
@@ -55,7 +57,8 @@ class AiChat extends StatelessWidget {
                             controller: model.messageController,
                             decoration: InputDecoration(
                               hintText: 'Ask a question',
-                              fillColor: Theme.of(context).colorScheme.background,
+                              fillColor:
+                                  Theme.of(context).colorScheme.background,
                               filled: true,
                               suffixIcon: Material(
                                 color: Colors.transparent,

@@ -21,7 +21,7 @@ class SubscriptionService {
 
   ValueNotifier<Offering?> offering = ValueNotifier(null);
 
-  void setOfferings(Offering? val){
+  void setOfferings(Offering? val) {
     offering.value = val;
   }
 
@@ -30,30 +30,41 @@ class SubscriptionService {
 
     late PurchasesConfiguration configuration;
 
-    if (Platform.isAndroid && const String.fromEnvironment('GOOGLE_SDK_KEY').isNotEmpty) {
+    if (Platform.isAndroid &&
+        const String.fromEnvironment('GOOGLE_SDK_KEY').isNotEmpty) {
       // use your preferred way to determine if this build is for Amazon store
       // checkout our MagicWeather sample for a suggestion
       // configuration = AmazonConfiguration(const String.fromEnvironment('amazon_sdk_key'));
-      configuration = PurchasesConfiguration(const String.fromEnvironment('GOOGLE_SDK_KEY'));
-    } else if (Platform.isIOS && const String.fromEnvironment('IOS_SDK_KEY').isNotEmpty) {
-      configuration = PurchasesConfiguration(const String.fromEnvironment('IOS_SDK_KEY'));
+      configuration = PurchasesConfiguration(
+          const String.fromEnvironment('GOOGLE_SDK_KEY'));
+    } else if (Platform.isIOS &&
+        const String.fromEnvironment('IOS_SDK_KEY').isNotEmpty) {
+      configuration =
+          PurchasesConfiguration(const String.fromEnvironment('IOS_SDK_KEY'));
     } else {
       return;
     }
 
-    await Purchases.configure(configuration..appUserID = FirebaseAuth.instance.currentUser?.uid);
+    await Purchases.configure(
+        configuration..appUserID = FirebaseAuth.instance.currentUser?.uid);
 
     await checkSubscription();
 
     Purchases.addCustomerInfoUpdateListener((purchaserInfo) {
-      debugPrint('purchaserInfo.activeSubscriptions: ${purchaserInfo.activeSubscriptions}');
-      debugPrint('purchaserInfo.entitlements.all: ${purchaserInfo.entitlements.all}');
-      debugPrint('purchaserInfo.entitlements.active: ${purchaserInfo.entitlements.active}');
-      debugPrint('purchaserInfo.entitlements.all[_premiumId]: ${purchaserInfo.entitlements.all[premiumId]}');
-      debugPrint('purchaserInfo.allExpirationDates: ${purchaserInfo.allExpirationDates}');
+      debugPrint(
+          'purchaserInfo.activeSubscriptions: ${purchaserInfo.activeSubscriptions}');
+      debugPrint(
+          'purchaserInfo.entitlements.all: ${purchaserInfo.entitlements.all}');
+      debugPrint(
+          'purchaserInfo.entitlements.active: ${purchaserInfo.entitlements.active}');
+      debugPrint(
+          'purchaserInfo.entitlements.all[_premiumId]: ${purchaserInfo.entitlements.all[premiumId]}');
+      debugPrint(
+          'purchaserInfo.allExpirationDates: ${purchaserInfo.allExpirationDates}');
       // handle any changes to purchaserInfo
       if (purchaserInfo.entitlements.all[premiumId]?.isActive ?? false) {
-        setPremium(purchaserInfo.entitlements.all[premiumId]?.isActive ?? false);
+        setPremium(
+            purchaserInfo.entitlements.all[premiumId]?.isActive ?? false);
       }
     });
   }
@@ -96,7 +107,8 @@ class SubscriptionService {
                     ),
                   ),
                 ),
-                const Text('You need to be a premium member to access this feature.'),
+                const Text(
+                    'You need to be a premium member to access this feature.'),
                 gap16,
                 OutlinedButton(
                   onPressed: () {
@@ -116,7 +128,8 @@ class SubscriptionService {
   Future<void> purchaseSubscription(Package package) async {
     try {
       CustomerInfo customerInfo = await Purchases.purchasePackage(package);
-      var isPremium = customerInfo.entitlements.all[premiumId]?.isActive ?? false;
+      var isPremium =
+          customerInfo.entitlements.all[premiumId]?.isActive ?? false;
       if (isPremium) {
         setPremium(true);
       }

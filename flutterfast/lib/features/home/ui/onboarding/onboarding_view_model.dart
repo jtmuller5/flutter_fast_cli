@@ -12,8 +12,8 @@ class OnboardingViewModelBuilder extends ViewModelBuilder<OnboardingViewModel> {
 }
 
 class OnboardingViewModel extends ViewModel<OnboardingViewModel> {
-
   PageController pageController = PageController(initialPage: 0);
 
-  static OnboardingViewModel of_(BuildContext context) => getModel<OnboardingViewModel>(context);
+  static OnboardingViewModel of_(BuildContext context) =>
+      getModel<OnboardingViewModel>(context);
 }

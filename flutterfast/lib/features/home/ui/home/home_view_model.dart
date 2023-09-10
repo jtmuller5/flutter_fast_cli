@@ -12,6 +12,6 @@ class HomeViewModelBuilder extends ViewModelBuilder<HomeViewModel> {
 }
 
 class HomeViewModel extends ViewModel<HomeViewModel> {
-
-  static HomeViewModel of_(BuildContext context) => getModel<HomeViewModel>(context);
+  static HomeViewModel of_(BuildContext context) =>
+      getModel<HomeViewModel>(context);
 }

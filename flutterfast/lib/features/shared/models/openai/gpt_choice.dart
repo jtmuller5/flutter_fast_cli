@@ -17,10 +17,12 @@ class GptChoice {
   int index;
 
   // Constructor
-  GptChoice({required this.message, required this.finishReason, required this.index});
+  GptChoice(
+      {required this.message, required this.finishReason, required this.index});
 
   // Factory
-  factory GptChoice.fromJson(Map<String, dynamic> json) => _$GptChoiceFromJson(json);
+  factory GptChoice.fromJson(Map<String, dynamic> json) =>
+      _$GptChoiceFromJson(json);
 
   // To Json
   Map<String, dynamic> toJson() => _$GptChoiceToJson(this);

@@ -2,7 +2,8 @@ import 'package:code_on_the_rocks/code_on_the_rocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/services.dart';
 
-class SubscriptionViewModelBuilder extends ViewModelBuilder<SubscriptionViewModel> {
+class SubscriptionViewModelBuilder
+    extends ViewModelBuilder<SubscriptionViewModel> {
   const SubscriptionViewModelBuilder({
     super.key,
     required super.builder,
@@ -13,7 +14,6 @@ class SubscriptionViewModelBuilder extends ViewModelBuilder<SubscriptionViewMode
 }
 
 class SubscriptionViewModel extends ViewModel<SubscriptionViewModel> {
-
   final List<String> premiumFeatures = [
     'Unlimited access to all features',
     'Unlimited access to all features',
@@ -26,5 +26,6 @@ class SubscriptionViewModel extends ViewModel<SubscriptionViewModel> {
     super.initState();
   }
 
-  static SubscriptionViewModel of_(BuildContext context) => getModel<SubscriptionViewModel>(context);
+  static SubscriptionViewModel of_(BuildContext context) =>
+      getModel<SubscriptionViewModel>(context);
 }

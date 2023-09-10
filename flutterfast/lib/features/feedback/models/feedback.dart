@@ -6,7 +6,6 @@ part 'feedback.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Feedback {
-
   String? id;
 
   final String message;
@@ -14,7 +13,10 @@ class Feedback {
   @JsonKey(name: 'user_id')
   final String userId;
 
-  @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  @JsonKey(
+      name: 'created_at',
+      fromJson: getDateTimeFromTimestamp,
+      toJson: getTimestampFromDateTime)
   final DateTime? createdAt;
 
   /// bug, feature, other
@@ -28,7 +30,8 @@ class Feedback {
     this.id,
   });
 
-  factory Feedback.fromJson(Map<String, dynamic> json) => _$FeedbackFromJson(json);
+  factory Feedback.fromJson(Map<String, dynamic> json) =>
+      _$FeedbackFromJson(json);
 
   Map<String, dynamic> toJson() => _$FeedbackToJson(this);
 }

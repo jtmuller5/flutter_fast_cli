@@ -35,7 +35,8 @@ class RssFeedItem extends StatelessWidget {
                 children: [
                   if (item.pubDate != null) ...[
                     Text(
-                      MaterialLocalizations.of(context).formatCompactDate(item.pubDate!),
+                      MaterialLocalizations.of(context)
+                          .formatCompactDate(item.pubDate!),
                       style: context.bodySmall,
                     ),
                     if (item.dc?.modified != null) const Text(' - ')

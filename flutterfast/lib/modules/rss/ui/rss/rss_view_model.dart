@@ -1,4 +1,3 @@
-
 import 'package:code_on_the_rocks/code_on_the_rocks.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed_revised/webfeed_revised.dart';
@@ -15,24 +14,24 @@ class RssViewModelBuilder extends ViewModelBuilder<RssViewModel> {
 }
 
 class RssViewModel extends ViewModel<RssViewModel> {
-
   ValueNotifier<AtomFeed?> atomFeed = ValueNotifier(null);
 
-  void setAtomFeed(AtomFeed val){
+  void setAtomFeed(AtomFeed val) {
     atomFeed.value = val;
   }
 
   ValueNotifier<RssFeed?> rssFeed = ValueNotifier(null);
 
-  void setRssFeed(RssFeed? val){
+  void setRssFeed(RssFeed? val) {
     rssFeed.value = val;
   }
+
   Future<void> getFeed() async {
-
     bool isAtom = true;
-    String feedUrl = 'https://pub.dev/feed.atom'; //'https://stackoverflow.com/feeds/tag?tagnames=flutter';
+    String feedUrl =
+        'https://pub.dev/feed.atom'; //'https://stackoverflow.com/feeds/tag?tagnames=flutter';
 
-    if(isAtom || feedUrl.contains('atom')){
+    if (isAtom || feedUrl.contains('atom')) {
       try {
         // RSS feed
         http.Response response = await http.get(
@@ -73,5 +72,6 @@ class RssViewModel extends ViewModel<RssViewModel> {
     super.initState();
   }
 
-  static RssViewModel of_(BuildContext context) => getModel<RssViewModel>(context);
+  static RssViewModel of_(BuildContext context) =>
+      getModel<RssViewModel>(context);
 }

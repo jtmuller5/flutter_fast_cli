@@ -1,3 +1,3 @@
-void goFast(){
+void goFast() {
   print('Go fast!');
 }

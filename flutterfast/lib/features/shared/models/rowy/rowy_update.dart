@@ -34,7 +34,8 @@ class RowyUpdate {
     this.updateField,
   });
 
-  factory RowyUpdate.fromJson(Map<String, dynamic> json) => _$RowyUpdateFromJson(json);
+  factory RowyUpdate.fromJson(Map<String, dynamic> json) =>
+      _$RowyUpdateFromJson(json);
 
   Map<String, dynamic> toJson() => _$RowyUpdateToJson(this);
 }

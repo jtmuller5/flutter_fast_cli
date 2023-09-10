@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FeatureCard extends StatelessWidget {
-  const FeatureCard({Key? key, required this.asset, required this.title, required this.description}) : super(key: key);
+  const FeatureCard(
+      {Key? key,
+      required this.asset,
+      required this.title,
+      required this.description})
+      : super(key: key);
 
   final String asset;
   final String title;
@@ -26,7 +31,9 @@ class FeatureCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold)),
               Text(description, style: Theme.of(context).textTheme.bodyLarge),
             ],
           ),

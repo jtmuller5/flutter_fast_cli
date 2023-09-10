@@ -12,12 +12,15 @@ class AtomFeedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? url = item.links?.firstWhereOrNull((element) => element.href != null)?.href;
+    String? url =
+        item.links?.firstWhereOrNull((element) => element.href != null)?.href;
 
     return InkWell(
       onTap: url != null
           ? () {
-              String? url = item.links?.firstWhereOrNull((element) => element.href != null)?.href;
+              String? url = item.links
+                  ?.firstWhereOrNull((element) => element.href != null)
+                  ?.href;
               launchUrl(Uri.parse(url!));
             }
           : null,
@@ -34,13 +37,14 @@ class AtomFeedItem extends StatelessWidget {
             if (item.updated != null)
               Row(
                 children: [
-                  if (item.published != null)
-                    ...[Text(
-                      MaterialLocalizations.of(context).formatCompactDate(DateTime.parse(item.published!)),
+                  if (item.published != null) ...[
+                    Text(
+                      MaterialLocalizations.of(context)
+                          .formatCompactDate(DateTime.parse(item.published!)),
                       style: context.bodySmall,
                     ),
-                  if(item.updated  != null) const Text(' - ')
-                    ],
+                    if (item.updated != null) const Text(' - ')
+                  ],
                   if (item.updated != null)
                     Text(
                       'Updated: ${MaterialLocalizations.of(context).formatCompactDate(item.updated!)}',

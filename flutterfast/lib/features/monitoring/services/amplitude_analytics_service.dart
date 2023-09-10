@@ -4,7 +4,6 @@ import 'package:flutterfast/features/monitoring/services/fast_analytics_service.
 
 @Singleton(as: FastAnalyticsService)
 class AmplitudeAnalyticsService extends FastAnalyticsService {
-
   final Amplitude amplitude = Amplitude.getInstance();
 
   @override

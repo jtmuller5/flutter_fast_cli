@@ -17,7 +17,12 @@ class SettingsView extends StatelessWidget {
           appBar: AppBar(title: const Text('Settings')),
           body: ListView(
             children: [
-              ListTile(title: Text('Display',style: context.titleMedium.bold,),),
+              ListTile(
+                title: Text(
+                  'Display',
+                  style: context.titleMedium.bold,
+                ),
+              ),
               ValueListenableBuilder(
                   valueListenable: settingsService.themeMode,
                   builder: (context, mode, child) {

@@ -38,39 +38,55 @@ extension FastTextStyle on BuildContext {
 extension FastTextColor on TextStyle {
   BuildContext get context => router.navigatorKey.currentContext!;
 
-  TextStyle get primary => copyWith(color: Theme.of(context).colorScheme.primary);
+  TextStyle get primary =>
+      copyWith(color: Theme.of(context).colorScheme.primary);
 
-  TextStyle get secondary => copyWith(color: Theme.of(context).colorScheme.secondary);
+  TextStyle get secondary =>
+      copyWith(color: Theme.of(context).colorScheme.secondary);
 
-  TextStyle get tertiary => copyWith(color: Theme.of(context).colorScheme.tertiary);
+  TextStyle get tertiary =>
+      copyWith(color: Theme.of(context).colorScheme.tertiary);
 
-  TextStyle get onPrimary => copyWith(color: Theme.of(context).colorScheme.onPrimary);
+  TextStyle get onPrimary =>
+      copyWith(color: Theme.of(context).colorScheme.onPrimary);
 
-  TextStyle get onSecondary => copyWith(color: Theme.of(context).colorScheme.onSecondary);
+  TextStyle get onSecondary =>
+      copyWith(color: Theme.of(context).colorScheme.onSecondary);
 
-  TextStyle get onTertiary => copyWith(color: Theme.of(context).colorScheme.onTertiary);
+  TextStyle get onTertiary =>
+      copyWith(color: Theme.of(context).colorScheme.onTertiary);
 
-  TextStyle get background => copyWith(color: Theme.of(context).colorScheme.background);
+  TextStyle get background =>
+      copyWith(color: Theme.of(context).colorScheme.background);
 
-  TextStyle get onBackground => copyWith(color: Theme.of(context).colorScheme.onBackground);
+  TextStyle get onBackground =>
+      copyWith(color: Theme.of(context).colorScheme.onBackground);
 
-  TextStyle get surface => copyWith(color: Theme.of(context).colorScheme.surface);
+  TextStyle get surface =>
+      copyWith(color: Theme.of(context).colorScheme.surface);
 
-  TextStyle get onSurface => copyWith(color: Theme.of(context).colorScheme.onSurface);
+  TextStyle get onSurface =>
+      copyWith(color: Theme.of(context).colorScheme.onSurface);
 
-  TextStyle get surfaceTint => copyWith(color: Theme.of(context).colorScheme.surfaceTint);
+  TextStyle get surfaceTint =>
+      copyWith(color: Theme.of(context).colorScheme.surfaceTint);
 
   TextStyle get error => copyWith(color: Theme.of(context).colorScheme.error);
 
-  TextStyle get onError => copyWith(color: Theme.of(context).colorScheme.onError);
+  TextStyle get onError =>
+      copyWith(color: Theme.of(context).colorScheme.onError);
 
-  TextStyle get outline => copyWith(color: Theme.of(context).colorScheme.outline);
+  TextStyle get outline =>
+      copyWith(color: Theme.of(context).colorScheme.outline);
 
-  TextStyle get inversePrimary => copyWith(color: Theme.of(context).colorScheme.inversePrimary);
+  TextStyle get inversePrimary =>
+      copyWith(color: Theme.of(context).colorScheme.inversePrimary);
 
-  TextStyle get inverseSurface => copyWith(color: Theme.of(context).colorScheme.inverseSurface);
+  TextStyle get inverseSurface =>
+      copyWith(color: Theme.of(context).colorScheme.inverseSurface);
 
-  TextStyle get onInverseSurface => copyWith(color: Theme.of(context).colorScheme.onInverseSurface);
+  TextStyle get onInverseSurface =>
+      copyWith(color: Theme.of(context).colorScheme.onInverseSurface);
 
   TextStyle get bold => copyWith(fontWeight: FontWeight.bold);
 

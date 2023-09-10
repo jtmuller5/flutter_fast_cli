@@ -4,7 +4,8 @@ import 'package:flutterfast/app/services.dart';
 
 @Singleton(order: 1)
 class SettingsService {
-  ValueNotifier<ThemeMode> themeMode = ValueNotifier(getThemeModeFromString(sharedPrefs.getString('theme_mode') ?? 'ThemeMode.system'));
+  ValueNotifier<ThemeMode> themeMode = ValueNotifier(getThemeModeFromString(
+      sharedPrefs.getString('theme_mode') ?? 'ThemeMode.system'));
 
   void setThemeMode(String val) {
     debugPrint('val: ' + val.toString());

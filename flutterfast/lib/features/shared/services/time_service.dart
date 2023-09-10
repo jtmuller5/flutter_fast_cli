@@ -7,10 +7,12 @@ class TimeService {
     return MaterialLocalizations.of(context);
   }
 
-  String getFormattedText(Duration? duration, {bool showHours = true, bool showMillis = true}) {
+  String getFormattedText(Duration? duration,
+      {bool showHours = true, bool showMillis = true}) {
     if (duration != null) {
       String twoDigits(int n) => n.toString().padLeft(2, "0");
-      String twoDigitMilliseconds = twoDigits(duration.inMilliseconds.remainder(60));
+      String twoDigitMilliseconds =
+          twoDigits(duration.inMilliseconds.remainder(60));
       String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
       String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
       if (showHours) {
@@ -28,7 +30,8 @@ class TimeService {
   }
 
   DateTime getDateWithoutTimeZone(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute);
+    return DateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour,
+        dateTime.minute);
   }
 
   String getTime(DateTime? dateTime) {

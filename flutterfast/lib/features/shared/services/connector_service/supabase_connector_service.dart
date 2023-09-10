@@ -7,7 +7,9 @@ import 'package:flutterfast/features/shared/services/connector_service/fast_conn
 class SupabaseConnectorService extends FastConnectorService {
   @override
   DateTime? getDateTimeFromTimestamp(timestamp) {
-    return (timestamp is String) ? DateTime.parse(timestamp): timestamp.toDate();
+    return (timestamp is String)
+        ? DateTime.parse(timestamp)
+        : timestamp.toDate();
   }
 
   @override

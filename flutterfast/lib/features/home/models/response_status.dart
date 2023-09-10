@@ -27,7 +27,8 @@ class ResponseStatus {
     this.error,
   });
 
-  factory ResponseStatus.fromJson(Map<String, dynamic> json) => _$ResponseStatusFromJson(json);
+  factory ResponseStatus.fromJson(Map<String, dynamic> json) =>
+      _$ResponseStatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResponseStatusToJson(this);
 }

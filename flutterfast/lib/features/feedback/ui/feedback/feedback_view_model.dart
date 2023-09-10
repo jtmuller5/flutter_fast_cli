@@ -28,5 +28,6 @@ class FeedbackViewModel extends ViewModel<FeedbackViewModel> {
     super.initState();
   }
 
-  static FeedbackViewModel of_(BuildContext context) => getModel<FeedbackViewModel>(context);
+  static FeedbackViewModel of_(BuildContext context) =>
+      getModel<FeedbackViewModel>(context);
 }

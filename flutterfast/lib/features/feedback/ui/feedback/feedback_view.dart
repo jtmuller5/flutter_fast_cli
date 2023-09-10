@@ -36,7 +36,9 @@ class FeedbackView extends StatelessWidget {
                             ),
                             gap8,
                             Text(
-                              MaterialLocalizations.of(context).formatFullDate(feedback.createdAt!).toString(),
+                              MaterialLocalizations.of(context)
+                                  .formatFullDate(feedback.createdAt!)
+                                  .toString(),
                               style: context.bodySmall,
                             )
                           ],

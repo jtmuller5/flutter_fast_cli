@@ -16,7 +16,8 @@ import 'package:flutterfast/features/subscriptions/services/subscription_service
 
 AppRouter get router => getIt.get<AppRouter>();
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
-FastAuthenticationService get authenticationService => getIt.get<FastAuthenticationService>();
+FastAuthenticationService get authenticationService =>
+    getIt.get<FastAuthenticationService>();
 FastChatService get chatService => getIt.get<FastChatService>();
 FastConnectorService get connectorService => getIt.get<FastConnectorService>();
 FastCrashService get crashService => getIt.get<FastCrashService>();

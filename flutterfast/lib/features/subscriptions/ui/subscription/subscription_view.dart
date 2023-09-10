@@ -31,9 +31,11 @@ class SubscriptionView extends StatelessWidget {
                         onPressed: () {
                           // Manage subscriptions
                           if (Platform.isIOS) {
-                            launchUrl(Uri.parse("https://apps.apple.com/account/subscriptions"));
+                            launchUrl(Uri.parse(
+                                "https://apps.apple.com/account/subscriptions"));
                           } else {
-                            launchUrl(Uri.parse('https://play.google.com/store/account/subscriptions'));
+                            launchUrl(Uri.parse(
+                                'https://play.google.com/store/account/subscriptions'));
                           }
                         },
                       ),
@@ -64,9 +66,12 @@ class SubscriptionView extends StatelessWidget {
                 body: ValueListenableBuilder(
                     valueListenable: subscriptionService.offering,
                     builder: (context, offerings, child) {
-                      if (offerings == null) return const Center(child: CircularProgressIndicator());
+                      if (offerings == null)
+                        return const Center(child: CircularProgressIndicator());
 
-                      if (offerings.availablePackages.isEmpty) return const Center(child: Text('No subscriptions available'));
+                      if (offerings.availablePackages.isEmpty)
+                        return const Center(
+                            child: Text('No subscriptions available'));
 
                       return ListView.builder(
                         itemCount: offerings.availablePackages.length,
@@ -75,16 +80,26 @@ class SubscriptionView extends StatelessWidget {
                           final package = offerings.availablePackages[index];
 
                           return PlanCard(
-                            name: package.packageType.name.substring(0,1).toUpperCase() + package.packageType.name.substring(1), // Monthly, Annual, etc.
+                            name: package.packageType.name
+                                    .substring(0, 1)
+                                    .toUpperCase() +
+                                package.packageType.name
+                                    .substring(1), // Monthly, Annual, etc.
                             description: package.storeProduct.description,
                             price: package.storeProduct.priceString,
                             benefits: model.premiumFeatures,
                             onTap: () async {
-                              await subscriptionService.purchaseSubscription(package);
+                              await subscriptionService
+                                  .purchaseSubscription(package);
                             },
-                            featured: package.packageType == PackageType.monthly,
-                            buttonText: 'Get ${package.identifier.substring(0,1).toUpperCase()}${package.identifier.substring(1)}',
-                            buttonSubText: package.packageType == PackageType.lifetime ? 'One time purchase' : 'Monthly subscription',
+                            featured:
+                                package.packageType == PackageType.monthly,
+                            buttonText:
+                                'Get ${package.identifier.substring(0, 1).toUpperCase()}${package.identifier.substring(1)}',
+                            buttonSubText:
+                                package.packageType == PackageType.lifetime
+                                    ? 'One time purchase'
+                                    : 'Monthly subscription',
                           );
                         },
                       );

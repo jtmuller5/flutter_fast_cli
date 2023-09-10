@@ -27,7 +27,8 @@ class PalmResponseStatus {
     this.error,
   });
 
-  factory PalmResponseStatus.fromJson(Map<String, dynamic> json) => _$PalmResponseStatusFromJson(json);
+  factory PalmResponseStatus.fromJson(Map<String, dynamic> json) =>
+      _$PalmResponseStatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$PalmResponseStatusToJson(this);
 }

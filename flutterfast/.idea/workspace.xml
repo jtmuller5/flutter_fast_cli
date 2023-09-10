@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a51f2a60-4f66-4914-8806-00e713c3946b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../example/main.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/deep_clean.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lib/src/commands/clean/clean.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bin/fast.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../bin/fast.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/src/commands/utils/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/src/commands/commands.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/src/commands/commands.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/src/commands/clean/clean.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/src/commands/clean/clean.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

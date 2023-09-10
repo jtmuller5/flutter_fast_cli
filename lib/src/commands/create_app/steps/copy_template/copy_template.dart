@@ -10,7 +10,18 @@ Future<void> copyTemplate(String templatePath, String appName) async {
     // find lib -type f -exec sed -i "" "s/template/test/" {} \;
     ProcessResult out = await Process.run(
       'find',
-      ['lib', '-type', 'f', '-exec', 'sed', '-i', '', 's/flutterfast/$appName/', '{}', ';'],
+      [
+        'lib',
+        '-type',
+        'f',
+        '-exec',
+        'sed',
+        '-i',
+        '',
+        's/flutterfast/$appName/',
+        '{}',
+        ';'
+      ],
       workingDirectory: Directory.current.path,
     );
     if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
