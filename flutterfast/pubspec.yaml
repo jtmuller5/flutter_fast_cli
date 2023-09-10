@@ -1,6 +1,6 @@
 name: flutterfast
 description: Build Flutter apps fast.
-publish_to:
+publish_to: none
 version: 0.0.4+4
 
 environment:
@@ -34,6 +34,13 @@ dependencies:
   #* Subscriptions *#
   purchases_flutter: ^5.6.5
   #* Subscriptions *#
+
+  #* Appwrite *#
+  appwrite:
+    git: https://github.com/jtmuller5/sdk-for-flutter
+  appwrite_auth_ui:
+    git: https://github.com/jtmuller5/appwrite_auth_ui
+  #* Appwrite *#
 
   #* Firebase *#
   cloud_firestore: ^4.9.1

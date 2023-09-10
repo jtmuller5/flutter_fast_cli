@@ -5,16 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a51f2a60-4f66-4914-8806-00e713c3946b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../lib/src/commands/utils/utils.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/appwrite_authentication_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/authentication/services/user_service/appwrite_user_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/src/commands/clean/clean.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/src/commands/clean/clean.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/get_it.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/get_it.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/fast_authentication_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/fast_authentication_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/firebase_authentication_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/firebase_authentication_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/supabase_authentication_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/authentication/services/authentication_service/supabase_authentication_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,16 +52,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/josephmuller/Dev/cotr/apps/flutter_fast_cli/flutterfast/ios/fastlane",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/josephmuller/Dev/cotr/apps/flutter_fast_cli/flutterfast/ios/fastlane&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ios/fastlane" />
@@ -54,9 +71,10 @@
       <recent name="$PROJECT_DIR$/android/fastlane" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.Android Internal Fastlane">
+  <component name="RunManager" selected="Flutter.Appwrite">
     <list>
       <item itemvalue="Flutter.Firebase" />
+      <item itemvalue="Flutter.Appwrite" />
       <item itemvalue="Flutter.Firebase Release" />
       <item itemvalue="Shell Script.clean &amp; get" />
       <item itemvalue="Shell Script.flutter pub get" />

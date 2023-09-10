@@ -55,8 +55,7 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
             title: const Text('Sign Out'),
             onTap: () async {
               await _supabase.auth.signOut();
-              router.pushAndPopUntil(const SignInRoute(),
-                  predicate: (route) => false);
+              router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
             },
           ),
         ],
@@ -81,15 +80,10 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
             SupaEmailAuth(
               redirectTo: kIsWeb ? null : 'io.mydomain.myapp://callback',
               onSignInComplete: (response) {
-                debugPrint('onSignInComplete');
-                router.pushAndPopUntil(const HomeRoute(),
-                    predicate: (route) => false);
+                signInNavigation();
               },
               onSignUpComplete: (response) async {
-                debugPrint('onSignUpComplete');
-                await userService.createUser();
-                router.pushAndPopUntil(const OnboardingRoute(),
-                    predicate: (route) => false);
+                await createAccountNavigation();
               },
               metadataFields: [
                 MetaDataField(

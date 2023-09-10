@@ -34,8 +34,6 @@
 - 🟩 Initial pre-release
 - *Date:* 9-06-2023
 
----
-
 # Changelog
 
 All notable changes to this project will be documented in this file.

@@ -91,6 +91,7 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Adds [json_serializable](https://pub.dev/packages/json_serializable) and [json_annotation](https://pub.dev/packages/json_annotation) dependencies
 - Creates a `README.md` file with helpful deploy tips (stuff I always forget)
 - Creates abstract service classes for easy extensibility
+- Runs `flutter pub run build_runner build --delete-conflicting-outputs` and `dart format .` so projects are run-ready
 
 ## Who is this for?
 The Flutter Fast CLI is for anyone who wants to ship a Flutter app fast. 

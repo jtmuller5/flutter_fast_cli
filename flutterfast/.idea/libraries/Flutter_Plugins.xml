@@ -37,6 +37,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.5" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.7" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.0.3" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_web_auth_2-2.2.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/window_to_front-0.0.3" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

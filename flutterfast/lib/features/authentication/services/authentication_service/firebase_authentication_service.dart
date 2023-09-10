@@ -28,8 +28,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) {
-    return FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+    return FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
   }
 
   @override
@@ -76,9 +75,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
       },
       actions: [
         AuthStateChangeAction<UserCreated>((context, state) async {
-          await userService.createUser();
-          router.pushAndPopUntil(const OnboardingRoute(),
-              predicate: (route) => false);
+          await createAccountNavigation();
         }),
       ],
     );
@@ -106,13 +103,10 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
       },
       actions: [
         AuthStateChangeAction<SignedIn>((context, state) {
-          router.pushAndPopUntil(const HomeRoute(),
-              predicate: (route) => false);
+          signInNavigation();
         }),
         AuthStateChangeAction<UserCreated>((context, state) async {
-          await userService.createUser();
-          router.pushAndPopUntil(const OnboardingRoute(),
-              predicate: (route) => false);
+          await createAccountNavigation();
         })
       ],
     );
@@ -120,7 +114,6 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> initialize() async {
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   }
 }
