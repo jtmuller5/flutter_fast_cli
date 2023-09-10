@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a51f2a60-4f66-4914-8806-00e713c3946b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../lib/src/commands/create_app/steps/native_updates/create_key_file.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Increment_Build_Number.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/increment_build_number.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/android/fastlane/Fastfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/fastlane/metadata/versionCode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/fastlane/Fastfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,22 +43,27 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/josephmuller/Dev/cotr/apps/flutter_fast_cli/flutterfast/scripts",
+    "last_opened_file_path": "/Users/josephmuller/Dev/cotr/apps/flutter_fast_cli/flutterfast/ios/fastlane",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ios/fastlane" />
       <recent name="$PROJECT_DIR$/scripts" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/android/fastlane" />
+    </key>
   </component>
-  <component name="RunManager" selected="Shell Script.Build Android">
+  <component name="RunManager" selected="Shell Script.Android Internal Fastlane">
     <list>
       <item itemvalue="Flutter.Firebase" />
       <item itemvalue="Flutter.Firebase Release" />
       <item itemvalue="Shell Script.clean &amp; get" />
       <item itemvalue="Shell Script.flutter pub get" />
       <item itemvalue="Shell Script.Build Android" />
+      <item itemvalue="Shell Script.Increment Build Number" />
       <item itemvalue="Shell Script.Android Internal Fastlane" />
       <item itemvalue="Shell Script.iOS Beta Fastlane" />
       <item itemvalue="Shell Script.Android Prod Fastlane" />
