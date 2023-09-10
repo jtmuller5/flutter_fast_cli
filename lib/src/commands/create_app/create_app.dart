@@ -9,6 +9,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_su
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/add_billing_dependency.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
@@ -95,6 +96,7 @@ class CreateApp extends Command {
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
     await fastlaneSetup(templatePath, appName);
+    await createKeyFile();
     if (!subscriptions) removeBillingDependency(templatePath, appName);
     progress.finish(showTiming: true);
 
