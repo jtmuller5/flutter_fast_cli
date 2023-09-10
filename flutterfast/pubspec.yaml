@@ -1,6 +1,6 @@
 name: flutterfast
 description: Build Flutter apps fast.
-publish_to: 'none'
+publish_to:
 version: 0.0.4+4
 
 environment:

@@ -32,9 +32,3 @@ Devices for [screenshots](https://stackoverflow.com/questions/53297870/wrong-scr
 - 5.5 inch - iPhone 8 Plus
 - iPad Pro (3rd gen) - iPad Pro (12.9 inch)
 - iPad Pro(2nd gen) - iPad Pro (12.9 inch)
-
-### Fastlane Setup
-In the android and ios folders of your project, run the following command:
-```
-fastlane init
-```
