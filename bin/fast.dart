@@ -7,5 +7,6 @@ void main(List<String> arguments) {
     "CLI for building Flutter apps fast",
   )
     ..addCommand(CreateApp())
+    ..addCommand(Clean())
     ..run(arguments);
 }

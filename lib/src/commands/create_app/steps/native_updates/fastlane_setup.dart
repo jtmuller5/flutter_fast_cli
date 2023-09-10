@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:io/io.dart';
 
 Future<void> fastlaneSetup(String templatePath, String appName) async {
-
   Directory androidFastlane = Directory('android/fastlane');
   Directory iosFastlane = Directory('ios/fastlane');
 

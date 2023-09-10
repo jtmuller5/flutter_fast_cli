@@ -1,6 +1,6 @@
 import 'dart:io';
 
-Future<void> createKeyFile() async{
+Future<void> createKeyFile() async {
   File keyProperties = File('android/key.properties');
 
   await keyProperties.writeAsString('''

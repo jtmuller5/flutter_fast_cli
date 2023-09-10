@@ -1,7 +1,6 @@
 import 'dart:io';
 
-Future<void> clearUnusedPaasFiles(String paas) async{
-
+Future<void> clearUnusedPaasFiles(String paas) async {
   Directory authenticationDirectory = Directory('lib/features/authentication/services');
   File firebaseAuthServiceFile = File('${authenticationDirectory.path}/firebase_authentication_service.dart');
   File supabaseAuthServiceFile = File('${authenticationDirectory.path}/authentication_service/supabase_authentication_service.dart');
@@ -16,12 +15,12 @@ Future<void> clearUnusedPaasFiles(String paas) async{
   File firebaseConnectorServiceFile = File('${connectorDirectory.path}/firebase_connector_service.dart');
   File supabaseConnectorServiceFile = File('${connectorDirectory.path}/supabase_connector_service.dart');
 
-  if(paas == 'firebase'){
+  if (paas == 'firebase') {
     await supabaseAuthServiceFile.delete();
     await supabaseUserServiceFile.delete();
     await supabaseFeedbackServiceFile.delete();
     await supabaseConnectorServiceFile.delete();
-  } else if (paas == 'supabase'){
+  } else if (paas == 'supabase') {
     await firebaseAuthServiceFile.delete();
     await firebaseUserServiceFile.delete();
     await firebaseFeedbackServiceFile.delete();
