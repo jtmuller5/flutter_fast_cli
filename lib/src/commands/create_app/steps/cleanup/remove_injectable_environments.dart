@@ -12,7 +12,7 @@ Future<void> removeInjectableEnvironments() async {
 
   await getIt.writeAsString(getItContents);
 
-  for(String environment in ['firebase', 'supabase', 'appwrite']){
+  for (String environment in ['firebase', 'supabase', 'appwrite']) {
     await Process.run(
       'find',
       ['lib', '-type', 'f', '-exec', 'sed', '-i', '', 's/@$environment//', '{}', ';'],

@@ -7,12 +7,12 @@ Future<void> updatePubspecFile(String appName, String paas) async {
 
   String pubspecContents = getPubspecText(appName);
 
-  if(paas == 'firebase'){
+  if (paas == 'firebase') {
     // Locate contents between # Supabase tags
     RegExp supabaseRegExp = RegExp(r'#\* Supabase \*#.*#\* Supabase \*#', multiLine: true, dotAll: true);
     String supabaseContents = supabaseRegExp.stringMatch(pubspecContents)!;
     pubspecContents = pubspecContents.replaceAll(supabaseContents, '');
-  } else if (paas == 'supabase'){
+  } else if (paas == 'supabase') {
     // Locate contents between # Firebase tags
     RegExp firebaseRegExp = RegExp(r'#\* Firebase \*#.*#\* Firebase \*#', multiLine: true, dotAll: true);
     String firebaseContents = firebaseRegExp.stringMatch(pubspecContents)!;
