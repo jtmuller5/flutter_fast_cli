@@ -1,6 +1,7 @@
 name: flutter_fast_cli
 description: Build Flutter Apps Faster
-version: 1.0.2
+version: 1.0.3
+# flutter pub publish --dry-run
 
 environment:
   sdk: ^3.1.0
@@ -18,3 +19,8 @@ dev_dependencies:
 # https://dart.dev/tools/pub/cmd/pub-global#configuring-package-executables
 executables:
   fast:
+
+# https://dart.dev/tools/pub/pubspec#screenshots
+screenshots:
+  - description: "Flutter Fast"
+    path: assets/flutter-fast.png
