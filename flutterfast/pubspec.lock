@@ -44,20 +44,18 @@ packages:
   appwrite:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "7bd78484017618909e1c0bbb9d0c5db56375f1f8"
-      url: "https://github.com/jtmuller5/sdk-for-flutter"
-    source: git
-    version: "11.0.0"
+      name: appwrite
+      sha256: "2a277dcaddc3423efab14ce83f0bb64294cf6acf43937fd1ccf925b3474bbcb9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.1"
   appwrite_auth_ui:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "7b8bde3a5bb626fcf8832ba20303c02ed144291e"
-      url: "https://github.com/jtmuller5/appwrite_auth_ui"
-    source: git
+      name: appwrite_auth_ui
+      sha256: "0d0b8c56a6a4b700ad263263c1936745fa716ee4f7879f4edc9c0ab7b2ae6427"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.2"
   archive:
     dependency: transitive
@@ -651,10 +649,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.0.0"
   http_multi_server:
     dependency: transitive
     description:

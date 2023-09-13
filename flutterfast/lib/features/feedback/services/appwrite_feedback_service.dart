@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/feedback/models/feedback.dart';
@@ -25,15 +26,21 @@ class AppwriteFeedbackService extends FastFeedbackService {
 
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-    await databases.createDocument(
-        databaseId: 'general',
-        collectionId: 'feedback',
-        documentId: ID.unique(),
-        data: Feedback(
-          userId: authenticationService.id!,
-          createdAt: DateTime.now(),
-          message: feedback,
-          type: type,
-        ).toJson());
+
+    assert(authenticationService.id != null, 'User must be logged in to submit feedback');
+    try {
+      await databases.createDocument(
+          databaseId: 'general',
+          collectionId: 'feedback',
+          documentId: ID.unique(),
+          data: Feedback(
+            userId: authenticationService.id!,
+            createdAt: DateTime.now(),
+            message: feedback,
+            type: type,
+          ).toJson());
+    } catch (e) {
+      debugPrint('Appwrite error: ' + e.toString());
+    }
   }
 }

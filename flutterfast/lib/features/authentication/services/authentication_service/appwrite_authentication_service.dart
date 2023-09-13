@@ -6,6 +6,7 @@ import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
+import 'package:flutterfast/features/shared/ui/app_logo.dart';
 import 'package:injectable/injectable.dart';
 
 @appwrite
@@ -35,13 +36,11 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> initialize() async {
-    await AppwriteService().init(
-      endpoint: 'https://cloud.appwrite.io/v1',
-      projectId: const String.fromEnvironment('APPWRITE_PROJECT_ID'),
-    );
     client
         .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
         .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+
+    account.get().then((value) => setUser(value));
   }
 
   @override
@@ -66,21 +65,51 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Widget registerScreen() {
-    return AppwriteSignup(
-      title: 'Sign Up',
-      successCallback: (userData) {
-        createAccountNavigation();
-      },
+    return Scaffold(
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(24),
+          children: [
+            const AppLogo(sideLength: 200),
+            AppwriteEmailAuth(
+              onSignInComplete: (userData) {
+                signInNavigation();
+              },
+              onSignUpComplete: (userData) {
+                createAccountNavigation();
+              },
+              // TODO Replace with your redirect URL
+              redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   @override
   Widget signInScreen() {
-    return AppwriteSignin(
-      title: 'Sign In',
-      successCallback: (userData) {
-        signInNavigation();
-      },
+    return Scaffold(
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(24),
+          children: [
+            const AppLogo(sideLength: 200),
+            AppwriteEmailAuth(
+              onSignInComplete: (userData) {
+                signInNavigation();
+              },
+              onSignUpComplete: (userData) {
+                createAccountNavigation();
+              },
+              // TODO Replace with your redirect URL
+              redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

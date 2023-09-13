@@ -27,7 +27,7 @@ dependencies:
   url_launcher: ^6.1.14
 
   #* RSS *#
-  http: ^1.1.0
+  http: 1.0.0
   webfeed_revised: ^0.7.2
   #* RSS *#
 
