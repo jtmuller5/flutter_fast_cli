@@ -15,6 +15,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/cop
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
+import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class CreateApp extends Command {
   @override
@@ -76,7 +77,7 @@ class CreateApp extends Command {
 
     var progress = logger.progress('Creating app $appName...');
     await Process.run(
-        'flutter', ['create', appName, '--empty', '--org', orgName]);
+        flutterPath, ['create', appName, '--empty', '--org', orgName]);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
@@ -115,12 +116,12 @@ class CreateApp extends Command {
     progress.finish(showTiming: true);
 
     progress = logger.progress('Running flutter pub get...');
-    await Process.run('flutter', ['pub', 'get']);
+    await Process.run(flutterPath, ['pub', 'get']);
     progress.finish(showTiming: true);
 
     if (build) {
       progress = logger.progress('Running build_runner...');
-      await Process.run('flutter', [
+      await Process.run(flutterPath, [
         'pub',
         'run',
         'build_runner',

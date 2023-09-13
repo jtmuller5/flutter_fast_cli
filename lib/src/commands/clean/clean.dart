@@ -29,7 +29,7 @@ class Clean extends Command {
 
     if (ios) {
       await runWithProgress('Running flutter clean...', () async {
-        await Process.run('flutter', ['clean']);
+        await Process.run(flutterPath, ['clean']);
       });
 
       await runWithProgress('Removing iOS pods...', () async {
@@ -42,7 +42,7 @@ class Clean extends Command {
       });
 
       await runWithProgress('Running flutter pub get...', () async {
-        await Process.run('flutter', ['pub', 'get']);
+        await Process.run(flutterPath, ['pub', 'get']);
       });
 
       await runWithProgress('Running pod install...', () async {
@@ -55,7 +55,7 @@ class Clean extends Command {
     } else {
       await runWithProgress('Cleaning Flutter project...', () async {
         await Process.run('rm', ['pubspec.lock']);
-        await Process.run('flutter', ['pub', 'get']);
+        await Process.run(flutterPath, ['pub', 'get']);
       });
     }
   }
