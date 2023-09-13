@@ -1,3 +1,7 @@
+## 1.0.6
+- 🟪 Fixed CLI for Windows (thanks @carmas123)
+- *Date:* 9-13-2023
+
 ## 1.0.5
 - 🟩 Added runWithProgress utility function
 - 🟪 Fixed exception when clean command is used outside of Flutter project
