@@ -35,6 +35,10 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> initialize() async {
+    await AppwriteService().init(
+      endpoint: 'https://cloud.appwrite.io/v1',
+      projectId: const String.fromEnvironment('APPWRITE_PROJECT_ID'),
+    );
     client
         .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
         .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
@@ -46,18 +50,18 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Widget profileScreen() {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('Sign Out'),
-            onTap: () async {
-              await account.deleteSessions();
-              router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
-            },
-          ),
-        ],
-      ));
+        appBar: AppBar(title: const Text('Profile')),
+        body: ListView(
+          children: [
+            ListTile(
+              title: const Text('Sign Out'),
+              onTap: () async {
+                await account.deleteSessions();
+                router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
+              },
+            ),
+          ],
+        ));
   }
 
   @override
