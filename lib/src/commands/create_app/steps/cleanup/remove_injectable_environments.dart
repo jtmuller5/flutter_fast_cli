@@ -5,33 +5,17 @@ Future<void> removeInjectableEnvironments() async {
 
   String getItContents = File('lib/app/get_it.dart').readAsStringSync();
 
-  getItContents = getItContents.replaceAll(
-      'environment: const String.fromEnvironment(\'PAAS\', defaultValue: \'firebase\'),',
-      '');
-  getItContents = getItContents.replaceAll(
-      'const firebase = Environment(\'firebase\');', '');
-  getItContents = getItContents.replaceAll(
-      'const supabase = Environment(\'supabase\');', '');
-  getItContents = getItContents.replaceAll(
-      'const appwrite = Environment(\'appwrite\');', '');
+  getItContents = getItContents.replaceAll('environment: const String.fromEnvironment(\'PAAS\', defaultValue: \'firebase\'),', '');
+  getItContents = getItContents.replaceAll('const firebase = Environment(\'firebase\');', '');
+  getItContents = getItContents.replaceAll('const supabase = Environment(\'supabase\');', '');
+  getItContents = getItContents.replaceAll('const appwrite = Environment(\'appwrite\');', '');
 
   await getIt.writeAsString(getItContents);
 
   for (String environment in ['firebase', 'supabase', 'appwrite']) {
     await Process.run(
       'find',
-      [
-        'lib',
-        '-type',
-        'f',
-        '-exec',
-        'sed',
-        '-i',
-        '',
-        's/@$environment//',
-        '{}',
-        ';'
-      ],
+      ['lib', '-type', 'f', '-exec', 'sed', '-i', '', 's/@$environment//', '{}', ';'],
       workingDirectory: Directory.current.path,
     );
   }

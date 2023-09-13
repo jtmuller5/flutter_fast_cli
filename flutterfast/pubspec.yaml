@@ -36,10 +36,8 @@ dependencies:
   #* Subscriptions *#
 
   #* Appwrite *#
-  appwrite:
-    git: https://github.com/jtmuller5/sdk-for-flutter
-  appwrite_auth_ui:
-    git: https://github.com/jtmuller5/appwrite_auth_ui
+  appwrite: 9.0.1
+  appwrite_auth_ui: ^0.0.2
   #* Appwrite *#
 
   #* Firebase *#
