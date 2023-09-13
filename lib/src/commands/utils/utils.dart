@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cli_util/cli_logging.dart';
 
 Future<void> runWithProgress(String stepName, Function command) async {
@@ -7,3 +9,5 @@ Future<void> runWithProgress(String stepName, Function command) async {
   await command();
   progress.finish(showTiming: true);
 }
+
+String get flutterPath => 'flutter${Platform.isWindows ? '.bat' : ''}';
