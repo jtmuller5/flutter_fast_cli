@@ -20,8 +20,8 @@ class AppwriteUserservice extends FastUserService {
 
       if (id != null) {
         await databases.createDocument(
-          databaseId: 'general',
-          collectionId: 'users',
+          databaseId: '64fe2b0972c109355c30',
+          collectionId: '64fe2b0e44822debdf6c',
           documentId: id,
           data: FastUser(
             id: id,
@@ -37,8 +37,8 @@ class AppwriteUserservice extends FastUserService {
   @override
   Future<void> deleteUser(FastUser user) async {
     await databases.deleteDocument(
-      databaseId: 'general',
-      collectionId: 'users',
+      databaseId: '64fe2b0972c109355c30',
+      collectionId: '64fe2b0e44822debdf6c',
       documentId: user.id,
     );
   }
@@ -46,8 +46,8 @@ class AppwriteUserservice extends FastUserService {
   @override
   Future<void> updateUser(FastUser user) async{
     await databases.updateDocument(
-      databaseId: 'general',
-      collectionId: 'users',
+      databaseId: '64fe2b0972c109355c30',
+      collectionId: '64fe2b0e44822debdf6c',
       documentId: user.id,
       data: user.toJson(),
     );

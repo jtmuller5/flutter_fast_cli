@@ -30,8 +30,8 @@ class AppwriteFeedbackService extends FastFeedbackService {
     assert(authenticationService.id != null, 'User must be logged in to submit feedback');
     try {
       await databases.createDocument(
-          databaseId: 'general',
-          collectionId: 'feedback',
+          databaseId: '64fe2b0972c109355c30',
+          collectionId: '6501f3cedd778711c6f7',
           documentId: ID.unique(),
           data: Feedback(
             userId: authenticationService.id!,
