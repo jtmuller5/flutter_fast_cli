@@ -59,12 +59,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^7.3.1
-  build_runner: ^2.4.6
+  build_runner: ^2.1.11
   flutter_lints: ^2.0.3
   flutter_launcher_icons: ^0.13.1
   injectable_generator: ^2.4.0
   json_serializable: ^6.7.1
   mocktail: ^1.0.0
+  monarch: ^3.0.0
 
 flutter:
   uses-material-design: true

@@ -1,16 +1,39 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutterfast/app/constants.dart';
+import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Padding(
-        padding: EdgeInsets.all(24.0),
-        child: Text(
-          'Turn your ideas into reality!',
-          textAlign: TextAlign.center,
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(style: context.headlineSmall, children: [
+                const TextSpan(text: 'And follow us on Twitter '),
+                TextSpan(
+                  text: '@CodeOnTheRocks_',
+                  style: context.headlineSmall.copyWith(color: Colors.lightBlueAccent),,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      launchUrl(Uri.parse('https://twitter.com/CodeOnTheRocks_'));
+                    },
+                ),
+              ]),
+            ).animate(effects: [const FadeEffect()]),
+            gap16,
+            const Text('🍹')
+          ],
         ),
       ),
     );
