@@ -17,7 +17,10 @@ class AppwriteFeedbackService extends FastFeedbackService {
 
   @override
   Future<List<Feedback>> getLatestFeedback() async {
-    DocumentList feedback = await databases.listDocuments(databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'), collectionId: const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'));
+    DocumentList feedback = await databases.listDocuments(
+      databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
+      collectionId: const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
+    );
 
     if (feedback.documents.isEmpty) return [];
 
@@ -26,15 +29,13 @@ class AppwriteFeedbackService extends FastFeedbackService {
 
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-
     assert(authenticationService.id != null, 'User must be logged in to submit feedback');
     try {
-
       String id = ID.unique();
       await databases.createDocument(
           databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
           collectionId: const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
-          documentId:id,
+          documentId: id,
           data: Feedback(
             id: id,
             userId: authenticationService.id!,
@@ -43,7 +44,7 @@ class AppwriteFeedbackService extends FastFeedbackService {
             type: type,
           ).toJson());
     } catch (e) {
-      debugPrint('Appwrite error: ' + e.toString());
+      debugPrint('Appwrite error: $e');
     }
   }
 }

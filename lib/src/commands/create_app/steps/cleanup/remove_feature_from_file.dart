@@ -6,13 +6,10 @@ Future<void> removeFeatureFromFile(String feature, String filePath) async {
   String fileContents = await file.readAsString();
 
   String hashRegExpString = r'#\*' ' $feature ' r'\*#.*#\*' ' $feature ' r'\*#';
-  String slashRegExpString =
-      r'//\*' ' $feature ' r'\*//.*//\*' ' $feature ' r'\*//';
-  String slashXRegExpString =
-      r'//x' ' $feature ' r'x//.*//x' ' $feature ' r'x//';
+  String slashRegExpString = r'//\*' ' $feature ' r'\*//.*//\*' ' $feature ' r'\*//';
+  String slashXRegExpString = r'//x' ' $feature ' r'x//.*//x' ' $feature ' r'x//';
 
-  RegExp featureRegExp =
-      RegExp(hashRegExpString, multiLine: true, dotAll: true);
+  RegExp featureRegExp = RegExp(hashRegExpString, multiLine: true, dotAll: true);
   String? featureContent = featureRegExp.stringMatch(fileContents);
   if (featureContent != null) {
     fileContents = fileContents.replaceAll(featureContent, '');

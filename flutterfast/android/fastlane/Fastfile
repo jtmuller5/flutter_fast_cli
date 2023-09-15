@@ -11,7 +11,7 @@ platform :android do
   end
 
   desc "Deploy a new version to the Google Play"
-  lane :prod do
+  lane :prod do |options|
      bump
      sh("flutter","build","appbundle","--dart-define-from-file=assets/config.json")
 
@@ -21,8 +21,8 @@ platform :android do
       )
   end
 
-  desc "Deploy a new version to the beta test track of Google Play"
-  lane :internal do
+  desc "Deploy a new version to the internal test track of Google Play"
+  lane :internal
      bump
      sh("flutter","build","appbundle","--dart-define-from-file=assets/config.json")
 
@@ -31,4 +31,28 @@ platform :android do
         aab: '../build/app/outputs/bundle/release/app-release.aab',
       )
   end
+
+  #* Shorebird *#
+  desc "Deploy a new version to the Google Play using Shorebird"
+  lane :prod_shorebird
+     bump
+     sh("shorebird","release","appbundle","--force","--","--dart-define-from-file=assets/config.json")
+
+     upload_to_play_store(
+        track: 'production',
+        aab: '../build/app/outputs/bundle/release/app-release.aab',
+      )
+  end
+
+  desc "Deploy a new version to the internal test track of Google Play using Shorebird"
+    lane :internal_shorebird
+       bump
+       sh("shorebird","release","appbundle","--force","--","--dart-define-from-file=assets/config.json")
+
+       upload_to_play_store(
+          track: 'internal',
+          aab: '../build/app/outputs/bundle/release/app-release.aab',
+        )
+  end
+  #* Shorebird *#
 end

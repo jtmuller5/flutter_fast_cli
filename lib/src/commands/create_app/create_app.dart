@@ -8,10 +8,11 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_in
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/add_billing_dependency.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_billing_dependency.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_shorebird_lanes.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
@@ -50,6 +51,13 @@ class CreateApp extends Command {
         defaultsTo: true,
         negatable: true,
       )
+      ..addFlag(
+        'shorebird',
+        abbr: 'r',
+        help: 'Whether to include Shorebird lanes in Fastfiles.',
+        defaultsTo: true,
+        negatable: true,
+      )
       ..addOption(
         'paas',
         abbr: 'p',
@@ -67,6 +75,7 @@ class CreateApp extends Command {
     final paas = argResults?['paas'] as String?;
     final subscriptions = argResults?['subs'] as bool;
     final build = argResults?['build'] as bool;
+    final shorebird = argResults?['shorebird'] as bool;
 
     var logger = Logger.standard();
 
@@ -100,6 +109,7 @@ class CreateApp extends Command {
     await updateAndroidBuildGradle(appName, orgName);
     await fastlaneSetup(templatePath, appName);
     await createKeyFile();
+    if (!shorebird) await removeShorebirdLanes();
     if (!subscriptions) removeBillingDependency(templatePath, appName);
     progress.finish(showTiming: true);
 
