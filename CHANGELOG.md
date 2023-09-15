@@ -1,6 +1,7 @@
 ## 1.1.0
 - 🟩 Added Appwrite support
 - 🟩 Added Shorebird Fastlanes
+- 🟩 Added `fast build` command
 - 🟨 Updated default app icon
 - *Date:* 9-15-2023
 
