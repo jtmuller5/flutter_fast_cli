@@ -25,7 +25,7 @@
 ## What is Flutter Fast?
 The Flutter Fast CLI is a tool for generating a starter Flutter application with everything you need to start shipping.
 
-- 🔒 Authentication via [Firebase](https://firebase.google.com/) or [Supabase](https://supabase.com/)
+- 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), or [Appwrite](https://appwrite.io/)
 - 💸 Subscriptions via [RevenueCat](https://www.revenuecat.com/)
 - 🌊 Analytics via [Amplitude](https://amplitude.com/)
 - 🤖 Crash Reporting via [Sentry](https://sentry.io/welcome/)
