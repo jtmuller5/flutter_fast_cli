@@ -23,9 +23,10 @@ Future<void> updatePubspecFile(String appName, String paas) async {
   await pubspec.writeAsString(pubspecContents);
 }
 
-void removePubspecSection(String section){
+void removePubspecSection(String section) {
   // Locate contents between # Section tags
-  RegExp regExp = RegExp(r'#\* $section \*#.*#\* $section \*#', multiLine: true, dotAll: true);
+  RegExp regExp = RegExp(r'#\* $section \*#.*#\* $section \*#',
+      multiLine: true, dotAll: true);
   String contents = regExp.stringMatch(getPubspecText(''))!;
   String pubspecContents = getPubspecText('').replaceAll(contents, '');
   File pubspec = File('pubspec.yaml');

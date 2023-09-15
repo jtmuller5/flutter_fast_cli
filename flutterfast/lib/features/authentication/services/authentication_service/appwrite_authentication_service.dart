@@ -56,7 +56,8 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
               title: const Text('Sign Out'),
               onTap: () async {
                 await account.deleteSessions();
-                router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
+                router.pushAndPopUntil(const SignInRoute(),
+                    predicate: (route) => false);
               },
             ),
           ],
@@ -80,7 +81,8 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
                 createAccountNavigation();
               },
               // TODO Replace with your redirect URL
-              redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+              redirectUrl:
+                  const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
             ),
           ],
         ),
@@ -105,7 +107,8 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
                 createAccountNavigation();
               },
               // TODO Replace with your redirect URL
-              redirectUrl: const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
+              redirectUrl:
+                  const String.fromEnvironment('APPWRITE_MAGIC_LINK_URL'),
             ),
           ],
         ),

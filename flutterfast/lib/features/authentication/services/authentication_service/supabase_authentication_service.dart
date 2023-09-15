@@ -55,7 +55,8 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
             title: const Text('Sign Out'),
             onTap: () async {
               await _supabase.auth.signOut();
-              router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
+              router.pushAndPopUntil(const SignInRoute(),
+                  predicate: (route) => false);
             },
           ),
         ],

@@ -9,7 +9,9 @@ import 'package:injectable/injectable.dart';
 @appwrite
 @LazySingleton(as: FastUserService)
 class AppwriteUserservice extends FastUserService {
-  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+  final client = Client()
+      .setEndpoint('https://cloud.appwrite.io/v1')
+      .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
 
   Databases get databases => Databases(client);
 
@@ -44,7 +46,7 @@ class AppwriteUserservice extends FastUserService {
   }
 
   @override
-  Future<void> updateUser(FastUser user) async{
+  Future<void> updateUser(FastUser user) async {
     await databases.updateDocument(
       databaseId: '64fe2b0972c109355c30',
       collectionId: '64fe2b0e44822debdf6c',

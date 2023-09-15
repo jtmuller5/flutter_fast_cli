@@ -6,7 +6,8 @@ import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Build extends Command {
   @override
-  String get description => 'Run flutter pub run build_runner build --delete-conflicting-outputs.';
+  String get description =>
+      'Run flutter pub run build_runner build --delete-conflicting-outputs.';
 
   @override
   String get name => 'build';
@@ -26,7 +27,13 @@ class Build extends Command {
   @override
   Future<void> run() async {
     await runWithProgress('Running build_runner...', () async {
-      await Process.run('flutter', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+      await Process.run('flutter', [
+        'pub',
+        'run',
+        'build_runner',
+        'build',
+        '--delete-conflicting-outputs'
+      ]);
     });
   }
 }

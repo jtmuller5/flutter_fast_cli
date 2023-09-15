@@ -11,7 +11,9 @@ import 'package:injectable/injectable.dart';
 @appwrite
 @LazySingleton(as: FastFeedbackService)
 class AppwriteFeedbackService extends FastFeedbackService {
-  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+  final client = Client()
+      .setEndpoint('https://cloud.appwrite.io/v1')
+      .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
 
   Databases get databases => Databases(client);
 
@@ -19,7 +21,8 @@ class AppwriteFeedbackService extends FastFeedbackService {
   Future<List<Feedback>> getLatestFeedback() async {
     DocumentList feedback = await databases.listDocuments(
       databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
-      collectionId: const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
+      collectionId:
+          const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
     );
 
     if (feedback.documents.isEmpty) return [];
@@ -29,12 +32,14 @@ class AppwriteFeedbackService extends FastFeedbackService {
 
   @override
   Future<void> submitFeedback(String feedback, FeedbackType type) async {
-    assert(authenticationService.id != null, 'User must be logged in to submit feedback');
+    assert(authenticationService.id != null,
+        'User must be logged in to submit feedback');
     try {
       String id = ID.unique();
       await databases.createDocument(
           databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
-          collectionId: const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
+          collectionId:
+              const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
           documentId: id,
           data: Feedback(
             id: id,
