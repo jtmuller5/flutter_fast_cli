@@ -1,3 +1,7 @@
+## 1.1.1
+- 🟪 Fixed crash when running `fast app` with -p firebase flag
+- *Date:* 9-15-2023
+
 ## 1.1.0
 - 🟩 Added Appwrite support
 - 🟩 Added Shorebird Fastlanes

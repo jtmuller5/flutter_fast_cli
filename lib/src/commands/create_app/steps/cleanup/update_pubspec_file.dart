@@ -27,8 +27,10 @@ void removePubspecSection(String section) {
   // Locate contents between # Section tags
   RegExp regExp = RegExp(r'#\* $section \*#.*#\* $section \*#',
       multiLine: true, dotAll: true);
-  String contents = regExp.stringMatch(getPubspecText(''))!;
-  String pubspecContents = getPubspecText('').replaceAll(contents, '');
-  File pubspec = File('pubspec.yaml');
-  pubspec.writeAsString(pubspecContents);
+  String? contents = regExp.stringMatch(getPubspecText(''));
+  if(contents != null) {
+    String pubspecContents = getPubspecText('').replaceAll(contents, '');
+    File pubspec = File('pubspec.yaml');
+    pubspec.writeAsString(pubspecContents);
+  }
 }
