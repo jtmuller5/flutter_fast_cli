@@ -1,4 +1,5 @@
 import 'package:args/command_runner.dart';
+import 'package:flutter_fast_cli/src/commands/build/build.dart';
 import 'package:flutter_fast_cli/src/commands/commands.dart';
 
 void main(List<String> arguments) {
@@ -8,5 +9,6 @@ void main(List<String> arguments) {
   )
     ..addCommand(CreateApp())
     ..addCommand(Clean())
+    ..addCommand(Build())
     ..run(arguments);
 }
