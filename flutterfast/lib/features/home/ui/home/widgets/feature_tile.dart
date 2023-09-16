@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutterfast/app/theme.dart';
 
 class FeatureTile extends StatelessWidget {
-  const FeatureTile(
-      {Key? key,
-      required this.title,
-      this.subtitle,
-      this.onTap,
-      required this.child})
-      : super(key: key);
+  const FeatureTile({Key? key, required this.title, this.subtitle, this.onTap, required this.child}) : super(key: key);
 
   final String title;
   final String? subtitle;
@@ -35,8 +30,16 @@ class FeatureTile extends StatelessWidget {
                 children: [
                   Expanded(child: child),
                   ListTile(
-                    title: Text(title),
-                    subtitle: subtitle != null ? Text(subtitle!) : null,
+                    title: Text(
+                      title,
+                      style: context.titleMedium.onBackground,
+                    ),
+                    subtitle: subtitle != null
+                        ? Text(
+                            subtitle!,
+                            style: context.bodyMedium.onBackground,
+                          )
+                        : null,
                     tileColor: context.background,
                   )
                 ],

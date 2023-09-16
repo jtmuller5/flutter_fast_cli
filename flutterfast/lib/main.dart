@@ -14,6 +14,11 @@ Future<void> main() async {
   await analyticsService.initialize();
   GetIt.instance.registerSingleton(AppRouter());
 
+  //* LogoColorScheme *//
+  lightLogoColorScheme = await ColorScheme.fromImageProvider(provider: const AssetImage('assets/images/logo.png'), brightness: Brightness.light);
+  darkLogoColorScheme = await ColorScheme.fromImageProvider(provider: const AssetImage('assets/images/logo.png'), brightness: Brightness.dark);
+  //* LogoColorScheme *//
+
   //* Subscriptions *//
   await subscriptionService.initialize();
   //* Subscriptions *//
@@ -37,8 +42,8 @@ class MainApp extends StatelessWidget {
         valueListenable: settingsService.themeMode,
         builder: (context, mode, child) {
           return MaterialApp.router(
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: lightLogoTheme,
+            darkTheme: darkLogoTheme,
             themeMode: mode,
             routerConfig: router.config(
               navigatorObservers: () => [

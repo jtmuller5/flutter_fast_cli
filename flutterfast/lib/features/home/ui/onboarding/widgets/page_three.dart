@@ -23,7 +23,7 @@ class PageThree extends StatelessWidget {
                 const TextSpan(text: 'And follow us on Twitter '),
                 TextSpan(
                   text: '@CodeOnTheRocks_',
-                  style: context.headlineSmall.copyWith(color: Colors.lightBlueAccent),,
+                  style: context.headlineSmall.copyWith(color: Colors.lightBlueAccent),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       launchUrl(Uri.parse('https://twitter.com/CodeOnTheRocks_'));

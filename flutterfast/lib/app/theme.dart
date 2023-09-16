@@ -4,11 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 String? _fontFamily = GoogleFonts.quicksand().fontFamily;
 
-ThemeData lightTheme = FlexThemeData.light(
-    fontFamily: _fontFamily, scheme: FlexScheme.flutterDash);
+ThemeData lightTheme = FlexThemeData.light(fontFamily: _fontFamily, scheme: FlexScheme.flutterDash);
 
-ThemeData darkTheme =
-    FlexThemeData.dark(fontFamily: _fontFamily, scheme: FlexScheme.flutterDash);
+ThemeData darkTheme = FlexThemeData.dark(fontFamily: _fontFamily, scheme: FlexScheme.flutterDash, );
+
+//* LogoColorScheme *//
+late ColorScheme lightLogoColorScheme;
+late ColorScheme darkLogoColorScheme;
+
+ThemeData lightLogoTheme = FlexThemeData.light(
+  colorScheme: lightLogoColorScheme,
+  fontFamily: _fontFamily,
+);
+
+ThemeData darkLogoTheme = FlexThemeData.dark(
+  colorScheme: darkLogoColorScheme,
+  fontFamily: _fontFamily,
+);
+//* LogoColorScheme *//
 
 extension FastColor on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
