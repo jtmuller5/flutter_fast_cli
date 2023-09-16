@@ -1,3 +1,11 @@
+## 1.1.2
+- 🟩 Added option to generate ColorScheme from image (-l)
+- 🟩 Added step to remove feature tags from lib directory (ex. //* Firebase *//)
+- 🟩 Added basic Monarch stories for onboarding pages
+- 🟨 Updated onboarding pages to have title and subtitle with animation
+- 🟪 Fixed contrast issue in FeatureTile text
+- *Date:* 9-16-2023
+
 ## 1.1.1
 - 🟪 Fixed crash when running `fast app` with -p firebase flag
 - *Date:* 9-15-2023

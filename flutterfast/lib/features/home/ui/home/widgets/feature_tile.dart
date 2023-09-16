@@ -14,9 +14,7 @@ class FeatureTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Animate(
-      effects: const [
-        ScaleEffect(begin: Offset(.8, .8)),
-      ],
+      effects: const [ScaleEffect(begin: Offset(.8, .8))],
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: ClipRRect(

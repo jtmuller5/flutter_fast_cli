@@ -42,8 +42,8 @@ class MainApp extends StatelessWidget {
         valueListenable: settingsService.themeMode,
         builder: (context, mode, child) {
           return MaterialApp.router(
-            theme: lightLogoTheme,
-            darkTheme: darkLogoTheme,
+            theme: lightTheme,
+            darkTheme: darkTheme,
             themeMode: mode,
             routerConfig: router.config(
               navigatorObservers: () => [

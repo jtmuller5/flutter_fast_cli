@@ -84,6 +84,7 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Performs [release signing setup](https://docs.flutter.dev/deployment/android#signing-the-app) and creates empty `key.properties` file
 - Includes [package_info_plus](https://pub.dev/packages/package_info_plus) file and adds version string to home drawer
 - Includes support for [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) and [google_fonts](https://pub.dev/packages/google_fonts) 🎨
+- Includes boilerplate for generating ColorScheme from image
 - Pre-built RSS feed module
 - Pre-build AI Chat module (for Firebase builds)
 - Sets up `config.json` file to be used with --dart-define-from-file run argument

@@ -4,7 +4,9 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_logo_color_scheme.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
@@ -58,6 +60,13 @@ class CreateApp extends Command {
         defaultsTo: true,
         negatable: true,
       )
+      ..addFlag(
+        'logo-color-scheme',
+        abbr: 'c',
+        help: 'Whether to generate a ColorScheme from your logo.',
+        defaultsTo: true,
+        negatable: true,
+      )
       ..addOption(
         'paas',
         abbr: 'p',
@@ -76,6 +85,7 @@ class CreateApp extends Command {
     final subscriptions = argResults?['subs'] as bool;
     final build = argResults?['build'] as bool;
     final shorebird = argResults?['shorebird'] as bool;
+    final logoColorScheme = argResults?['logo-color-scheme'] as bool;
 
     var logger = Logger.standard();
 
@@ -123,6 +133,13 @@ class CreateApp extends Command {
     if (!subscriptions) {
       await removeSubscriptionFeature();
     }
+
+    if(!logoColorScheme) {
+      await removeLogoColorScheme();
+    }
+
+    await removeFeatureTags();
+
     progress.finish(showTiming: true);
 
     progress = logger.progress('Running flutter pub get...');
