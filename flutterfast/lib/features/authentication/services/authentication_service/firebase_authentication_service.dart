@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/constants.dart';
+import 'package:flutterfast/app/text_theme.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/router.dart';
@@ -59,10 +61,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     return RegisterScreen(
       providers: [EmailAuthProvider()],
       headerBuilder: (context, constraints, shrinkOffset) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Image.asset('assets/images/logo.png'),
-        );
+        return authHeader();
       },
       sideBuilder: (context, constraints) {
         return Column(
@@ -87,10 +86,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     return SignInScreen(
       providers: [EmailAuthProvider()],
       headerBuilder: (context, constraints, shrinkOffset) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Image.asset('assets/images/logo.png'),
-        );
+        return authHeader();
       },
       sideBuilder: (context, constraints) {
         return Column(
@@ -110,6 +106,23 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
           await createAccountNavigation();
         })
       ],
+    );
+  }
+
+  Widget authHeader() {
+    return Builder(
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                Flexible(child: Image.asset('assets/images/logo.png')),
+                const Flexible(child: gap12),
+                Flexible(child: Text('Flutter Fast', style: context.bodyMedium.bold,))
+              ],
+            ),
+          );
+        }
     );
   }
 

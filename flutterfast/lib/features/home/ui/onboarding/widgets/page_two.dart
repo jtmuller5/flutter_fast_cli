@@ -19,7 +19,7 @@ class PageTwo extends StatelessWidget {
               'Find the flutter_fast_cli on pub.dev',
               textAlign: TextAlign.center,
               style: context.headlineSmall,
-            ).animate(effects: [const FadeEffect()]),
+            ).animate(effects: [const FadeEffect(delay: Duration(milliseconds: 300))]),
             gap16,
             const Text('💙')
           ],
