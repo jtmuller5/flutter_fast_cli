@@ -9,7 +9,18 @@ Future<void> copyTemplate(String templatePath, String appName) async {
     // Replace all instances of flutterfast with the app name
     ProcessResult out = await Process.run(
       'find',
-      ['lib', '-type', 'f', '-exec', 'sed', '-i', '', 's/flutterfast/$appName/', '{}', ';'],
+      [
+        'lib',
+        '-type',
+        'f',
+        '-exec',
+        'sed',
+        '-i',
+        '',
+        's/flutterfast/$appName/',
+        '{}',
+        ';'
+      ],
       workingDirectory: Directory.current.path,
     );
     if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);

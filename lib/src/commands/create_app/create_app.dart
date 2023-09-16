@@ -134,7 +134,7 @@ class CreateApp extends Command {
       await removeSubscriptionFeature();
     }
 
-    if(!logoColorScheme) {
+    if (!logoColorScheme) {
       await removeLogoColorScheme();
     }
 

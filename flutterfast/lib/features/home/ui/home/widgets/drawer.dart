@@ -76,7 +76,8 @@ class HomeDrawer extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
                   child: Text('Version: ${snapshot.data!.version}'),
                 );
               } else {

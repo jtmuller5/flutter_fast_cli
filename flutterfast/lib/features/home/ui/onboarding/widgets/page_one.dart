@@ -8,7 +8,7 @@ class PageOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Center(
+    return Center(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

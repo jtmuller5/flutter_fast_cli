@@ -4,7 +4,13 @@ import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutterfast/app/theme.dart';
 
 class FeatureTile extends StatelessWidget {
-  const FeatureTile({Key? key, required this.title, this.subtitle, this.onTap, required this.child}) : super(key: key);
+  const FeatureTile(
+      {Key? key,
+      required this.title,
+      this.subtitle,
+      this.onTap,
+      required this.child})
+      : super(key: key);
 
   final String title;
   final String? subtitle;

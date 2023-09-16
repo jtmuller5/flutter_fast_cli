@@ -28,7 +28,7 @@ void removePubspecSection(String section) {
   RegExp regExp = RegExp(r'#\* $section \*#.*#\* $section \*#',
       multiLine: true, dotAll: true);
   String? contents = regExp.stringMatch(getPubspecText(''));
-  if(contents != null) {
+  if (contents != null) {
     String pubspecContents = getPubspecText('').replaceAll(contents, '');
     File pubspec = File('pubspec.yaml');
     pubspec.writeAsString(pubspecContents);
