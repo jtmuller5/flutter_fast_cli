@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/text_theme.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
@@ -66,7 +67,8 @@ class HomeDrawer extends StatelessWidget {
           ),
           const AboutListTile(
             applicationName: 'flutterfast',
-            applicationIcon: AppLogo(),
+            dense: true,
+            applicationIcon: AppLogo(sideLength: 48),
             aboutBoxChildren: [
               Text('flutterfast is a Flutter application.'),
             ],
@@ -76,9 +78,11 @@ class HomeDrawer extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
-                  child: Text('Version: ${snapshot.data!.version}'),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Text(
+                    'Version: ${snapshot.data!.version}',
+                    style: context.bodySmall,
+                  ),
                 );
               } else {
                 return const SizedBox();
