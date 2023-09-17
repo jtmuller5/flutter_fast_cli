@@ -1,3 +1,7 @@
+## 1.1.4
+- 🟪 Fixed generator so it creates `config.json` in assets folder
+- *Date:* 9-17-2023
+
 ## 1.1.3
 - 🟥 Removed state management library
 - 🟥 Removed unnecessary Home tile in side drawer

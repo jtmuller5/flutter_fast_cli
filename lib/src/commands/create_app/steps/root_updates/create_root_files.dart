@@ -21,4 +21,22 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
 
   await copyPath('$templatePath/assets', 'assets');
+
+  File config = File('assets/config.json');
+  await config.writeAsString('''
+  {
+  "AMPLITUDE_API_KEY": "",
+  "APPWRITE_PROJECT_ID": "",
+  "APPWRITE_MAGIC_LINK_URL": "",
+  "APPWRITE_DATABASE_ID": "",
+  "APPWRITE_USERS_COLLECTION_ID": "",
+  "APPWRITE_FEEDBACK_COLLECTION_ID": "",
+  "GOOGLE_SDK_KEY": "",
+  "IOS_SDK_KEY": "",
+  "AMAZON_SDK_KEY": "",
+  "SENTRY_DSN": "",
+  "SUPABASE_URL": "",
+  "SUPABASE_ANON_KEY": ""
+}
+  ''', mode: FileMode.write);
 }
