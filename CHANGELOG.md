@@ -1,3 +1,9 @@
+## 1.1.3
+- 🟥 Removed state management library
+- 🟥 Removed unnecessary Home tile in side drawer
+- 🟩 Added bottom navigation bar on HomeView
+- *Date:* 9-17-2023
+
 ## 1.1.2
 - 🟩 Added option to generate ColorScheme from image (-l)
 - 🟩 Added step to remove feature tags from lib directory (ex. //* Firebase *//)

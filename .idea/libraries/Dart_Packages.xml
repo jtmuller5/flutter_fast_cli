@@ -57,6 +57,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.3.8/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.3.9/lib" />
             </list>
           </value>
         </entry>
@@ -211,13 +212,6 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/code_builder-4.6.0/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="code_on_the_rocks">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/code_on_the_rocks-0.1.2/lib" />
             </list>
           </value>
         </entry>
@@ -919,14 +913,14 @@
         <entry key="sentry">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sentry-7.9.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sentry-7.10.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="sentry_flutter">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sentry_flutter-7.9.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sentry_flutter-7.10.1/lib" />
             </list>
           </value>
         </entry>
@@ -1338,6 +1332,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.10.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.10.1/lib" />
             </list>
           </value>
         </entry>
@@ -1417,6 +1412,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/appwrite-9.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/appwrite_auth_ui-0.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.3.8/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.3.9/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.4.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.11.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/auto_route-7.8.3/lib" />
@@ -1439,7 +1435,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-5.16.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/code_builder-4.6.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/code_on_the_rocks-0.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.17.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.18.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/convert-3.1.1/lib" />
@@ -1537,8 +1532,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/recase-4.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/retry-3.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/rxdart-0.27.7/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sentry-7.9.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sentry_flutter-7.9.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sentry-7.10.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sentry_flutter-7.10.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences-2.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/lib" />
@@ -1601,6 +1596,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.2.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.10.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.10.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.7.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.0.7/lib" />

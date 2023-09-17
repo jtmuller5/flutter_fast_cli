@@ -1,5 +1,5 @@
+import 'package:flutterfast/features/feedback/ui/new_feedback/new_feedback_view.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flutterfast/features/feedback/ui/new_feedback/new_feedback_view_model.dart';
 import 'package:flutterfast/features/shared/utils/json/utils.dart';
 
 part 'feedback.g.dart';

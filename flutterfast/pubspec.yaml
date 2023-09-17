@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   amplitude_flutter: ^3.16.0
   auto_route: ^7.8.3
-  code_on_the_rocks: ^0.1.2
   collection: ^1.17.2
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1
@@ -21,7 +20,7 @@ dependencies:
   intl: ^0.18.1
   json_annotation: ^4.8.1
   package_info_plus: ^4.1.0
-  sentry_flutter: ^7.9.0
+  sentry_flutter: ^7.10.1
   shared_preferences: ^2.2.1
   transparent_image: ^2.0.1
   url_launcher: ^6.1.14
@@ -65,7 +64,7 @@ dev_dependencies:
   injectable_generator: ^2.4.0
   json_serializable: ^6.7.1
   mocktail: ^1.0.0
-  monarch: ^3.0.0
+  monarch: ^3.5.3
 
 flutter:
   uses-material-design: true

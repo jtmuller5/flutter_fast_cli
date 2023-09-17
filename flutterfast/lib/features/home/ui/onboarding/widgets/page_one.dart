@@ -19,7 +19,9 @@ class PageOne extends StatelessWidget {
               'Welcome to the Flutter Fast app!',
               textAlign: TextAlign.center,
               style: context.headlineSmall,
-            ).animate(effects: [const FadeEffect(delay: Duration(milliseconds: 300))]),
+            ).animate(effects: [
+              const FadeEffect(delay: Duration(milliseconds: 300))
+            ]),
             gap16,
             const Text('👋')
           ],

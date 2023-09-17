@@ -110,20 +110,22 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   }
 
   Widget authHeader() {
-    return Builder(
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                Flexible(child: Image.asset('assets/images/logo.png')),
-                const Flexible(child: gap12),
-                Flexible(child: Text('Flutter Fast', style: context.bodyMedium.bold,))
-              ],
-            ),
-          );
-        }
-    );
+    return Builder(builder: (context) {
+      return Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            Flexible(child: Image.asset('assets/images/logo.png')),
+            const Flexible(child: gap12),
+            Flexible(
+                child: Text(
+              'Flutter Fast',
+              style: context.bodyMedium.bold,
+            ))
+          ],
+        ),
+      );
+    });
   }
 
   @override

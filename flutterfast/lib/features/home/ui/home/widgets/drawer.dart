@@ -24,13 +24,6 @@ class HomeDrawer extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('Home'),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
                   leading: const Icon(Icons.person),
                   title: const Text('Profile'),
                   onTap: () {
@@ -50,7 +43,7 @@ class HomeDrawer extends StatelessWidget {
                   leading: const Icon(Icons.thumb_up),
                   title: const Text('Leave Feedback'),
                   onTap: () {
-                    router.popAndPush(const NewFeedbackRoute());
+                    router.popAndPush(NewFeedbackRoute());
                   },
                 ),
                 if (kDebugMode)
@@ -78,7 +71,8 @@ class HomeDrawer extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
                   child: Text(
                     'Version: ${snapshot.data!.version}',
                     style: context.bodySmall,

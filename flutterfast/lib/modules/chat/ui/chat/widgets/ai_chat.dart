@@ -1,23 +1,28 @@
-import 'package:code_on_the_rocks/code_on_the_rocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/home/models/message.dart';
-import 'package:flutterfast/modules/chat/ui/chat/chat_view_model.dart';
 import 'package:flutterfast/modules/chat/ui/chat/widgets/message_bubble.dart';
 
-class AiChat extends StatelessWidget {
-  const AiChat({Key? key}) : super(key: key);
+class AiChat extends StatefulWidget {
+  const AiChat({Key? key, required this.loading}) : super(key: key);
+
+  final bool loading;
+
+  @override
+  State<AiChat> createState() => _AiChatState();
+}
+
+class _AiChatState extends State<AiChat> {
+  TextEditingController messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    ChatViewModel model = getModel<ChatViewModel>(context);
-
     return ValueListenableBuilder(
         valueListenable: chatService.messages,
         builder: (context, messages, child) {
           return AnimatedSwitcher(
             duration: kThemeAnimationDuration,
-            child: model.isLoading
+            child: widget.loading
                 ? const Center(child: CircularProgressIndicator())
                 : Stack(
                     children: [
@@ -54,7 +59,7 @@ class AiChat extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
-                            controller: model.messageController,
+                            controller: messageController,
                             decoration: InputDecoration(
                               hintText: 'Ask a question',
                               fillColor:
@@ -65,8 +70,9 @@ class AiChat extends StatelessWidget {
                                 child: IconButton(
                                   icon: const Icon(Icons.send),
                                   onPressed: () async {
-                                    await model.submitMessage();
-                                    model.messageController.clear();
+                                    await chatService
+                                        .submitMessage(messageController.text);
+                                    messageController.clear();
                                   },
                                 ),
                               ),
