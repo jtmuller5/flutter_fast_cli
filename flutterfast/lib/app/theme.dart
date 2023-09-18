@@ -7,23 +7,17 @@ String? _fontFamily = GoogleFonts.quicksand().fontFamily;
 ThemeData lightTheme = FlexThemeData.light(
   fontFamily: _fontFamily,
   scheme: FlexScheme.flutterDash,
-  //* LogoColorScheme *//
   colorScheme: lightLogoColorScheme,
-  //* LogoColorScheme *//
 );
 
 ThemeData darkTheme = FlexThemeData.dark(
   fontFamily: _fontFamily,
   scheme: FlexScheme.flutterDash,
-  //* LogoColorScheme *//
   colorScheme: darkLogoColorScheme,
-  //* LogoColorScheme *//
 );
 
-//* LogoColorScheme *//
 ColorScheme? lightLogoColorScheme;
 ColorScheme? darkLogoColorScheme;
-//* LogoColorScheme *//
 
 extension FastColor on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;

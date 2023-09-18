@@ -91,7 +91,6 @@ class SubscriptionService {
           heightFactor: .7,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(8),
             ),
             child: ListView(

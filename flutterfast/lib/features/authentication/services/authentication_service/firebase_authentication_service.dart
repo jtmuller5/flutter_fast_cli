@@ -30,8 +30,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) {
-    return FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+    return FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
   }
 
   @override
@@ -112,10 +111,10 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   Widget authHeader() {
     return Builder(builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.only(top: 24.0),
         child: Column(
           children: [
-            Flexible(child: Image.asset('assets/images/logo.png')),
+            Expanded(flex: 3, child: Image.asset('assets/images/logo.png')),
             const Flexible(child: gap12),
             Flexible(
                 child: Text(
@@ -130,7 +129,6 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> initialize() async {
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   }
 }

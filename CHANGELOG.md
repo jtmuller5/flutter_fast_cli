@@ -1,3 +1,8 @@
+## 1.2.0
+- 🟩 Added `wizard` command
+- 🟪 Fixed background color in subscription popup
+- *Date:* 9-18-2023
+
 ## 1.1.4
 - 🟪 Fixed generator so it creates `config.json` in assets folder
 - *Date:* 9-17-2023
