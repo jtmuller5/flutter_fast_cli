@@ -36,8 +36,9 @@ class Clean extends Command {
         Directory podsDirectory = Directory('ios/Pods');
         File podfileLock = File('ios/Podfile.lock');
 
-        if (podsDirectory.existsSync())
+        if (podsDirectory.existsSync()) {
           await podsDirectory.delete(recursive: true);
+        }
         if (podfileLock.existsSync()) await podfileLock.delete();
       });
 

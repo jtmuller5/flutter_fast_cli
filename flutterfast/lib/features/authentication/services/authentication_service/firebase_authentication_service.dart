@@ -30,7 +30,8 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) {
-    return FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    return FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
   }
 
   @override
@@ -129,6 +130,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> initialize() async {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
   }
 }
