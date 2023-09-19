@@ -1,3 +1,10 @@
+## 1.2.1
+- 🟩 Added workaround for [this Fastlane issue](https://github.com/fastlane/fastlane/issues/21507)
+- 🟪 Fixed scripts not being copied into new app
+- 🟪 Fixed run configurations not being copied into new app
+- 🟪 Added error output when `fast build` fails
+- *Date:* 9-19-2023
+
 ## 1.2.0
 - 🟩 Added `wizard` command
 - 🟪 Fixed background color in subscription popup

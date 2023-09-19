@@ -20,7 +20,10 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   File readme = File('README.md');
   await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
 
-  await copyPath('$templatePath/assets', 'assets');
+  await copyPath('$templatePath/assets/images', 'assets/images');
+
+  await copyPath(
+      '$templatePath/.idea/runConfigurations', '.idea/runConfigurations');
 
   File config = File('assets/config.json');
   await config.writeAsString('''
@@ -39,4 +42,6 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   "SUPABASE_ANON_KEY": ""
 }
   ''', mode: FileMode.write);
+
+  await copyPath('$templatePath/scripts', 'scripts');
 }

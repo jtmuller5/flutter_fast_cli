@@ -12,6 +12,7 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :prod do |options|
+     ENV['SUPPLY_UPLOAD_MAX_RETRIES']='5'
      bump
      sh("flutter","build","appbundle","--dart-define-from-file=assets/config.json")
 
@@ -22,7 +23,8 @@ platform :android do
   end
 
   desc "Deploy a new version to the internal test track of Google Play"
-  lane :internal
+  lane :internal do
+     ENV['SUPPLY_UPLOAD_MAX_RETRIES']='5'
      bump
      sh("flutter","build","appbundle","--dart-define-from-file=assets/config.json")
 
@@ -34,7 +36,7 @@ platform :android do
 
   #* Shorebird *#
   desc "Deploy a new version to the Google Play using Shorebird"
-  lane :prod_shorebird
+  lane :prod_shorebird do
      bump
      sh("shorebird","release","appbundle","--force","--","--dart-define-from-file=assets/config.json")
 
@@ -45,7 +47,7 @@ platform :android do
   end
 
   desc "Deploy a new version to the internal test track of Google Play using Shorebird"
-    lane :internal_shorebird
+  lane :internal_shorebird do
        bump
        sh("shorebird","release","appbundle","--force","--","--dart-define-from-file=assets/config.json")
 

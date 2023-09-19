@@ -63,6 +63,27 @@ The `flutter build` command defaults to using the release build configuration. T
 flutter build appbundle
 ```
 
+### Subsequent Releases
+Run the Fastlanes:
+```agsl
+cd android
+fastlane internal
+```
+
+## IOS
+
+### First Release
+```agsl
+flutter build ipa
+```
+
+### Subsequent Releases
+Run the Fastlanes:
+```agsl
+cd ios
+fastlane beta
+```
+
 ### Shorebird
 
 To use Shorebird, follow

@@ -27,13 +27,19 @@ class Build extends Command {
   @override
   Future<void> run() async {
     await runWithProgress('Running build_runner...', () async {
-      await Process.run('flutter', [
+      ProcessResult result = await Process.run('flutter', [
         'pub',
         'run',
         'build_runner',
         'build',
         '--delete-conflicting-outputs'
       ]);
+
+      if (result.stderr != null) {
+        stdout.write(result.stderr);
+      } else {
+        stdout.write(result.stdout);
+      }
     });
   }
 }
