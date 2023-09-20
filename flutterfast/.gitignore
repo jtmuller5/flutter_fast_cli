@@ -14,7 +14,7 @@ migrate_working_dir/
 *.iml
 *.ipr
 *.iws
-../template/.idea/
+../flutterfast/.idea/libraries
 **/.idea/workspace.xml
 
 # The .vscode folder contains launch configuration and tasks you configure in

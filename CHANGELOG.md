@@ -1,3 +1,7 @@
+## 1.3.1
+- 🟪 Fixed missing runConfigurations directory
+- *Date:* 9-20-2023
+
 ## 1.3.0
 - 🟩 Added --offline argument to `fast app` command
 - 🟩 Added empty .env file to ios fastlane directory

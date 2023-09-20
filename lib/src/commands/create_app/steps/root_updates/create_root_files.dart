@@ -22,8 +22,12 @@ Future<void> createRootFiles(String templatePath, String appName) async {
 
   await copyPath('$templatePath/assets/images', 'assets/images');
 
-  await copyPath(
-      '$templatePath/.idea/runConfigurations', '.idea/runConfigurations');
+  Directory runDirectory = Directory('$templatePath/.idea/runConfigurations');
+
+  if (runDirectory.existsSync()) {
+    await copyPath(
+        '$templatePath/.idea/runConfigurations', '.idea/runConfigurations');
+  }
 
   File config = File('assets/config.json');
   await config.writeAsString('''
