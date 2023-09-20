@@ -40,7 +40,7 @@ class SubscriptionService {
       return;
     }
 
-    await Purchases.configure(configuration..appUserID = authenticationService.id);
+    await Purchases.configure(configuration);
 
     await checkSubscription();
 

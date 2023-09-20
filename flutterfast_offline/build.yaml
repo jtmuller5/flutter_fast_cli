@@ -1,0 +1,37 @@
+targets:
+  $default:
+    builders:
+      # auto_route_generator:auto_route_generator:
+      #   generate_for:
+      #     - lib/**/**_view.dart
+      # auto_route_generator:auto_router_generator:
+      #    generate_for:
+      #      - lib/app/router.dart
+      # injectable_generator:injectable_builder:
+      #  options:
+        # auto_register: true
+        # auto registers any class with a name matches the given pattern
+        # class_name_pattern:
+        #  "Service$|Repository$|Bloc$"
+        # auto registers any class inside a file with a
+        # name matches the given pattern
+        # file_name_pattern: "_service$|_repository$|_bloc$"
+      json_serializable:
+        options:
+          any_map: false
+          checked: false
+          constructor: ""
+          create_factory: true
+          create_field_map: false
+          create_per_field_to_json: false
+          create_to_json: true
+          disallow_unrecognized_keys: false
+          explicit_to_json: true
+          field_rename: none
+          generic_argument_factories: false
+          ignore_unannotated: false
+          include_if_null: true
+    sources:
+      - $package$
+      - lib/**
+      - stories/**
