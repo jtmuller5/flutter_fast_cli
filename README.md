@@ -16,7 +16,7 @@
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
 
-<img src="./assets/wizard.gif"/>
+<img src="./assets/Wizard.gif"/>
 
 # Table of Contents
 - [What?](#what-is-flutter-fast)
