@@ -7,6 +7,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unu
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_logo_color_scheme.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_run_configurations.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
@@ -150,6 +151,8 @@ class CreateApp extends Command {
     if (!logoColorScheme) {
       await removeLogoColorScheme();
     }
+
+    await removeRunConfigurations();
 
     await removeFeatureTags();
 

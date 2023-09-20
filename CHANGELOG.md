@@ -1,5 +1,9 @@
-## 1.3.1
+## 1.3.2
 - 🟪 Fixed missing runConfigurations directory
+- *Date:* 9-20-2023
+
+## 1.3.1
+- 🟪 Error handling for missing runConfigurations directory
 - *Date:* 9-20-2023
 
 ## 1.3.0
