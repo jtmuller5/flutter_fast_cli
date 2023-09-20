@@ -13,6 +13,10 @@ class AmplitudeAnalyticsService extends FastAnalyticsService {
 
   @override
   Future<void> initialize() async {
-    await amplitude.init(const String.fromEnvironment('AMPLITUDE_API_KEY'));
+    String? apiKey = const String.fromEnvironment('AMPLITUDE_API_KEY');
+
+    if (apiKey != '') {
+      await amplitude.init(const String.fromEnvironment('AMPLITUDE_API_KEY'));
+    }
   }
 }

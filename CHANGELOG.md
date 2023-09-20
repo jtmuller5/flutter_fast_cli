@@ -1,3 +1,10 @@
+## 1.3.0
+- 🟩 Added --offline argument to `fast app` command
+- 🟩 Added empty .env file to ios fastlane directory
+- 🟩 Wrapped Drawer contents in SafeArea
+- 🟪 Added error handling for missing Amplitude API key
+- *Date:* 9-20-2023
+
 ## 1.2.1
 - 🟩 Added workaround for [this Fastlane issue](https://github.com/fastlane/fastlane/issues/21507)
 - 🟪 Fixed scripts not being copied into new app
