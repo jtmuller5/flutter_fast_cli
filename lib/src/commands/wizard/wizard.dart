@@ -47,18 +47,29 @@ class Wizard extends Command {
       orgName = stdin.readLineSync();
     }
 
-    // User input for PaaS
-    String? paasOption;
-    while (paasOption != 'f' && paasOption != 's' && paasOption != 'a') {
-      stdout.write(
-          'Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite: ');
-      paasOption = stdin.readLineSync() ?? 'f';
+    String? offlineOption;
+    while (offlineOption != 'y' && offlineOption != 'n') {
+      stdout.write('Do you want this app to be offline only? (y/N): ');
+      offlineOption = stdin.readLineSync() ?? 'n';
+      if (offlineOption.trim() == '') offlineOption = 'n';
     }
-    final paas = paasOption == 'f'
-        ? 'firebase'
-        : paasOption == 's'
-            ? 'supabase'
-            : 'appwrite';
+    final bool offline = offlineOption == 'y';
+
+    String? paasOption;
+    String? paas;
+    if (!offline) {
+      // User input for PaaS
+      while (paasOption != 'f' && paasOption != 's' && paasOption != 'a') {
+        stdout.write(
+            'Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite: ');
+        paasOption = stdin.readLineSync() ?? 'f';
+      }
+      paas = paasOption == 'f'
+          ? 'firebase'
+          : paasOption == 's'
+              ? 'supabase'
+              : 'appwrite';
+    }
 
     // User input for subscriptions
     String? subsOption;
@@ -103,7 +114,8 @@ class Wizard extends Command {
     stdout.writeln('\n🛠️ Your selections:');
     stdout.writeln('App name: $appName');
     stdout.writeln('Organization name: $orgName');
-    stdout.writeln('PaaS: $paas');
+    stdout.writeln('Offline: $offline');
+    if (paas != null) stdout.writeln('PaaS: $paas');
     stdout.writeln('Subscriptions: $subscriptions');
     stdout.writeln('Build: $build');
     stdout.writeln('Shorebird: $shorebird');
@@ -131,7 +143,7 @@ class Wizard extends Command {
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
-    String? path = await loadTemplateFolder();
+    String? path = await loadTemplateFolder(offline);
 
     if (path == null) {
       logger.stdout('Template path is null');
@@ -155,9 +167,11 @@ class Wizard extends Command {
     progress.finish(showTiming: true);
 
     progress = logger.progress('Performing cleanup...');
-    await clearUnusedPaasFiles(paas);
-    await updatePubspecFile(appName, paas);
-    await removeInjectableEnvironments();
+    if (paas != null) {
+      await clearUnusedPaasFiles(paas);
+      await updatePubspecFile(appName, paas);
+      await removeInjectableEnvironments();
+    }
 
     if (!subscriptions) {
       await removeSubscriptionFeature();

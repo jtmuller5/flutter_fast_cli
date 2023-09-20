@@ -2,7 +2,7 @@
 
 <p align="center">                    
 <a href="https://img.shields.io/badge/License-MIT-green"><img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License"></a>
-<a href="https://pub.dev/packages/flutter_fast_cli"><img src="https://img.shields.io/pub/v/code_on_the_rocks?label=pub&color=orange" alt="pub version"></a>      
+<a href="https://pub.dev/packages/flutter_fast_cli"><img src="https://img.shields.io/pub/v/flutter_fast_cli?label=pub&color=orange" alt="pub version"></a>      
 <a href="https://twitter.com/CodeOnTheRocks_">
     <img src="https://img.shields.io/twitter/follow/CodeOnTheRocks_?style=social">
   </a>
@@ -15,6 +15,8 @@
   <a href="https://codeontherocks.gumroad.com/l/flutterfast">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
+
+<img src="./assets/wizard.gif"  height="700"/>
 
 # Table of Contents
 - [What?](#what-is-flutter-fast)
@@ -63,9 +65,9 @@ You can view the [roadmap](https://codeotr.github.io/flutter-fast-guide/docs/roa
 
 Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Sets up Sign In, Register, Forgot Password, and Profile screens
-- Adds a generic Feedback feature that works out-of-the-box with Firestore or Supabase
+- Adds a generic Feedback feature that works out-of-the-box with Firestore, Supabase, or Appwrite
 - Adds a settings screen with dark mode toggle
-- Adds a simple onboarding page view new users will see on account creation
+- Adds a simple onboarding view new users see on account creation
 - Creates an auto_route router and adds it to your MaterialApp
 - Introduces authentication based navigation and route guards
 - Creates an instance of [get_it](https://pub.dev/packages/get_it)
@@ -76,7 +78,7 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Sets up Sentry for crash reporting
 - Adds a basic debugging NavigationObserver to router
 - Creates useful TextStyle and BuildContext extensions
-- Creates constants.dart file with reusable padding and gap values
+- Creates `constants.dart` file with reusable padding and gap values
 - Adds basic bash scripts with preconfigured run configurations for Fastlane and common Flutter tasks
 - Includes Android and iOS Fastlane files with Flutter-safe methods for incrementing build numbers (doesn't wipe out $(FLUTTER_BUILD_NUMBER))
 - Adds `multiDexEnabled = true` to app/build.gradle

@@ -32,9 +32,13 @@ class _OnboardingViewState extends State<OnboardingView> {
             await sharedPrefs.setBool('onboarded', true);
             router.navigate(const HomeRoute());
           } else if (pageController.page == 1) {
-            pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            pageController.animateToPage(2,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut);
           } else if (pageController.page == 0) {
-            pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+            pageController.animateToPage(1,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut);
           }
         },
         child: const Icon(Icons.arrow_forward),

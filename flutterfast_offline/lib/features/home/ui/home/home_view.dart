@@ -15,15 +15,14 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   void initState() {
     if (!(sharedPrefs.getBool('onboarded') ?? false)) {
       router.replace(const OnboardingRoute());
     }
-      super.initState();
-
+    super.initState();
   }
+
   int index = 0;
 
   void setIndex(int val) {

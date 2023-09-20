@@ -14,8 +14,12 @@ Future<void> main() async {
   GetIt.instance.registerSingleton(AppRouter());
 
   //* LogoColorScheme *//
-  lightLogoColorScheme = await ColorScheme.fromImageProvider(provider: const AssetImage('assets/images/logo.png'), brightness: Brightness.light);
-  darkLogoColorScheme = await ColorScheme.fromImageProvider(provider: const AssetImage('assets/images/logo.png'), brightness: Brightness.dark);
+  lightLogoColorScheme = await ColorScheme.fromImageProvider(
+      provider: const AssetImage('assets/images/logo.png'),
+      brightness: Brightness.light);
+  darkLogoColorScheme = await ColorScheme.fromImageProvider(
+      provider: const AssetImage('assets/images/logo.png'),
+      brightness: Brightness.dark);
   //* LogoColorScheme *//
 
   //* Subscriptions *//

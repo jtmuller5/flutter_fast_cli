@@ -40,6 +40,12 @@ class CreateApp extends Command {
         defaultsTo: 'com.example',
       )
       ..addFlag(
+        'offline',
+        abbr: 'f',
+        help: 'Whether the app should be specifically for offline use.',
+        defaultsTo: false,
+      )
+      ..addFlag(
         'subs',
         abbr: 's',
         help: 'Whether to include subscriptions in the app.',
@@ -80,10 +86,11 @@ class CreateApp extends Command {
   @override
   Future<void> run() async {
     final appName = argResults?['name'] as String?;
-    final orgName = argResults!['org'] as String;
+    final orgName = argResults?['org'] as String?;
+    final offline = argResults?['offline'] as bool;
     final paas = argResults?['paas'] as String?;
     final subscriptions = argResults?['subs'] as bool;
-    final build = argResults?['build'] as bool;
+    final build = (argResults?['build'] ?? true) as bool;
     final shorebird = argResults?['shorebird'] as bool;
     final logoColorScheme = argResults?['logo-color-scheme'] as bool;
 
@@ -94,13 +101,19 @@ class CreateApp extends Command {
       return;
     }
 
+    if (orgName == null || orgName.isEmpty) {
+      print(
+          'Please provide an organization name for your app (ex. com.example).');
+      return;
+    }
+
     var progress = logger.progress('Creating app $appName...');
     await Process.run(
         flutterPath, ['create', appName, '--empty', '--org', orgName]);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
-    String? path = await loadTemplateFolder();
+    String? path = await loadTemplateFolder(offline);
 
     if (path == null) {
       logger.stdout('Template path is null');

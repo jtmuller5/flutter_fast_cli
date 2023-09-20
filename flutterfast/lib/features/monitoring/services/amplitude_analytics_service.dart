@@ -17,6 +17,6 @@ class AmplitudeAnalyticsService extends FastAnalyticsService {
 
     if (apiKey != '') {
       await amplitude.init(const String.fromEnvironment('AMPLITUDE_API_KEY'));
-    }🟩
+    }
   }
 }
