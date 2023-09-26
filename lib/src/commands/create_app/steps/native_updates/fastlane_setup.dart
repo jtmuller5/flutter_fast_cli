@@ -18,20 +18,9 @@ FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=
 
   File iosFastfile = File('ios/fastlane/Fastfile');
 
-  await Process.run(
-    'find',
-    [
-      iosFastfile.path,
-      '-type',
-      'f',
-      '-exec',
-      'sed',
-      '-i',
-      '',
-      's/flutterfastApp/$appName/',
-      '{}',
-      ';'
-    ],
-    workingDirectory: Directory.current.path,
-  );
+  final fastfile = File(iosFastfile.path);
+
+  var content = await fastfile.readAsString();
+  var modifiedContent = content.replaceAll('flutterfastApp', appName);
+  await fastfile.writeAsString(modifiedContent);
 }

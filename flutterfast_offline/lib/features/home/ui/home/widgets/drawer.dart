@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/text_theme.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/shared/ui/app_logo.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({Key? key}) : super(key: key);
@@ -43,23 +45,49 @@ class HomeDrawer extends StatelessWidget {
                 Text('flutterfast is a Flutter application.'),
               ],
             ),
-            FutureBuilder(
-              future: PackageInfo.fromPlatform(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      launchUrl(Uri.parse(
+                          'https://codeontherocks.dev/privacy-policy/'));
+                    },
                     child: Text(
-                      'Version: ${snapshot.data!.version}',
+                      'Privacy Policy',
                       style: context.bodySmall,
                     ),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            )
+                  ),
+                  gap8,
+                  GestureDetector(
+                    onTap: () {
+                      launchUrl(Uri.parse('https://codeontherocks.dev/tos/'));
+                    },
+                    child: Text(
+                      'Terms of Service',
+                      style: context.bodySmall,
+                    ),
+                  ),
+                  gap8,
+                  FutureBuilder(
+                    future: PackageInfo.fromPlatform(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Text(
+                          'Version: ${snapshot.data!.version}',
+                          style: context.bodySmall,
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

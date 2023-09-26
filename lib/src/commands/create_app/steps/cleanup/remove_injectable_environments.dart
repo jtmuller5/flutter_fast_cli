@@ -18,21 +18,15 @@ Future<void> removeInjectableEnvironments() async {
   await getIt.writeAsString(getItContents);
 
   for (String environment in ['firebase', 'supabase', 'appwrite']) {
-    await Process.run(
-      'find',
-      [
-        'lib',
-        '-type',
-        'f',
-        '-exec',
-        'sed',
-        '-i',
-        '',
-        's/@$environment//',
-        '{}',
-        ';'
-      ],
-      workingDirectory: Directory.current.path,
-    );
+    final directory = Directory('lib');
+
+    await for (var entity
+        in directory.list(recursive: true, followLinks: false)) {
+      if (entity is File) {
+        var content = await entity.readAsString();
+        var modifiedContent = content.replaceAll('@$environment', '');
+        await entity.writeAsString(modifiedContent);
+      }
+    }
   }
 }

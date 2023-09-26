@@ -11,51 +11,29 @@ Future<void> removeFeatureTags() async {
       'Subscriptions',
       'Appwrite'
     ]) {
-      ProcessResult out = await Process.run(
-        'find',
-        [
-          'lib',
-          '-type',
-          'f',
-          '-exec',
-          'sed',
-          '-i',
-          '',
-          's#//[*] $tag [*]//##',
-          '{}',
-          ';'
-        ],
-        workingDirectory: Directory.current.path,
-      );
-      if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
-      if (out.stderr != null && out.stderr != '') stderr.write(out.stderr);
+      final directory = Directory('lib');
 
-      out = await Process.run(
-        'find',
-        [
-          'lib',
-          '-type',
-          'f',
-          '-exec',
-          'sed',
-          '-i',
-          '',
-          's#//x $tag x//##',
-          '{}',
-          ';'
-        ],
-        workingDirectory: Directory.current.path,
-      );
-      if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
-      if (out.stderr != null && out.stderr != '') stderr.write(out.stderr);
+      await for (var entity
+          in directory.list(recursive: true, followLinks: false)) {
+        if (entity is File) {
+          var content = await entity.readAsString();
+          var modifiedContent = content.replaceAll('//* $tag *//', '');
+          await entity.writeAsString(modifiedContent);
+        }
+      }
 
-      /*out = await Process.run(
-        'find',
-        ['pubspec.yaml', '-type', 'f', '-exec', 'sed', '-i', '', 's/#[*] $tag [*]#//', '{}', ';'],
-        workingDirectory: Directory.current.path,
-      );
-      if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
-      if (out.stderr != null && out.stderr != '') stderr.write(out.stderr);*/
+      await for (var entity
+          in directory.list(recursive: true, followLinks: false)) {
+        if (entity is File) {
+          var content = await entity.readAsString();
+          var modifiedContent = content.replaceAll('//x $tag x//', '');
+          await entity.writeAsString(modifiedContent);
+        }
+      }
+
+      /*var pubspec = await File('pubspec.yaml').readAsString();
+      var modifiedContent = pubspec.replaceAll('#* $tag *#', '');
+      await File('pubspec.yaml').writeAsString(modifiedContent);*/
     }
   } catch (e) {
     stderr.writeln(e);

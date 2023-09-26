@@ -42,6 +42,8 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await appwriteUserServiceFile.delete();
     await appwriteFeedbackServiceFile.delete();
     await appwriteConnectorServiceFile.delete();
+    // await removeDependencies('Supabase');
+    // await removeDependencies('Appwrite');
   } else if (paas == 'supabase') {
     await firebaseAuthServiceFile.delete();
     await firebaseUserServiceFile.delete();
@@ -51,6 +53,8 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await appwriteUserServiceFile.delete();
     await appwriteFeedbackServiceFile.delete();
     await appwriteConnectorServiceFile.delete();
+    // await removeDependencies('Appwrite');
+    // await removeDependencies('Firebase');
   } else if (paas == 'appwrite') {
     await firebaseAuthServiceFile.delete();
     await firebaseUserServiceFile.delete();
@@ -60,7 +64,15 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await supabaseUserServiceFile.delete();
     await supabaseFeedbackServiceFile.delete();
     await supabaseConnectorServiceFile.delete();
+    // await removeDependencies('Supabase');
+    // await removeDependencies('Firebase');
   } else {
     stdout.writeln('Unknown PaaS: $paas');
   }
+}
+
+Future<void> removeDependencies(String tag) async {
+  var pubspec = await File('pubspec.yaml').readAsString();
+  var modifiedContent = pubspec.replaceAll('#* $tag *#', '');
+  await File('pubspec.yaml').writeAsString(modifiedContent);
 }

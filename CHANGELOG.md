@@ -1,3 +1,16 @@
+## 1.3.5
+- 🟪 Fix for [Windows issue](https://github.com/CodeOTR/flutter_fast_cli/issues/3). Replaced "find" and "sed" commands with Dart code.
+- 🟩 Added TOS and Privacy policy links to side drawer
+- *Date:* 9-26-2023
+
+## 1.3.4
+- 🟩 Added wizard gif
+- *Date:* 9-20-2023
+
+## 1.3.3
+- 🟪 Fix for fixed missing runConfigurations directory
+- *Date:* 9-20-2023
+
 ## 1.3.2
 - 🟪 Fixed missing runConfigurations directory
 - *Date:* 9-20-2023

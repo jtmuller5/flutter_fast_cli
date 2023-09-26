@@ -7,24 +7,16 @@ Future<void> copyTemplate(String templatePath, String appName) async {
 
   try {
     // Replace all instances of flutterfast with the app name
-    ProcessResult out = await Process.run(
-      'find',
-      [
-        'lib',
-        '-type',
-        'f',
-        '-exec',
-        'sed',
-        '-i',
-        '',
-        's/flutterfast/$appName/',
-        '{}',
-        ';'
-      ],
-      workingDirectory: Directory.current.path,
-    );
-    if (out.stdout != null && out.stdout != '') stdout.write(out.stdout);
-    if (out.stderr != null && out.stderr != '') stderr.write(out.stderr);
+    final directory = Directory('lib');
+
+    await for (var entity
+        in directory.list(recursive: true, followLinks: false)) {
+      if (entity is File) {
+        var content = await entity.readAsString();
+        var modifiedContent = content.replaceAll('flutterfast', appName);
+        await entity.writeAsString(modifiedContent);
+      }
+    }
   } catch (e) {
     stderr.writeln(e);
   }
