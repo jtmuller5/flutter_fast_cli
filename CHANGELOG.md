@@ -1,3 +1,7 @@
+## 1.3.6
+- 🟪 Fix for using Supabase/Appwrite auth
+- *Date:* 9-26-2023
+
 ## 1.3.5
 - 🟪 Fix for [Windows issue](https://github.com/CodeOTR/flutter_fast_cli/issues/3). Replaced "find" and "sed" commands with Dart code.
 - 🟩 Added TOS and Privacy policy links to side drawer
