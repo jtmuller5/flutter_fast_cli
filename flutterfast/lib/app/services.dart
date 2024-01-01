@@ -2,6 +2,7 @@
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
 //x Chat x//
 
+import 'package:flutterfast/features/shared/services/dialog_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/router.dart';
@@ -19,10 +20,11 @@ import 'package:flutterfast/features/subscriptions/services/subscription_service
 
 AppRouter get router => getIt.get<AppRouter>();
 
+DialogService get dialogService => getIt.get<DialogService>();
+
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
 
-FastAuthenticationService get authenticationService =>
-    getIt.get<FastAuthenticationService>();
+FastAuthenticationService get authenticationService => getIt.get<FastAuthenticationService>();
 
 //* Chat *//
 FastChatService get chatService => getIt.get<FastChatService>();
