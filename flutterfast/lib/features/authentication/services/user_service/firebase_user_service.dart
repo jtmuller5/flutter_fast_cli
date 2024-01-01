@@ -31,4 +31,17 @@ class FirebaseUserService extends FastUserService {
   Future<void> updateUser(FastUser user) async {
     await firestore.collection('users').doc(user.id).update(user.toJson());
   }
+  
+  @override
+  Future<FastUser?> getUser() {
+    return firestore.collection('users').doc(authenticationService.id).get().then((value) {
+      if (value.exists) {
+        FastUser loadedUser = FastUser.fromJson(value.data()!);
+        setUser(loadedUser);
+        return loadedUser;
+      } else {
+        return null;
+      }
+    });
+  }
 }

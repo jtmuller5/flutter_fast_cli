@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutterfast/app/router.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/features/authentication/models/fast_user.dart';
@@ -22,18 +24,35 @@ class SupabaseUserService extends FastUserService {
 
       await _supabase.from('users').insert(newUser.toJson());
     } catch (e) {
-      debugPrint('Error creating user: ' + e.toString());
+      debugPrint('Error creating user: $e');
       rethrow;
     }
   }
 
   @override
+  Future<FastUser?> getUser() async {
+    try {
+      final Map<String, dynamic> user = await _supabase.from('users').select().eq('id', _supabase.auth.currentUser!.id).single();
+
+      FastUser loadedUser = FastUser.fromJson(user);
+      setUser(loadedUser);
+      return loadedUser;
+    } catch (e) {
+      debugPrint('Error getting user: $e');
+      await authenticationService.signOut();
+      router.replace(const SignInRoute());
+      return null;
+    }
+  }
+
+  @override
   Future<void> deleteUser(FastUser user) async {
-    _supabase.from('users').delete().eq('id', user.id);
+    _supabase.from('users').delete().eq('id', user.id!);
   }
 
   @override
   Future<void> updateUser(FastUser user) {
-    return _supabase.from('users').update(user.toJson()).eq('id', user.id);
+    debugPrint( 'Updating user: ${user.toJson()}');
+    return _supabase.from('users').update(user.toJson()).eq('id', user.id!);
   }
 }

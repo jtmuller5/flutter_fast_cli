@@ -3,9 +3,9 @@ import 'package:flutterfast/features/shared/utils/json/utils.dart';
 
 part 'fast_user.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class FastUser {
-  String id;
+  String? id;
 
   String? email;
 
@@ -27,8 +27,7 @@ class FastUser {
   @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   DateTime? createdAt;
 
-  FastUser({
-    required this.id,
+  FastUser({ this.id,
     this.email,
     this.username,
     this.firstName,

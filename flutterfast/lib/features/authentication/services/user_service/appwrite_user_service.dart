@@ -41,7 +41,7 @@ class AppwriteUserservice extends FastUserService {
     await databases.deleteDocument(
       databaseId: '64fe2b0972c109355c30',
       collectionId: '64fe2b0e44822debdf6c',
-      documentId: user.id,
+      documentId: user.id!,
     );
   }
 
@@ -50,8 +50,25 @@ class AppwriteUserservice extends FastUserService {
     await databases.updateDocument(
       databaseId: '64fe2b0972c109355c30',
       collectionId: '64fe2b0e44822debdf6c',
-      documentId: user.id,
+      documentId: user.id!,
       data: user.toJson(),
     );
+  }
+  
+  @override
+  Future<FastUser?> getUser() {
+    return databases.getDocument(
+      databaseId: '64fe2b0972c109355c30',
+      collectionId: '64fe2b0e44822debdf6c',
+      documentId: authenticationService.id!,
+    ).then((value) {
+      if (value.data != null) {
+        FastUser loadedUser = FastUser.fromJson(value.data!);
+        setUser(loadedUser);
+        return loadedUser;
+      } else {
+        return null;
+      }
+    });
   }
 }

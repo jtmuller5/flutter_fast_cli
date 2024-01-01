@@ -25,6 +25,15 @@ class _ProfileViewState extends State<ProfileView> {
   TextEditingController phoneController = TextEditingController();
 
   @override
+  void initState() {
+    firstNameController = TextEditingController(text: userService.user.value?.firstName);
+    lastNameController = TextEditingController(text: userService.user.value?.lastName);
+    emailController = TextEditingController(text: userService.user.value?.email);
+    phoneController = TextEditingController(text: userService.user.value?.phone);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -128,19 +137,28 @@ class _ProfileViewState extends State<ProfileView> {
               return;
             }
 
-            await userService.updateUser(FastUser(
-              id: authenticationService.id!,
-              firstName: firstNameController.text,
-              lastName: lastNameController.text,
-              email: emailController.text,
-              phone: phoneController.text,
-              onboarded: true,
-            ));
+            try {
+              await userService.updateUser(FastUser(
+                id: authenticationService.id,
+                firstName: firstNameController.text,
+                lastName: lastNameController.text,
+                email: emailController.text,
+                phone: phoneController.text,
+                onboarded: true,
+              ));
 
-            if (context.mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Profile updated')));
-              // unfocus
-              FocusScope.of(context).unfocus();
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Profile updated')));
+                // unfocus
+                FocusScope.of(context).unfocus();
+              }
+            } catch (e) {
+              debugPrint(e.toString());
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('An unknown error occurred')));
+                // unfocus
+                FocusScope.of(context).unfocus();
+              }
             }
           },
           label: const Text('Save')),

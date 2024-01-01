@@ -4,7 +4,7 @@ import 'package:flutterfast/features/shared/utils/json/utils.dart';
 
 part 'message.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true,includeIfNull: false)
 class Message {
   final String id;
 

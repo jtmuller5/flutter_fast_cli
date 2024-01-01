@@ -4,7 +4,7 @@ import 'package:flutterfast/features/shared/utils/json/utils.dart';
 
 part 'feedback.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class Feedback {
   String? id;
 

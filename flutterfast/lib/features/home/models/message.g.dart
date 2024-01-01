@@ -16,10 +16,20 @@ Message _$MessageFromJson(Map<String, dynamic> json) => Message(
           : ResponseStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
-      'id': instance.id,
-      'message': instance.message,
-      'created_at': getTimestampFromDateTime(instance.createdAt),
-      'response': instance.response,
-      'status': instance.status?.toJson(),
-    };
+Map<String, dynamic> _$MessageToJson(Message instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'message': instance.message,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('created_at', getTimestampFromDateTime(instance.createdAt));
+  writeNotNull('response', instance.response);
+  writeNotNull('status', instance.status?.toJson());
+  return val;
+}

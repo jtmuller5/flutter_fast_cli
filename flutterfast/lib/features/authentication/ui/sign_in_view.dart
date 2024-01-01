@@ -37,7 +37,7 @@ class _SignInViewState extends State<SignInView> {
                 gap16,
                 Center(
                     child: Text(
-                  'Healthy Pet Connect',
+                  'flutterfast',
                   style: context.headlineSmall.bold,
                 )),
                 gap8,

@@ -14,13 +14,22 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) => Feedback(
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$FeedbackToJson(Feedback instance) => <String, dynamic>{
-      'id': instance.id,
-      'message': instance.message,
-      'user_id': instance.userId,
-      'created_at': getTimestampFromDateTime(instance.createdAt),
-      'type': _$FeedbackTypeEnumMap[instance.type]!,
-    };
+Map<String, dynamic> _$FeedbackToJson(Feedback instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['message'] = instance.message;
+  val['user_id'] = instance.userId;
+  writeNotNull('created_at', getTimestampFromDateTime(instance.createdAt));
+  val['type'] = _$FeedbackTypeEnumMap[instance.type]!;
+  return val;
+}
 
 const _$FeedbackTypeEnumMap = {
   FeedbackType.bug: 'bug',

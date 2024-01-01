@@ -1,3 +1,14 @@
+## 1.4.0
+- 🟥 Removed Auth UI libraries
+- 🟩 Added Sign In, Register, Profile, and Forgot Password views
+- 🟩 Added `phone` and `onboarded` properties to FastUser
+- 🟩 Added ValueNotifier<FastUser> to UserService
+- 🟩 Added MaskTextInputFormatter for easy phone formatting
+- 🟥 Removed reference to "USD" so app passes localization check on app stores
+- 🟪 Updated Supabase dependency to 2.0.2
+- 🟪 Added `includeIfNull: false` to all models. This prevents data from being overwritten in Supabase
+- *Date:* 1-1-2024
+
 ## 1.3.7
 - 🟪 Fix for using non-firebase builds. Clear Cloud Firestore dependencies and other remnants
 - *Date:* 9-26-2023

@@ -22,6 +22,12 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
+  void initState() {
+    userService.getUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

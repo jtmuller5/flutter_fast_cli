@@ -42,7 +42,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 gap16,
                 Center(
                     child: Text(
-                  'Healthy Pet Connect',
+                  'flutterfast',
                   style: context.headlineSmall.bold,
                 )),
                 gap8,
