@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:flutterfast/features/home/models/response_status.dart';
 import 'package:flutterfast/features/shared/utils/json/utils.dart';

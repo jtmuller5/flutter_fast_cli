@@ -1,3 +1,7 @@
+## 1.3.7
+- 🟪 Fix for using non-firebase builds. Clear Cloud Firestore dependencies and other remnants
+- *Date:* 9-26-2023
+
 ## 1.3.6
 - 🟪 Fix for using Supabase/Appwrite auth
 - *Date:* 9-26-2023

@@ -1,4 +1,7 @@
+//x Chat x//
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
+//x Chat x//
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/router.dart';
@@ -15,13 +18,22 @@ import 'package:flutterfast/features/subscriptions/services/subscription_service
 //x Subscriptions x//
 
 AppRouter get router => getIt.get<AppRouter>();
+
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
+
 FastAuthenticationService get authenticationService =>
     getIt.get<FastAuthenticationService>();
+
+//* Chat *//
 FastChatService get chatService => getIt.get<FastChatService>();
+//* Chat *//
+
 FastConnectorService get connectorService => getIt.get<FastConnectorService>();
+
 FastCrashService get crashService => getIt.get<FastCrashService>();
+
 FastFeedbackService get feedbackService => getIt.get<FastFeedbackService>();
+
 FastUserService get userService => getIt.get<FastUserService>();
 
 //* Subscriptions *//
@@ -29,4 +41,5 @@ SubscriptionService get subscriptionService => getIt.get<SubscriptionService>();
 //* Subscriptions *//
 
 SettingsService get settingsService => getIt.get<SettingsService>();
+
 SharedPreferences get sharedPrefs => getIt.get<SharedPreferences>();

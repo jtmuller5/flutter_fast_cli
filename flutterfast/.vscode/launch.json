@@ -5,9 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutterfast",
+            "name": "firebase",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define=PAAS=firebase",
+                "--dart-define-from-file=assets/internal-config.json"
+            ]
+        },
+        {
+            "name": "supabase",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=PAAS=supabase",
+                "--dart-define-from-file=assets/internal-config.json"
+            ]
+        },
+        {
+            "name": "appwrite",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=PAAS=appwrite",
+                "--dart-define-from-file=assets/internal-config.json"
+            ]
         },
         {
             "name": "flutterfast (profile mode)",

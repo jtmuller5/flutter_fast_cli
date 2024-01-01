@@ -16,7 +16,10 @@ import 'package:flutterfast/features/home/ui/onboarding/onboarding_view.dart';
 import 'package:flutterfast/features/settings/ui/settings/settings_view.dart';
 import 'package:flutterfast/features/shared/utils/navigation/auth_guard.dart';
 import 'package:flutterfast/modules/rss/ui/rss/rss_view.dart';
+
+//x Chat x//
 import 'package:flutterfast/modules/chat/ui/chat/chat_view.dart';
+//x Chat x//
 
 part 'router.gr.dart';
 
@@ -31,7 +34,11 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: ProfileRoute.page),
         AutoRoute(page: SettingsRoute.page),
+
+        //* Chat *//
         AutoRoute(page: ChatRoute.page),
+        //* Chat *//
+
         AutoRoute(page: FeedbackRoute.page),
         AutoRoute(page: NewFeedbackRoute.page),
         AutoRoute(page: RssRoute.page),

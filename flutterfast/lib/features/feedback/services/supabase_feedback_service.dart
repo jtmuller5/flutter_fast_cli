@@ -13,19 +13,10 @@ class SupabaseFeedbackService extends FastFeedbackService {
 
   @override
   Future<List<Feedback>> getLatestFeedback() async {
-    PostgrestResponse response = await _supabase
-        .from('feedback')
-        .select('*')
-        .order('created_at', ascending: false)
-        .limit(10)
-        .execute();
+    List<Map<String, dynamic>> response = await _supabase.from('feedback').select('*').order('created_at', ascending: false).limit(10);
 
-    if (response.data == null) return [];
-    if (response.data is List) {
-      return (response.data as List).map((e) => Feedback.fromJson(e)).toList();
-    } else {
-      return [Feedback.fromJson(response.data)];
-    }
+    if (response.isEmpty) return [];
+    return (response).map((e) => Feedback.fromJson(e)).toList();
   }
 
   @override

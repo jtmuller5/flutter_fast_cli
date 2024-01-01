@@ -65,9 +65,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>(
+          orElse: () => const RegisterRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const RegisterView(),
+        child: RegisterView(
+          key: args.key,
+          email: args.email,
+          password: args.password,
+        ),
       );
     },
     RssRoute.name: (routeData) {
@@ -236,16 +242,45 @@ class ProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RegisterView]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute({List<PageRouteInfo>? children})
-      : super(
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    String? email,
+    String? password,
+    List<PageRouteInfo>? children,
+  }) : super(
           RegisterRoute.name,
+          args: RegisterRouteArgs(
+            key: key,
+            email: email,
+            password: password,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RegisterRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<RegisterRouteArgs> page =
+      PageInfo<RegisterRouteArgs>(name);
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    this.email,
+    this.password,
+  });
+
+  final Key? key;
+
+  final String? email;
+
+  final String? password;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, email: $email, password: $password}';
+  }
 }
 
 /// generated route for

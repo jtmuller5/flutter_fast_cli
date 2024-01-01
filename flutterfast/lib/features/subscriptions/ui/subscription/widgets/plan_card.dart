@@ -45,10 +45,6 @@ class PlanCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(price, style: context.displaySmall),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('USD', style: context.titleSmall.outline),
-                  ),
                 ],
               ),
               gap16,

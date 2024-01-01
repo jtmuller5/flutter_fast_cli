@@ -19,6 +19,7 @@ dependencies:
   injectable: ^2.3.0
   intl: ^0.18.1
   json_annotation: ^4.8.1
+  mask_text_input_formatter: ^2.7.0
   package_info_plus: ^4.1.0
   sentry_flutter: ^7.10.1
   shared_preferences: ^2.2.1
@@ -36,19 +37,16 @@ dependencies:
 
   #* Appwrite *#
   appwrite: 9.0.1
-  appwrite_auth_ui: ^0.0.2
   #* Appwrite *#
 
   #* Firebase *#
   cloud_firestore: ^4.9.1
   firebase_auth: ^4.9.0
-  firebase_ui_auth: ^1.8.0
   firebase_core: ^2.15.1
   #* Firebase *#
 
   #* Supabase *#
-  supabase_auth_ui: ^0.2.1
-  supabase_flutter: ^1.10.16
+  supabase_flutter: ^2.0.2
   #* Supabase *#
 
 

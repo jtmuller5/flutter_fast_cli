@@ -1,12 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'package:flutterfast/app/get_it.dart';
-import 'package:flutterfast/app/router.dart';
-import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
-import 'package:flutterfast/features/shared/ui/app_logo.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 @supabase
 @Singleton(as: FastAuthenticationService)
@@ -31,88 +28,22 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
   }
 
   @override
-  Widget forgotPasswordScreen(String? email) {
-    return Scaffold(
-      body: SupaResetPassword(
-        accessToken: _supabase.auth.currentSession?.accessToken,
-        onSuccess: (UserResponse response) {
-          // do something, for example: navigate('home');
-        },
-        onError: (error) {
-          // do something, for example: navigate("wait_for_email");
-        },
-      ),
-    );
-  }
-
-  @override
-  Widget profileScreen() {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('Sign Out'),
-            onTap: () async {
-              await _supabase.auth.signOut();
-              router.pushAndPopUntil(const SignInRoute(),
-                  predicate: (route) => false);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget registerScreen() => signIn();
-
-  @override
-  Widget signInScreen() => signIn();
-
-  Widget signIn() {
-    return Scaffold(
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.all(24),
-          children: [
-            const AppLogo(sideLength: 200),
-            SupaEmailAuth(
-              redirectTo: kIsWeb ? null : 'io.mydomain.myapp://callback',
-              onSignInComplete: (response) {
-                signInNavigation();
-              },
-              onSignUpComplete: (response) async {
-                await createAccountNavigation();
-              },
-              metadataFields: [
-                MetaDataField(
-                  prefixIcon: const Icon(Icons.person),
-                  label: 'Username',
-                  key: 'username',
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return 'Please enter something';
-                    }
-                    return null;
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  Future<void> signInWithEmailAndPassword(String email, String password) {
+  Future<void> signInWithEmailAndPassword({required String email, required String password}) {
     return _supabase.auth.signInWithPassword(email: email, password: password);
   }
 
   @override
   Future<void> signOut() {
     return _supabase.auth.signOut();
+  }
+  
+  @override
+  Future<void> sendPasswordResetEmail(String email) {
+    return _supabase.auth.resetPasswordForEmail(email);
+  }
+  
+  @override
+  Future<void> registerWithEmailAndPassword({required String email, required String password}) {
+    return _supabase.auth.signUp(email: email, password: password);
   }
 }
