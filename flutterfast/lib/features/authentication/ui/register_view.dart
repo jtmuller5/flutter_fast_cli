@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/config.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
@@ -34,7 +35,6 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Builder(builder: (context) {
         return Center(
           child: ConstrainedBox(
@@ -47,13 +47,13 @@ class _RegisterViewState extends State<RegisterView> {
                 gap16,
                 Center(
                     child: Text(
-                  'flutterfast',
+                  Config.appName,
                   style: context.headlineSmall.bold,
                 )),
                 gap8,
                 Center(
                     child: Text(
-                  'Build apps faster',
+                  Config.appSubtitle,
                   style: context.bodyMedium.italic,
                 )),
                 gap24,

@@ -34,6 +34,12 @@ platform :android do
       )
   end
 
+  desc "Deploy a new version to Firebase hosting"
+  lane :web do
+     sh("flutter","build","web","--dart-define-from-file=assets/config.json")
+     sh("firebase","deploy")
+  end
+
   #* Shorebird *#
   desc "Deploy a new version to the Google Play using Shorebird"
   lane :prod_shorebird do

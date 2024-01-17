@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/config.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
@@ -42,13 +43,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 gap16,
                 Center(
                     child: Text(
-                  'flutterfast',
+                  Config.appName,
                   style: context.headlineSmall.bold,
                 )),
                 gap8,
                 Center(
                     child: Text(
-                  'Build apps faster',
+                  Config.appSubtitle,
                   style: context.bodyMedium.italic,
                 )),
                 gap24,

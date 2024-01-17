@@ -30,6 +30,12 @@ platform :ios do
       upload_to_testflight(ipa: "../build/ios/ipa/flutterfastApp.ipa")
   end
 
+  desc "Deploy a new version to Firebase hosting"
+  lane :web do
+     sh("flutter","build","web","--dart-define-from-file=assets/config.json")
+     sh("firebase","deploy")
+  end
+
     #* Shorebird *#
     desc "Push a new release build to the App Store using Shorebird"
     lane :prod_shorebird do

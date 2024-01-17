@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/config.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
@@ -15,16 +16,17 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
+
+  TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     bool loading = false;
     bool obscureText = true;
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Builder(builder: (context) {
         return Center(
           child: ConstrainedBox(
@@ -37,13 +39,13 @@ class _SignInViewState extends State<SignInView> {
                 gap16,
                 Center(
                     child: Text(
-                  'flutterfast',
+                  Config.appName,
                   style: context.headlineSmall.bold,
                 )),
                 gap8,
                 Center(
                     child: Text(
-                  'Build apps faster',
+                  Config.appSubtitle,
                   style: context.bodyMedium.italic,
                 )),
                 gap24,

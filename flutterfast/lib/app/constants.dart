@@ -37,3 +37,7 @@ const EdgeInsets py16 = EdgeInsets.symmetric(vertical: 16);
 const EdgeInsets py24 = EdgeInsets.symmetric(vertical: 24);
 const EdgeInsets py32 = EdgeInsets.symmetric(vertical: 32);
 const EdgeInsets py48 = EdgeInsets.symmetric(vertical: 48);
+
+extension SliverExtension on Widget {
+  Widget sliver() => SliverToBoxAdapter(child: this);
+}

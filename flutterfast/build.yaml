@@ -19,7 +19,7 @@ targets:
       json_serializable:
         options:
           any_map: false
-          checked: false
+          checked: true
           constructor: ""
           create_factory: true
           create_field_map: false
@@ -30,7 +30,7 @@ targets:
           field_rename: none
           generic_argument_factories: false
           ignore_unannotated: false
-          include_if_null: true
+          include_if_null: false
     sources:
       - $package$
       - lib/**

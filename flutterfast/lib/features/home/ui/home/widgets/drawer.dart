@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/config.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/text_theme.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -77,8 +78,7 @@ class HomeDrawer extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      launchUrl(Uri.parse(
-                          'https://codeontherocks.dev/privacy-policy/'));
+                      launchUrl(Uri.parse(Config.privacyPolicy));
                     },
                     child: Text(
                       'Privacy Policy',
@@ -88,7 +88,7 @@ class HomeDrawer extends StatelessWidget {
                   gap8,
                   GestureDetector(
                     onTap: () {
-                      launchUrl(Uri.parse('https://codeontherocks.dev/tos/'));
+                      launchUrl(Uri.parse(Config.termsOfService));
                     },
                     child: Text(
                       'Terms of Service',

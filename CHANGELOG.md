@@ -1,3 +1,16 @@
+## 1.4.2
+- 🟩 Added SkeletonBox for loading animations 
+- 🟩 Added PopUpMenuButton with "Delete Account" action in profile
+- 🟩 Added Config class for app name, subtitle, privacy policy, and terms of service link
+- 🟪 Removed hard coded background color on auth screens
+- 🟪 Fixed TextEditingController instantiation on SignInView
+- *Date:* 1-4-2024
+
+## 1.4.1
+- 🟩 Added [ITSAppUsesNonExemptEncryption](https://stackoverflow.com/a/35895077/12806961) to Info.plist 
+- 🟩 Added DialogService with built-in confirmAction method
+- *Date:* 1-1-2024
+
 ## 1.4.0
 - 🟥 Removed Auth UI libraries
 - 🟩 Added Sign In, Register, Profile, and Forgot Password views
