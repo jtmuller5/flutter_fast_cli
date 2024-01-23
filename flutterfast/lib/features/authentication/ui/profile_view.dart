@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/router.dart';
@@ -36,7 +37,6 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
@@ -57,6 +57,10 @@ class _ProfileViewState extends State<ProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (kDebugMode) ...[
+                Text('User ID: ${authenticationService.id}'),
+                gap8,
+              ],
               Row(
                 children: [
                   Icon(

@@ -33,16 +33,14 @@ class PocketBaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> registerWithEmailAndPassword({required String email, required String password}) async {
-    final authData = await pb.collection('users').create(body: {
+    await pb.collection('users').create(body: {
       "email": email,
       "password": password,
       "passwordConfirm": password,
       "emailVisibility": true,
     });
 
-    debugPrint('Is valid: ' + pb.authStore.isValid.toString());
-    debugPrint('Token: ' + pb.authStore.token);
-    debugPrint('Model: ' + pb.authStore.model.toString());
+    await signInWithEmailAndPassword(email: email, password: password);
   }
 
   @override

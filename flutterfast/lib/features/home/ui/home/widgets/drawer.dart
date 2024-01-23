@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfast/app/config.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/text_theme.dart';
+import 'package:flutterfast/app/theme.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';

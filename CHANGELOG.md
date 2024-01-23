@@ -1,4 +1,5 @@
 ## 1.4.2
+- 🟩 Added PocketBase Integration 
 - 🟩 Added SkeletonBox for loading animations 
 - 🟩 Added PopUpMenuButton with "Delete Account" action in profile
 - 🟩 Added Config class for app name, subtitle, privacy policy, and terms of service link

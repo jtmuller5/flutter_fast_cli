@@ -31,8 +31,7 @@ class NewFeedbackView extends StatelessWidget {
 
   Future<void> submitFeedback() async {
     assert(type.value != null, 'Feedback type must be selected');
-    assert(feedbackController.text.isNotEmpty,
-        'Feedback message must not be empty');
+    assert(feedbackController.text.isNotEmpty, 'Feedback message must not be empty');
 
     setLoading(true);
     await feedbackService.submitFeedback(feedbackController.text, type.value!);
@@ -69,8 +68,7 @@ class NewFeedbackView extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                       label: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(type.name.toUpperCase()),
                                         ],
@@ -88,25 +86,20 @@ class NewFeedbackView extends StatelessWidget {
                     TextField(
                       controller: feedbackController,
                       maxLines: null,
-                      decoration: const InputDecoration(
-                          labelText: 'Feedback', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(labelText: 'Feedback', border: OutlineInputBorder()),
                     ),
                     gap16,
                     ElevatedButton(
                         onPressed: () async {
-                          if (feedbackController.text.trim().isEmpty ||
-                              type.value == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content:
-                                        Text('Please fill out all fields.')));
+                          if (feedbackController.text.trim().isEmpty || type.value == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill out all fields.')));
                           } else {
                             FocusScope.of(context).unfocus();
                             await submitFeedback().then((value) {
                               router.pop();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Feedback submitted!')));
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Feedback submitted!')));
+                            }).onError((error, stackTrace) {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
                             });
                           }
                         },
