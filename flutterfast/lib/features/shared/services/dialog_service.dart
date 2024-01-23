@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -34,5 +35,16 @@ class DialogService {
           },
         ) ??
         false;
+  }
+
+  void showSnackBar(String message, {bool hideCurrent = true}) {
+    if (hideCurrent) {
+      ScaffoldMessenger.of(router.navigatorKey.currentContext!).hideCurrentSnackBar();
+    }
+
+    ScaffoldMessenger.of(router.navigatorKey.currentContext!).showSnackBar(SnackBar(
+      behavior: SnackBarBehavior.fixed,
+      content: Text(message, textAlign: TextAlign.center),
+    ));
   }
 }

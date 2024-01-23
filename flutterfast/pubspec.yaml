@@ -49,6 +49,10 @@ dependencies:
   supabase_flutter: ^2.0.2
   #* Supabase *#
 
+  #* Pocketbase *#
+  pocketbase: ^0.17.1
+  #* Pocketbase *#
+
 
 # Build command
 # flutter pub run build_runner build --delete-conflicting-outputs

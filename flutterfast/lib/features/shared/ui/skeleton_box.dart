@@ -20,10 +20,7 @@ class SkeletonBox extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: ColoredBox(
             color: context.surface,
-            child: SizedBox(
-              height: height,
-              width: width,
-            ),
+            child: SizedBox(height: height, width: width),
           ),
         ).animate(
           onPlay: (controller) => controller.repeat(),

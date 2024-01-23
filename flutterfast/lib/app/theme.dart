@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 String? _fontFamily = GoogleFonts.quicksand().fontFamily;
+FlexScheme flexScheme = FlexScheme.flutterDash;
 
 ThemeData lightTheme = FlexThemeData.light(
   fontFamily: _fontFamily,
-  scheme: FlexScheme.flutterDash,
+  scheme: flexScheme,
   colorScheme: lightLogoColorScheme,
 );
 
 ThemeData darkTheme = FlexThemeData.dark(
   fontFamily: _fontFamily,
-  scheme: FlexScheme.flutterDash,
+  scheme: flexScheme,
   colorScheme: darkLogoColorScheme,
 );
 

@@ -7,6 +7,7 @@ import 'get_it.config.dart';
 const firebase = Environment('firebase');
 const supabase = Environment('supabase');
 const appwrite = Environment('appwrite');
+const pocketbase = Environment('pocketbase');
 
 final getIt = GetIt.instance;
 

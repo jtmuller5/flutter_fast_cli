@@ -2,6 +2,8 @@
 - 🟩 Added SkeletonBox for loading animations 
 - 🟩 Added PopUpMenuButton with "Delete Account" action in profile
 - 🟩 Added Config class for app name, subtitle, privacy policy, and terms of service link
+- 🟩 Added `showSnackBar` method to DialogService
+- 🟩 Added `config.dart` file for aggregating app strings
 - 🟪 Removed hard coded background color on auth screens
 - 🟪 Fixed TextEditingController instantiation on SignInView
 - *Date:* 1-4-2024
