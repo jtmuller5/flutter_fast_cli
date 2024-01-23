@@ -86,8 +86,9 @@ class _RegisterViewState extends State<RegisterView> {
                       await userService.createUser();
                       router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
                     } catch (e) {
+                      debugPrint(e.toString());
                       if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('An unknown error occurred')));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error occurred: ${e.toString()}')));
                       }
                     } finally {
                       setState(() {

@@ -1,15 +1,18 @@
+import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/authentication/models/fast_user.dart';
 import 'package:flutterfast/features/authentication/services/user_service/fast_user_service.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pocketbase/pocketbase.dart';
 
+@pocketbase
+@Singleton(as: FastUserService)
 class PocketBaseUserService extends FastUserService {
   PocketBase pb = PocketBase(const String.fromEnvironment('POCKETBASE_URL'));
 
   @override
   Future<void> createUser() {
-    // TODO: implement createUser
-    throw UnimplementedError();
+    return Future.value();
   }
 
   @override
