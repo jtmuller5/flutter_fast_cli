@@ -32,6 +32,15 @@
             ]
         },
         {
+            "name": "pocketbase",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=PAAS=pocketbase",
+                "--dart-define-from-file=assets/internal-config.json"
+            ]
+        },
+        {
             "name": "flutterfast (profile mode)",
             "request": "launch",
             "type": "dart",

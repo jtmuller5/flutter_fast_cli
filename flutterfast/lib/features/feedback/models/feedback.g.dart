@@ -6,12 +6,22 @@ part of 'feedback.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Feedback _$FeedbackFromJson(Map<String, dynamic> json) => Feedback(
-      message: json['message'] as String,
-      userId: json['user_id'] as String,
-      type: $enumDecode(_$FeedbackTypeEnumMap, json['type']),
-      createdAt: getDateTimeFromTimestamp(json['created_at']),
-      id: json['id'] as String?,
+Feedback _$FeedbackFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Feedback',
+      json,
+      ($checkedConvert) {
+        final val = Feedback(
+          message: $checkedConvert('message', (v) => v as String),
+          userId: $checkedConvert('user_id', (v) => v as String),
+          type: $checkedConvert(
+              'type', (v) => $enumDecode(_$FeedbackTypeEnumMap, v)),
+          createdAt:
+              $checkedConvert('created_at', (v) => getDateTimeFromTimestamp(v)),
+          id: $checkedConvert('id', (v) => v as String?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'userId': 'user_id', 'createdAt': 'created_at'},
     );
 
 Map<String, dynamic> _$FeedbackToJson(Feedback instance) {

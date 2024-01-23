@@ -7,9 +7,16 @@ part of 'gpt_choice_message.dart';
 // **************************************************************************
 
 GptChoiceMessage _$GptChoiceMessageFromJson(Map<String, dynamic> json) =>
-    GptChoiceMessage(
-      role: json['role'] as String,
-      content: json['content'] as String,
+    $checkedCreate(
+      'GptChoiceMessage',
+      json,
+      ($checkedConvert) {
+        final val = GptChoiceMessage(
+          role: $checkedConvert('role', (v) => v as String),
+          content: $checkedConvert('content', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$GptChoiceMessageToJson(GptChoiceMessage instance) =>

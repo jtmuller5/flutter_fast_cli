@@ -6,10 +6,23 @@ part of 'gpt_usage.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GptUsage _$GptUsageFromJson(Map<String, dynamic> json) => GptUsage(
-      promptTokens: json['prompt_tokens'] as int,
-      completionTokens: json['completion_tokens'] as int,
-      totalTokens: json['total_tokens'] as int,
+GptUsage _$GptUsageFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'GptUsage',
+      json,
+      ($checkedConvert) {
+        final val = GptUsage(
+          promptTokens: $checkedConvert('prompt_tokens', (v) => v as int),
+          completionTokens:
+              $checkedConvert('completion_tokens', (v) => v as int),
+          totalTokens: $checkedConvert('total_tokens', (v) => v as int),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'promptTokens': 'prompt_tokens',
+        'completionTokens': 'completion_tokens',
+        'totalTokens': 'total_tokens'
+      },
     );
 
 Map<String, dynamic> _$GptUsageToJson(GptUsage instance) => <String, dynamic>{

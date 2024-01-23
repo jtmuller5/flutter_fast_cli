@@ -7,11 +7,21 @@ part of 'palm_safety_metadata.dart';
 // **************************************************************************
 
 PalmSafetyMetadata _$PalmSafetyMetadataFromJson(Map<String, dynamic> json) =>
-    PalmSafetyMetadata(
-      blocked: json['blocked'] as bool,
-      safetyFeedback: (json['safetyFeedback'] as List<dynamic>)
-          .map((e) => PalmSafetyFeedback.fromJson(e as Map<String, dynamic>))
-          .toList(),
+    $checkedCreate(
+      'PalmSafetyMetadata',
+      json,
+      ($checkedConvert) {
+        final val = PalmSafetyMetadata(
+          blocked: $checkedConvert('blocked', (v) => v as bool),
+          safetyFeedback: $checkedConvert(
+              'safetyFeedback',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      PalmSafetyFeedback.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PalmSafetyMetadataToJson(PalmSafetyMetadata instance) =>
@@ -21,10 +31,18 @@ Map<String, dynamic> _$PalmSafetyMetadataToJson(PalmSafetyMetadata instance) =>
     };
 
 PalmSafetyFeedback _$PalmSafetyFeedbackFromJson(Map<String, dynamic> json) =>
-    PalmSafetyFeedback(
-      rating: PalmSafetyRating.fromJson(json['rating'] as Map<String, dynamic>),
-      setting:
-          PalmSafetySetting.fromJson(json['setting'] as Map<String, dynamic>),
+    $checkedCreate(
+      'PalmSafetyFeedback',
+      json,
+      ($checkedConvert) {
+        final val = PalmSafetyFeedback(
+          rating: $checkedConvert('rating',
+              (v) => PalmSafetyRating.fromJson(v as Map<String, dynamic>)),
+          setting: $checkedConvert('setting',
+              (v) => PalmSafetySetting.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PalmSafetyFeedbackToJson(PalmSafetyFeedback instance) =>
@@ -34,9 +52,16 @@ Map<String, dynamic> _$PalmSafetyFeedbackToJson(PalmSafetyFeedback instance) =>
     };
 
 PalmSafetyRating _$PalmSafetyRatingFromJson(Map<String, dynamic> json) =>
-    PalmSafetyRating(
-      category: json['category'] as String,
-      probability: json['probability'] as String,
+    $checkedCreate(
+      'PalmSafetyRating',
+      json,
+      ($checkedConvert) {
+        final val = PalmSafetyRating(
+          category: $checkedConvert('category', (v) => v as String),
+          probability: $checkedConvert('probability', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PalmSafetyRatingToJson(PalmSafetyRating instance) =>
@@ -46,9 +71,16 @@ Map<String, dynamic> _$PalmSafetyRatingToJson(PalmSafetyRating instance) =>
     };
 
 PalmSafetySetting _$PalmSafetySettingFromJson(Map<String, dynamic> json) =>
-    PalmSafetySetting(
-      category: json['category'] as String,
-      threshold: json['threshold'] as String,
+    $checkedCreate(
+      'PalmSafetySetting',
+      json,
+      ($checkedConvert) {
+        final val = PalmSafetySetting(
+          category: $checkedConvert('category', (v) => v as String),
+          threshold: $checkedConvert('threshold', (v) => v as String),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$PalmSafetySettingToJson(PalmSafetySetting instance) =>

@@ -6,15 +6,25 @@ part of 'gpt_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GptMessage _$GptMessageFromJson(Map<String, dynamic> json) => GptMessage(
-      id: json['id'] as String,
-      object: json['object'] as String,
-      created: json['created'] as int,
-      model: json['model'] as String,
-      usage: GptUsage.fromJson(json['usage'] as Map<String, dynamic>),
-      choices: (json['choices'] as List<dynamic>)
-          .map((e) => GptChoice.fromJson(e as Map<String, dynamic>))
-          .toList(),
+GptMessage _$GptMessageFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'GptMessage',
+      json,
+      ($checkedConvert) {
+        final val = GptMessage(
+          id: $checkedConvert('id', (v) => v as String),
+          object: $checkedConvert('object', (v) => v as String),
+          created: $checkedConvert('created', (v) => v as int),
+          model: $checkedConvert('model', (v) => v as String),
+          usage: $checkedConvert(
+              'usage', (v) => GptUsage.fromJson(v as Map<String, dynamic>)),
+          choices: $checkedConvert(
+              'choices',
+              (v) => (v as List<dynamic>)
+                  .map((e) => GptChoice.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$GptMessageToJson(GptMessage instance) =>

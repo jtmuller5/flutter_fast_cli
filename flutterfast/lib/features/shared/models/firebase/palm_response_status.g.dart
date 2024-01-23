@@ -7,19 +7,37 @@ part of 'palm_response_status.dart';
 // **************************************************************************
 
 PalmResponseStatus _$PalmResponseStatusFromJson(Map<String, dynamic> json) =>
-    PalmResponseStatus(
-      completeTime: getDateTimeFromTimestamp(json['completeTime']),
-      startTime: getDateTimeFromTimestamp(json['startTime']),
-      updateTime: getDateTimeFromTimestamp(json['updateTime']),
-      state: json['state'] as String?,
-      error: json['error'] as String?,
+    $checkedCreate(
+      'PalmResponseStatus',
+      json,
+      ($checkedConvert) {
+        final val = PalmResponseStatus(
+          completeTime: $checkedConvert(
+              'completeTime', (v) => getDateTimeFromTimestamp(v)),
+          startTime:
+              $checkedConvert('startTime', (v) => getDateTimeFromTimestamp(v)),
+          updateTime:
+              $checkedConvert('updateTime', (v) => getDateTimeFromTimestamp(v)),
+          state: $checkedConvert('state', (v) => v as String?),
+          error: $checkedConvert('error', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$PalmResponseStatusToJson(PalmResponseStatus instance) =>
-    <String, dynamic>{
-      'completeTime': getTimestampFromDateTime(instance.completeTime),
-      'startTime': getTimestampFromDateTime(instance.startTime),
-      'updateTime': getTimestampFromDateTime(instance.updateTime),
-      'state': instance.state,
-      'error': instance.error,
-    };
+Map<String, dynamic> _$PalmResponseStatusToJson(PalmResponseStatus instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('completeTime', getTimestampFromDateTime(instance.completeTime));
+  writeNotNull('startTime', getTimestampFromDateTime(instance.startTime));
+  writeNotNull('updateTime', getTimestampFromDateTime(instance.updateTime));
+  writeNotNull('state', instance.state);
+  writeNotNull('error', instance.error);
+  return val;
+}

@@ -6,14 +6,25 @@ part of 'message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Message _$MessageFromJson(Map<String, dynamic> json) => Message(
-      id: json['id'] as String,
-      message: json['message'] as String,
-      createdAt: getDateTimeFromTimestamp(json['created_at']),
-      response: json['response'] as String?,
-      status: json['status'] == null
-          ? null
-          : ResponseStatus.fromJson(json['status'] as Map<String, dynamic>),
+Message _$MessageFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Message',
+      json,
+      ($checkedConvert) {
+        final val = Message(
+          id: $checkedConvert('id', (v) => v as String),
+          message: $checkedConvert('message', (v) => v as String),
+          createdAt:
+              $checkedConvert('created_at', (v) => getDateTimeFromTimestamp(v)),
+          response: $checkedConvert('response', (v) => v as String?),
+          status: $checkedConvert(
+              'status',
+              (v) => v == null
+                  ? null
+                  : ResponseStatus.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'createdAt': 'created_at'},
     );
 
 Map<String, dynamic> _$MessageToJson(Message instance) {
