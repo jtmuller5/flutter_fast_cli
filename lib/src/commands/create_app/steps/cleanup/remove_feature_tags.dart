@@ -9,7 +9,8 @@ Future<void> removeFeatureTags() async {
       'RSS',
       'LogoColorScheme',
       'Subscriptions',
-      'Appwrite'
+      'Appwrite',
+      'Pocketbase'
     ]) {
       final directory = Directory('lib');
 

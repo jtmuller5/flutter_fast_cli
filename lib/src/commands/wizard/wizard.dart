@@ -22,8 +22,7 @@ import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Wizard extends Command {
   @override
-  String get description =>
-      'Use the Flutter Fast Wizard to create a new Flutter app with all the bells and whistles.';
+  String get description => 'Use the Flutter Fast Wizard to create a new Flutter app with all the bells and whistles.';
 
   @override
   String get name => 'wizard';
@@ -40,11 +39,8 @@ class Wizard extends Command {
 
     // User input for organization name
     String? orgName;
-    while (orgName == null ||
-        orgName.isEmpty ||
-        !RegExp(r'\w+\.\w+').hasMatch(orgName)) {
-      stdout.write(
-          'Enter the organization name for your app (ex. com.example): ');
+    while (orgName == null || orgName.isEmpty || !RegExp(r'\w+\.\w+').hasMatch(orgName)) {
+      stdout.write('Enter the organization name for your app (ex. com.example): ');
       orgName = stdin.readLineSync();
     }
 
@@ -60,16 +56,17 @@ class Wizard extends Command {
     String? paas;
     if (!offline) {
       // User input for PaaS
-      while (paasOption != 'f' && paasOption != 's' && paasOption != 'a') {
-        stdout.write(
-            'Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite: ');
+      while (paasOption != 'f' && paasOption != 's' && paasOption != 'a' && paasOption != 'p') {
+        stdout.write('Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite: ');
         paasOption = stdin.readLineSync() ?? 'f';
       }
       paas = paasOption == 'f'
           ? 'firebase'
           : paasOption == 's'
               ? 'supabase'
-              : 'appwrite';
+              : paasOption == 'p'
+                  ? 'pocketbase'
+                  : 'appwrite';
     }
 
     // User input for subscriptions
@@ -84,8 +81,7 @@ class Wizard extends Command {
     // User input for build
     String? buildOption;
     while (buildOption != 'y' && buildOption != 'n') {
-      stdout.write(
-          'Do you want to run the build_runner after the app has been created? (Y/n): ');
+      stdout.write('Do you want to run the build_runner after the app has been created? (Y/n): ');
       buildOption = stdin.readLineSync() ?? 'y';
       if (buildOption.trim() == '') buildOption = 'y';
     }
@@ -94,8 +90,7 @@ class Wizard extends Command {
     // User input for shorebird
     String? shorebirdOption;
     while (shorebirdOption != 'y' && shorebirdOption != 'n') {
-      stdout.write(
-          'Do you want to include Shorebird lanes in Fastfiles? (Y/n): ');
+      stdout.write('Do you want to include Shorebird lanes in Fastfiles? (Y/n): ');
       shorebirdOption = stdin.readLineSync() ?? 'y';
       if (shorebirdOption.trim() == '') shorebirdOption = 'y';
     }
@@ -104,8 +99,7 @@ class Wizard extends Command {
     // User input for logo color scheme
     String? logoOption;
     while (logoOption != 'y' && logoOption != 'n') {
-      stdout.write(
-          'Do you want to generate a ColorScheme from your logo? (Y/n): ');
+      stdout.write('Do you want to generate a ColorScheme from your logo? (Y/n): ');
       logoOption = stdin.readLineSync() ?? 'y';
       if (logoOption.trim() == '') logoOption = 'y';
     }
@@ -139,8 +133,7 @@ class Wizard extends Command {
     var logger = Logger.standard();
 
     var progress = logger.progress('Creating app $appName...');
-    await Process.run(
-        flutterPath, ['create', appName, '--empty', '--org', orgName]);
+    await Process.run(flutterPath, ['create', appName, '--empty', '--org', orgName]);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Copying template...');
@@ -194,13 +187,7 @@ class Wizard extends Command {
 
     if (build) {
       progress = logger.progress('Running build_runner...');
-      await Process.run(flutterPath, [
-        'pub',
-        'run',
-        'build_runner',
-        'build',
-        '--delete-conflicting-outputs'
-      ]);
+      await Process.run(flutterPath, ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
       progress.finish(showTiming: true);
     }
 

@@ -80,7 +80,7 @@ class CreateApp extends Command {
         help: 'The PaaS to use for the app. If left blank, all files will be '
             'included and you can use --dart-define to choose which one to use.',
         valueHelp: 'firebase',
-        allowed: ['firebase', 'supabase', 'appwrite'],
+        allowed: ['firebase', 'supabase', 'appwrite','pocketbase'],
       );
   }
 

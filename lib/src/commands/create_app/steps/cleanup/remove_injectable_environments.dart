@@ -5,23 +5,18 @@ Future<void> removeInjectableEnvironments() async {
 
   String getItContents = File('lib/app/get_it.dart').readAsStringSync();
 
-  getItContents = getItContents.replaceAll(
-      'environment: const String.fromEnvironment(\'PAAS\', defaultValue: \'firebase\'),',
-      '');
-  getItContents = getItContents.replaceAll(
-      'const firebase = Environment(\'firebase\');', '');
-  getItContents = getItContents.replaceAll(
-      'const supabase = Environment(\'supabase\');', '');
-  getItContents = getItContents.replaceAll(
-      'const appwrite = Environment(\'appwrite\');', '');
+  getItContents = getItContents.replaceAll('environment: const String.fromEnvironment(\'PAAS\', defaultValue: \'firebase\'),', '');
+  getItContents = getItContents.replaceAll('const firebase = Environment(\'firebase\');', '');
+  getItContents = getItContents.replaceAll('const supabase = Environment(\'supabase\');', '');
+  getItContents = getItContents.replaceAll('const appwrite = Environment(\'appwrite\');', '');
+  getItContents = getItContents.replaceAll('const pocketbase = Environment(\'pocketbase\');', '');
 
   await getIt.writeAsString(getItContents);
 
-  for (String environment in ['firebase', 'supabase', 'appwrite']) {
+  for (String environment in ['firebase', 'supabase', 'appwrite','pocketbase']) {
     final directory = Directory('lib');
 
-    await for (var entity
-        in directory.list(recursive: true, followLinks: false)) {
+    await for (var entity in directory.list(recursive: true, followLinks: false)) {
       if (entity is File) {
         var content = await entity.readAsString();
         var modifiedContent = content.replaceAll('@$environment', '');
