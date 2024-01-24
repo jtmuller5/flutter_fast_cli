@@ -8,9 +8,8 @@
   </a>
 </p>
 
-
 <p align="center">
-  <a href="https://codeotr.github.io/flutter-fast-guide/">Documentation</a> •
+  <a href="https://codeontherocks.dev/flutterfast/start/why/">Documentation</a> •
   <a href="https://codeontherocks.dev/">Code on the Rocks</a> •
   <a href="https://codeontherocks.gumroad.com/l/flutterfast">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
@@ -19,15 +18,20 @@
 <img src="https://github.com/CodeOTR/flutter_fast_cli/raw/main/assets/Wizard.gif"/>
 
 # Table of Contents
-- [What?](#what-is-flutter-fast)
-- [Why?](#why-flutter-fast)
-- [How?](#how-fast)
-- [Who?](#who-is-this-for)
+
+- [Table of Contents](#table-of-contents)
+  - [What is Flutter Fast?](#what-is-flutter-fast)
+  - [Why Flutter Fast?](#why-flutter-fast)
+    - [Faster Setup](#faster-setup)
+    - [Less Lock-in](#less-lock-in)
+  - [How Fast?](#how-fast)
+  - [Who is this for?](#who-is-this-for)
 
 ## What is Flutter Fast?
+
 The Flutter Fast CLI is a tool for generating a starter Flutter application with everything you need to start shipping.
 
-- 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), or [Appwrite](https://appwrite.io/)
+- 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), [Appwrite](https://appwrite.io/), or [PocketBase](https://pocketbase.io/)
 - 💸 Subscriptions via [RevenueCat](https://www.revenuecat.com/)
 - 🌊 Analytics via [Amplitude](https://amplitude.com/)
 - 🤖 Crash Reporting via [Sentry](https://sentry.io/welcome/)
@@ -42,28 +46,31 @@ dart pub global activate flutter_fast_cli
 fast app -n my_app -o com.example
 ```
 
-To get started, visit the [official docs](https://codeotr.github.io/flutter-fast-guide/docs/start/installation/)!
+To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
 
 ## Why Flutter Fast?
 
 I created Flutter Fast to solve two of my own problems.
 
 ### Faster Setup
+
 Nothing puts a damper on my motivation to start a new project like the thought of spending 6 hours setting up a starter project. I wanted to dive straight into the fun part of coding and ship faster 🚢
 
 The Flutter Fast CLI takes care of nearly all the tedious setup involved in creating a user-based application. The longest part of getting started is setting up the peripheral tools (ex. Firebase, Supabase, Amplitude, etc).
 
 ### Less Lock-in
+
 I love experimenting. I love writing about different tech stacks and understanding how competing tools work. With that in mind, the second goal of the Flutter Fast CLI was to create a tool that wouldn't depend on a single platform. While the CLI is still a work in progress, a few examples of this flexibility are ready for use:
 
 - Choose to use either Firebase or Supabase as your PaaS
 - Opt into including Subscriptions
 
-You can view the [roadmap](https://codeotr.github.io/flutter-fast-guide/docs/roadmap/plan/) to see additional platforms we plan to support.
+You can view the [roadmap](https://codeontherocks.dev/flutterfast/roadmap/plan/) to see additional platforms we plan to support.
 
 ## How Fast?
 
 Below is an incomplete list of all the things the Flutter Fast CLI does for you:
+
 - Sets up Sign In, Register, Forgot Password, and Profile screens
 - Adds a generic Feedback feature that works out-of-the-box with Firestore, Supabase, or Appwrite
 - Adds a settings screen with dark mode toggle
@@ -97,6 +104,7 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Runs `flutter pub run build_runner build --delete-conflicting-outputs` and `dart format .` so projects are run-ready
 
 ## Who is this for?
-The Flutter Fast CLI is for anyone who wants to ship a Flutter app fast. 
+
+The Flutter Fast CLI is for anyone who wants to ship a Flutter app fast.
 
 It's also a good tool for experimenting with different stacks and learning how to integrate different tools into your Flutter app.

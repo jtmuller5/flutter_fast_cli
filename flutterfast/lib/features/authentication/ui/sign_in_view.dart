@@ -16,16 +16,14 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
-
   TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    
+  TextEditingController passwordController = TextEditingController();
+
+  bool loading = false;
+  bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
-
-    bool loading = false;
-    bool obscureText = true;
-
     return Scaffold(
       body: Builder(builder: (context) {
         return Center(

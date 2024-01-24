@@ -1,3 +1,6 @@
+## 1.4.3
+- 🟪 Updated Readme
+
 ## 1.4.2
 - 🟩 Added PocketBase Integration 
 - 🟩 Added SkeletonBox for loading animations 
