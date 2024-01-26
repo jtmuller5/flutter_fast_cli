@@ -57,7 +57,7 @@ class Wizard extends Command {
     if (!offline) {
       // User input for PaaS
       while (paasOption != 'f' && paasOption != 's' && paasOption != 'a' && paasOption != 'p') {
-        stdout.write('Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite: ');
+        stdout.write('Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite, (p)ocketbase: ');
         paasOption = stdin.readLineSync() ?? 'f';
       }
       paas = paasOption == 'f'

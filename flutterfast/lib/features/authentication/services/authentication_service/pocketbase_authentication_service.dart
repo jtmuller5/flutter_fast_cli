@@ -6,12 +6,19 @@ import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+PocketBase get pb => PocketBase(
+      const String.fromEnvironment('POCKETBASE_URL'),
+      authStore: AsyncAuthStore(
+        save: (String data) async => sharedPrefs.setString('pb_auth', data),
+        initial: sharedPrefs.getString('pb_auth'),
+      ),
+    );
 
 @pocketbase
 @Singleton(as: FastAuthenticationService)
 class PocketBaseAuthenticationService extends FastAuthenticationService {
-  PocketBase pb = PocketBase(const String.fromEnvironment('POCKETBASE_URL'));
-
   @override
   String? get email => pb.authStore.model.email;
 
@@ -19,28 +26,25 @@ class PocketBaseAuthenticationService extends FastAuthenticationService {
   String? get id => pb.authStore.model.id;
 
   @override
-  Future<void> initialize() async {
-    final store = AsyncAuthStore(
-      save: (String data) async => sharedPrefs.setString('pb_auth', data),
-      initial: sharedPrefs.getString('pb_auth'),
-    );
-
-    pb = PocketBase(const String.fromEnvironment('POCKETBASE_URL'), authStore: store);
-  }
+  Future<void> initialize() async {}
 
   @override
   bool get loggedIn => pb.authStore.isValid;
 
   @override
   Future<void> registerWithEmailAndPassword({required String email, required String password}) async {
-    await pb.collection('users').create(body: {
-      "email": email,
-      "password": password,
-      "passwordConfirm": password,
-      "emailVisibility": true,
-    });
+    try {
+      await pb.collection('users').create(body: {
+        "email": email,
+        "password": password,
+        "passwordConfirm": password,
+        "emailVisibility": true,
+      });
 
-    await signInWithEmailAndPassword(email: email, password: password);
+      await signInWithEmailAndPassword(email: email, password: password);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override

@@ -22,16 +22,25 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   await copyPath('$templatePath/assets/images', 'assets/images');
 
   Directory runDirectory = Directory('$templatePath/runConfigurations');
+  Directory vsCodeDirectory = Directory('$templatePath/.vscode');
 
   if (runDirectory.existsSync()) {
     await copyPath('$templatePath/runConfigurations', '.idea/runConfigurations');
+  }
 
-    await copyPath('$templatePath/.vscode', '.idea/.vscode');
+  if (vsCodeDirectory.existsSync()) {
+    await copyPath('$templatePath/.vscode', '.vscode');
+
+    File entity = File('.vscode/launch.json');
+    var content = await entity.readAsString();
+    var modifiedContent = content.replaceAll('internal-', '');
+    await entity.writeAsString(modifiedContent);
   }
 
   File config = File('assets/config.json');
   await config.writeAsString('''
   {
+  "AMAZON_SDK_KEY": "",
   "AMPLITUDE_API_KEY": "",
   "APPWRITE_PROJECT_ID": "",
   "APPWRITE_MAGIC_LINK_URL": "",
@@ -40,7 +49,7 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   "APPWRITE_FEEDBACK_COLLECTION_ID": "",
   "GOOGLE_SDK_KEY": "",
   "IOS_SDK_KEY": "",
-  "AMAZON_SDK_KEY": "",
+  "POCKETBASE_URL": "http://127.0.0.1:8090",
   "SENTRY_DSN": "",
   "SUPABASE_URL": "",
   "SUPABASE_ANON_KEY": ""

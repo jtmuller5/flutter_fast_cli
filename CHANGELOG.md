@@ -1,5 +1,15 @@
+## 1.4.5
+- 🟪 Fixed step that removes non PocketBase code references
+- 🟩 Added PocketBase dev URL to `config.json` (http://127.0.0.1:8090)
+- *Date:* 1-26-2024
+
+## 1.4.4
+- 🟪 Fixed copying of .vscode folder
+- *Date:* 1-26-2024
+
 ## 1.4.3
 - 🟪 Updated Readme
+- *Date:* 1-24-2024
 
 ## 1.4.2
 - 🟩 Added PocketBase Integration 
@@ -10,7 +20,7 @@
 - 🟩 Added `config.dart` file for aggregating app strings
 - 🟪 Removed hard coded background color on auth screens
 - 🟪 Fixed TextEditingController instantiation on SignInView
-- *Date:* 1-4-2024
+- *Date:* 1-24-2024
 
 ## 1.4.1
 - 🟩 Added [ITSAppUsesNonExemptEncryption](https://stackoverflow.com/a/35895077/12806961) to Info.plist 

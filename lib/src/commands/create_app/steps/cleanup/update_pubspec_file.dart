@@ -10,12 +10,19 @@ Future<void> updatePubspecFile(String appName, String paas) async {
   if (paas == 'firebase') {
     pubspecContents = await removePubspecSection('Supabase', pubspecContents);
     pubspecContents = await removePubspecSection('Appwrite', pubspecContents);
+    pubspecContents = await removePubspecSection('Pocketbase', pubspecContents);
   } else if (paas == 'supabase') {
     pubspecContents = await removePubspecSection('Firebase', pubspecContents);
     pubspecContents = await removePubspecSection('Appwrite', pubspecContents);
+    pubspecContents = await removePubspecSection('Pocketbase', pubspecContents);
   } else if (paas == 'appwrite') {
     pubspecContents = await removePubspecSection('Firebase', pubspecContents);
     pubspecContents = await removePubspecSection('Supabase', pubspecContents);
+    pubspecContents = await removePubspecSection('Pocketbase', pubspecContents);
+  } else if (paas == 'pocketbase') {
+    pubspecContents = await removePubspecSection('Firebase', pubspecContents);
+    pubspecContents = await removePubspecSection('Supabase', pubspecContents);
+    pubspecContents = await removePubspecSection('Appwrite', pubspecContents);
   } else {
     stdout.writeln('Unknown PaaS: $paas');
   }
@@ -25,8 +32,7 @@ Future<void> updatePubspecFile(String appName, String paas) async {
 
 Future<String> removePubspecSection(String section, String pubspec) async {
   // Locate contents between # Section tags
-  RegExp regExp = RegExp(r'#\* ' + section + r' \*#.*#\* ' + section + r' \*#',
-      multiLine: true, dotAll: true);
+  RegExp regExp = RegExp(r'#\* ' + section + r' \*#.*#\* ' + section + r' \*#', multiLine: true, dotAll: true);
   String? contents = regExp.stringMatch(pubspec);
   if (contents != null) {
     String pubspecContents = pubspec.replaceAll(contents, '');
