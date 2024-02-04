@@ -1,13 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Build extends Command {
   @override
-  String get description =>
-      'Run flutter pub run build_runner build --delete-conflicting-outputs.';
+  String get description => 'Run flutter pub run build_runner build --delete-conflicting-outputs.';
 
   @override
   String get name => 'build';
@@ -26,20 +25,11 @@ class Build extends Command {
 
   @override
   Future<void> run() async {
-    await runWithProgress('Running build_runner...', () async {
-      ProcessResult result = await Process.run('flutter', [
-        'pub',
-        'run',
-        'build_runner',
-        'build',
-        '--delete-conflicting-outputs'
-      ]);
+    stdout.write('Running build_runner...\n');
+    Process process = await Process.start('dart', ['run', 'build_runner', 'build', '--delete-conflicting-outputs']);
 
-      if (result.stderr != null) {
-        stdout.write(result.stderr);
-      } else {
-        stdout.write(result.stdout);
-      }
+    process.stdout.transform(utf8.decoder).listen((data) {
+      stdout.write(data);
     });
   }
 }

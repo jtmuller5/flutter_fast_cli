@@ -1,3 +1,18 @@
+## 1.4.8
+- 🟨 Updated README
+- *Date:* 2-4-2024
+
+## 1.4.7
+- 🟩 Added `feature`, `view`, and `update` commands
+- *Date:* 2-4-2024
+
+## 1.4.6
+- 🟪 Errors from `fast build` will now appear in terminal
+- 🟨 Updated dependencies
+- 🟨 Switched from `flutter_lints` to [lints](https://pub.dev/packages/lints) 
+- 🟩 Added [sort_pub_dependencies](https://dart.dev/tools/linter-rules/sort_pub_dependencies) lint to `analysis_options.yaml`
+- *Date:* 2-3-2024
+
 ## 1.4.5
 - 🟪 Fixed step that removes non PocketBase code references
 - 🟩 Added PocketBase dev URL to `config.json` (http://127.0.0.1:8090)

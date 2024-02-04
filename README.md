@@ -20,12 +20,40 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [Commands](#commands)
+- [Flutter Fast](#flutter-fast)
   - [What is Flutter Fast?](#what-is-flutter-fast)
   - [Why Flutter Fast?](#why-flutter-fast)
     - [Faster Setup](#faster-setup)
     - [Less Lock-in](#less-lock-in)
   - [How Fast?](#how-fast)
   - [Who is this for?](#who-is-this-for)
+
+
+# Getting Started
+
+```bash
+dart pub global activate flutter_fast_cli
+```
+
+```bash
+fast wizard
+```
+
+# Commands
+| Name | Description |
+| --- | --- |
+| `app` | Create a new Flutter Fast app |
+| `wizard` | Create a new Flutter Fast app using the step-by-step wizard |
+| `build` | Run `dart run build_runner --delete-conflicting-outputs` |
+| `feature` | Create a new feature with ui, services, and models subdirectories |
+| `view` | Create a new View for a feature |
+| `update` | Update flutter_fast_cli |
+
+To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
+
+# Flutter Fast
 
 ## What is Flutter Fast?
 
@@ -38,15 +66,28 @@ The Flutter Fast CLI is a tool for generating a starter Flutter application with
 - 🏎️ CI/CD via [Fastlane](https://fastlane.tools/)
 - 🚀 Lots more!
 
-```bash
-dart pub global activate flutter_fast_cli
-```
+The Flutter Fast stack is opinionated in order to make building as fast as possible. For that reason, the following components of the stack can not be substituted (for now):
+- [auto_route](https://pub.dev/packages/auto_route) for navigation
+- [get_it](https://pub.dev/packages/get_it) and [injectable](https://pub.dev/packages/injectable) for services
+- [simple_mvvm](https://pub.dev/packages/simple_mvvm) for state management
 
-```bash
-fast app -n my_app -o com.example
+Similarly, Flutter Fast apps use a consistent project structure:
 ```
-
-To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
+├── 📁 lib/
+│  ├── 📁 app
+│  ├── 📁 features
+│  │   ├── 📁 featureOne
+│  │   └── 📁 featureTwo
+│  │       ├── 📁 models
+│  │       ├── 📁 ui
+│  │       │   ├── 📄 two_view.dart
+│  │       │   └── 📄 two_view_model.dart
+│  │       └── 📁 services
+│  └── 📄 main.dart
+├── 📄 CHANGELOG.md
+├── 📄 pubspec.lock
+├── 📄 README.md
+```
 
 ## Why Flutter Fast?
 

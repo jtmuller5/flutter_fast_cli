@@ -9,6 +9,7 @@ class TimeService {
 
   String getFormattedText(Duration? duration,
       {bool showHours = true, bool showMillis = true}) {
+        
     if (duration != null) {
       String twoDigits(int n) => n.toString().padLeft(2, "0");
       String twoDigitMilliseconds =

@@ -46,5 +46,7 @@ class AppRouter extends _$AppRouter {
         //* Subscriptions *//
         AutoRoute(page: SubscriptionRoute.page),
         //* Subscriptions *//
+
+        // New Routes
       ];
 }

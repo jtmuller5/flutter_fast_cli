@@ -1,4 +1,4 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lints/core.yaml
 
 # Options are error, warning, info
 # https://dart.dev/guides/language/analysis-options#customizing-analysis-rules
@@ -38,6 +38,10 @@ analyzer:
     prefer_null_aware_operators: error
     prefer_single_quotes: error
     use_key_in_widget_constructors: error
+
+linter:
+  rules:
+    - sort_pub_dependencies    
 
 #flutter pub run dart_code_metrics:metrics analyze lib
 dart_code_metrics:
