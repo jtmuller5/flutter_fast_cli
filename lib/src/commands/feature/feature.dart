@@ -44,7 +44,7 @@ class Feature extends Command {
     }
 
     featureName = ReCase(featureName).camelCase;
-    String snakeCase = ReCase(name).snakeCase;
+    String snakeCase = ReCase(featureName).snakeCase;
 
     // Create the feature directory and its subdirectories
     Directory featureDirectory = Directory('${currentDirectory.path}/$featureName');

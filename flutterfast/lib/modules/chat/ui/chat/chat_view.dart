@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/services.dart';
-import 'package:flutterfast/modules/chat/ui/chat/widgets/ai_chat.dart';
+import 'package:flutterfast/modules/chat/ui/chat/widgets/chat.dart';
 
 @RoutePage()
 class ChatView extends StatefulWidget {
@@ -31,7 +31,7 @@ class _ChatViewState extends State<ChatView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Chat')),
-      body: AiChat(loading: loading.value),
+      body: Chat(loading: loading.value),
     );
   }
 }

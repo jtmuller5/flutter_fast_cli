@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/home/models/message.dart';
+import 'package:flutterfast/modules/chat/models/fast_message.dart';
 import 'package:flutterfast/modules/chat/ui/chat/widgets/message_bubble.dart';
 
-class AiChat extends StatefulWidget {
-  const AiChat({Key? key, required this.loading}) : super(key: key);
+class Chat extends StatefulWidget {
+  const Chat({Key? key, required this.loading}) : super(key: key);
 
   final bool loading;
 
   @override
-  State<AiChat> createState() => _AiChatState();
+  State<Chat> createState() => _ChatState();
 }
 
-class _AiChatState extends State<AiChat> {
+class _ChatState extends State<Chat> {
   TextEditingController messageController = TextEditingController();
 
   @override
@@ -39,12 +40,10 @@ class _AiChatState extends State<AiChat> {
 
                                       return Column(
                                         key: ValueKey(message.id),
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
                                         children: [
                                           MessageBubble(message: message),
-                                          if (index == 0)
-                                            const SizedBox(height: 80),
+                                          if (index == 0) const SizedBox(height: 80),
                                         ],
                                       );
                                     },
@@ -62,16 +61,14 @@ class _AiChatState extends State<AiChat> {
                             controller: messageController,
                             decoration: InputDecoration(
                               hintText: 'Ask a question',
-                              fillColor:
-                                  Theme.of(context).colorScheme.background,
+                              fillColor: Theme.of(context).colorScheme.background,
                               filled: true,
                               suffixIcon: Material(
                                 color: Colors.transparent,
                                 child: IconButton(
                                   icon: const Icon(Icons.send),
                                   onPressed: () async {
-                                    await chatService
-                                        .submitMessage(messageController.text);
+                                    await chatService.submitMessage(FastMessage(message: messageController.text));
                                     messageController.clear();
                                   },
                                 ),

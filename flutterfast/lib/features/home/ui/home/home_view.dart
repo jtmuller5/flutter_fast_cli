@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/home/ui/home/widgets/drawer.dart';
-import 'package:flutterfast/features/home/ui/home/widgets/home.dart';
+import 'package:flutterfast/modules/chat/ui/chat/chat_view.dart';
 import 'package:flutterfast/modules/rss/ui/rss/rss_view.dart';
 
 @RoutePage()
@@ -45,7 +45,7 @@ class _HomeViewState extends State<HomeView> {
       body: IndexedStack(
         index: index,
         children: const [
-          Home(),
+          ChatView(),
           RssView(),
         ],
       ),

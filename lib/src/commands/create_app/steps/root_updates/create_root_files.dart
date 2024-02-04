@@ -41,7 +41,7 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   await config.writeAsString('''
   {
   "AMAZON_SDK_KEY": "",
-  "AMPLITUDE_API_KEY": "",
+  "AMPLITUDE_API_KEY": "6b620def2f03cac6cee826b17992790d",
   "APPWRITE_PROJECT_ID": "",
   "APPWRITE_MAGIC_LINK_URL": "",
   "APPWRITE_DATABASE_ID": "",
@@ -51,8 +51,8 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   "IOS_SDK_KEY": "",
   "POCKETBASE_URL": "http://127.0.0.1:8090",
   "SENTRY_DSN": "",
-  "SUPABASE_URL": "",
-  "SUPABASE_ANON_KEY": ""
+  "SUPABASE_URL": "https://xgiwtcbryqkepaaftabz.supabase.co",
+  "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhnaXd0Y2JyeXFrZXBhYWZ0YWJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTQwMzcyODEsImV4cCI6MjAwOTYxMzI4MX0.LtQWdV1wAbJofUOFFe_xI42cClmEzxQSlZ8wtYuJdMQ"
 }
   ''', mode: FileMode.write);
 
