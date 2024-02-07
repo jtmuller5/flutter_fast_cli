@@ -45,7 +45,7 @@ class _RssViewState extends State<RssView> {
 
         setAtomFeed(atomFeed);
 
-        debugPrint('feed: ' + atomFeed.items.toString());
+        // debugPrint('feed: ' + atomFeed.items.toString());
       } catch (e) {
         debugPrint('error: ' + e.toString());
       }
@@ -62,7 +62,7 @@ class _RssViewState extends State<RssView> {
 
         setRssFeed(rssFeed);
 
-        debugPrint('feed: ' + rssFeed.items.toString());
+        // debugPrint('feed: ' + rssFeed.items.toString());
       } catch (e) {
         debugPrint('error: ' + e.toString());
       }

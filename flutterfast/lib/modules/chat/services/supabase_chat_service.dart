@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/modules/chat/models/fast_message.dart';
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
@@ -10,15 +11,17 @@ class SupabaseChatService extends FastChatService {
   SupabaseClient get _supabase => Supabase.instance.client;
 
   @override
-  Future<void> getMessages() {
-    // TODO: implement getMessages
-    throw UnimplementedError();
+  Future<void> getMessages() async {
+    _supabase.from('messages').select().limit(50);
   }
 
   @override
   Future<void> submitMessage(FastMessage message) async {
-    _supabase.from('messages').upsert({
-      'message': message,
-    });
+    try {
+      await _supabase.from('messages').insert(message.toJson());
+      messages.value = [...messages.value, message];
+    } catch (error) {
+      debugPrint(error.toString());
+    }
   }
 }

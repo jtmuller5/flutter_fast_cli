@@ -6,12 +6,16 @@
 <a href="https://twitter.com/CodeOnTheRocks_">
     <img src="https://img.shields.io/twitter/follow/CodeOnTheRocks_?style=social">
   </a>
+ <a href="">
+ <img src="https://img.shields.io/github/sponsors/jtmuller5">
+ </a>
+
 </p>
 
 <p align="center">
   <a href="https://codeontherocks.dev/flutterfast/start/why/">Documentation</a> •
   <a href="https://codeontherocks.dev/">Code on the Rocks</a> •
-  <a href="https://codeontherocks.gumroad.com/l/flutterfast">Support</a> •
+  <a href="https://github.com/sponsors/jtmuller5">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
 
@@ -30,7 +34,6 @@
   - [How Fast?](#how-fast)
   - [Who is this for?](#who-is-this-for)
 
-
 # Getting Started
 
 ```bash
@@ -42,14 +45,15 @@ fast wizard
 ```
 
 # Commands
-| Name | Description |
-| --- | --- |
-| `app` | Create a new Flutter Fast app |
-| `wizard` | Create a new Flutter Fast app using the step-by-step wizard |
-| `build` | Run `dart run build_runner --delete-conflicting-outputs` |
+
+| Name      | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| `app`     | Create a new Flutter Fast app                                     |
+| `wizard`  | Create a new Flutter Fast app using the step-by-step wizard       |
+| `build`   | Run `dart run build_runner --delete-conflicting-outputs`          |
 | `feature` | Create a new feature with ui, services, and models subdirectories |
-| `view` | Create a new View for a feature |
-| `update` | Update flutter_fast_cli |
+| `view`    | Create a new View for a feature                                   |
+| `update`  | Update flutter_fast_cli                                           |
 
 To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
 
@@ -67,11 +71,13 @@ The Flutter Fast CLI is a tool for generating a starter Flutter application with
 - 🚀 Lots more!
 
 The Flutter Fast stack is opinionated in order to make building as fast as possible. For that reason, the following components of the stack can not be substituted (for now):
+
 - [auto_route](https://pub.dev/packages/auto_route) for navigation
 - [get_it](https://pub.dev/packages/get_it) and [injectable](https://pub.dev/packages/injectable) for services
 - [simple_mvvm](https://pub.dev/packages/simple_mvvm) for state management
 
 Similarly, Flutter Fast apps use a consistent project structure:
+
 ```
 ├── 📁 lib/
 │  ├── 📁 app

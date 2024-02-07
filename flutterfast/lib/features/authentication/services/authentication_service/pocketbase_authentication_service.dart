@@ -65,4 +65,22 @@ class PocketBaseAuthenticationService extends FastAuthenticationService {
   Future<void> signOut() async {
     pb.authStore.clear();
   }
+  
+  @override
+  Future<void> signInWithApple() {
+    // TODO: implement signInWithApple
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> signInWithGoogle() {
+    // TODO: implement signInWithGoogle
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) {
+    // TODO: implement signInWithPhoneNumber
+    throw UnimplementedError();
+  }
 }

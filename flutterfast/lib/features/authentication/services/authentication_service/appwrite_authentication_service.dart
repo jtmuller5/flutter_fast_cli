@@ -55,4 +55,22 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   Future<void> registerWithEmailAndPassword({required String email, required String password}) async {
     await account.create(userId: email, email: email, password: password);
   }
+  
+  @override
+  Future<void> signInWithApple() {
+    // TODO: implement signInWithApple
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> signInWithGoogle() {
+    // TODO: implement signInWithGoogle
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) {
+    // TODO: implement signInWithPhoneNumber
+    throw UnimplementedError();
+  }
 }

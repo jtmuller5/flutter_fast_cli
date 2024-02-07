@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutterfast/features/home/models/message.dart';
 import 'package:flutterfast/modules/chat/models/fast_message.dart';
 
 abstract class FastChatService {
-  ValueNotifier<List<Message>> messages = ValueNotifier([]);
+  ValueNotifier<List<FastMessage>> messages = ValueNotifier([]);
 
-  void setMessages(List<Message> val) {
+  void setMessages(List<FastMessage> val) {
     messages.value = val;
   }
 

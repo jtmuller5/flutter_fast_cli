@@ -14,7 +14,13 @@ abstract class FastAuthenticationService {
 
   Future<void> signInWithEmailAndPassword({required String email, required String password});
 
-    Future<void> registerWithEmailAndPassword({required String email, required String password});
+  Future<void> signInWithPhoneNumber({required String phoneNumber});
+
+  Future<void> signInWithGoogle();
+
+  Future<void> signInWithApple();
+
+  Future<void> registerWithEmailAndPassword({required String email, required String password});
 
   Future<void> createAccountNavigation() async {
     await userService.createUser();

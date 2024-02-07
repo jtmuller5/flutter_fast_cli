@@ -5,6 +5,8 @@ import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
+import 'package:flutterfast/app/theme.dart';
+import 'package:flutterfast/features/authentication/ui/widgets/social_login_button.dart';
 import 'package:flutterfast/features/shared/ui/app_logo.dart';
 
 @RoutePage()
@@ -33,19 +35,30 @@ class _SignInViewState extends State<SignInView> {
               shrinkWrap: true,
               padding: const EdgeInsets.all(24),
               children: [
-                const AppLogo(sideLength: 200),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const AppLogo(sideLength: 100),
+                    gap16,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            Config.appName,
+                            style: context.headlineSmall.bold,
+                          ),
+                          gap8,
+                          Text(
+                            Config.appSubtitle,
+                            style: context.bodyMedium.italic,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
                 gap16,
-                Center(
-                    child: Text(
-                  Config.appName,
-                  style: context.headlineSmall.bold,
-                )),
-                gap8,
-                Center(
-                    child: Text(
-                  Config.appSubtitle,
-                  style: context.bodyMedium.italic,
-                )),
                 gap24,
                 TextField(
                   controller: emailController,
@@ -79,8 +92,21 @@ class _SignInViewState extends State<SignInView> {
                   ),
                   obscureText: obscureText,
                 ),
-                gap24,
+                gap8,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        router.push(ForgotPasswordRoute(email: emailController.text));
+                      },
+                      child: const Text('Forgot Password?'),
+                    ),
+                  ],
+                ),
+                gap8,
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
                   onPressed: () async {
                     setState(() {
                       loading = true;
@@ -101,7 +127,12 @@ class _SignInViewState extends State<SignInView> {
                       if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                     }
                   },
-                  child: loading ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator()) : const Text('Sign In'),
+                  child: loading
+                      ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator())
+                      : Text(
+                          'Sign In',
+                          style: context.bodyLarge.bold.copyWith(color: Colors.white),
+                        ),
                 ),
                 gap8,
                 TextButton(
@@ -115,12 +146,48 @@ class _SignInViewState extends State<SignInView> {
                   },
                   child: const Text('Don\'t have an account? Sign Up'),
                 ),
-                TextButton(
-                  onPressed: () {
-                    router.push(ForgotPasswordRoute(email: emailController.text));
-                  },
-                  child: const Text('Forgot Password?'),
+                //* Social Login *//
+                gap24,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: context.primary,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text('or', style: context.bodyMedium),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: context.primary,
+                      ),
+                    )
+                  ],
                 ),
+                gap32,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SocialLoginButton.wide(
+                      image: 'assets/images/google.png',
+                      provider: 'Google',
+                      onPressed: () {
+                        authenticationService.signInWithGoogle();
+                      },
+                    ),
+                    gap8,
+                    SocialLoginButton.wide(
+                      image: 'assets/images/apple.png',
+                      provider: 'Apple',
+                      onPressed: () {
+                        authenticationService.signInWithApple();
+                      },
+                    ),
+                  ],
+                )
+                //* Social Login *//
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
@@ -36,14 +37,61 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
   Future<void> signOut() {
     return _supabase.auth.signOut();
   }
-  
+
   @override
   Future<void> sendPasswordResetEmail(String email) {
     return _supabase.auth.resetPasswordForEmail(email);
   }
-  
+
   @override
   Future<void> registerWithEmailAndPassword({required String email, required String password}) {
     return _supabase.auth.signUp(email: email, password: password);
+  }
+
+  @override
+  Future<void> signInWithApple() async {
+    await _supabase.auth.signInWithOAuth(OAuthProvider.apple);
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    /// TODO: update the Web client ID with your own.
+    ///
+    /// Web Client ID that you registered with Google Cloud.
+    const webClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
+
+    /// TODO: update the iOS client ID with your own.
+    ///
+    /// iOS Client ID that you registered with Google Cloud.
+    const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
+
+    // Google sign in on Android will work without providing the Android
+    // Client ID registered on Google Cloud.
+
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId: iosClientId,
+      serverClientId: webClientId,
+    );
+    final googleUser = await googleSignIn.signIn();
+    final googleAuth = await googleUser!.authentication;
+    final accessToken = googleAuth.accessToken;
+    final idToken = googleAuth.idToken;
+
+    if (accessToken == null) {
+      throw 'No Access Token found.';
+    }
+    if (idToken == null) {
+      throw 'No ID Token found.';
+    }
+     _supabase.auth.signInWithIdToken(
+      provider: OAuthProvider.google,
+      idToken: idToken,
+      accessToken: accessToken,
+    );
+  }
+
+  @override
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
+    await _supabase.auth.signInWithOtp(phone: phoneNumber);
   }
 }

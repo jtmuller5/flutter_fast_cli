@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/services.dart';
-import 'package:flutterfast/features/home/models/message.dart';
 import 'package:flutterfast/modules/chat/models/fast_message.dart';
+import 'package:flutterfast/modules/chat/ui/chat/chat_view_model.dart';
 import 'package:flutterfast/modules/chat/ui/chat/widgets/message_bubble.dart';
+import 'package:simple_mvvm/simple_mvvm.dart';
 
-class Chat extends StatefulWidget {
-  const Chat({Key? key, required this.loading}) : super(key: key);
-
-  final bool loading;
-
-  @override
-  State<Chat> createState() => _ChatState();
-}
-
-class _ChatState extends State<Chat> {
-  TextEditingController messageController = TextEditingController();
+class ChatFeed extends StatelessWidget {
+  const ChatFeed({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ChatViewModel model = getModel<ChatViewModel>(context);
     return ValueListenableBuilder(
         valueListenable: chatService.messages,
         builder: (context, messages, child) {
           return AnimatedSwitcher(
             duration: kThemeAnimationDuration,
-            child: widget.loading
+            child: model.loading.value
                 ? const Center(child: CircularProgressIndicator())
                 : Stack(
                     children: [
                       messages.isEmpty
-                          ? const Center(child: Text('No messages'))
+                          ? const Center(child: Text('No posts'))
                           : Column(
                               children: [
                                 Expanded(
@@ -36,7 +29,7 @@ class _ChatState extends State<Chat> {
                                     reverse: true,
                                     itemCount: messages.length,
                                     itemBuilder: (context, index) {
-                                      Message message = messages[index];
+                                      FastMessage message = messages[index];
 
                                       return Column(
                                         key: ValueKey(message.id),
@@ -58,9 +51,9 @@ class _ChatState extends State<Chat> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
-                            controller: messageController,
+                            controller: model.messageController,
                             decoration: InputDecoration(
-                              hintText: 'Ask a question',
+                              hintText: 'What\'s on your mind?',
                               fillColor: Theme.of(context).colorScheme.background,
                               filled: true,
                               suffixIcon: Material(
@@ -68,8 +61,11 @@ class _ChatState extends State<Chat> {
                                 child: IconButton(
                                   icon: const Icon(Icons.send),
                                   onPressed: () async {
-                                    await chatService.submitMessage(FastMessage(message: messageController.text));
-                                    messageController.clear();
+                                    await chatService.submitMessage(FastMessage(
+                                      message: model.messageController.text,
+                                      senderId: authenticationService.id,
+                                    ));
+                                    model.messageController.clear();
                                   },
                                 ),
                               ),
