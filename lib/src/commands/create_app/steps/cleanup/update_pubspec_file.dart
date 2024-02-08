@@ -2,7 +2,11 @@ import 'dart:io';
 
 import 'package:flutter_fast_cli/src/commands/strings.dart';
 
-Future<void> updatePubspecFile(String appName, String paas) async {
+Future<void> updatePubspecFile({
+  required String appName,
+  String? paas,
+  String? analytics,
+}) async {
   File pubspec = File('pubspec.yaml');
 
   String pubspecContents = getPubspecText(appName);
@@ -25,6 +29,14 @@ Future<void> updatePubspecFile(String appName, String paas) async {
     pubspecContents = await removePubspecSection('Appwrite', pubspecContents);
   } else {
     stdout.writeln('Unknown PaaS: $paas');
+  }
+
+  if(analytics == 'amplitude'){
+    pubspecContents = await removePubspecSection('Posthog', pubspecContents);
+  } else if(analytics == 'posthog'){
+    pubspecContents = await removePubspecSection('Amplitude', pubspecContents);
+  } else {
+    stdout.writeln('Unknown Analytics Plaform: $analytics');
   }
 
   await pubspec.writeAsString(pubspecContents);

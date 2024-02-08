@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_analytics_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
@@ -54,10 +55,12 @@ class Wizard extends Command {
 
     String? paasOption;
     String? paas;
+    String? analyticsOption;
+    String? analytics;
     if (!offline) {
       // User input for PaaS
       while (paasOption != 'f' && paasOption != 's' && paasOption != 'a' && paasOption != 'p') {
-        stdout.write('Enter the PaaS you want to use for your app (f)irebase, (s)upabase, (a)ppwrite, (p)ocketbase: ');
+        stdout.write('Enter the PaaS you want to use for your app - (f)irebase, (s)upabase, (a)ppwrite, (p)ocketbase: ');
         paasOption = stdin.readLineSync() ?? 'f';
       }
       paas = paasOption == 'f'
@@ -67,6 +70,16 @@ class Wizard extends Command {
               : paasOption == 'p'
                   ? 'pocketbase'
                   : 'appwrite';
+
+      while (analyticsOption != 'a' && analyticsOption != 'p') {
+        stdout.write('Enter the analytics platform you want to use for your app - (a)mplitude, (p)osthog: ');
+        analyticsOption = stdin.readLineSync() ?? 'f';
+      }
+      analytics = analyticsOption == 'a'
+          ? 'amplitude'
+          : analyticsOption == 'p'
+              ? 'posthog'
+              : 'amplitude';
     }
 
     // User input for subscriptions
@@ -78,43 +91,14 @@ class Wizard extends Command {
     }
     final bool subscriptions = subsOption == 'y';
 
-    // User input for build
-    String? buildOption;
-    while (buildOption != 'y' && buildOption != 'n') {
-      stdout.write('Do you want to run the build_runner after the app has been created? (Y/n): ');
-      buildOption = stdin.readLineSync() ?? 'y';
-      if (buildOption.trim() == '') buildOption = 'y';
-    }
-    final bool build = buildOption == 'y';
-
-    // User input for shorebird
-    String? shorebirdOption;
-    while (shorebirdOption != 'y' && shorebirdOption != 'n') {
-      stdout.write('Do you want to include Shorebird lanes in Fastfiles? (Y/n): ');
-      shorebirdOption = stdin.readLineSync() ?? 'y';
-      if (shorebirdOption.trim() == '') shorebirdOption = 'y';
-    }
-    final bool shorebird = shorebirdOption == 'y';
-
-    // User input for logo color scheme
-    String? logoOption;
-    while (logoOption != 'y' && logoOption != 'n') {
-      stdout.write('Do you want to generate a ColorScheme from your logo? (Y/n): ');
-      logoOption = stdin.readLineSync() ?? 'y';
-      if (logoOption.trim() == '') logoOption = 'y';
-    }
-    final bool logoColorScheme = logoOption == 'y';
-
     // Print out selections
     stdout.writeln('\n🛠️ Your selections:');
     stdout.writeln('App name: $appName');
     stdout.writeln('Organization name: $orgName');
     stdout.writeln('Offline: $offline');
     if (paas != null) stdout.writeln('PaaS: $paas');
+    if (analytics != null) stdout.writeln('Analytics: $analytics');
     stdout.writeln('Subscriptions: $subscriptions');
-    stdout.writeln('Build: $build');
-    stdout.writeln('Shorebird: $shorebird');
-    stdout.writeln('Logo color scheme: $logoColorScheme');
 
     // Confirm selections
     String? confirmOption;
@@ -156,23 +140,26 @@ class Wizard extends Command {
     await updateAndroidBuildGradle(appName, orgName);
     await fastlaneSetup(templatePath, appName);
     await createKeyFile();
-    if (!shorebird) await removeShorebirdLanes();
     if (!subscriptions) removeBillingDependency(templatePath, appName);
     progress.finish(showTiming: true);
 
     progress = logger.progress('Performing cleanup...');
     if (paas != null) {
       await clearUnusedPaasFiles(paas);
-      await updatePubspecFile(appName, paas);
+      await updatePubspecFile(
+        appName: appName,
+        paas: paas,
+        analytics: analytics,
+      );
       await removeInjectableEnvironments();
+    }
+
+    if (analytics != null) {
+      await clearUnusedAnalyticsFiles(analytics);
     }
 
     if (!subscriptions) {
       await removeSubscriptionFeature();
-    }
-
-    if (!logoColorScheme) {
-      await removeLogoColorScheme();
     }
 
     await removeRunConfigurations();
@@ -185,11 +172,9 @@ class Wizard extends Command {
     await Process.run(flutterPath, ['pub', 'get']);
     progress.finish(showTiming: true);
 
-    if (build) {
-      progress = logger.progress('Running build_runner...');
-      await Process.run(flutterPath, ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
-      progress.finish(showTiming: true);
-    }
+    progress = logger.progress('Running build_runner...');
+    await Process.run(flutterPath, ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+    progress.finish(showTiming: true);
 
     progress = logger.progress('Tidying the workspace...');
     await Process.run('dart', ['format', '.']);

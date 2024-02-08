@@ -12,7 +12,6 @@ Future<void> removeSubscriptionFeature() async {
   await removeFeatureFromFile('Subscriptions', 'pubspec.yaml');
   await removeFeatureFromFile('Subscriptions', 'lib/app/services.dart');
   await removeFeatureFromFile('Subscriptions', 'lib/main.dart');
-  await removeFeatureFromFile(
-      'Subscriptions', 'lib/features/home/ui/home/widgets/drawer.dart');
+  await removeFeatureFromFile('Subscriptions', 'lib/features/home/ui/home/widgets/drawer.dart');
   await removeFeatureFromFile('Subscriptions', 'lib/app/router.dart');
 }
