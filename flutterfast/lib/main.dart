@@ -9,6 +9,7 @@ import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/theme.dart';
 import 'package:flutterfast/features/shared/utils/navigation/basic_observer.dart';
+import 'package:universal_html/html.dart' as html;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ Future<void> main() async {
   await subscriptionService.initialize();
   //* Subscriptions *//
 
+  html.document.dispatchEvent(html.CustomEvent("dart_loaded"));
   await SentryFlutter.init(
     (options) {
       options.dsn = const String.fromEnvironment('SENTRY_DSN');

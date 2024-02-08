@@ -1,9 +1,11 @@
 import 'package:amplitude_flutter/amplitude.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutterfast/app/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/features/analytics/services/fast_analytics_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+@amplitude
 @Singleton(as: FastAnalyticsService)
 class AmplitudeAnalyticsService extends FastAnalyticsService {
   final Amplitude amplitude = Amplitude.getInstance();

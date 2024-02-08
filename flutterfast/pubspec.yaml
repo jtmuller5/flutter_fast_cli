@@ -24,6 +24,8 @@ dependencies:
   shared_preferences: ^2.2.2
   simple_mvvm: ^1.0.0
   transparent_image: ^2.0.1
+  universal_io: ^2.2.2
+  universal_html: ^2.2.4
   url_launcher: ^6.2.4
 
   #* Amplitude *#

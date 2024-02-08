@@ -8,6 +8,8 @@ const firebase = Environment('firebase');
 const supabase = Environment('supabase');
 const appwrite = Environment('appwrite');
 const pocketbase = Environment('pocketbase');
+const amplitude = Environment('amplitude');
+const posthog = Environment('posthog');
 
 final getIt = GetIt.instance;
 
@@ -18,6 +20,10 @@ final getIt = GetIt.instance;
 )
 Future<void> configureDependencies() async => await $initGetIt(
       getIt,
-      environment:
+      environmentFilter: NoEnvOrContainsAny(
+        {
           const String.fromEnvironment('PAAS', defaultValue: 'firebase'),
+          const String.fromEnvironment('analytics', defaultValue: 'posthog'),
+        },
+      ),
     );

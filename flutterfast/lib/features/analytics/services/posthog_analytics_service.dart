@@ -1,13 +1,15 @@
+import 'package:flutterfast/app/get_it.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/analytics/services/fast_analytics_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:posthog_flutter/posthog_flutter.dart';
 
+@posthog
 @Singleton(as: FastAnalyticsService)
 class PosthogAnalyticsService extends FastAnalyticsService {
   @override
   Future<void> initialize() {
-    // TODO: implement initialize
-    throw UnimplementedError();
+    return Future.value();
   }
 
   @override
@@ -29,7 +31,7 @@ class PosthogAnalyticsService extends FastAnalyticsService {
 
   @override
   void updateUserProperties(Map<String, dynamic> userProperties) {
-    // TODO: implement updateUserProperties
+    Posthog().identify(userId: authenticationService.id!, properties: userProperties);
   }
 
   @override
