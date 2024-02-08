@@ -63,7 +63,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled = true
-        manifestPlaceholders = [
+        manifestPlaceholders += [
             POSTHOG_KEY: dartEnvironmentVariables.POSTHOG_KEY
         ]
     }
