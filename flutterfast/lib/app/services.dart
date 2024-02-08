@@ -9,8 +9,8 @@ import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
 import 'package:flutterfast/features/authentication/services/user_service/fast_user_service.dart';
 import 'package:flutterfast/features/feedback/services/fast_feedback_service.dart';
-import 'package:flutterfast/features/monitoring/services/fast_analytics_service.dart';
-import 'package:flutterfast/features/monitoring/services/fast_crash_service.dart';
+import 'package:flutterfast/features/analytics/services/fast_analytics_service.dart';
+import 'package:flutterfast/features/crash/services/fast_crash_service.dart';
 import 'package:flutterfast/features/settings/services/settings_service.dart';
 import 'package:flutterfast/features/shared/services/connector_service/fast_connector_service.dart';
 

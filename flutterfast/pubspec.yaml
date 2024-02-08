@@ -7,7 +7,6 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
-  amplitude_flutter: ^3.16.1
   auto_route: ^7.8.4
   collection: ^1.18.0
   flex_color_scheme: ^7.3.1
@@ -26,6 +25,14 @@ dependencies:
   simple_mvvm: ^1.0.0
   transparent_image: ^2.0.1
   url_launcher: ^6.2.4
+
+  #* Amplitude *#
+  amplitude_flutter: ^3.16.1
+  #* Amplitude *#
+
+  #* Posthog *#
+  posthog_flutter: ^3.3.0
+  #* Posthog *#
 
   #* RSS *#
   http: 1.2.0

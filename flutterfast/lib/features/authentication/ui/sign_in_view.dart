@@ -24,6 +24,13 @@ class _SignInViewState extends State<SignInView> {
   bool loading = false;
   bool obscureText = true;
 
+  void navigateToHome() {
+    router.pushAndPopUntil(
+      const HomeRoute(),
+      predicate: (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,19 +123,23 @@ class _SignInViewState extends State<SignInView> {
                         email: emailController.text,
                         password: passwordController.text,
                       );
-                      setState(() {
-                        loading = false;
-                      });
-                      router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
+                      navigateToHome();
                     } catch (e) {
+                      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                    } finally {
                       setState(() {
                         loading = false;
                       });
-                      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                     }
                   },
                   child: loading
-                      ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator())
+                      ? const SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
                       : Text(
                           'Sign In',
                           style: context.bodyLarge.bold.copyWith(color: Colors.white),
@@ -151,9 +162,7 @@ class _SignInViewState extends State<SignInView> {
                 Row(
                   children: [
                     Expanded(
-                      child: Divider(
-                        color: context.primary,
-                      ),
+                      child: Divider(color: context.primary),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -173,16 +182,48 @@ class _SignInViewState extends State<SignInView> {
                     SocialLoginButton.wide(
                       image: 'assets/images/google.png',
                       provider: 'Google',
-                      onPressed: () {
-                        authenticationService.signInWithGoogle();
+                      onPressed: () async {
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          await authenticationService.signInWithGoogle();
+                          navigateToHome();
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(e.toString()),
+                            ),
+                          );
+                        } finally {
+                          setState(() {
+                            loading = false;
+                          });
+                        }
                       },
                     ),
                     gap8,
                     SocialLoginButton.wide(
                       image: 'assets/images/apple.png',
                       provider: 'Apple',
-                      onPressed: () {
-                        authenticationService.signInWithApple();
+                      onPressed: () async {
+                        setState(() {
+                          loading = true;
+                        });
+                        try {
+                          await authenticationService.signInWithApple();
+                          navigateToHome();
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(e.toString()),
+                            ),
+                          );
+                        } finally {
+                          setState(() {
+                            loading = false;
+                          });
+                        }
                       },
                     ),
                   ],

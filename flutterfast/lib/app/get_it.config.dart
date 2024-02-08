@@ -12,6 +12,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i33;
 
+import '../features/analytics/services/amplitude_analytics_service.dart' as _i5;
+import '../features/analytics/services/fast_analytics_service.dart' as _i4;
 import '../features/authentication/services/authentication_service/appwrite_authentication_service.dart'
     as _i9;
 import '../features/authentication/services/authentication_service/fast_authentication_service.dart'
@@ -23,25 +25,22 @@ import '../features/authentication/services/authentication_service/pocketbase_au
 import '../features/authentication/services/authentication_service/supabase_authentication_service.dart'
     as _i7;
 import '../features/authentication/services/user_service/appwrite_user_service.dart'
-    as _i32;
+    as _i29;
 import '../features/authentication/services/user_service/fast_user_service.dart'
     as _i28;
 import '../features/authentication/services/user_service/firebase_user_service.dart'
-    as _i31;
+    as _i32;
 import '../features/authentication/services/user_service/pocketbase_user_service.dart'
-    as _i30;
+    as _i31;
 import '../features/authentication/services/user_service/supabase_user_service.dart'
-    as _i29;
+    as _i30;
+import '../features/crash/services/crash_service.dart' as _i22;
+import '../features/crash/services/fast_crash_service.dart' as _i21;
 import '../features/feedback/services/appwrite_feedback_service.dart' as _i26;
 import '../features/feedback/services/fast_feedback_service.dart' as _i23;
 import '../features/feedback/services/firebase_feedback_service.dart' as _i24;
 import '../features/feedback/services/pocketbase_feedback_service.dart' as _i25;
 import '../features/feedback/services/supabase_feedback_service.dart' as _i27;
-import '../features/monitoring/services/amplitude_analytics_service.dart'
-    as _i5;
-import '../features/monitoring/services/crash_service.dart' as _i22;
-import '../features/monitoring/services/fast_analytics_service.dart' as _i4;
-import '../features/monitoring/services/fast_crash_service.dart' as _i21;
 import '../features/settings/services/settings_service.dart' as _i35;
 import '../features/shared/services/connector_service/appwrite_connector_service.dart'
     as _i18;
@@ -56,10 +55,10 @@ import '../features/shared/services/connector_service/supabase_connector_service
 import '../features/shared/services/dialog_service.dart' as _i3;
 import '../features/shared/services/modules.dart' as _i36;
 import '../features/subscriptions/services/subscription_service.dart' as _i34;
-import '../modules/chat/services/appwrite_chat_service.dart' as _i12;
+import '../modules/chat/services/appwrite_chat_service.dart' as _i14;
 import '../modules/chat/services/fast_chat_service.dart' as _i11;
-import '../modules/chat/services/firebase_chat_service.dart' as _i14;
-import '../modules/chat/services/pocketbase_chat_service.dart' as _i13;
+import '../modules/chat/services/firebase_chat_service.dart' as _i13;
+import '../modules/chat/services/pocketbase_chat_service.dart' as _i12;
 import '../modules/chat/services/supabase_chat_service.dart' as _i15;
 
 const String _supabase = 'supabase';
@@ -98,16 +97,16 @@ Future<_i1.GetIt> $initGetIt(
     registerFor: {_firebase},
   );
   gh.lazySingleton<_i11.FastChatService>(
-    () => _i12.AppwriteChatService(),
-    registerFor: {_appwrite},
-  );
-  gh.lazySingleton<_i11.FastChatService>(
-    () => _i13.PocketbaseChatService(),
+    () => _i12.PocketbaseChatService(),
     registerFor: {_pocketbase},
   );
   gh.lazySingleton<_i11.FastChatService>(
-    () => _i14.FirebaseChatService(),
+    () => _i13.FirebaseChatService(),
     registerFor: {_firebase},
+  );
+  gh.lazySingleton<_i11.FastChatService>(
+    () => _i14.AppwriteChatService(),
+    registerFor: {_appwrite},
   );
   gh.lazySingleton<_i11.FastChatService>(
     () => _i15.SupabaseChatService(),
@@ -147,20 +146,20 @@ Future<_i1.GetIt> $initGetIt(
     registerFor: {_supabase},
   );
   gh.lazySingleton<_i28.FastUserService>(
-    () => _i29.SupabaseUserService(),
+    () => _i29.AppwriteUserservice(),
+    registerFor: {_appwrite},
+  );
+  gh.lazySingleton<_i28.FastUserService>(
+    () => _i30.SupabaseUserService(),
     registerFor: {_supabase},
   );
   gh.singleton<_i28.FastUserService>(
-    _i30.PocketBaseUserService(),
+    _i31.PocketBaseUserService(),
     registerFor: {_pocketbase},
   );
   gh.lazySingleton<_i28.FastUserService>(
-    () => _i31.FirebaseUserService(),
+    () => _i32.FirebaseUserService(),
     registerFor: {_firebase},
-  );
-  gh.lazySingleton<_i28.FastUserService>(
-    () => _i32.AppwriteUserservice(),
-    registerFor: {_appwrite},
   );
   await gh.factoryAsync<_i33.SharedPreferences>(
     () => registerModule.sharedPrefs,

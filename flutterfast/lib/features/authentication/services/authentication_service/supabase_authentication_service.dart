@@ -26,6 +26,14 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
       url: const String.fromEnvironment('SUPABASE_URL'),
       anonKey: const String.fromEnvironment('SUPABASE_ANON_KEY'),
     );
+
+    _supabase.auth.onAuthStateChange.listen((AuthState state) {
+      if (state.event == AuthChangeEvent.signedIn) {
+        if (state.session?.user.id != null) onSignedIn(state.session!.user.id);
+      } else if (state.event == AuthChangeEvent.signedOut) {
+        onSignedOut();
+      }
+    });
   }
 
   @override
@@ -83,7 +91,7 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
     if (idToken == null) {
       throw 'No ID Token found.';
     }
-     _supabase.auth.signInWithIdToken(
+    _supabase.auth.signInWithIdToken(
       provider: OAuthProvider.google,
       idToken: idToken,
       accessToken: accessToken,

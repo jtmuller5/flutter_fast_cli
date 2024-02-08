@@ -32,4 +32,12 @@ abstract class FastAuthenticationService {
   }
 
   Future<void> sendPasswordResetEmail(String email);
+
+  void onSignedIn(String userId) {
+    analyticsService.updateUserId(userId);
+  }
+
+  void onSignedOut() {
+    analyticsService.updateUserId(null);
+  }
 }
