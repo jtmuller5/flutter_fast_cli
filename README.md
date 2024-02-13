@@ -26,6 +26,11 @@
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
+- [Features](#features)
+  - [Analytics](#analytics)
+  - [Authentication](#authentication)
+  - [Automation](#automation)
+  - [Monetization](#monetization)
 - [Flutter Fast](#flutter-fast)
   - [What is Flutter Fast?](#what-is-flutter-fast)
   - [Why Flutter Fast?](#why-flutter-fast)
@@ -56,6 +61,34 @@ fast wizard
 | `update`  | Update flutter_fast_cli                                           |
 
 To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
+
+# Features
+
+## Analytics
+|  Method |  Amplitude | Posthog |
+| --- | --- | --- |
+| Events | ✅ | ✅ |
+| User Properties | ✅ | ✅ |
+
+## Authentication
+|  Method | Firebase | Supabase | Appwrite | Pocketbase |
+| --- | --- | --- | --- | --- |
+| Email/Password | ✅ | ✅ | ✅ | ✅ |
+| Google | ✅ |  |  |  |
+| Apple | ✅ |  |  |  |
+
+## Automation
+|  Method | Android | iOS | Web |
+| --- | --- | --- | --- |
+| Fastlane | ✅ | ✅ | ✅ |
+| GitHub Actions | ✅ | ✅ | ✅ |
+| Shorebird | ✅ | ✅ | ✅ |
+
+## Monetization
+|  Method | RevenueCat | App Store | Google Play |
+| --- | --- | --- | --- |
+| Subscriptions | ✅ |  |  |
+| In-App Purchases |  |  |  |
 
 # Flutter Fast
 
