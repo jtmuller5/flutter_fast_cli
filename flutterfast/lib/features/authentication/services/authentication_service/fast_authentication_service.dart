@@ -35,6 +35,7 @@ abstract class FastAuthenticationService {
 
   void onSignedIn(String userId) {
     analyticsService.updateUserId(userId);
+    userService.updateLastLogin();
   }
 
   void onSignedOut() {

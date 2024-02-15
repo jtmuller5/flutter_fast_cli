@@ -15,4 +15,6 @@ abstract class FastUserService {
   Future<void> updateUser(FastUser user);
 
   Future<void> deleteUser(FastUser user);
+
+  Future<void> updateLastLogin();
 }

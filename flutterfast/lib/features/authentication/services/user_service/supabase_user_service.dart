@@ -35,6 +35,7 @@ class SupabaseUserService extends FastUserService {
       final Map<String, dynamic> user = await _supabase.from('users').select().eq('id', _supabase.auth.currentUser!.id).single();
 
       FastUser loadedUser = FastUser.fromJson(user);
+      debugPrint('loadedUser: ' + loadedUser.toString());
       setUser(loadedUser);
       return loadedUser;
     } catch (e) {
@@ -52,7 +53,14 @@ class SupabaseUserService extends FastUserService {
 
   @override
   Future<void> updateUser(FastUser user) {
-    debugPrint( 'Updating user: ${user.toJson()}');
+    debugPrint('Updating user: ${user.toJson()}');
     return _supabase.from('users').update(user.toJson()).eq('id', user.id!);
+  }
+
+  @override
+  Future<void> updateLastLogin() async {
+    await _supabase.from('users').update({
+      'last_login': DateTime.now(),
+    }).eq('id', _supabase.auth.currentUser!.id);
   }
 }

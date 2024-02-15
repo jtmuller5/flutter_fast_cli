@@ -44,4 +44,11 @@ class FirebaseUserService extends FastUserService {
       }
     });
   }
+  
+  @override
+  Future<void> updateLastLogin() async{
+    await firestore.collection('users').doc(authenticationService.id).update({
+      'last_login': DateTime.now(),
+    });
+  }
 }

@@ -63,39 +63,40 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithGoogle() async {
-    /// TODO: update the Web client ID with your own.
-    ///
-    /// Web Client ID that you registered with Google Cloud.
-    const webClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
+    try {
+      /// Web Client ID that you registered with Google Cloud.
+      const webClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
+    
+      /// iOS Client ID that you registered with Google Cloud.
+      const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
 
-    /// TODO: update the iOS client ID with your own.
-    ///
-    /// iOS Client ID that you registered with Google Cloud.
-    const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
+      // Google sign in on Android will work without providing the Android
+      // Client ID registered on Google Cloud.
 
-    // Google sign in on Android will work without providing the Android
-    // Client ID registered on Google Cloud.
+      final GoogleSignIn googleSignIn = GoogleSignIn(
+        clientId: iosClientId,
+        serverClientId: webClientId,
+      );
+      final googleUser = await googleSignIn.signIn();
+      final googleAuth = await googleUser!.authentication;
+      final accessToken = googleAuth.accessToken;
+      final idToken = googleAuth.idToken;
 
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      clientId: iosClientId,
-      serverClientId: webClientId,
-    );
-    final googleUser = await googleSignIn.signIn();
-    final googleAuth = await googleUser!.authentication;
-    final accessToken = googleAuth.accessToken;
-    final idToken = googleAuth.idToken;
-
-    if (accessToken == null) {
-      throw 'No Access Token found.';
+      if (accessToken == null) {
+        throw 'No Access Token found.';
+      }
+      if (idToken == null) {
+        throw 'No ID Token found.';
+      }
+      await _supabase.auth.signInWithIdToken(
+        provider: OAuthProvider.google,
+        idToken: idToken,
+        accessToken: accessToken,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
     }
-    if (idToken == null) {
-      throw 'No ID Token found.';
-    }
-    _supabase.auth.signInWithIdToken(
-      provider: OAuthProvider.google,
-      idToken: idToken,
-      accessToken: accessToken,
-    );
   }
 
   @override

@@ -27,6 +27,9 @@ class FastUser {
   @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   DateTime? createdAt;
 
+  @JsonKey(name: 'last_login', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
+  DateTime? lastLogin;
+
   FastUser({ this.id,
     this.email,
     this.username,
@@ -34,6 +37,7 @@ class FastUser {
     this.lastName,
     this.dateOfBirth,
     this.createdAt,
+    this.lastLogin,
     this.onboarded,
     this.phone,
   });

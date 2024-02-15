@@ -21,7 +21,7 @@ class PocketBaseUserService extends FastUserService {
   }
 
   @override
-    Future<FastUser?> getUser() async {
+  Future<FastUser?> getUser() async {
     if (authenticationService.id == null) throw Exception('User not authenticated');
 
     RecordModel user = await pb.collection('users').getOne(authenticationService.id!);
@@ -29,12 +29,17 @@ class PocketBaseUserService extends FastUserService {
     FastUser fastUser = FastUser.fromJson(user.toJson());
 
     setUser(fastUser);
-    
+
     return fastUser;
   }
 
   @override
   Future<void> updateUser(FastUser user) {
     return pb.collection('users').update(user.id!, body: user.toJson());
+  }
+
+  @override
+  Future<void> updateLastLogin() async {
+    await pb.collection('users').update(authenticationService.id!, body: {'last_login': DateTime.now()});
   }
 }
