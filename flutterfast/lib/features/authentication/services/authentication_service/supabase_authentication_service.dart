@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:crypto/crypto.dart';
+import 'package:universal_io/io.dart';
 
 @supabase
 @Singleton(as: FastAuthenticationService)
@@ -58,7 +63,39 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithApple() async {
-    await _supabase.auth.signInWithOAuth(OAuthProvider.apple);
+    try {
+      if (Platform.isIOS) {
+        final rawNonce = _supabase.auth.generateRawNonce();
+        final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+        debugPrint('test');
+        final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            // AppleIDAuthorizationScopes.email,
+            // AppleIDAuthorizationScopes.fullName,
+          ],
+          nonce: hashedNonce,
+        );
+
+        final idToken = credential.identityToken;
+        if (idToken == null) {
+          throw const AuthException('Could not find ID Token from generated credential.');
+        }
+
+        await _supabase.auth.signInWithIdToken(
+          provider: OAuthProvider.apple,
+          idToken: idToken,
+          nonce: rawNonce,
+        );
+      } else {
+        _supabase.auth.signInWithOAuth(
+          OAuthProvider.apple,
+          redirectTo: 'my-scheme://login-callback',
+        );
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
   }
 
   @override
@@ -66,7 +103,7 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
     try {
       /// Web Client ID that you registered with Google Cloud.
       const webClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
-    
+
       /// iOS Client ID that you registered with Google Cloud.
       const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
 

@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://codeontherocks.dev/flutterfast/start/why/">Documentation</a> •
+  <a href="https://codeotr.github.io/flutter-fast-guide/">Documentation</a> •
   <a href="https://codeontherocks.dev/">Code on the Rocks</a> •
   <a href="https://github.com/sponsors/jtmuller5">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
@@ -60,7 +60,7 @@ fast wizard
 | `view`    | Create a new View for a feature                                   |
 | `update`  | Update flutter_fast_cli                                           |
 
-To get started, visit the [official docs](https://codeontherocks.dev/flutterfast/start/installation/)!
+To get started, visit the [official docs](https://codeotr.github.io/flutter-fast-guide/)!
 
 # Features
 
@@ -74,8 +74,8 @@ To get started, visit the [official docs](https://codeontherocks.dev/flutterfast
 |  Method | Firebase | Supabase | Appwrite | Pocketbase |
 | --- | --- | --- | --- | --- |
 | Email/Password | ✅ | ✅ | ✅ | ✅ |
-| Google | ✅ |  |  |  |
-| Apple | ✅ |  |  |  |
+| Google | ✅ | ✅ |  |  |
+| Apple | ✅ | ✅  |  |  |
 
 ## Automation
 |  Method | Android | iOS | Web |
@@ -145,7 +145,7 @@ I love experimenting. I love writing about different tech stacks and understandi
 - Choose to use either Firebase or Supabase as your PaaS
 - Opt into including Subscriptions
 
-You can view the [roadmap](https://codeontherocks.dev/flutterfast/roadmap/plan/) to see additional platforms we plan to support.
+You can view the [roadmap](https://codeotr.github.io/flutter-fast-guide/roadmap/plan/) to see additional platforms we plan to support.
 
 ## How Fast?
 

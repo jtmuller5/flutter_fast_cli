@@ -1,8 +1,11 @@
 ## 1.4.10
-- 🟩 Google Sign In for Firebase
+- 🟩 Google Sign In for Firebase (Android + iOS)
+- 🟩 Google Sign In for Supabase (Android + iOS)
+- 🟩 Apple Sign In for Firebase (Android + iOS)
+- 🟩 Apple Sign In for Supabase (Android + iOS)
+- 🟩 Added `last_login` field to FastUser model
 - 🟨 Updated README
-- *Date:* 2-4-2024
-
+- *Date:* 2-15-2024
 
 # 1.4.9
 - 🟪 `fast feature` will now create initial View with feature name
