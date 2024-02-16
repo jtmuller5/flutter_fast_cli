@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
@@ -34,7 +35,10 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
 
     _supabase.auth.onAuthStateChange.listen((AuthState state) {
       if (state.event == AuthChangeEvent.signedIn) {
-        if (state.session?.user.id != null) onSignedIn(state.session!.user.id);
+        if (state.session?.user.id != null) {
+          onSignedIn(state.session!.user.id);
+          userService.createUser();
+        }
       } else if (state.event == AuthChangeEvent.signedOut) {
         onSignedOut();
       }
@@ -70,8 +74,8 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
         debugPrint('test');
         final credential = await SignInWithApple.getAppleIDCredential(
           scopes: [
-             AppleIDAuthorizationScopes.email,
-             AppleIDAuthorizationScopes.fullName,
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
           ],
           nonce: hashedNonce,
         );
@@ -87,9 +91,12 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
           nonce: rawNonce,
         );
       } else {
-        _supabase.auth.signInWithOAuth(
+        const redirectTo = kIsWeb ? "https://xgiwtcbryqkepaaftabz.supabase.co/auth/v1/callback" : "com.cotr.flutterfast://login-callback/";
+
+        await _supabase.auth.signInWithOAuth(
           OAuthProvider.apple,
-          redirectTo: 'my-scheme://login-callback',
+          redirectTo: redirectTo, // 'my-scheme://login-callback',
+          authScreenLaunchMode: LaunchMode.platformDefault,
         );
       }
     } catch (e) {

@@ -37,11 +37,11 @@ import '../features/authentication/services/user_service/supabase_user_service.d
     as _i31;
 import '../features/crash/services/crash_service.dart' as _i23;
 import '../features/crash/services/fast_crash_service.dart' as _i22;
-import '../features/feedback/services/appwrite_feedback_service.dart' as _i27;
+import '../features/feedback/services/appwrite_feedback_service.dart' as _i26;
 import '../features/feedback/services/fast_feedback_service.dart' as _i24;
 import '../features/feedback/services/firebase_feedback_service.dart' as _i28;
-import '../features/feedback/services/pocketbase_feedback_service.dart' as _i25;
-import '../features/feedback/services/supabase_feedback_service.dart' as _i26;
+import '../features/feedback/services/pocketbase_feedback_service.dart' as _i27;
+import '../features/feedback/services/supabase_feedback_service.dart' as _i25;
 import '../features/settings/services/settings_service.dart' as _i36;
 import '../features/shared/services/connector_service/appwrite_connector_service.dart'
     as _i19;
@@ -140,16 +140,16 @@ Future<_i1.GetIt> $initGetIt(
   );
   gh.singleton<_i22.FastCrashService>(_i23.CrashService());
   gh.lazySingleton<_i24.FastFeedbackService>(
-    () => _i25.PocketBaseFeedbackService(),
-    registerFor: {_pocketbase},
-  );
-  gh.lazySingleton<_i24.FastFeedbackService>(
-    () => _i26.SupabaseFeedbackService(),
+    () => _i25.SupabaseFeedbackService(),
     registerFor: {_supabase},
   );
   gh.lazySingleton<_i24.FastFeedbackService>(
-    () => _i27.AppwriteFeedbackService(),
+    () => _i26.AppwriteFeedbackService(),
     registerFor: {_appwrite},
+  );
+  gh.lazySingleton<_i24.FastFeedbackService>(
+    () => _i27.PocketBaseFeedbackService(),
+    registerFor: {_pocketbase},
   );
   gh.lazySingleton<_i24.FastFeedbackService>(
     () => _i28.FirebaseFeedbackService(),

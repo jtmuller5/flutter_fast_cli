@@ -65,6 +65,11 @@ class MainApp extends StatelessWidget {
                 PosthogObserver(),
                 //* Posthog *//
               ],
+              deepLinkBuilder: (deepLink) {
+                debugPrint('deeplink: ${deepLink.path}');
+
+                return deepLink;
+              },
             ),
           );
         });

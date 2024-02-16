@@ -17,8 +17,10 @@ class SupabaseUserService extends FastUserService {
     try {
       final user = _supabase.auth.currentUser;
 
+      if (user == null) return;
+
       FastUser newUser = FastUser(
-        id: user!.id,
+        id: user.id,
         createdAt: DateTime.now(),
       );
 

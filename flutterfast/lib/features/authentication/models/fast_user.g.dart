@@ -20,6 +20,8 @@ FastUser _$FastUserFromJson(Map<String, dynamic> json) => $checkedCreate(
               'date_of_birth', (v) => getDateTimeFromTimestamp(v)),
           createdAt:
               $checkedConvert('created_at', (v) => getDateTimeFromTimestamp(v)),
+          lastLogin:
+              $checkedConvert('last_login', (v) => getDateTimeFromTimestamp(v)),
           onboarded: $checkedConvert('onboarded', (v) => v as bool?),
           phone: $checkedConvert('phone', (v) => v as String?),
         );
@@ -29,7 +31,8 @@ FastUser _$FastUserFromJson(Map<String, dynamic> json) => $checkedCreate(
         'firstName': 'first_name',
         'lastName': 'last_name',
         'dateOfBirth': 'date_of_birth',
-        'createdAt': 'created_at'
+        'createdAt': 'created_at',
+        'lastLogin': 'last_login'
       },
     );
 
@@ -51,5 +54,6 @@ Map<String, dynamic> _$FastUserToJson(FastUser instance) {
   writeNotNull('onboarded', instance.onboarded);
   writeNotNull('date_of_birth', getTimestampFromDateTime(instance.dateOfBirth));
   writeNotNull('created_at', getTimestampFromDateTime(instance.createdAt));
+  writeNotNull('last_login', getTimestampFromDateTime(instance.lastLogin));
   return val;
 }
