@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
@@ -35,7 +36,12 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
 
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
-        onSignedIn(user.uid);
+        userService.createUser().then(
+          ((value) {
+            onSignedIn(user.uid);
+            navigationService.navigateToHome();
+          }),
+        );
       } else {
         onSignedOut();
       }
@@ -58,9 +64,18 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   }
 
   @override
-  Future<void> signInWithApple() {
-    // TODO: implement signInWithApple
-    throw UnimplementedError();
+  Future<void> signInWithApple() async {
+    try {
+      final appleProvider = AppleAuthProvider();
+      if (kIsWeb) {
+        await FirebaseAuth.instance.signInWithPopup(appleProvider);
+      } else {
+        await FirebaseAuth.instance.signInWithProvider(appleProvider);
+      }
+    } catch (e) {
+      debugPrint('Error signing in with Apple: $e');
+      rethrow;
+    }
   }
 
   @override
@@ -91,5 +106,4 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     // TODO: implement signInWithPhoneNumber
     throw UnimplementedError();
   }
-  
 }
