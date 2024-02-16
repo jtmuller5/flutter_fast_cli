@@ -36,8 +36,11 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
     _supabase.auth.onAuthStateChange.listen((AuthState state) {
       if (state.event == AuthChangeEvent.signedIn) {
         if (state.session?.user.id != null) {
-          onSignedIn(state.session!.user.id);
-          userService.createUser();
+          userService.createUser().then(((value) {
+            onSignedIn(state.session!.user.id);
+            navigationService.navigateToHome();
+          }));
+          
         }
       } else if (state.event == AuthChangeEvent.signedOut) {
         onSignedOut();

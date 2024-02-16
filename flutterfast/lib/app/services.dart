@@ -1,4 +1,5 @@
 //x Chat x//
+import 'package:flutterfast/features/shared/services/navigation_service.dart';
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
 //x Chat x//
 
@@ -37,6 +38,8 @@ FastCrashService get crashService => getIt.get<FastCrashService>();
 FastFeedbackService get feedbackService => getIt.get<FastFeedbackService>();
 
 FastUserService get userService => getIt.get<FastUserService>();
+
+NavigationService get navigationService => getIt.get<NavigationService>();
 
 //* Subscriptions *//
 SubscriptionService get subscriptionService => getIt.get<SubscriptionService>();

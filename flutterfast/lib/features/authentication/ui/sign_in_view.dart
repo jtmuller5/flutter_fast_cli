@@ -24,13 +24,6 @@ class _SignInViewState extends State<SignInView> {
   bool loading = false;
   bool obscureText = true;
 
-  void navigateToHome() {
-    router.pushAndPopUntil(
-      const HomeRoute(),
-      predicate: (route) => false,
-    );
-  }
-
   Future<void> runWithLoading(Future<void> Function() future) async {
     setState(() => loading = true);
 
@@ -133,7 +126,6 @@ class _SignInViewState extends State<SignInView> {
                           email: emailController.text,
                           password: passwordController.text,
                         );
-                        navigateToHome();
                       } catch (e) {
                         if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                       }
@@ -193,8 +185,6 @@ class _SignInViewState extends State<SignInView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithGoogle();
-                            await userService.createUser();
-                            navigateToHome();
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -213,8 +203,6 @@ class _SignInViewState extends State<SignInView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithApple();
-                            await userService.createUser();
-                            navigateToHome();
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
