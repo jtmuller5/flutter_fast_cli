@@ -25,6 +25,12 @@ Future<void> clearUnusedPaasFiles(String paas) async {
   File appwriteConnectorServiceFile = File('${connectorDirectory.path}/appwrite_connector_service.dart');
   File pocketbaseConnectorServiceFile = File('${connectorDirectory.path}/pocketbase_connector_service.dart');
 
+  Directory chatDirectory = Directory('lib/modules/chat/services');
+  File firebaseChatServiceFile = File('${chatDirectory.path}/firebase_chat_service.dart');
+  File supabaseChatServiceFile = File('${chatDirectory.path}/supabase_chat_service.dart');
+  File appwriteChatServiceFile = File('${chatDirectory.path}/appwrite_chat_service.dart');
+  File pocketbaseChatServiceFile = File('${chatDirectory.path}/pocketbase_chat_service.dart');
+
   if (paas == 'firebase') {
     await supabaseAuthServiceFile.delete();
     await supabaseUserServiceFile.delete();
@@ -38,6 +44,9 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await pocketbaseUserServiceFile.delete();
     await pocketbaseFeedbackServiceFile.delete();
     await pocketbaseConnectorServiceFile.delete();
+    await supabaseChatServiceFile.delete();
+    await appwriteChatServiceFile.delete();
+    await pocketbaseChatServiceFile.delete();
     // await removeDependencies('Supabase');
     // await removeDependencies('Appwrite');
   } else if (paas == 'supabase') {
@@ -54,6 +63,9 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await pocketbaseUserServiceFile.delete();
     await pocketbaseFeedbackServiceFile.delete();
     await pocketbaseConnectorServiceFile.delete();
+    await appwriteChatServiceFile.delete();
+    await firebaseChatServiceFile.delete();
+    await pocketbaseChatServiceFile.delete();
   } else if (paas == 'appwrite') {
     await firebaseAuthServiceFile.delete();
     await firebaseUserServiceFile.delete();
@@ -63,6 +75,9 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await supabaseUserServiceFile.delete();
     await supabaseFeedbackServiceFile.delete();
     await supabaseConnectorServiceFile.delete();
+    await firebaseChatServiceFile.delete();
+    await supabaseChatServiceFile.delete();
+    await pocketbaseChatServiceFile.delete();
     await deleteFirebaseFiles();
   } else if (paas == 'pocketbase') {
     await firebaseAuthServiceFile.delete();
@@ -78,6 +93,9 @@ Future<void> clearUnusedPaasFiles(String paas) async {
     await appwriteUserServiceFile.delete();
     await appwriteFeedbackServiceFile.delete();
     await appwriteConnectorServiceFile.delete();
+    await appwriteChatServiceFile.delete();
+    await firebaseChatServiceFile.delete();
+    await supabaseChatServiceFile.delete();
   } else {
     stdout.writeln('Unknown PaaS: $paas');
   }
@@ -90,13 +108,6 @@ Future<void> removeDependencies(String tag) async {
 }
 
 Future<void> deleteFirebaseFiles() async {
-  await removeFeatureFromFile('Chat', 'lib/app/router.dart');
-  await removeFeatureFromFile('Chat', 'lib/app/services.dart');
-
-  Directory chatLibDirectory = Directory('lib/modules/chat');
-  if (await chatLibDirectory.exists()) {
-    await chatLibDirectory.delete(recursive: true);
-  }
 
   Directory rowyDirectory = Directory('lib/features/shared/models/rowy');
 

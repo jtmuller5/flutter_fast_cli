@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-//* Posthog *//
+//x Posthog x//
 import 'package:posthog_flutter/posthog_flutter.dart';
-//* Posthog *//
+//x Posthog x//
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/router.dart';
