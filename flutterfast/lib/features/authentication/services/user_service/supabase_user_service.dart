@@ -21,10 +21,11 @@ class SupabaseUserService extends FastUserService {
 
       FastUser newUser = FastUser(
         id: user.id,
+        email: user.email,
         createdAt: DateTime.now(),
       );
 
-      await _supabase.from('users').upsert(newUser.toJson());
+      await _supabase.from('users').upsert(newUser.toJson(), onConflict: 'id');
     } catch (e) {
       debugPrint('Error creating user: $e');
       rethrow;
@@ -61,8 +62,12 @@ class SupabaseUserService extends FastUserService {
 
   @override
   Future<void> updateLastLogin() async {
-    await _supabase.from('users').update({
-      'last_login': DateTime.now(),
-    }).eq('id', _supabase.auth.currentUser!.id);
+    try {
+      await _supabase.from('users').update({
+        'last_login': DateTime.now().toIso8601String(),
+      }).eq('id', _supabase.auth.currentUser!.id);
+    } catch (e) {
+      debugPrint('Error updating last login: $e');
+    }
   }
 }

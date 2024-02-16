@@ -16,14 +16,21 @@ class FirebaseUserService extends FastUserService {
   Future<void> createUser() async {
     try {
       DocumentReference docRef = firestore.collection('users').doc(authenticationService.id);
-      await docRef.set(
-          FastUser(
-            id: docRef.id,
-            createdAt: DateTime.now(),
-          ).toJson(),
-          SetOptions(
-            mergeFields: ['id'],
-          ));
+
+      await firestore.runTransaction((transaction) async {
+        final docSnapshot = await transaction.get(docRef);
+
+        if (!docSnapshot.exists) {
+          transaction.set(
+            docRef,
+            FastUser(
+              id: docRef.id,
+              email: authenticationService.email,
+              createdAt: DateTime.now(),
+            ).toJson(),
+          );
+        }
+      });
     } catch (e) {
       debugPrint('Error creating user: $e');
       rethrow;
