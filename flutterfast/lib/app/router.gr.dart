@@ -76,6 +76,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ResetPasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<ResetPasswordRouteArgs>(
+          orElse: () => const ResetPasswordRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ResetPasswordView(
+          key: args.key,
+          code: args.code,
+        ),
+      );
+    },
     RssRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -286,6 +297,44 @@ class RegisterRouteArgs {
   @override
   String toString() {
     return 'RegisterRouteArgs{key: $key, email: $email, password: $password}';
+  }
+}
+
+/// generated route for
+/// [ResetPasswordView]
+class ResetPasswordRoute extends PageRouteInfo<ResetPasswordRouteArgs> {
+  ResetPasswordRoute({
+    Key? key,
+    String? code,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ResetPasswordRoute.name,
+          args: ResetPasswordRouteArgs(
+            key: key,
+            code: code,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ResetPasswordRoute';
+
+  static const PageInfo<ResetPasswordRouteArgs> page =
+      PageInfo<ResetPasswordRouteArgs>(name);
+}
+
+class ResetPasswordRouteArgs {
+  const ResetPasswordRouteArgs({
+    this.key,
+    this.code,
+  });
+
+  final Key? key;
+
+  final String? code;
+
+  @override
+  String toString() {
+    return 'ResetPasswordRouteArgs{key: $key, code: $code}';
   }
 }
 

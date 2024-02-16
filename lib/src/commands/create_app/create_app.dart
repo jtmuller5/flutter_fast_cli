@@ -18,6 +18,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/cop
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
+import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class CreateApp extends Command {
@@ -78,6 +79,16 @@ class CreateApp extends Command {
     final analytics = argResults?['analytics'] as String?;
     final subscriptions = argResults?['subs'] as bool;
 
+    logAmplitudeEvent('command', {'command': 'app'});
+    logAmplitudeEvent('app ready', {
+      'appName': appName ?? 'none',
+      'orgName': orgName ?? 'none',
+      'offline': offline.toString(),
+      'paas': paas ?? 'none',
+      'analytics': analytics ?? 'none',
+      'subscriptions': subscriptions.toString(),
+    });
+
     var logger = Logger.standard();
 
     if (appName == null || appName.isEmpty) {
@@ -132,10 +143,10 @@ class CreateApp extends Command {
     }
 
     await updatePubspecFile(
-        appName: appName,
-        paas: paas,
-        analytics: analytics,
-      );
+      appName: appName,
+      paas: paas,
+      analytics: analytics,
+    );
 
     await removeRunConfigurations();
 
@@ -154,6 +165,10 @@ class CreateApp extends Command {
     progress = logger.progress('Tidying the workspace...');
     await Process.run('dart', ['format', '.']);
     progress.finish(showTiming: true);
+
+    logAmplitudeEvent('app complete', {
+      'duration': progress.elapsed.toString(),
+    });
 
     logger.stdout('Your app is ready! 🚀');
   }

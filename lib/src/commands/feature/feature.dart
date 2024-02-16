@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 import 'package:recase/recase.dart';
 
@@ -26,6 +27,8 @@ class Feature extends Command {
   @override
   Future<void> run() async {
     stdout.write('Creating new feature...\n');
+
+    logAmplitudeEvent('command', {'command': 'feature'});
 
     // Get the current directory
     Directory currentDirectory = Directory.current;

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Clean extends Command {
@@ -25,6 +26,8 @@ class Clean extends Command {
 
   @override
   Future<void> run() async {
+    logAmplitudeEvent('command', {'command': 'clean'});
+
     final ios = argResults?['ios'] as bool;
 
     if (ios) {

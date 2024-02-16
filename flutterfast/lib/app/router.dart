@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfast/features/authentication/ui/forgot_password_view.dart';
 import 'package:flutterfast/features/authentication/ui/profile_view.dart';
 import 'package:flutterfast/features/authentication/ui/register_view.dart';
+import 'package:flutterfast/features/authentication/ui/reset_password_view.dart';
 import 'package:flutterfast/features/authentication/ui/sign_in_view.dart';
 import 'package:flutterfast/features/feedback/ui/feedback/feedback_view.dart';
 import 'package:flutterfast/features/feedback/ui/new_feedback/new_feedback_view.dart';
@@ -32,6 +33,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: RegisterRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
+        AutoRoute(page: ResetPasswordRoute.page, path: '/reset-password'),
         AutoRoute(page: ProfileRoute.page),
         AutoRoute(page: SettingsRoute.page),
 

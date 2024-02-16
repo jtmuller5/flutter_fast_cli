@@ -110,4 +110,14 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     // TODO: implement signInWithPhoneNumber
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> resetPassword({required String newPassword}) async {
+    try {
+      await FirebaseAuth.instance.currentUser?.updatePassword(newPassword);
+    } catch (e) {
+      debugPrint('Error resetting password: $e');
+      rethrow;
+    }
+  }
 }

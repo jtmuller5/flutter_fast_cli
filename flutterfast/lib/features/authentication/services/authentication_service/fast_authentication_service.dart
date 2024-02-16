@@ -33,6 +33,8 @@ abstract class FastAuthenticationService {
 
   Future<void> sendPasswordResetEmail(String email);
 
+  Future<void> resetPassword({required String newPassword});
+
   void onSignedIn(String userId) {
     analyticsService.updateUserId(userId);
     userService.updateLastLogin();

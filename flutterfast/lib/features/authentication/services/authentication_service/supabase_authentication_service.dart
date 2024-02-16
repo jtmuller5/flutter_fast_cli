@@ -159,4 +159,16 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
   Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
     await _supabase.auth.signInWithOtp(phone: phoneNumber);
   }
+
+  @override
+  Future<void> resetPassword({required String newPassword}) async {
+    try {
+      await _supabase.auth.updateUser(UserAttributes(
+        password: newPassword,
+      ));
+    } catch (e) {
+      debugPrint('Error resetting password: ' + e.toString());
+      rethrow;
+    }
+  }
 }

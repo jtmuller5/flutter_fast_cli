@@ -17,6 +17,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/cop
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
+import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 class Wizard extends Command {
@@ -28,6 +29,7 @@ class Wizard extends Command {
 
   @override
   Future<void> run() async {
+     logAmplitudeEvent('command', {'command': 'wizard'});
     // User input for app name
     String? appName;
     while (appName == null || appName.isEmpty || appName.contains(' ')) {
@@ -97,6 +99,15 @@ class Wizard extends Command {
     if (paas != null) stdout.writeln('PaaS: $paas');
     if (analytics != null) stdout.writeln('Analytics: $analytics');
     stdout.writeln('Subscriptions: $subscriptions');
+
+    logAmplitudeEvent('wizard ready', {
+      'appName': appName,
+      'orgName': orgName,
+      'offline': offline.toString(),
+      'paas': paas ?? 'none',
+      'analytics': analytics ?? 'none',
+      'subscriptions': subscriptions.toString(),
+    });
 
     // Confirm selections
     String? confirmOption;
@@ -177,6 +188,10 @@ class Wizard extends Command {
     progress = logger.progress('Tidying the workspace...');
     await Process.run('dart', ['format', '.']);
     progress.finish(showTiming: true);
+
+    logAmplitudeEvent('wizard complete', {
+      'duration': progress.elapsed.toString(),
+    });
 
     logger.stdout('Your app is ready! 🚀');
   }

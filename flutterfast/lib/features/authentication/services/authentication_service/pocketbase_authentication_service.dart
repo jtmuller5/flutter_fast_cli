@@ -83,4 +83,10 @@ class PocketBaseAuthenticationService extends FastAuthenticationService {
     // TODO: implement signInWithPhoneNumber
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> resetPassword({required String newPassword}) {
+    // TODO: implement resetPassword
+    throw UnimplementedError();
+  }
 }

@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_from_file.dart';
-
 Future<void> clearUnusedPaasFiles(String paas) async {
   Directory authenticationDirectory = Directory('lib/features/authentication/services');
   File firebaseAuthServiceFile = File('${authenticationDirectory.path}/authentication_service/firebase_authentication_service.dart');

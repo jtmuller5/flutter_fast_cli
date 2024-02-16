@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 import 'package:recase/recase.dart';
 
@@ -34,6 +35,8 @@ class View extends Command {
   Future<void> run() async {
     stdout.write('Creating new view...\n');
 
+    logAmplitudeEvent('command', {'command': 'view'});
+
     // Get the current directory
     Directory currentDirectory = Directory.current;
 
@@ -42,7 +45,7 @@ class View extends Command {
     String? featureName = argResults?['feature'];
     String snakeCase = ReCase(viewName).snakeCase;
 
-    if(currentDirectory.parent.path.split('/').last == 'features' && featureName == null) {
+    if (currentDirectory.parent.path.split('/').last == 'features' && featureName == null) {
       featureName = currentDirectory.path.split('/').last;
     }
 

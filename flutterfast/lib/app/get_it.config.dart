@@ -12,19 +12,19 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i35;
 
-import '../features/analytics/services/amplitude_analytics_service.dart' as _i5;
+import '../features/analytics/services/amplitude_analytics_service.dart' as _i6;
 import '../features/analytics/services/fast_analytics_service.dart' as _i4;
-import '../features/analytics/services/posthog_analytics_service.dart' as _i6;
+import '../features/analytics/services/posthog_analytics_service.dart' as _i5;
 import '../features/authentication/services/authentication_service/appwrite_authentication_service.dart'
-    as _i9;
+    as _i11;
 import '../features/authentication/services/authentication_service/fast_authentication_service.dart'
     as _i7;
 import '../features/authentication/services/authentication_service/firebase_authentication_service.dart'
-    as _i10;
-import '../features/authentication/services/authentication_service/pocketbase_authentication_service.dart'
     as _i8;
+import '../features/authentication/services/authentication_service/pocketbase_authentication_service.dart'
+    as _i10;
 import '../features/authentication/services/authentication_service/supabase_authentication_service.dart'
-    as _i11;
+    as _i9;
 import '../features/authentication/services/user_service/appwrite_user_service.dart'
     as _i30;
 import '../features/authentication/services/user_service/fast_user_service.dart'
@@ -59,9 +59,9 @@ import '../features/shared/services/navigation_service.dart' as _i34;
 import '../features/subscriptions/services/subscription_service.dart' as _i36;
 import '../modules/chat/services/appwrite_chat_service.dart' as _i13;
 import '../modules/chat/services/fast_chat_service.dart' as _i12;
-import '../modules/chat/services/firebase_chat_service.dart' as _i14;
-import '../modules/chat/services/pocketbase_chat_service.dart' as _i15;
-import '../modules/chat/services/supabase_chat_service.dart' as _i16;
+import '../modules/chat/services/firebase_chat_service.dart' as _i16;
+import '../modules/chat/services/pocketbase_chat_service.dart' as _i14;
+import '../modules/chat/services/supabase_chat_service.dart' as _i15;
 
 const String _amplitude = 'amplitude';
 const String _posthog = 'posthog';
@@ -84,44 +84,44 @@ Future<_i1.GetIt> $initGetIt(
   final registerModule = _$RegisterModule();
   gh.factory<_i3.DialogService>(() => _i3.DialogService());
   gh.singleton<_i4.FastAnalyticsService>(
-    _i5.AmplitudeAnalyticsService(),
-    registerFor: {_amplitude},
-  );
-  gh.singleton<_i4.FastAnalyticsService>(
-    _i6.PosthogAnalyticsService(),
+    _i5.PosthogAnalyticsService(),
     registerFor: {_posthog},
   );
-  gh.singleton<_i7.FastAuthenticationService>(
-    _i8.PocketBaseAuthenticationService(),
-    registerFor: {_pocketbase},
+  gh.singleton<_i4.FastAnalyticsService>(
+    _i6.AmplitudeAnalyticsService(),
+    registerFor: {_amplitude},
   );
   gh.singleton<_i7.FastAuthenticationService>(
-    _i9.AppwriteAuthenticationService(),
-    registerFor: {_appwrite},
-  );
-  gh.singleton<_i7.FastAuthenticationService>(
-    _i10.FirebaseAuthenticationService(),
+    _i8.FirebaseAuthenticationService(),
     registerFor: {_firebase},
   );
   gh.singleton<_i7.FastAuthenticationService>(
-    _i11.SupabaseAuthenticationService(),
+    _i9.SupabaseAuthenticationService(),
     registerFor: {_supabase},
+  );
+  gh.singleton<_i7.FastAuthenticationService>(
+    _i10.PocketBaseAuthenticationService(),
+    registerFor: {_pocketbase},
+  );
+  gh.singleton<_i7.FastAuthenticationService>(
+    _i11.AppwriteAuthenticationService(),
+    registerFor: {_appwrite},
   );
   gh.lazySingleton<_i12.FastChatService>(
     () => _i13.AppwriteChatService(),
     registerFor: {_appwrite},
   );
   gh.lazySingleton<_i12.FastChatService>(
-    () => _i14.FirebaseChatService(),
-    registerFor: {_firebase},
-  );
-  gh.lazySingleton<_i12.FastChatService>(
-    () => _i15.PocketbaseChatService(),
+    () => _i14.PocketbaseChatService(),
     registerFor: {_pocketbase},
   );
   gh.lazySingleton<_i12.FastChatService>(
-    () => _i16.SupabaseChatService(),
+    () => _i15.SupabaseChatService(),
     registerFor: {_supabase},
+  );
+  gh.lazySingleton<_i12.FastChatService>(
+    () => _i16.FirebaseChatService(),
+    registerFor: {_firebase},
   );
   gh.factory<_i17.FastConnectorService>(
     () => _i18.PocketBaseConnectorService(),
