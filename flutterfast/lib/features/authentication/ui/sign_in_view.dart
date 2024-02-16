@@ -31,6 +31,18 @@ class _SignInViewState extends State<SignInView> {
     );
   }
 
+  Future<void> runWithLoading(Future<void> Function() future) async {
+    setState(() => loading = true);
+
+    try {
+      await future();
+    } catch (e) {
+      rethrow;
+    } finally {
+      setState(() => loading = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,22 +127,17 @@ class _SignInViewState extends State<SignInView> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
                   onPressed: () async {
-                    setState(() {
-                      loading = true;
+                    await runWithLoading(() async {
+                      try {
+                        await authenticationService.signInWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        navigateToHome();
+                      } catch (e) {
+                        if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
                     });
-                    try {
-                      await authenticationService.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      );
-                      navigateToHome();
-                    } catch (e) {
-                      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
-                    } finally {
-                      setState(() {
-                        loading = false;
-                      });
-                    }
                   },
                   child: loading
                       ? const SizedBox(
@@ -183,23 +190,19 @@ class _SignInViewState extends State<SignInView> {
                       image: 'assets/images/google.png',
                       provider: 'Google',
                       onPressed: () async {
-                        setState(() {
-                          loading = true;
+                        await runWithLoading(() async {
+                          try {
+                            await authenticationService.signInWithGoogle();
+                            await userService.createUser();
+                            navigateToHome();
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(e.toString()),
+                              ),
+                            );
+                          }
                         });
-                        try {
-                          await authenticationService.signInWithGoogle();
-                          navigateToHome();
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(e.toString()),
-                            ),
-                          );
-                        } finally {
-                          setState(() {
-                            loading = false;
-                          });
-                        }
                       },
                     ),
                     gap8,
@@ -207,23 +210,19 @@ class _SignInViewState extends State<SignInView> {
                       image: 'assets/images/apple.png',
                       provider: 'Apple',
                       onPressed: () async {
-                        setState(() {
-                          loading = true;
+                        await runWithLoading(() async {
+                          try {
+                            await authenticationService.signInWithApple();
+                            await userService.createUser();
+                            navigateToHome();
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(e.toString()),
+                              ),
+                            );
+                          }
                         });
-                        try {
-                          await authenticationService.signInWithApple();
-                          navigateToHome();
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(e.toString()),
-                            ),
-                          );
-                        } finally {
-                          setState(() {
-                            loading = false;
-                          });
-                        }
                       },
                     ),
                   ],

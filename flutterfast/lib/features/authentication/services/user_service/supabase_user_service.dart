@@ -22,7 +22,7 @@ class SupabaseUserService extends FastUserService {
         createdAt: DateTime.now(),
       );
 
-      await _supabase.from('users').insert(newUser.toJson());
+      await _supabase.from('users').upsert(newUser.toJson());
     } catch (e) {
       debugPrint('Error creating user: $e');
       rethrow;

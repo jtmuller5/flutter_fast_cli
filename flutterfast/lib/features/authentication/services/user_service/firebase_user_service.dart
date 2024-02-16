@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/services.dart';
@@ -13,12 +14,18 @@ class FirebaseUserService extends FastUserService {
 
   @override
   Future<void> createUser() async {
-    DocumentReference docRef =
-        firestore.collection('users').doc(authenticationService.id);
-    await docRef.set(FastUser(
-      id: docRef.id,
-      createdAt: DateTime.now(),
-    ).toJson());
+    try {
+      DocumentReference docRef = firestore.collection('users').doc(authenticationService.id);
+      await docRef.set(
+          FastUser(
+            id: docRef.id,
+            createdAt: DateTime.now(),
+          ).toJson(),
+          SetOptions(merge: true));
+    } catch (e) {
+      debugPrint('Error creating user: $e');
+      rethrow;
+    }
   }
 
   @override
@@ -31,7 +38,7 @@ class FirebaseUserService extends FastUserService {
   Future<void> updateUser(FastUser user) async {
     await firestore.collection('users').doc(user.id).update(user.toJson());
   }
-  
+
   @override
   Future<FastUser?> getUser() {
     return firestore.collection('users').doc(authenticationService.id).get().then((value) {
@@ -44,9 +51,9 @@ class FirebaseUserService extends FastUserService {
       }
     });
   }
-  
+
   @override
-  Future<void> updateLastLogin() async{
+  Future<void> updateLastLogin() async {
     await firestore.collection('users').doc(authenticationService.id).update({
       'last_login': DateTime.now(),
     });

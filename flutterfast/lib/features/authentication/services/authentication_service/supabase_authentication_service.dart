@@ -70,8 +70,8 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
         debugPrint('test');
         final credential = await SignInWithApple.getAppleIDCredential(
           scopes: [
-            // AppleIDAuthorizationScopes.email,
-            // AppleIDAuthorizationScopes.fullName,
+             AppleIDAuthorizationScopes.email,
+             AppleIDAuthorizationScopes.fullName,
           ],
           nonce: hashedNonce,
         );
