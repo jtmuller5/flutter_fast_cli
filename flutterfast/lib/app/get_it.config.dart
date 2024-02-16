@@ -16,15 +16,15 @@ import '../features/analytics/services/amplitude_analytics_service.dart' as _i5;
 import '../features/analytics/services/fast_analytics_service.dart' as _i4;
 import '../features/analytics/services/posthog_analytics_service.dart' as _i6;
 import '../features/authentication/services/authentication_service/appwrite_authentication_service.dart'
-    as _i10;
+    as _i9;
 import '../features/authentication/services/authentication_service/fast_authentication_service.dart'
     as _i7;
 import '../features/authentication/services/authentication_service/firebase_authentication_service.dart'
-    as _i11;
+    as _i10;
 import '../features/authentication/services/authentication_service/pocketbase_authentication_service.dart'
-    as _i9;
-import '../features/authentication/services/authentication_service/supabase_authentication_service.dart'
     as _i8;
+import '../features/authentication/services/authentication_service/supabase_authentication_service.dart'
+    as _i11;
 import '../features/authentication/services/user_service/appwrite_user_service.dart'
     as _i30;
 import '../features/authentication/services/user_service/fast_user_service.dart'
@@ -44,15 +44,15 @@ import '../features/feedback/services/pocketbase_feedback_service.dart' as _i26;
 import '../features/feedback/services/supabase_feedback_service.dart' as _i28;
 import '../features/settings/services/settings_service.dart' as _i37;
 import '../features/shared/services/connector_service/appwrite_connector_service.dart'
-    as _i18;
+    as _i19;
 import '../features/shared/services/connector_service/fast_connector_service.dart'
     as _i17;
 import '../features/shared/services/connector_service/firebase_connector_service.dart'
-    as _i19;
-import '../features/shared/services/connector_service/pocketbase_connector_service.dart'
-    as _i21;
-import '../features/shared/services/connector_service/supabase_connector_service.dart'
     as _i20;
+import '../features/shared/services/connector_service/pocketbase_connector_service.dart'
+    as _i18;
+import '../features/shared/services/connector_service/supabase_connector_service.dart'
+    as _i21;
 import '../features/shared/services/dialog_service.dart' as _i3;
 import '../features/shared/services/modules.dart' as _i38;
 import '../features/shared/services/navigation_service.dart' as _i34;
@@ -92,20 +92,20 @@ Future<_i1.GetIt> $initGetIt(
     registerFor: {_posthog},
   );
   gh.singleton<_i7.FastAuthenticationService>(
-    _i8.SupabaseAuthenticationService(),
-    registerFor: {_supabase},
-  );
-  gh.singleton<_i7.FastAuthenticationService>(
-    _i9.PocketBaseAuthenticationService(),
+    _i8.PocketBaseAuthenticationService(),
     registerFor: {_pocketbase},
   );
   gh.singleton<_i7.FastAuthenticationService>(
-    _i10.AppwriteAuthenticationService(),
+    _i9.AppwriteAuthenticationService(),
     registerFor: {_appwrite},
   );
   gh.singleton<_i7.FastAuthenticationService>(
-    _i11.FirebaseAuthenticationService(),
+    _i10.FirebaseAuthenticationService(),
     registerFor: {_firebase},
+  );
+  gh.singleton<_i7.FastAuthenticationService>(
+    _i11.SupabaseAuthenticationService(),
+    registerFor: {_supabase},
   );
   gh.lazySingleton<_i12.FastChatService>(
     () => _i13.AppwriteChatService(),
@@ -124,20 +124,20 @@ Future<_i1.GetIt> $initGetIt(
     registerFor: {_supabase},
   );
   gh.factory<_i17.FastConnectorService>(
-    () => _i18.AppwriteConnectorService(),
+    () => _i18.PocketBaseConnectorService(),
+    registerFor: {_pocketbase},
+  );
+  gh.factory<_i17.FastConnectorService>(
+    () => _i19.AppwriteConnectorService(),
     registerFor: {_appwrite},
   );
   gh.factory<_i17.FastConnectorService>(
-    () => _i19.FirebaseConnectorService(),
+    () => _i20.FirebaseConnectorService(),
     registerFor: {_firebase},
   );
   gh.factory<_i17.FastConnectorService>(
-    () => _i20.SupabaseConnectorService(),
+    () => _i21.SupabaseConnectorService(),
     registerFor: {_supabase},
-  );
-  gh.factory<_i17.FastConnectorService>(
-    () => _i21.PocketBaseConnectorService(),
-    registerFor: {_pocketbase},
   );
   gh.singleton<_i22.FastCrashService>(_i23.CrashService());
   gh.lazySingleton<_i24.FastFeedbackService>(

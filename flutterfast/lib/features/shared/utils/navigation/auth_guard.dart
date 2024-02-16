@@ -11,7 +11,7 @@ class AuthGuard extends AutoRouteGuard {
       resolver.next(true);
     } else {
       // Otherwise, redirect to the first screen
-      router.push(const SignInRoute());
+      router.push(SignInRoute());
     }
   }
 }

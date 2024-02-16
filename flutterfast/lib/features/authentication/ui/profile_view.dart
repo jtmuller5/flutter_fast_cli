@@ -46,7 +46,7 @@ class _ProfileViewState extends State<ProfileView> {
                 subscriptionService.setPremium(false);
 
                 if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signed out')));
-                router.pushAndPopUntil(const SignInRoute(), predicate: (route) => false);
+                router.pushAndPopUntil(SignInRoute(), predicate: (route) => false);
               },
               icon: const Icon(Icons.logout))
         ],

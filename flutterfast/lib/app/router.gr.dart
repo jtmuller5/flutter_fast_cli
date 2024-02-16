@@ -89,9 +89,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>(
+          orElse: () => const SignInRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SignInView(),
+        child: SignInView(
+          key: args.key,
+          email: args.email,
+          password: args.password,
+        ),
       );
     },
     SubscriptionRoute.name: (routeData) {
@@ -313,16 +319,44 @@ class SettingsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SignInView]
-class SignInRoute extends PageRouteInfo<void> {
-  const SignInRoute({List<PageRouteInfo>? children})
-      : super(
+class SignInRoute extends PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({
+    Key? key,
+    String? email,
+    String? password,
+    List<PageRouteInfo>? children,
+  }) : super(
           SignInRoute.name,
+          args: SignInRouteArgs(
+            key: key,
+            email: email,
+            password: password,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SignInRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SignInRouteArgs> page = PageInfo<SignInRouteArgs>(name);
+}
+
+class SignInRouteArgs {
+  const SignInRouteArgs({
+    this.key,
+    this.email,
+    this.password,
+  });
+
+  final Key? key;
+
+  final String? email;
+
+  final String? password;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{key: $key, email: $email, password: $password}';
+  }
 }
 
 /// generated route for

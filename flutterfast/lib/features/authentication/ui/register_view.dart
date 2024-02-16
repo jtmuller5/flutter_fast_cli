@@ -12,7 +12,11 @@ import 'package:flutterfast/features/shared/ui/app_logo.dart';
 
 @RoutePage()
 class RegisterView extends StatefulWidget {
-  const RegisterView({Key? key, this.email, this.password}) : super(key: key);
+  const RegisterView({
+    Key? key,
+    this.email,
+    this.password,
+  }) : super(key: key);
 
   final String? email;
   final String? password;
@@ -130,7 +134,10 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 TextButton(
                   onPressed: () async {
-                    router.replace(const SignInRoute());
+                    router.replace(SignInRoute(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    ));
                   },
                   child: const Text('Already have an account? Sign In'),
                 ),

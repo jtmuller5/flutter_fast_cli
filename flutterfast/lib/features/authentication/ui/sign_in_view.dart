@@ -11,18 +11,32 @@ import 'package:flutterfast/features/shared/ui/app_logo.dart';
 
 @RoutePage()
 class SignInView extends StatefulWidget {
-  const SignInView({Key? key}) : super(key: key);
+  const SignInView({
+    Key? key,
+    this.email,
+    this.password,
+  }) : super(key: key);
+
+  final String? email;
+  final String? password;
 
   @override
   State<SignInView> createState() => _SignInViewState();
 }
 
 class _SignInViewState extends State<SignInView> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
 
   bool loading = false;
   bool obscureText = true;
+
+  @override
+  void initState() {
+    emailController = TextEditingController(text: widget.email);
+    passwordController = TextEditingController(text: widget.password);
+    super.initState();
+  }
 
   Future<void> runWithLoading(Future<void> Function() future) async {
     setState(() => loading = true);

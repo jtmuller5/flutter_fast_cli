@@ -44,7 +44,7 @@ class SupabaseUserService extends FastUserService {
     } catch (e) {
       debugPrint('Error getting user: $e');
       await authenticationService.signOut();
-      router.replace(const SignInRoute());
+      router.replace(SignInRoute());
       return null;
     }
   }
