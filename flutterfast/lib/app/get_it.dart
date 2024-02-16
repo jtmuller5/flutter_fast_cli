@@ -23,7 +23,7 @@ Future<void> configureDependencies() async => await $initGetIt(
       environmentFilter: NoEnvOrContainsAny(
         {
           const String.fromEnvironment('PAAS', defaultValue: 'firebase'),
-          const String.fromEnvironment('analytics', defaultValue: 'posthog'),
+          const String.fromEnvironment('analytics', defaultValue: 'amplitude'),
         },
       ),
     );

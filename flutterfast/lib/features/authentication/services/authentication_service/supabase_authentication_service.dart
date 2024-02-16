@@ -43,6 +43,8 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
             }),
           );
         }
+      } else if (state.event == AuthChangeEvent.initialSession) {
+        if (state.session != null) onSignedIn(state.session!.user.id);
       } else if (state.event == AuthChangeEvent.signedOut) {
         onSignedOut();
       }
@@ -103,6 +105,9 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
           authScreenLaunchMode: LaunchMode.platformDefault,
         );
       }
+    } on SignInWithAppleAuthorizationException catch (e) {
+      debugPrint('Error signing in with Apple: $e');
+      throw e.message;
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
@@ -126,7 +131,10 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
         serverClientId: webClientId,
       );
       final googleUser = await googleSignIn.signIn();
-      final googleAuth = await googleUser!.authentication;
+
+      if (googleUser == null) return;
+
+      final googleAuth = await googleUser.authentication;
       final accessToken = googleAuth.accessToken;
       final idToken = googleAuth.idToken;
 

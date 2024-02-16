@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
 import 'package:flutterfast/firebase_options.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 @firebase
 @Singleton(as: FastAuthenticationService)
@@ -72,6 +73,9 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
       } else {
         await FirebaseAuth.instance.signInWithProvider(appleProvider);
       }
+    } on SignInWithAppleAuthorizationException catch (e) {
+      debugPrint('Error signing in with Apple: $e');
+      throw e.message;
     } catch (e) {
       debugPrint('Error signing in with Apple: $e');
       rethrow;
@@ -98,7 +102,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     } catch (e) {
       debugPrint('Error signing in with Google: $e');
       rethrow;
-    } 
+    }
   }
 
   @override
