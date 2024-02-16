@@ -1,3 +1,12 @@
+## 1.5.2
+- 🟩 Add "upgrade" alias to `update` command
+- *Date:* 2-16-2024
+
+## 1.5.1
+- 🟩 CLI analytics
+- 🟩 Reset password setup
+- *Date:* 2-16-2024
+
 ## 1.5.0
 - 🟩 Google Sign In for Firebase (Android + iOS)
 - 🟩 Google Sign In for Supabase (Android + iOS)

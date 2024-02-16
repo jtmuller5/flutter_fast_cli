@@ -11,6 +11,9 @@ class Update extends Command {
   String get name => 'update';
 
   @override
+  List<String> get aliases => ['upgrade', 'up'];
+
+  @override
   Future<void> run() async {
     stdout.write('Updating flutter_fast_cli...\n');
     logAmplitudeEvent('command', {'command': 'update'});

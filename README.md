@@ -59,6 +59,7 @@ fast wizard
 | `feature` | Create a new feature with ui, services, and models subdirectories |
 | `view`    | Create a new View for a feature                                   |
 | `update`  | Update flutter_fast_cli                                           |
+| `clean `  | Run flutter clean (use -i to clean ios folder)                    |
 
 To get started, visit the [official docs](https://codeotr.github.io/flutter-fast-guide/)!
 
