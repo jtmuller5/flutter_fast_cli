@@ -6,6 +6,8 @@ import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
+import 'package:flutterfast/app/theme.dart';
+import 'package:flutterfast/features/authentication/ui/widgets/social_login_button.dart';
 import 'package:flutterfast/features/shared/ui/app_logo.dart';
 
 @RoutePage()
@@ -25,6 +27,18 @@ class _RegisterViewState extends State<RegisterView> {
 
   bool loading = false;
 
+  Future<void> runWithLoading(Future<void> Function() future) async {
+    setState(() => loading = true);
+
+    try {
+      await future();
+    } catch (e) {
+      rethrow;
+    } finally {
+      setState(() => loading = false);
+    }
+  }
+
   @override
   void initState() {
     emailController = TextEditingController(text: widget.email);
@@ -43,20 +57,30 @@ class _RegisterViewState extends State<RegisterView> {
               shrinkWrap: true,
               padding: const EdgeInsets.all(24),
               children: [
-                const AppLogo(sideLength: 200),
-                gap16,
-                Center(
-                    child: Text(
-                  Config.appName,
-                  style: context.headlineSmall.bold,
-                )),
-                gap8,
-                Center(
-                    child: Text(
-                  Config.appSubtitle,
-                  style: context.bodyMedium.italic,
-                )),
-                gap24,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const AppLogo(sideLength: 100),
+                    gap16,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            Config.appName,
+                            style: context.headlineSmall.bold,
+                          ),
+                          gap8,
+                          Text(
+                            Config.appSubtitle,
+                            style: context.bodyMedium.italic,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                gap32,
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(
@@ -110,6 +134,64 @@ class _RegisterViewState extends State<RegisterView> {
                   },
                   child: const Text('Already have an account? Sign In'),
                 ),
+                gap24,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(color: context.primary),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text('or', style: context.bodyMedium),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: context.primary,
+                      ),
+                    )
+                  ],
+                ),
+                gap32,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SocialLoginButton.wide(
+                      image: 'assets/images/google.png',
+                      provider: 'Google',
+                      onPressed: () async {
+                        await runWithLoading(() async {
+                          try {
+                            await authenticationService.signInWithGoogle();
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(e.toString()),
+                              ),
+                            );
+                          }
+                        });
+                      },
+                    ),
+                    gap8,
+                    SocialLoginButton.wide(
+                      image: 'assets/images/apple.png',
+                      provider: 'Apple',
+                      onPressed: () async {
+                        await runWithLoading(() async {
+                          try {
+                            await authenticationService.signInWithApple();
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(e.toString()),
+                              ),
+                            );
+                          }
+                        });
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
           ),

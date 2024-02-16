@@ -98,7 +98,7 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
     } catch (e) {
       debugPrint('Error signing in with Google: $e');
       rethrow;
-    }
+    } 
   }
 
   @override

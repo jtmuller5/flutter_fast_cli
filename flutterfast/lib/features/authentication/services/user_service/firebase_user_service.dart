@@ -21,7 +21,9 @@ class FirebaseUserService extends FastUserService {
             id: docRef.id,
             createdAt: DateTime.now(),
           ).toJson(),
-          SetOptions(merge: true));
+          SetOptions(
+            mergeFields: ['id'],
+          ));
     } catch (e) {
       debugPrint('Error creating user: $e');
       rethrow;

@@ -70,8 +70,7 @@ class _SignInViewState extends State<SignInView> {
                     ),
                   ],
                 ),
-                gap16,
-                gap24,
+                gap32,
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(
