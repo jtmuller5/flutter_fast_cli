@@ -53,6 +53,7 @@ class MainApp extends StatelessWidget {
         valueListenable: settingsService.themeMode,
         builder: (context, mode, child) {
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: mode,

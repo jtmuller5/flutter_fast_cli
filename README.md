@@ -85,10 +85,10 @@ To get started, visit the [official docs](https://codeotr.github.io/flutter-fast
 | Shorebird | ✅ | ✅ | ✅ |
 
 ## Monetization
-|  Method | RevenueCat | App Store | Google Play |
-| --- | --- | --- | --- |
-| Subscriptions | ✅ |  |  |
-| In-App Purchases |  |  |  |
+|  Method | RevenueCat | 
+| --- | --- | 
+| Subscriptions | ✅ |  
+| In-App Purchases |  |  
 
 # Flutter Fast
 
@@ -98,7 +98,7 @@ The Flutter Fast CLI is a tool for generating a starter Flutter application with
 
 - 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), [Appwrite](https://appwrite.io/), or [PocketBase](https://pocketbase.io/)
 - 💸 Subscriptions via [RevenueCat](https://www.revenuecat.com/)
-- 🌊 Analytics via [Amplitude](https://amplitude.com/)
+- 🌊 Analytics via [Amplitude](https://amplitude.com/) or [Posthog](https://posthog.com/)
 - 🤖 Crash Reporting via [Sentry](https://sentry.io/welcome/)
 - 🏎️ CI/CD via [Fastlane](https://fastlane.tools/)
 - 🚀 Lots more!
@@ -152,6 +152,7 @@ You can view the [roadmap](https://codeotr.github.io/flutter-fast-guide/roadmap/
 Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 
 - Sets up Sign In, Register, Forgot Password, and Profile screens
+- SSO with Google and Apple
 - Adds a generic Feedback feature that works out-of-the-box with Firestore, Supabase, or Appwrite
 - Adds a settings screen with dark mode toggle
 - Adds a simple onboarding view new users see on account creation
