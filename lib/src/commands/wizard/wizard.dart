@@ -6,7 +6,6 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unu
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_logo_color_scheme.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_run_configurations.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
@@ -15,7 +14,6 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/re
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_shorebird_lanes.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
