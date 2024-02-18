@@ -11,7 +11,7 @@ class PocketBaseUserService extends FastUserService {
   PocketBase pb = PocketBase(const String.fromEnvironment('POCKETBASE_URL'));
 
   @override
-  Future<void> createUser() {
+  Future<void> createUser() async {
     return Future.value();
   }
 

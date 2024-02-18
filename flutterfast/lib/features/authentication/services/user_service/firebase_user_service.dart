@@ -17,17 +17,19 @@ class FirebaseUserService extends FastUserService {
     try {
       DocumentReference docRef = firestore.collection('users').doc(authenticationService.id);
 
+      FastUser newUser = FastUser(
+        id: docRef.id,
+        email: authenticationService.email,
+        createdAt: DateTime.now(),
+      );
+
       await firestore.runTransaction((transaction) async {
         final docSnapshot = await transaction.get(docRef);
 
         if (!docSnapshot.exists) {
           transaction.set(
             docRef,
-            FastUser(
-              id: docRef.id,
-              email: authenticationService.email,
-              createdAt: DateTime.now(),
-            ).toJson(),
+            newUser.toJson(),
           );
         }
       });

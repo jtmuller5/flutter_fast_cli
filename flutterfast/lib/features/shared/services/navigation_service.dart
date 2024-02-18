@@ -4,9 +4,22 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class NavigationService {
-void navigateToHome() {
+  void navigateToHome() {
+    bool onboarded = sharedPrefs.getBool('onboarded') ?? false;
+
+    if (onboarded) {
+      router.pushAndPopUntil(
+        const HomeRoute(),
+        predicate: (route) => false,
+      );
+    } else {
+      navigateToOnboarding();
+    }
+  }
+
+  void navigateToOnboarding() {
     router.pushAndPopUntil(
-      const HomeRoute(),
+      const OnboardingRoute(),
       predicate: (route) => false,
     );
   }

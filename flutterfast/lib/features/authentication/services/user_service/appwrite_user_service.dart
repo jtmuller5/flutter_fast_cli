@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/services.dart';
@@ -22,8 +23,8 @@ class AppwriteUserservice extends FastUserService {
 
       if (id != null) {
         await databases.createDocument(
-          databaseId: databaseId, //'64fe2b0972c109355c30',
-          collectionId: collectionId, //'64fe2b0e44822debdf6c',
+          databaseId: databaseId,
+          collectionId: collectionId,
           documentId: id,
           data: FastUser(
             id: id,
@@ -33,7 +34,11 @@ class AppwriteUserservice extends FastUserService {
       }
     } on AppwriteException catch (e) {
       debugPrint(e.message);
+    } catch (e) {
+      debugPrint('Error creating user: $e');
     }
+
+    return null;
   }
 
   @override

@@ -22,11 +22,6 @@ abstract class FastAuthenticationService {
 
   Future<void> registerWithEmailAndPassword({required String email, required String password});
 
-  Future<void> createAccountNavigation() async {
-    await userService.createUser();
-    router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
-  }
-
   Future<void> signInNavigation() async {
     router.pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
   }

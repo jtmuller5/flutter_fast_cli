@@ -17,7 +17,7 @@ class SupabaseUserService extends FastUserService {
     try {
       final user = _supabase.auth.currentUser;
 
-      if (user == null) return;
+      if (user == null) return null;
 
       FastUser newUser = FastUser(
         id: user.id,
@@ -30,6 +30,7 @@ class SupabaseUserService extends FastUserService {
       debugPrint('Error creating user: $e');
       rethrow;
     }
+    return null;
   }
 
   @override

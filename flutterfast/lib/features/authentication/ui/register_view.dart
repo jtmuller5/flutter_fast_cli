@@ -110,7 +110,10 @@ class _RegisterViewState extends State<RegisterView> {
                       loading = true;
                     });
                     try {
-                      await authenticationService.registerWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+                      await authenticationService.registerWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
                       await userService.createUser();
                       router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
                     } catch (e) {

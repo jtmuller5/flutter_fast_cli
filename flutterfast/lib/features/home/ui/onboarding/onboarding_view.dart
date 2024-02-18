@@ -27,17 +27,14 @@ class _OnboardingViewState extends State<OnboardingView> {
         PageThree(),
       ]),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           if (pageController.page == 2) {
-            router.replace(const HomeRoute());
+            await sharedPrefs.setBool('onboarded', true);
+            navigationService.navigateToHome();
           } else if (pageController.page == 1) {
-            pageController.animateToPage(2,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut);
+            pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
           } else if (pageController.page == 0) {
-            pageController.animateToPage(1,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut);
+            pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
           }
         },
         child: const Icon(Icons.arrow_forward),
