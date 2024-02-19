@@ -14,7 +14,7 @@ class AppwriteUserservice extends FastUserService {
 
   Databases get databases => Databases(client);
   String get databaseId => String.fromEnvironment('APPWRITE_DATABASE_ID');
-  String get collectionId => String.fromEnvironment('APPWRITE_COLLECTION_ID');
+  String get collectionId => 'users';
 
   @override
   Future<void> createUser() async {

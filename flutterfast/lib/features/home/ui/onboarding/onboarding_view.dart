@@ -29,7 +29,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           if (pageController.page == 2) {
-            await sharedPrefs.setBool('onboarded', true);
+            await sharedPrefs.setBool('onboarded_${authenticationService.id}', true);
             navigationService.navigateToHome();
           } else if (pageController.page == 1) {
             pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);

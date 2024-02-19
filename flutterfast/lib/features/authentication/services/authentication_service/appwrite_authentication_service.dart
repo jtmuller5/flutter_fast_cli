@@ -2,6 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/get_it.dart';
+import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/features/authentication/services/authentication_service/fast_authentication_service.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,7 +39,12 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
+    try{
     await account.createEmailSession(email: email, password: password);
+    navigationService.navigateToHome();
+    } catch (e) {
+      debugPrint('Error siging in: ' + e.toString());
+    }
   }
 
   @override

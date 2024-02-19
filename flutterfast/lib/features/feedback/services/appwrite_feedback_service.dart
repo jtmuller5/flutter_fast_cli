@@ -21,8 +21,7 @@ class AppwriteFeedbackService extends FastFeedbackService {
   Future<List<Feedback>> getLatestFeedback() async {
     DocumentList feedback = await databases.listDocuments(
       databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
-      collectionId:
-          const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
+      collectionId: 'feedback',
     );
 
     if (feedback.documents.isEmpty) return [];
@@ -38,8 +37,7 @@ class AppwriteFeedbackService extends FastFeedbackService {
       String id = ID.unique();
       await databases.createDocument(
           databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
-          collectionId:
-              const String.fromEnvironment('APPWRITE_FEEDBACK_COLLECTION_ID'),
+          collectionId: 'feedback',
           documentId: id,
           data: Feedback(
             id: id,

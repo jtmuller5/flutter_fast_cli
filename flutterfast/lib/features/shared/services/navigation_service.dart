@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class NavigationService {
   void navigateToHome() {
-    bool onboarded = sharedPrefs.getBool('onboarded') ?? false;
+    bool onboarded = sharedPrefs.getBool('onboarded_${authenticationService.id}') ?? false;
 
     if (onboarded) {
       router.pushAndPopUntil(
