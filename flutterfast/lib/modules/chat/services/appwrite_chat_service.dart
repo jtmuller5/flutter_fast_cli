@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
@@ -14,22 +16,22 @@ class AppwriteChatService extends FastChatService {
       );
 
   Databases get databases => Databases(client);
-  String get databaseId => String.fromEnvironment('APPWRITE_DATABASE_ID');
+  String get databaseId => const String.fromEnvironment('APPWRITE_DATABASE_ID');
+  String get collectionId => 'messages';
 
   @override
   Future<void> getMessages() async {
-    debugPrint(databases.client.endPoint);
     try {
       DocumentList messages = await databases.listDocuments(
         databaseId: databaseId,
-        collectionId: 'messages',
+        collectionId: collectionId,
       );
 
       if (messages.documents.isEmpty) setMessages([]);
 
       setMessages(messages.documents.map((e) => FastMessage.fromJson(e.data)).toList());
     } on AppwriteException catch (e) {
-      debugPrint('Messages error: ' + e.message.toString());
+      log('Messages error: ' + e.message.toString());
       debugPrint(e.code.toString());
       debugPrint(e.type);
     } catch (e) {
@@ -45,7 +47,7 @@ class AppwriteChatService extends FastChatService {
       await databases.createDocument(
         documentId: id,
         databaseId: databaseId,
-        collectionId: 'messages',
+        collectionId: collectionId,
         data: message.toJson(),
       );
       messages.value = [...messages.value, message];

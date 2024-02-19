@@ -17,7 +17,7 @@ class AppwriteUserservice extends FastUserService {
       );
 
   Databases get databases => Databases(client);
-  String get databaseId => String.fromEnvironment('APPWRITE_DATABASE_ID');
+  String get databaseId => const String.fromEnvironment('APPWRITE_DATABASE_ID');
   String get collectionId => 'users';
 
   @override

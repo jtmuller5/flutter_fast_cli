@@ -55,7 +55,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   }
 
   @override
-  bool get loggedIn => user.value != null;
+  bool get loggedIn => session.value != null;
 
   @override
   Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
@@ -73,7 +73,6 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signOut() async {
     await account.deleteSessions();
-    navigationService.navigateToSignIn();
   }
 
   @override
@@ -127,11 +126,8 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   Future<void> signInWithGoogle() async {
     try {
       await account.createOAuth2Session(provider: 'google');
-      debugPrint('session created');
       Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
-
-      debugPrint('session set');
       await userService.createUser();
       navigationService.navigateToHome();
     } on AppwriteException catch (e) {
