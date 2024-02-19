@@ -12,16 +12,16 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) => $checkedCreate(
       ($checkedConvert) {
         final val = Feedback(
           message: $checkedConvert('message', (v) => v as String),
-          userId: $checkedConvert('user_id', (v) => v as String),
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$FeedbackTypeEnumMap, v)),
           createdAt:
               $checkedConvert('created_at', (v) => getDateTimeFromTimestamp(v)),
           id: $checkedConvert('id', (v) => v as String?),
+          userId: $checkedConvert('user_id', (v) => v as String?),
         );
         return val;
       },
-      fieldKeyMap: const {'userId': 'user_id', 'createdAt': 'created_at'},
+      fieldKeyMap: const {'createdAt': 'created_at', 'userId': 'user_id'},
     );
 
 Map<String, dynamic> _$FeedbackToJson(Feedback instance) {
@@ -35,7 +35,7 @@ Map<String, dynamic> _$FeedbackToJson(Feedback instance) {
 
   writeNotNull('id', instance.id);
   val['message'] = instance.message;
-  val['user_id'] = instance.userId;
+  writeNotNull('user_id', instance.userId);
   writeNotNull('created_at', getTimestampFromDateTime(instance.createdAt));
   val['type'] = _$FeedbackTypeEnumMap[instance.type]!;
   return val;

@@ -9,20 +9,27 @@ import 'package:injectable/injectable.dart';
 @appwrite
 @LazySingleton(as: FastChatService)
 class AppwriteChatService extends FastChatService {
-  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(
+        const String.fromEnvironment('APPWRITE_PROJECT_ID'),
+      );
 
   Databases get databases => Databases(client);
   String get databaseId => String.fromEnvironment('APPWRITE_DATABASE_ID');
 
   @override
   Future<void> getMessages() async {
+    debugPrint(databases.client.endPoint);
     try {
-      DocumentList feedback = await databases.listDocuments(databaseId: databaseId, collectionId: 'messages');
-      debugPrint('feedback: ' + feedback.toString());
+      DocumentList messages = await databases.listDocuments(
+        databaseId: databaseId,
+        collectionId: 'messages',
+      );
 
-      setMessages(feedback.documents.map((e) => FastMessage.fromJson(e.data)).toList());
+      if (messages.documents.isEmpty) setMessages([]);
+
+      setMessages(messages.documents.map((e) => FastMessage.fromJson(e.data)).toList());
     } on AppwriteException catch (e) {
-      debugPrint(e.message);
+      debugPrint('Messages error: ' + e.message.toString());
       debugPrint(e.code.toString());
       debugPrint(e.type);
     } catch (e) {
@@ -34,7 +41,7 @@ class AppwriteChatService extends FastChatService {
   Future<void> submitMessage(FastMessage message) async {
     try {
       String id = ID.unique();
-      
+
       await databases.createDocument(
         documentId: id,
         databaseId: databaseId,

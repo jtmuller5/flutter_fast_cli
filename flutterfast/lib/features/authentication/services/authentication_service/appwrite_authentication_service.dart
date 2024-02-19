@@ -90,7 +90,8 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
         email: email,
         password: password,
       );
-      Session _session = await account.createEmailSession(email: email, password: password);
+      await account.createEmailSession(email: email, password: password);
+      Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
       await userService.createUser();
       navigationService.navigateToHome();
@@ -107,6 +108,10 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   Future<void> signInWithApple() async {
     try {
       await account.createOAuth2Session(provider: 'apple');
+      Session _session = await account.getSession(sessionId: 'current');
+      setSession(_session);
+      await userService.createUser();
+      navigationService.navigateToHome();
     } on AppwriteException catch (e) {
       debugPrint('Error signing in with Apple: $e');
       throw e.message ?? 'Error signing in with Apple';
@@ -116,10 +121,19 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
     }
   }
 
+  //https://cloud.appwrite.io/auth/oauth2/success?project=64fe0ebe947be358e413&domain=.cloud.appwrite.io&key=a_session_64fe0ebe947be358e413&secret=eyJpZCI6IjY1ZDM5NTYwM2JjYWNmNzA3YzUyIiwic2VjcmV0IjoiMGU5YWVhYmIzMzdhMjFmNDY5ZTcyMGEzZDllODUxMWU2NjlkOTU0NGNkYTM1YzA1ODI4MWE0OTY0N2FhMzkzNWU4ZTdkZDhhNWUyNTdkMjk5ZWQ0NDBmYjM3YjY4ZmE0NGEzM2ZlZjZmZGRlMTBhOTIxY2YwYjdmMjI3Zjg1YWUzODZkOTAwNmNmMjIzNDQ3ZWY1ZmJjNGI0MTIzYTBjOGQ0MjM0MmNhODgwY2JkZWVhMjgzMTBiYjllN2NmY2NlYjM4OTQyYWRlOGYwNGZkY2RhMmJjZjM3YmM1NDk3ZWY3MTEzYmMwYTBmM2FlZDAyYTM2ODBiMzJlYTZhMDE2YiJ9#
+
   @override
   Future<void> signInWithGoogle() async {
     try {
       await account.createOAuth2Session(provider: 'google');
+      debugPrint('session created');
+      Session _session = await account.getSession(sessionId: 'current');
+      setSession(_session);
+
+      debugPrint('session set');
+      await userService.createUser();
+      navigationService.navigateToHome();
     } on AppwriteException catch (e) {
       debugPrint('Error signing in with Google: $e');
       throw e.message ?? 'Error signing in with Google';

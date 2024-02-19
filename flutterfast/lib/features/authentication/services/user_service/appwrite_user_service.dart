@@ -12,7 +12,9 @@ import 'package:injectable/injectable.dart';
 @appwrite
 @LazySingleton(as: FastUserService)
 class AppwriteUserservice extends FastUserService {
-  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+  final client = Client().setEndpoint('https://cloud.appwrite.io/v1').setProject(
+        const String.fromEnvironment('APPWRITE_PROJECT_ID'),
+      );
 
   Databases get databases => Databases(client);
   String get databaseId => String.fromEnvironment('APPWRITE_DATABASE_ID');
@@ -24,21 +26,37 @@ class AppwriteUserservice extends FastUserService {
       String? id = authenticationService.id;
 
       if (id != null) {
-        await databases.createDocument(
-          databaseId: databaseId,
-          collectionId: collectionId,
-          documentId: id,
-          data: FastUser(
-            id: id,
-            createdAt: DateTime.now(),
-          ).toJson(),
-        );
+        try {
+          await databases.getDocument(
+            databaseId: databaseId,
+            collectionId: collectionId,
+            documentId: id,
+          );
+          // If the document exists, skip
+        } on AppwriteException catch (e) {
+          debugPrint('Error creating user appwrite: ${e.message}');
+          debugPrint('Code: ${e.code}');
+          // If the document does not exist, create it
+          if (e.code == 404) {
+            await databases.createDocument(
+              databaseId: databaseId,
+              collectionId: collectionId,
+              documentId: id,
+              data: FastUser(
+                createdAt: DateTime.now(),
+              ).toJson(),
+            );
+          } else {
+            debugPrint('Error creating user general: ${e.message}');
+
+            throw e;
+          }
+        }
       } else {
         log('User not logged in');
       }
     } on AppwriteException catch (e) {
       debugPrint('Error creating user: ${e.message}');
-
     } catch (e) {
       debugPrint('Error creating user: $e');
     }

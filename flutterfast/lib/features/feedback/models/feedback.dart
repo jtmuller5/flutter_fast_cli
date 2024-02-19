@@ -11,7 +11,7 @@ class Feedback {
   final String message;
 
   @JsonKey(name: 'user_id')
-  final String userId;
+   String? userId;
 
   @JsonKey(
       name: 'created_at',
@@ -23,11 +23,11 @@ class Feedback {
   final FeedbackType type;
 
   Feedback({
-    required this.message,
-    required this.userId,
+    required this.message, 
     required this.type,
     required this.createdAt,
     this.id,
+    this.userId,
   });
 
   factory Feedback.fromJson(Map<String, dynamic> json) =>

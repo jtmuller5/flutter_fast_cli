@@ -39,7 +39,7 @@ dependencies:
   #* Posthog *#
 
   #* RSS *#
-  http: 1.2.0
+  http: 1.0.0
   webfeed_revised: ^0.7.2
   #* RSS *#
 
@@ -48,9 +48,7 @@ dependencies:
   #* Subscriptions *#
 
   #* Appwrite *#
-  appwrite: 
-    git: 
-      url: https://github.com/jtmuller5/sdk-for-flutter
+  appwrite: ^11.0.1
   #* Appwrite *#
 
   #* Firebase *#
