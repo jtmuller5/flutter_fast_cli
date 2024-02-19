@@ -15,9 +15,9 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   ValueNotifier<Session?> session = ValueNotifier(null);
 
-  void setSession(Session val) {
+  void setSession(Session? val) {
     session.value = val;
-    debugPrint('session: ' + val.userId.toString());
+    debugPrint('session: ' + (val?.userId.toString() ?? 'null'));
   }
 
   ValueNotifier<User?> user = ValueNotifier(null);
@@ -73,6 +73,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signOut() async {
     await account.deleteSessions();
+    setSession(null);
   }
 
   @override
@@ -103,12 +104,15 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
     }
   }
 
+  /// Appwrite requires an email and Apple doesn't always return one
+  /// https://github.com/appwrite/appwrite/blob/main/app/controllers/api/account.php
   @override
   Future<void> signInWithApple() async {
     try {
-      await account.createOAuth2Session(provider: 'apple');
-      Session _session = await account.getSession(sessionId: 'current');
+      await account.createOAuth2Session(provider: 'apple', scopes: ['name', 'email']);
+       Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
+      debugPrint('session: ' + _session.userId.toString());
       await userService.createUser();
       navigationService.navigateToHome();
     } on AppwriteException catch (e) {

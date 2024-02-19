@@ -22,10 +22,9 @@ class AppwriteChatService extends FastChatService {
   @override
   Future<void> getMessages() async {
     try {
-      DocumentList messages = await databases.listDocuments(
-        databaseId: databaseId,
-        collectionId: collectionId,
-      );
+      DocumentList messages = await databases.listDocuments(databaseId: databaseId, collectionId: collectionId, queries: [
+        Query.orderDesc('created_at')
+      ]);
 
       if (messages.documents.isEmpty) setMessages([]);
 
@@ -41,6 +40,8 @@ class AppwriteChatService extends FastChatService {
 
   @override
   Future<void> submitMessage(FastMessage message) async {
+    assert(message.senderId != null, 'User must be logged in to create message');
+
     try {
       String id = ID.unique();
 
