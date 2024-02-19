@@ -114,8 +114,6 @@ class _RegisterViewState extends State<RegisterView> {
                         email: emailController.text,
                         password: passwordController.text,
                       );
-                      await userService.createUser();
-                      router.pushAndPopUntil(const OnboardingRoute(), predicate: (route) => false);
                     } catch (e) {
                       debugPrint(e.toString());
                       if (context.mounted) {

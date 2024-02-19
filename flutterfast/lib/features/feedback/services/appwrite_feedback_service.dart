@@ -19,6 +19,7 @@ class AppwriteFeedbackService extends FastFeedbackService {
 
   @override
   Future<List<Feedback>> getLatestFeedback() async {
+    try{
     DocumentList feedback = await databases.listDocuments(
       databaseId: const String.fromEnvironment('APPWRITE_DATABASE_ID'),
       collectionId: 'feedback',
@@ -27,6 +28,15 @@ class AppwriteFeedbackService extends FastFeedbackService {
     if (feedback.documents.isEmpty) return [];
 
     return feedback.documents.map((e) => Feedback.fromJson(e.data)).toList();
+    } on AppwriteException catch (e) {
+      debugPrint(e.message);
+      debugPrint(e.code.toString());
+      debugPrint(e.type);
+      return [];
+    } catch (e) {
+      debugPrint('Appwrite error: $e');
+      return [];
+    }
   }
 
   @override
@@ -40,7 +50,6 @@ class AppwriteFeedbackService extends FastFeedbackService {
           collectionId: 'feedback',
           documentId: id,
           data: Feedback(
-            id: id,
             userId: authenticationService.id!,
             createdAt: DateTime.now(),
             message: feedback,

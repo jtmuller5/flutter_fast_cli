@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,9 +33,12 @@ class AppwriteUserservice extends FastUserService {
             createdAt: DateTime.now(),
           ).toJson(),
         );
+      } else {
+        log('User not logged in');
       }
     } on AppwriteException catch (e) {
-      debugPrint(e.message);
+      debugPrint('Error creating user: ${e.message}');
+
     } catch (e) {
       debugPrint('Error creating user: $e');
     }

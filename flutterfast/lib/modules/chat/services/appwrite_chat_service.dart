@@ -1,4 +1,6 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
+import 'package:flutter/material.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/modules/chat/models/fast_message.dart';
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
@@ -14,12 +16,34 @@ class AppwriteChatService extends FastChatService {
 
   @override
   Future<void> getMessages() async {
-    databases.listDocuments(databaseId: databaseId, collectionId: 'messages');
+    try {
+      DocumentList feedback = await databases.listDocuments(databaseId: databaseId, collectionId: 'messages');
+      debugPrint('feedback: ' + feedback.toString());
+
+      setMessages(feedback.documents.map((e) => FastMessage.fromJson(e.data)).toList());
+    } on AppwriteException catch (e) {
+      debugPrint(e.message);
+      debugPrint(e.code.toString());
+      debugPrint(e.type);
+    } catch (e) {
+      debugPrint('Appwrite error: $e');
+    }
   }
 
   @override
   Future<void> submitMessage(FastMessage message) async {
-    // TODO: implement submitMessage
-    throw UnimplementedError();
+    try {
+      String id = ID.unique();
+      
+      await databases.createDocument(
+        documentId: id,
+        databaseId: databaseId,
+        collectionId: 'messages',
+        data: message.toJson(),
+      );
+      messages.value = [...messages.value, message];
+    } catch (e) {
+      debugPrint('Appwrite error: $e');
+    }
   }
 }

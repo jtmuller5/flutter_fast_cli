@@ -17,6 +17,14 @@ class NavigationService {
     }
   }
 
+  void navigateToSignIn(){
+    router.pushAndPopUntil(
+       SignInRoute(),
+      predicate: (route) => false,
+    );
+  
+  }
+
   void navigateToOnboarding() {
     router.pushAndPopUntil(
       const OnboardingRoute(),

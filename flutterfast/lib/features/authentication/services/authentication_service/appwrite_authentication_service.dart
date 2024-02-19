@@ -13,6 +13,13 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   Account get account => Account(client);
 
+  ValueNotifier<Session?> session = ValueNotifier(null);
+
+  void setSession(Session val) {
+    session.value = val;
+    debugPrint('session: ' + val.userId.toString());
+  }
+
   ValueNotifier<User?> user = ValueNotifier(null);
 
   void setUser(User val) {
@@ -23,15 +30,28 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   String? get email => throw UnimplementedError();
 
   @override
-  String? get id => user.value?.$id;
+  String? get id => session.value?.userId;
 
   @override
   Future<void> initialize() async {
-    client
-        .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
-        .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
+    try {
+      client
+          .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite Endpoint
+          .setProject(const String.fromEnvironment('APPWRITE_PROJECT_ID'));
 
-    account.get().then((value) => setUser(value));
+      // https://github.com/appwrite/appwrite/discussions/3938#discussioncomment-3746725
+      User value = await account.get();
+      Session _session = await account.getSession(sessionId: 'current');
+      setUser(value);
+      setSession(_session);
+    } on AppwriteException catch (e) {
+      debugPrint('Appwrite inititalization error: $e');
+      debugPrint(e.message);
+      debugPrint(e.code.toString());
+      debugPrint(e.type);
+    } catch (e) {
+      debugPrint('Appwrite inititalization error: $e');
+    }
   }
 
   @override
@@ -39,9 +59,12 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
-    try{
-    await account.createEmailSession(email: email, password: password);
-    navigationService.navigateToHome();
+    try {
+      await account.createEmailSession(email: email, password: password);
+      navigationService.navigateToHome();
+    } on AppwriteException catch (e) {
+      debugPrint('Error siging in: ' + e.toString());
+      throw e.message ?? 'Error signing in';
     } catch (e) {
       debugPrint('Error siging in: ' + e.toString());
     }
@@ -50,6 +73,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signOut() async {
     await account.deleteSessions();
+    navigationService.navigateToSignIn();
   }
 
   @override
@@ -59,27 +83,58 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> registerWithEmailAndPassword({required String email, required String password}) async {
-    await account.create(userId: email, email: email, password: password);
+    try {
+      String id = ID.unique();
+      await account.create(
+        userId: id,
+        email: email,
+        password: password,
+      );
+      Session _session = await account.createEmailSession(email: email, password: password);
+      setSession(_session);
+      await userService.createUser();
+      navigationService.navigateToHome();
+    } on AppwriteException catch (e) {
+      debugPrint('Error creating user: $e');
+      throw e.message ?? 'Error creating user';
+    } catch (e) {
+      debugPrint('Error creating user: $e');
+      rethrow;
+    }
   }
-  
+
   @override
-  Future<void> signInWithApple() {
-    // TODO: implement signInWithApple
-    throw UnimplementedError();
+  Future<void> signInWithApple() async {
+    try {
+      await account.createOAuth2Session(provider: 'apple');
+    } on AppwriteException catch (e) {
+      debugPrint('Error signing in with Apple: $e');
+      throw e.message ?? 'Error signing in with Apple';
+    } catch (e) {
+      debugPrint('Error signing in with Apple: $e');
+      rethrow;
+    }
   }
-  
+
   @override
-  Future<void> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<void> signInWithGoogle() async {
+    try {
+      await account.createOAuth2Session(provider: 'google');
+    } on AppwriteException catch (e) {
+      debugPrint('Error signing in with Google: $e');
+      throw e.message ?? 'Error signing in with Google';
+    } catch (e) {
+      debugPrint('Error signing in with Google: $e');
+      rethrow;
+    }
   }
-  
+
   @override
   Future<void> signInWithPhoneNumber({required String phoneNumber}) {
     // TODO: implement signInWithPhoneNumber
     throw UnimplementedError();
   }
-  
+
   @override
   Future<void> resetPassword({required String newPassword}) {
     // TODO: implement resetPassword

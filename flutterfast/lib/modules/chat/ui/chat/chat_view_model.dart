@@ -20,6 +20,8 @@ class ChatViewModel extends ViewModel<ChatViewModel> {
     setLoading(true);
     chatService.getMessages().then((value) {
       setLoading(false);
+    }).onError((error, stackTrace) {
+      setLoading(false);
     });
     super.initState();
   }
