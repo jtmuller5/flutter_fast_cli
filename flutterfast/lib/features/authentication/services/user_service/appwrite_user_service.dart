@@ -85,21 +85,26 @@ class AppwriteUserservice extends FastUserService {
 
   @override
   Future<FastUser?> getUser() {
-    return databases
-        .getDocument(
-      databaseId: databaseId,
-      collectionId: collectionId,
-      documentId: authenticationService.id!,
-    )
-        .then((value) {
-      if (value.data != null) {
-        FastUser loadedUser = FastUser.fromJson(value.data!);
-        setUser(loadedUser);
-        return loadedUser;
-      } else {
-        return null;
-      }
-    });
+    try {
+      return databases
+          .getDocument(
+        databaseId: databaseId,
+        collectionId: collectionId,
+        documentId: authenticationService.id!,
+      )
+          .then((value) {
+        if (value.data != null) {
+          FastUser loadedUser = FastUser.fromJson(value.data!);
+          setUser(loadedUser);
+          return loadedUser;
+        } else {
+          return null;
+        }
+      });
+    } on Exception catch (e) {
+      debugPrint('Error getting user: $e');
+      return Future.value(null);
+    }
   }
 
   @override

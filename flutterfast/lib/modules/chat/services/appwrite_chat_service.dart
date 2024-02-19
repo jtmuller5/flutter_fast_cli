@@ -22,9 +22,11 @@ class AppwriteChatService extends FastChatService {
   @override
   Future<void> getMessages() async {
     try {
-      DocumentList messages = await databases.listDocuments(databaseId: databaseId, collectionId: collectionId, queries: [
-        Query.orderDesc('created_at')
-      ]);
+      DocumentList messages = await databases.listDocuments(
+        databaseId: databaseId,
+        collectionId: collectionId,
+        queries: [Query.orderDesc('created_at')],
+      );
 
       if (messages.documents.isEmpty) setMessages([]);
 
@@ -42,6 +44,8 @@ class AppwriteChatService extends FastChatService {
   Future<void> submitMessage(FastMessage message) async {
     assert(message.senderId != null, 'User must be logged in to create message');
 
+    message.createdAt = DateTime.now();
+
     try {
       String id = ID.unique();
 
@@ -51,7 +55,7 @@ class AppwriteChatService extends FastChatService {
         collectionId: collectionId,
         data: message.toJson(),
       );
-      messages.value = [...messages.value, message];
+      messages.value = [message, ...messages.value];
     } catch (e) {
       debugPrint('Appwrite error: $e');
     }
