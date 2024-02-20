@@ -10,7 +10,8 @@
             "type": "dart",
             "args": [
                 "--dart-define=PAAS=firebase",
-                "--dart-define-from-file=assets/internal-config.json"
+                "--dart-define-from-file=assets/internal-config.json",
+                "--web-port=5000"
             ]
         },
         {
@@ -19,7 +20,8 @@
             "type": "dart",
             "args": [
                 "--dart-define=PAAS=supabase",
-                "--dart-define-from-file=assets/internal-config.json"
+                "--dart-define-from-file=assets/internal-config.json",
+                "--web-port=5000"
             ]
         },
         {
@@ -28,7 +30,8 @@
             "type": "dart",
             "args": [
                 "--dart-define=PAAS=appwrite",
-                "--dart-define-from-file=assets/internal-config.json"
+                "--dart-define-from-file=assets/internal-config.json",
+                "--web-port=5000"
             ]
         },
         {
@@ -37,7 +40,8 @@
             "type": "dart",
             "args": [
                 "--dart-define=PAAS=pocketbase",
-                "--dart-define-from-file=assets/internal-config.json"
+                "--dart-define-from-file=assets/internal-config.json",
+                "--web-port=5000"
             ]
         },
         {

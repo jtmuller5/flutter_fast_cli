@@ -31,8 +31,7 @@ class _RssViewState extends State<RssView> {
 
   Future<void> getFeed() async {
     bool isAtom = true;
-    String feedUrl =
-        'https://pub.dev/feed.atom'; //'https://stackoverflow.com/feeds/tag?tagnames=flutter';
+    String feedUrl = 'https://pub.dev/feed.atom'; //'https://stackoverflow.com/feeds/tag?tagnames=flutter';
 
     if (isAtom || feedUrl.contains('atom')) {
       try {
@@ -111,12 +110,9 @@ class _RssViewState extends State<RssView> {
               itemCount: rssFeed.value!.items!.length,
               itemBuilder: (context, index) {
                 RssItem item = rssFeed.value!.items![index];
-                return Animate(
-                    effects: const [
-                      ScaleEffect(begin: Offset(.8, .8)),
-                    ],
-                    delay: Duration(milliseconds: 100 * min(index, 5)),
-                    child: RssFeedItem(item: item));
+                return Animate(effects: const [
+                  ScaleEffect(begin: Offset(.8, .8)),
+                ], delay: Duration(milliseconds: 100 * min(index, 5)), child: RssFeedItem(item: item));
               },
             ),
           );

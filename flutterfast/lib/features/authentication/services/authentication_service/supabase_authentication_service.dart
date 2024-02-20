@@ -77,7 +77,6 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
       if (Platform.isIOS) {
         final rawNonce = _supabase.auth.generateRawNonce();
         final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
-        debugPrint('test');
         final credential = await SignInWithApple.getAppleIDCredential(
           scopes: [
             AppleIDAuthorizationScopes.email,
@@ -127,10 +126,11 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
       // Client ID registered on Google Cloud.
 
       final GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId: iosClientId,
-        serverClientId: webClientId,
+        clientId: kIsWeb ? null : iosClientId,
+        serverClientId: kIsWeb ? null : webClientId,
       );
-      final googleUser = await googleSignIn.signIn();
+
+      final googleUser = kIsWeb ? await googleSignIn.signInSilently() : await googleSignIn.signIn();
 
       if (googleUser == null) return;
 
@@ -138,7 +138,7 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
       final accessToken = googleAuth.accessToken;
       final idToken = googleAuth.idToken;
 
-      if (accessToken == null) {
+      if (!kIsWeb && accessToken == null) {
         throw 'No Access Token found.';
       }
       if (idToken == null) {

@@ -10,9 +10,12 @@ import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/theme.dart';
 import 'package:flutterfast/features/shared/utils/navigation/basic_observer.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:flutter_web_plugins/url_strategy.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   await configureDependencies();
   await authenticationService.initialize();
   await analyticsService.initialize();

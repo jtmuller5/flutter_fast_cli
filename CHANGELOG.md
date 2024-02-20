@@ -1,3 +1,9 @@
+## 1.5.3
+- 🟩 Added Google Sign In for Appwrite (Android + iOS)
+- 🟩 Apple Sign In for Appwrite (Android + iOS)
+- 🟪 Fixed feedback and chat database queries for Appwrite
+- *Date:* 2-19-2024
+
 ## 1.5.2
 - 🟩 Add "upgrade" alias to `update` command
 - *Date:* 2-16-2024
