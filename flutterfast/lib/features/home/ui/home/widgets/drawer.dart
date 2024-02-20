@@ -11,11 +11,15 @@ import 'package:flutterfast/features/shared/ui/app_logo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({Key? key}) : super(key: key);
+  const HomeDrawer({Key? key, this.wideScreen = false}) : super(key: key);
+
+  final bool wideScreen;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: wideScreen ? Colors.transparent: context.background,
+      elevation: 0,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,6 +64,13 @@ class HomeDrawer extends StatelessWidget {
                         router.popAndPush(const FeedbackRoute());
                       },
                     ),
+                  ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
+                    onTap: () {
+                      router.push(const SettingsRoute());
+                    },
+                  ),
                 ],
               ),
             ),
@@ -72,8 +83,7 @@ class HomeDrawer extends StatelessWidget {
               ],
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

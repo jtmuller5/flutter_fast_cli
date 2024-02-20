@@ -5,16 +5,25 @@ import 'package:google_fonts/google_fonts.dart';
 String? _fontFamily = GoogleFonts.quicksand().fontFamily;
 FlexScheme flexScheme = FlexScheme.flutterDash;
 
+// https://docs.flexcolorscheme.com/api_guide#flexsubthemesdata
+FlexSubThemesData theme = FlexSubThemesData(
+  appBarCenterTitle: false,
+  tabBarIndicatorSize: TabBarIndicatorSize.label,
+  inputDecoratorRadius: 8,
+);
+
 ThemeData lightTheme = FlexThemeData.light(
   fontFamily: _fontFamily,
   scheme: flexScheme,
   colorScheme: lightLogoColorScheme,
+  subThemesData: theme,
 );
 
 ThemeData darkTheme = FlexThemeData.dark(
   fontFamily: _fontFamily,
   scheme: flexScheme,
   colorScheme: darkLogoColorScheme,
+  subThemesData: theme,
 );
 
 ColorScheme? lightLogoColorScheme;

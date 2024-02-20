@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/features/shared/ui/layout.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/services.dart';
@@ -55,70 +56,74 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                   ),
                 ],
               ),
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FadeInImage(
-                      placeholder: MemoryImage(kTransparentImage),
-                      image: const AssetImage('assets/images/logo.png'),
-                      height: 300,
-                    ),
-                    gap16,
-                    Text(
-                      'You are a premium user!',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    gap16,
-                  ],
+              body: Layout(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FadeInImage(
+                        placeholder: MemoryImage(kTransparentImage),
+                        image: const AssetImage('assets/images/logo.png'),
+                        height: 300,
+                      ),
+                      gap16,
+                      Text(
+                        'You are a premium user!',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      gap16,
+                    ],
+                  ),
                 ),
               ),
             );
           }
           return Scaffold(
             appBar: AppBar(title: const Text('Get Premium')),
-            body: ValueListenableBuilder(
-                valueListenable: subscriptionService.offering,
-                builder: (context, offerings, child) {
-                  if (offerings == null) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  if (offerings.availablePackages.isEmpty) {
-                    return const Center(
-                        child: Text('No subscriptions available'));
-                  }
-
-                  return ListView.builder(
-                    itemCount: offerings.availablePackages.length,
-                    padding: const EdgeInsets.all(16.0),
-                    itemBuilder: (context, index) {
-                      final package = offerings.availablePackages[index];
-
-                      return PlanCard(
-                        name: package.packageType.name
-                                .substring(0, 1)
-                                .toUpperCase() +
-                            package.packageType.name.substring(1),
-                        // Monthly, Annual, etc.
-                        description: package.storeProduct.description,
-                        price: package.storeProduct.priceString,
-                        benefits: premiumFeatures,
-                        onTap: () async {
-                          await subscriptionService
-                              .purchaseSubscription(package);
-                        },
-                        featured: package.packageType == PackageType.monthly,
-                        buttonText:
-                            'Get ${package.identifier.substring(0, 1).toUpperCase()}${package.identifier.substring(1)}',
-                        buttonSubText:
-                            package.packageType == PackageType.lifetime
-                                ? 'One time purchase'
-                                : 'Monthly subscription',
-                      );
-                    },
-                  );
-                }),
+            body: Layout(
+              child: ValueListenableBuilder(
+                  valueListenable: subscriptionService.offering,
+                  builder: (context, offerings, child) {
+                    if (offerings == null) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+              
+                    if (offerings.availablePackages.isEmpty) {
+                      return const Center(
+                          child: Text('No subscriptions available'));
+                    }
+              
+                    return ListView.builder(
+                      itemCount: offerings.availablePackages.length,
+                      padding: const EdgeInsets.all(16.0),
+                      itemBuilder: (context, index) {
+                        final package = offerings.availablePackages[index];
+              
+                        return PlanCard(
+                          name: package.packageType.name
+                                  .substring(0, 1)
+                                  .toUpperCase() +
+                              package.packageType.name.substring(1),
+                          // Monthly, Annual, etc.
+                          description: package.storeProduct.description,
+                          price: package.storeProduct.priceString,
+                          benefits: premiumFeatures,
+                          onTap: () async {
+                            await subscriptionService
+                                .purchaseSubscription(package);
+                          },
+                          featured: package.packageType == PackageType.monthly,
+                          buttonText:
+                              'Get ${package.identifier.substring(0, 1).toUpperCase()}${package.identifier.substring(1)}',
+                          buttonSubText:
+                              package.packageType == PackageType.lifetime
+                                  ? 'One time purchase'
+                                  : 'Monthly subscription',
+                        );
+                      },
+                    );
+                  }),
+            ),
           );
         });
   }

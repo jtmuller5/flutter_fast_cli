@@ -41,3 +41,11 @@ const EdgeInsets py48 = EdgeInsets.symmetric(vertical: 48);
 extension SliverExtension on Widget {
   Widget sliver() => SliverToBoxAdapter(child: this);
 }
+
+class Breakpoints {
+  static const double xs = 480.0;
+  static const double sm = 768.0;
+  static const double md = 992.0;
+  static const double lg = 1200.0;
+  static const double xl = 1400.0;
+}

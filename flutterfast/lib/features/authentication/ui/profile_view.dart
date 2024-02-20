@@ -7,6 +7,7 @@ import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutterfast/app/theme.dart';
 import 'package:flutterfast/features/authentication/models/fast_user.dart';
+import 'package:flutterfast/features/shared/ui/layout.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 @RoutePage()
@@ -51,86 +52,88 @@ class _ProfileViewState extends State<ProfileView> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (kDebugMode) ...[
-                Text('User ID: ${authenticationService.id}'),
+      body: Layout(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (kDebugMode) ...[
+                  Text('User ID: ${authenticationService.id}'),
+                  gap8,
+                ],
+                Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: context.primary,
+                    ),
+                    gap8,
+                    Text(
+                      'Personal Information',
+                      style: context.bodyMedium.bold,
+                    ),
+                  ],
+                ),
+                gap16,
+                TextField(
+                  controller: firstNameController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'First Name',
+                    isDense: true,
+                  ),
+                  textInputAction: TextInputAction.next,
+                ),
                 gap8,
+                TextField(
+                  controller: lastNameController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Last Name',
+                    isDense: true,
+                  ),
+                  textInputAction: TextInputAction.next,
+                ),
+                gap24,
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.phone,
+                      color: Colors.blue,
+                    ),
+                    gap8,
+                    Text(
+                      'Contact Information',
+                      style: context.bodyMedium.bold,
+                    ),
+                  ],
+                ),
+                gap16,
+                TextField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Phone Number',
+                    hintText: '(555) 555-5555',
+                    isDense: true,
+                  ),
+                  inputFormatters: [maskFormatter],
+                  textInputAction: TextInputAction.next,
+                ),
+                gap8,
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    isDense: true,
+                  ),
+                  textInputAction: TextInputAction.done,
+                ),
               ],
-              Row(
-                children: [
-                  Icon(
-                    Icons.person,
-                    color: context.primary,
-                  ),
-                  gap8,
-                  Text(
-                    'Personal Information',
-                    style: context.bodyMedium.bold,
-                  ),
-                ],
-              ),
-              gap16,
-              TextField(
-                controller: firstNameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'First Name',
-                  isDense: true,
-                ),
-                textInputAction: TextInputAction.next,
-              ),
-              gap8,
-              TextField(
-                controller: lastNameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Last Name',
-                  isDense: true,
-                ),
-                textInputAction: TextInputAction.next,
-              ),
-              gap24,
-              Row(
-                children: [
-                  const Icon(
-                    Icons.phone,
-                    color: Colors.blue,
-                  ),
-                  gap8,
-                  Text(
-                    'Contact Information',
-                    style: context.bodyMedium.bold,
-                  ),
-                ],
-              ),
-              gap16,
-              TextField(
-                controller: phoneController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Phone Number',
-                  hintText: '(555) 555-5555',
-                  isDense: true,
-                ),
-                inputFormatters: [maskFormatter],
-                textInputAction: TextInputAction.next,
-              ),
-              gap8,
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  isDense: true,
-                ),
-                textInputAction: TextInputAction.done,
-              ),
-            ],
+            ),
           ),
         ),
       ),

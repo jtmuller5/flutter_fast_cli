@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
+import 'package:flutterfast/features/shared/ui/layout.dart';
 import 'package:flutterfast/features/shared/ui/loading_overlay.dart';
 
 enum FeedbackType {
@@ -42,77 +43,79 @@ class NewFeedbackView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Submit Feedback')),
-      body: ValueListenableBuilder(
-          valueListenable: loading,
-          builder: (context, loading, child) {
-            return Stack(
-              children: [
-                ListView(
-                  padding: const EdgeInsets.all(16.0),
-                  children: [
-                    const Text('What type of feedback do you have?'),
-                    gap12,
-                    ValueListenableBuilder(
-                        valueListenable: type,
-                        builder: (context, value, child) {
-                          return LayoutBuilder(builder: (context, constraints) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                for (FeedbackType type in FeedbackType.values)
-                                  SizedBox(
-                                    width: (constraints.maxWidth / 3) - 8,
-                                    child: FilterChip(
-                                      selected: value == type,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(4),
+      body: Layout(
+        child: ValueListenableBuilder(
+            valueListenable: loading,
+            builder: (context, loading, child) {
+              return Stack(
+                children: [
+                  ListView(
+                    padding: const EdgeInsets.all(16.0),
+                    children: [
+                      const Text('What type of feedback do you have?'),
+                      gap12,
+                      ValueListenableBuilder(
+                          valueListenable: type,
+                          builder: (context, value, child) {
+                            return LayoutBuilder(builder: (context, constraints) {
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  for (FeedbackType type in FeedbackType.values)
+                                    SizedBox(
+                                      width: (constraints.maxWidth / 3) - 8,
+                                      child: FilterChip(
+                                        selected: value == type,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(4),
+                                        ),
+                                        label: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(type.name.toUpperCase()),
+                                          ],
+                                        ),
+                                        onSelected: (value) {
+                                          setType(type);
+                                        },
                                       ),
-                                      label: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(type.name.toUpperCase()),
-                                        ],
-                                      ),
-                                      onSelected: (value) {
-                                        setType(type);
-                                      },
                                     ),
-                                  ),
-                              ],
-                            );
-                          });
-                        }),
-                    gap16,
-                    TextField(
-                      controller: feedbackController,
-                      maxLines: null,
-                      decoration: const InputDecoration(labelText: 'Feedback', border: OutlineInputBorder()),
-                    ),
-                    gap16,
-                    ElevatedButton(
-                        onPressed: () async {
-                          if (feedbackController.text.trim().isEmpty || type.value == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill out all fields.')));
-                          } else {
-                            FocusScope.of(context).unfocus();
-                            await submitFeedback().then((value) {
-                              router.pop();
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Feedback submitted!')));
-                            }).onError((error, stackTrace) {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+                                ],
+                              );
                             });
-                          }
-                        },
-                        child: Text(
-                          'Submit',
-                          style: context.titleLarge.onPrimary.bold,
-                        ))
-                  ],
-                ),
-                if (loading) const Positioned.fill(child: LoadingOverlay()),
-              ],
-            );
-          }),
+                          }),
+                      gap16,
+                      TextField(
+                        controller: feedbackController,
+                        maxLines: null,
+                        decoration: const InputDecoration(labelText: 'Feedback', border: OutlineInputBorder()),
+                      ),
+                      gap16,
+                      ElevatedButton(
+                          onPressed: () async {
+                            if (feedbackController.text.trim().isEmpty || type.value == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill out all fields.')));
+                            } else {
+                              FocusScope.of(context).unfocus();
+                              await submitFeedback().then((value) {
+                                router.pop();
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Feedback submitted!')));
+                              }).onError((error, stackTrace) {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+                              });
+                            }
+                          },
+                          child: Text(
+                            'Submit',
+                            style: context.titleLarge.onPrimary.bold,
+                          ))
+                    ],
+                  ),
+                  if (loading) const Positioned.fill(child: LoadingOverlay()),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

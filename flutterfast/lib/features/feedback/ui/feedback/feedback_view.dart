@@ -4,6 +4,7 @@ import 'package:flutterfast/app/constants.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutterfast/features/feedback/models/feedback.dart';
+import 'package:flutterfast/features/shared/ui/layout.dart';
 
 @RoutePage()
 class FeedbackView extends StatefulWidget {
@@ -38,38 +39,40 @@ class _FeedbackViewState extends State<FeedbackView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Feedback')),
-      body: loading.value
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(8.0),
-              itemCount: allFeedback.length,
-              itemBuilder: (BuildContext context, int index) {
-                Feedback feedback = allFeedback[index];
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          feedback.message,
-                          style: context.bodyLarge,
-                        ),
-                        gap8,
-                        Text(
-                          MaterialLocalizations.of(context)
-                              .formatFullDate(feedback.createdAt!)
-                              .toString(),
-                          style: context.bodySmall,
-                        )
-                      ],
+      body: Layout(
+        child: loading.value
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                padding: const EdgeInsets.all(8.0),
+                itemCount: allFeedback.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Feedback feedback = allFeedback[index];
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            feedback.message,
+                            style: context.bodyLarge,
+                          ),
+                          gap8,
+                          Text(
+                            MaterialLocalizations.of(context)
+                                .formatFullDate(feedback.createdAt!)
+                                .toString(),
+                            style: context.bodySmall,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              ),
+      ),
     );
   }
 }
