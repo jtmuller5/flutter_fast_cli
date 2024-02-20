@@ -1,9 +1,23 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfast/features/shared/utils/navigation/no_transitions_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 String? _fontFamily = GoogleFonts.quicksand().fontFamily;
 FlexScheme flexScheme = FlexScheme.flutterDash;
+
+PageTransitionsTheme? pageTransitionsTheme = PageTransitionsTheme(
+  builders: kIsWeb
+      ? {
+          // No animations for every OS if the app running on the web
+          for (final platform in TargetPlatform.values) platform: const NoTransitionsBuilder(),
+        }
+      : {
+          TargetPlatform.android: ZoomPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        },
+);
 
 // https://docs.flexcolorscheme.com/api_guide#flexsubthemesdata
 FlexSubThemesData theme = FlexSubThemesData(
@@ -17,6 +31,7 @@ ThemeData lightTheme = FlexThemeData.light(
   scheme: flexScheme,
   colorScheme: lightLogoColorScheme,
   subThemesData: theme,
+  pageTransitionsTheme: pageTransitionsTheme,
 );
 
 ThemeData darkTheme = FlexThemeData.dark(
@@ -24,6 +39,7 @@ ThemeData darkTheme = FlexThemeData.dark(
   scheme: flexScheme,
   colorScheme: darkLogoColorScheme,
   subThemesData: theme,
+  pageTransitionsTheme: pageTransitionsTheme,
 );
 
 ColorScheme? lightLogoColorScheme;
