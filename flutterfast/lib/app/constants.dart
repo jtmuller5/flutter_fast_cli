@@ -48,6 +48,7 @@ class Breakpoints {
   static const double sm = 905.0; // Small (tablet)
   static const double md = 1240.0; // Medium (laptop)
   static const double lg = 1440.0; // Large (desktop)
+  static const double xl = 1920.0; // Extra-large (large desktop)
 }
 
 extension Margins on BuildContext {

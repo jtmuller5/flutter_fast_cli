@@ -23,11 +23,11 @@ Future<void> main() async {
 
   //* LogoColorScheme *//
   lightLogoColorScheme = await ColorScheme.fromImageProvider(
-    provider: const AssetImage('assets/images/logo.png'),
+    provider: const AssetImage('assets/logo.png'),
     brightness: Brightness.light,
   );
   darkLogoColorScheme = await ColorScheme.fromImageProvider(
-    provider: const AssetImage('assets/images/logo.png'),
+    provider: const AssetImage('assets/logo.png'),
     brightness: Brightness.dark,
   );
   //* LogoColorScheme *//

@@ -29,7 +29,7 @@ class HomeDrawer extends StatelessWidget {
                 children: [
                   DrawerHeader(
                     child: Center(
-                      child: Image.asset('assets/images/logo.png'),
+                      child: Image.asset('assets/logo.png'),
                     ),
                   ),
                   ListTile(

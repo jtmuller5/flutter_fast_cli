@@ -33,21 +33,22 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      bool smallScreen = constraints.maxWidth < Breakpoints.md;
-      bool mediumScreen = constraints.maxWidth >= Breakpoints.md;
-      bool largeScreen = constraints.maxWidth >= Breakpoints.lg;
-      bool xlScreen = constraints.maxWidth >= Breakpoints.xl;
+      bool xsmallScreen = constraints.maxWidth <= Breakpoints.xs;
+      bool smallScreen = constraints.maxWidth >= Breakpoints.xs && constraints.maxWidth < Breakpoints.sm;
+      bool mediumScreen = constraints.maxWidth >= Breakpoints.sm && constraints.maxWidth < Breakpoints.md;
+      bool largeScreen = constraints.maxWidth >= Breakpoints.md && constraints.maxWidth < Breakpoints.lg;
+      bool xlargeScreen = constraints.maxWidth >= Breakpoints.lg;
 
       return DefaultTabController(
         length: 2,
         child: Scaffold(
-          drawer: mediumScreen ? null : HomeDrawer(wideScreen: largeScreen),
-          appBar: !smallScreen ? null : AppBar(),
+          drawer: xsmallScreen ? HomeDrawer() : null,
+          appBar: xsmallScreen ? AppBar() : null,
           body: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (xlScreen) ...[const HomeDrawer(), VerticalDivider(width: 2)],
-              if (mediumScreen && !xlScreen) ...[HomeRail(), VerticalDivider(width: 2)],
+              if (largeScreen || xlargeScreen) ...[const HomeDrawer(), VerticalDivider(width: 2)],
+              if (smallScreen || mediumScreen) ...[HomeRail(), VerticalDivider(width: 2)],
               Flexible(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: 1200),
@@ -77,8 +78,8 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ),
-              if (mediumScreen && !xlScreen) ...[VerticalDivider(width: 2), SizedBox(width: 200)],
-              if (xlScreen) ...[VerticalDivider(width: 2), SizedBox(width: 400)]
+              if (smallScreen || mediumScreen) ...[VerticalDivider(width: 2), SizedBox(width: 200)],
+              if (largeScreen || xlargeScreen) ...[VerticalDivider(width: 2), SizedBox(width: 400)]
             ],
           ),
           /* bottomNavigationBar: BottomNavigationBar(

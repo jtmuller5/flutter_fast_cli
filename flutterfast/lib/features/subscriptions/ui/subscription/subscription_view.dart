@@ -63,7 +63,7 @@ class _SubscriptionViewState extends State<SubscriptionView> {
                     children: [
                       FadeInImage(
                         placeholder: MemoryImage(kTransparentImage),
-                        image: const AssetImage('assets/images/logo.png'),
+                        image: const AssetImage('assets/logo.png'),
                         height: 300,
                       ),
                       gap16,
