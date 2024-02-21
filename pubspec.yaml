@@ -1,6 +1,6 @@
 name: flutter_fast_cli
 description: Build Flutter Apps Faster. Generate boilerplate code for apps that require authentication, subscriptions, and more
-version: 1.5.3
+version: 1.5.4
 homepage: https://codeotr.github.io/flutter-fast-guide/
 repository: https://github.com/CodeOTR/flutter_fast_cli
 # flutter pub publish --dry-run
@@ -36,6 +36,7 @@ false_secrets:
   - /flutterfast_offline/android/app/google-services.json
   - /flutterfast_offline/ios/Runner/GoogleService-Info.plist
   - /flutterfast_offline/macos/Runner/GoogleService-Info.plist
+  - /flutterfast/web/index.html
 
 topics:
   - boilerplate

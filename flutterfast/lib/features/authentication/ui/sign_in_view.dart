@@ -191,8 +191,9 @@ class _SignInViewState extends State<SignInView> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // https://developers.google.com/identity/branding-guidelines
                     SocialLoginButton.wide(
-                      image: 'assets/google.png',
+                      image: 'assets/google_on_white.png',
                       provider: 'Google',
                       onPressed: () async {
                         await runWithLoading(() async {
@@ -209,6 +210,7 @@ class _SignInViewState extends State<SignInView> {
                       },
                     ),
                     gap8,
+                    // https://developer.apple.com/design/resources/
                     SocialLoginButton.wide(
                       image: 'assets/apple_on_black.png',
                       provider: 'Apple',

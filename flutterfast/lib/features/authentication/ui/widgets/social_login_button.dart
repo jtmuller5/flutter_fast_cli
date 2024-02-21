@@ -29,7 +29,7 @@ class SocialLoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: provider == 'Apple' ? Colors.black : context.primary,
+        color: provider == 'Apple' ? Colors.black : Colors.transparent,
         borderRadius: BorderRadius.circular(isWide ? 4 : 40),
         border: Border.all(color: context.primary, width: 1),
       ),

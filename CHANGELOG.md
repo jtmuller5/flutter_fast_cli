@@ -1,3 +1,10 @@
+## 1.5.4
+- 🟩 Added official brand logos for [Apple](https://developer.apple.com/design/resources/) and [Google](https://developers.google.com/identity/branding-guidelines)
+- 🟩 Google and Apple Sign in on web
+- 🟩 Added Breakpoints class
+- 🟨 Updated Home view to be responsive with drawer, rail, and side bar
+- *Date:* 2-21-2024
+
 ## 1.5.3
 - 🟩 Added Google Sign In for Appwrite (Android + iOS)
 - 🟩 Apple Sign In for Appwrite (Android + iOS)

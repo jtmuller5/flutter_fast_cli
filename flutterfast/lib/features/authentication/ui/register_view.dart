@@ -164,7 +164,7 @@ class _RegisterViewState extends State<RegisterView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SocialLoginButton.wide(
-                      image: 'assets/google.png',
+                      image: 'assets/google_on_white.png',
                       provider: 'Google',
                       onPressed: () async {
                         await runWithLoading(() async {
