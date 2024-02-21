@@ -30,7 +30,7 @@
 - 🟨 Updated README
 - *Date:* 2-16-2024
 
-# 1.4.9
+## 1.4.9
 - 🟪 `fast feature` will now create initial View with feature name
 - 🟨 Updated README
 - *Date:* 2-4-2024
