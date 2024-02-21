@@ -1,3 +1,7 @@
+## 1.5.5
+- 🟪 Fixed broken asset references
+- *Date:* 2-21-2024
+
 ## 1.5.4
 - 🟩 Added official brand logos for [Apple](https://developer.apple.com/design/resources/) and [Google](https://developers.google.com/identity/branding-guidelines)
 - 🟩 Google and Apple Sign in on web
