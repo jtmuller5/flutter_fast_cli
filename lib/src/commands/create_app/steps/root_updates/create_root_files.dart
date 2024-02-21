@@ -19,7 +19,7 @@ Future<void> createRootFiles(String templatePath, String appName) async {
   File readme = File('README.md');
   await readme.writeAsString(getReadmeText(appName), mode: FileMode.write);
 
-  await copyPath('$templatePath/assets/images', 'assets/images');
+  await copyPath('$templatePath/assets', 'assets');
 
   Directory runDirectory = Directory('$templatePath/runConfigurations');
   Directory vsCodeDirectory = Directory('$templatePath/.vscode');
