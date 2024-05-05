@@ -64,6 +64,7 @@ class ChatFeed extends StatelessWidget {
                                     await chatService.submitMessage(FastMessage(
                                       message: model.messageController.text,
                                       senderId: authenticationService.id,
+                                      createdAt: DateTime.now(),
                                     ));
                                     model.messageController.clear();
                                   },
