@@ -14,7 +14,7 @@ GptChoice _$GptChoiceFromJson(Map<String, dynamic> json) => $checkedCreate(
           message: $checkedConvert('message',
               (v) => GptChoiceMessage.fromJson(v as Map<String, dynamic>)),
           finishReason: $checkedConvert('finish_reason', (v) => v as String?),
-          index: $checkedConvert('index', (v) => v as int),
+          index: $checkedConvert('index', (v) => (v as num).toInt()),
         );
         return val;
       },

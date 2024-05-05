@@ -2,7 +2,6 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/constants.dart';
-import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
 import 'package:flutterfast/app/text_theme.dart';
 import 'package:flutterfast/app/theme.dart';

@@ -50,7 +50,9 @@ class SocialLoginButton extends StatelessWidget {
                 gap8,
                 Text(
                   'Continue with $provider',
-                  style: context.bodyLarge.bold,
+                  style: context.bodyLarge.bold.copyWith(
+                    color: provider == 'Apple' ? Colors.white : context.primary,
+                  ),
                 ),
               ]
             ],

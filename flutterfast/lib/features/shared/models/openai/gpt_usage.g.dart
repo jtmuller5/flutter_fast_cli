@@ -11,10 +11,12 @@ GptUsage _$GptUsageFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = GptUsage(
-          promptTokens: $checkedConvert('prompt_tokens', (v) => v as int),
+          promptTokens:
+              $checkedConvert('prompt_tokens', (v) => (v as num).toInt()),
           completionTokens:
-              $checkedConvert('completion_tokens', (v) => v as int),
-          totalTokens: $checkedConvert('total_tokens', (v) => v as int),
+              $checkedConvert('completion_tokens', (v) => (v as num).toInt()),
+          totalTokens:
+              $checkedConvert('total_tokens', (v) => (v as num).toInt()),
         );
         return val;
       },

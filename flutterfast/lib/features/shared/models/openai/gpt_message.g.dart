@@ -13,7 +13,7 @@ GptMessage _$GptMessageFromJson(Map<String, dynamic> json) => $checkedCreate(
         final val = GptMessage(
           id: $checkedConvert('id', (v) => v as String),
           object: $checkedConvert('object', (v) => v as String),
-          created: $checkedConvert('created', (v) => v as int),
+          created: $checkedConvert('created', (v) => (v as num).toInt()),
           model: $checkedConvert('model', (v) => v as String),
           usage: $checkedConvert(
               'usage', (v) => GptUsage.fromJson(v as Map<String, dynamic>)),

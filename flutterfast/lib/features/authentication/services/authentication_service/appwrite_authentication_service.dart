@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/enums.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/get_it.dart';
@@ -60,7 +61,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signInWithEmailAndPassword({required String email, required String password}) async {
     try {
-      await account.createEmailSession(email: email, password: password);
+      await account.createEmailPasswordSession(email: email, password: password);
       navigationService.navigateToHome();
     } on AppwriteException catch (e) {
       debugPrint('Error siging in: ' + e.toString());
@@ -90,7 +91,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
         email: email,
         password: password,
       );
-      await account.createEmailSession(email: email, password: password);
+      await account.createEmailPasswordSession(email: email, password: password);
       Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
       await userService.createUser();
@@ -109,7 +110,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signInWithApple() async {
     try {
-      await account.createOAuth2Session(provider: 'apple', scopes: ['name', 'email']);
+      await account.createOAuth2Session(provider: OAuthProvider.apple, scopes: ['name', 'email']);
        Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
       debugPrint('session: ' + _session.userId.toString());
@@ -129,7 +130,7 @@ class AppwriteAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> signInWithGoogle() async {
     try {
-      await account.createOAuth2Session(provider: 'google');
+      await account.createOAuth2Session(provider: OAuthProvider.google);
       Session _session = await account.getSession(sessionId: 'current');
       setSession(_session);
       await userService.createUser();

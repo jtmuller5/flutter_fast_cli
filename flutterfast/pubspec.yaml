@@ -7,62 +7,62 @@ environment:
   sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
-  auto_route: ^7.8.4
+  auto_route: ^8.1.3
   collection: ^1.18.0
   crypto: ^3.0.3
   flex_color_scheme: ^7.3.1
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0  
-  get_it: ^7.6.7
-  google_fonts: ^6.1.0
-  injectable: ^2.3.2
+  get_it: ^7.7.0
+  google_fonts: ^6.2.1
+  injectable: ^2.4.1
   intl: ^0.18.0
-  json_annotation: ^4.8.1
-  mask_text_input_formatter: ^2.8.0
-  package_info_plus: ^4.0.2
-  sentry_flutter: ^7.16.0
-  shared_preferences: ^2.2.2
-  simple_mvvm: ^1.0.0
-  sign_in_with_apple: ^5.0.0
+  json_annotation: ^4.9.0
+  mask_text_input_formatter: ^2.9.0
+  package_info_plus: ^8.0.0
+  sentry_flutter: ^8.1.0
+  shared_preferences: ^2.2.3
+  simple_mvvm: ^1.0.1
+  sign_in_with_apple: ^6.1.0
   transparent_image: ^2.0.1
   universal_io: ^2.2.2
   universal_html: ^2.2.4
-  url_launcher: ^6.2.4
+  url_launcher: ^6.2.6
 
   #* Amplitude *#
-  amplitude_flutter: ^3.16.1
+  amplitude_flutter: ^3.16.2
   #* Amplitude *#
 
   #* Posthog *#
-  posthog_flutter: ^3.3.0
+  posthog_flutter: ^4.4.1
   #* Posthog *#
 
   #* RSS *#
-  http: 1.0.0
+  http: 1.2.1
   webfeed_revised: ^0.7.2
   #* RSS *#
 
   #* Subscriptions *#
-  purchases_flutter: ^6.19.0
+  purchases_flutter: ^6.29.0
   #* Subscriptions *#
 
   #* Appwrite *#
-  appwrite: ^11.0.1
+  appwrite: ^12.0.3
   #* Appwrite *#
 
   #* Firebase *#
-  cloud_firestore: ^4.15.3
-  firebase_auth: ^4.17.3
-  firebase_core: ^2.25.3
+  cloud_firestore: ^4.17.2
+  firebase_auth: ^4.19.4
+  firebase_core: ^2.30.1
   #* Firebase *#
 
   #* Supabase *#
-  supabase_flutter: ^2.3.2
+  supabase_flutter: ^2.5.2
   #* Supabase *#
 
   #* Pocketbase *#
-  pocketbase: ^0.17.1
+  pocketbase: ^0.18.1
   #* Pocketbase *#
 
   #* Google Sign In *#
@@ -74,16 +74,16 @@ dependencies:
 # Dev: dart run ../bin/fast.dart build
 # dart run build_runner build --delete-conflicting-outputs
 dev_dependencies:
-  auto_route_generator: ^7.3.1
-  build_runner: ^2.1.11
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.9
   flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^2.0.3
+  flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
-  injectable_generator: ^2.4.0
-  json_serializable: ^6.7.1
-  mocktail: ^1.0.0
-  monarch: ^3.5.3
+  injectable_generator: ^2.6.1
+  json_serializable: ^6.8.0
+  mocktail: ^1.0.3
+  monarch: ^3.8.0
 
 flutter:
   uses-material-design: true
