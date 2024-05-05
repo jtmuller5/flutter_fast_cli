@@ -1,3 +1,8 @@
+## 1.5.6
+- 🟨 Update dependencies
+- 🟪 Implemented chat service functions for Firebase and Pocketbase
+- *Date:* 5-5-2024
+
 ## 1.5.5
 - 🟪 Fixed broken asset references
 - *Date:* 2-21-2024
