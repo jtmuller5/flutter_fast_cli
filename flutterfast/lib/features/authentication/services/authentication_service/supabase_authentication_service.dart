@@ -63,7 +63,11 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
 
   @override
   Future<void> sendPasswordResetEmail(String email) {
-    return _supabase.auth.resetPasswordForEmail(email);
+    return _supabase.auth.resetPasswordForEmail(
+      email,
+      // TODO Change this to your reset password page
+      redirectTo: 'localhost:3000/reset-password',
+    );
   }
 
   @override
@@ -130,9 +134,20 @@ class SupabaseAuthenticationService extends FastAuthenticationService {
         serverClientId: kIsWeb ? null : webClientId,
       );
 
-      final googleUser = kIsWeb ? await googleSignIn.signInSilently() : await googleSignIn.signIn();
+      var googleUser = kIsWeb ? await googleSignIn.signInSilently() : await googleSignIn.signIn();
 
-      if (googleUser == null) return;
+      if (kIsWeb && googleUser == null) {
+        googleUser = await (googleSignIn.signIn());
+
+        if (googleUser != null) {
+          debugPrint('Re-authenticating user.');
+          googleUser = await googleSignIn.signInSilently(reAuthenticate: true);
+        }
+      }
+
+      if (googleUser == null) {
+        throw 'Google Sign In failed.';
+      }
 
       final googleAuth = await googleUser.authentication;
       final accessToken = googleAuth.accessToken;

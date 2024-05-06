@@ -26,7 +26,7 @@ Future<void> configureDependencies() async => await $initGetIt(
           //* Amplitude *//
 
           //* Posthog *//
-          const String.fromEnvironment('analytics', defaultValue: 'posthog'),
+          // const String.fromEnvironment('analytics', defaultValue: 'posthog'),
           //* Posthog *//
         },
       ),
