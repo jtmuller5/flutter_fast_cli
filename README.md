@@ -62,7 +62,7 @@ fast wizard
 | `update`  | Update flutter_fast_cli                                           |
 | `clean `  | Run flutter clean (use -i to clean ios folder)                    |
 
-To get started, visit the [official docs](https://codeotr.github.io/flutter-fast-guide/)!
+To get started, visit the [official docs](https://pub.dev/documentation/flutter_fast_cli/latest/)!
 
 # Features
 

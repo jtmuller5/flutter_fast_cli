@@ -23,6 +23,15 @@ import 'package:flutter_fast_cli/src/commands/strings.dart';
 import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
+/// {@category Get started}
+/// {@category Firebase}
+/// {@category Supabase}
+/// {@category Pocketbase}
+/// {@category AppWrite}
+/// {@category Sentry}
+/// {@category Amplitude}
+/// {@category Posthog}
+/// {@category RevenueCat}
 class Wizard extends Command {
   @override
   String get description => 'Use the Flutter Fast Wizard to create a new Flutter app with all the bells and whistles.';

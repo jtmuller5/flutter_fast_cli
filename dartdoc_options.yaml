@@ -5,28 +5,28 @@ dartdoc:
       name: Get started
     "Firebase":
       markdown: doc/firebase/firebase.md
-      name: Set up Firebase
+      name: Firebase
     "Supabase":
       markdown: doc/supabase/supabase.md
-      name: Set up Supabase
+      name: Supabase
     "Pocketbase":
       markdown: doc/pocketbase/pocketbase.md
-      name: Set up Pocketbase
+      name: Pocketbase
     "AppWrite":
       markdown: doc/appwrite/appwrite.md
-      name: Set up AppWrite
+      name: AppWrite
     "Sentry":
       markdown: doc/sentry/sentry.md
-      name: Set up Sentry
+      name: Sentry
     "Amplitude":
       markdown: doc/amplitude/amplitude.md
-      name: Set up Amplitude
+      name: Amplitude
     "Posthog":
       markdown: doc/posthog/posthog.md
-      name: Set up Posthog
+      name: Posthog
     "RevenueCat":
       markdown: doc/revenuecat/revenuecat.md
-      name: Set up RevenueCat
+      name: RevenueCat
   categoryOrder:
     - "Get started"
     - "Firebase"
