@@ -1,7 +1,32 @@
----
-title: Build an App
-description: Use the Flutter Fast CLI to build an app
----
+# Installation
+
+## Like It
+![Flutter Fast product](ff-product.png)
+
+You can view the Flutter Fast CLI on [pub.dev](https://pub.dev/packages/flutter_fast_cli). Give it a 👍 if you like it!
+
+## Activate It
+Since the CLI is hosted on pub.dev, you can activate it directly from your terminal:
+
+```
+dart pub global activate flutter_fast_cli
+```
+
+You can further verify that the CLI has been activated by [listing your active Dart packages](https://dart.dev/tools/pub/cmd/pub-global#listing-active-packages):
+```
+dart pub global list
+```
+
+You should see an entry for `flutter_fast_cli` with the newest version listed on pub.
+
+## Uninstall It
+If you want to [uninstall the CLI](https://dart.dev/tools/pub/cmd/pub-global#deactivating-a-package), run the following command:
+```
+dart pub global deactivate flutter_fast_cli
+```
+
+# Build
+
 ## Use the CLI
 The Flutter Fast CLI has two commands that can be used to build a new Flutter app: app and wizard.
 
@@ -109,3 +134,41 @@ class HomeView extends StatelessWidget {
 }
 
 ```
+
+# Update
+
+To update the CLI, simply activate it again:
+
+```
+dart pub global activate flutter_fast_cli
+```
+
+Once the CLI is updated, you can check the version by [listing your active Dart packages](https://dart.dev/tools/pub/cmd/pub-global#listing-active-packages). The package version will be next to the `flutter_fast_cli` name:
+
+```
+dart pub global list
+
+...
+
+flutter_fast_cli 1.0.1
+```
+
+# Deploy
+
+## Create an Upload Keystore
+Follow the instructions [here](https://docs.flutter.dev/deployment/android#signing-the-app) to create an upload keystore for your Android application.
+
+:::note
+The `key.properties` file should not be checked into version control. It is included in the .gitignore file in the android folder
+:::
+
+## Manually Release First Android App
+I know, its sad. Unfortunately, not everything can be automated. If you try to use the Fastlane files to release the first version of your app, you will see this error:
+
+```
+Google Api Error: Invalid request - Only releases with status draft may be created on draft app.
+```
+This [GitHub issue](https://github.com/fastlane/fastlane/discussions/18293) indicates that you only have to manually release a version of your app to the alpha track to start using Fastlane.
+
+## Included Scripts
+The Flutter Fast boiler plate comes with convenient bash scripts for building and deploying your app using Fastlane. Run configurations have also been prebuilt for each of these scripts in Android Studio and VS Code.

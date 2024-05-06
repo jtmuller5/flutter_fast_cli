@@ -3,48 +3,40 @@ dartdoc:
     "Get started":
       markdown: doc/get-started.md
       name: Get started
-    "Upgrading":
-      markdown: doc/upgrading.md
-      name: Upgrade an existing app
-    "Configuration":
-      markdown: doc/configuration.md
-      name: Configuration
-    "Navigation":
-      markdown: doc/navigation.md
-      name: Navigation
-    "Redirection":
-      markdown: doc/redirection.md
-      name: Redirection
-    "Web":
-      markdown: doc/web.md
-      name: Web
-    "Deep linking":
-      markdown: doc/deep-linking.md
-      name: Deep linking
-    "Transition animations":
-      markdown: doc/transition-animations.md
-      name: Transition animations
-    "Type-safe routes":
-      markdown: doc/type-safe-routes.md
-      name: Type-safe routes
-    "Named routes":
-      markdown: doc/named-routes.md
-      name: Type-safe routes
-    "Error handling":
-      markdown: doc/error-handling.md
-      name: Error handling
+    "Firebase":
+      markdown: doc/firebase/firebase.md
+      name: Set up Firebase
+    "Supabase":
+      markdown: doc/supabase/supabase.md
+      name: Set up Supabase
+    "Pocketbase":
+      markdown: doc/pocketbase/pocketbase.md
+      name: Set up Pocketbase
+    "AppWrite":
+      markdown: doc/appwrite/appwrite.md
+      name: Set up AppWrite
+    "Sentry":
+      markdown: doc/sentry/sentry.md
+      name: Set up Sentry
+    "Amplitude":
+      markdown: doc/amplitude/amplitude.md
+      name: Set up Amplitude
+    "Posthog":
+      markdown: doc/posthog/posthog.md
+      name: Set up Posthog
+    "RevenueCat":
+      markdown: doc/revenuecat/revenuecat.md
+      name: Set up RevenueCat
 categoryOrder:
     - "Get started"
-    - "Upgrading"
-    - "Configuration"
-    - "Navigation"
-    - "Redirection"
-    - "Web"
-    - "Deep linking"
-    - "Transition animations"
-    - "Type-safe routes"
-    - "Named routes"
-    - "Error handling"
+    - "Firebase"
+    - "Supabase"
+    - "Pocketbase"
+    - "AppWrite"
+    - "Sentry"
+    - "Amplitude"
+    - "Posthog"
+    - "RevenueCat"
 showUndocumentedCategories: true
 ignore:
     - broken-link

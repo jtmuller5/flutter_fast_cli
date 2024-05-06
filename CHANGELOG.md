@@ -1,3 +1,7 @@
+## 1.6.3
+- 🟩 Add docs to pub
+- *Date:* 5-6-2024
+
 ## 1.6.2
 - 🟩 Add docs to pub
 - *Date:* 5-6-2024
