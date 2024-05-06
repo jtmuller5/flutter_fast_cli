@@ -1,3 +1,13 @@
+## 1.6.0
+- 🟩 Added Firebase Remote Config and Posthog options for AB Testing
+- 🟪 Fixed copying of `info.plist` file
+- 🟪 Remove unused subscriptions code when opting out of subscriptions
+- *Date:* 5-6-2024
+
+## 1.5.7
+- 🟪 Copy AndroidManifest values for Posthog
+- *Date:* 5-5-2024
+
 ## 1.5.6
 - 🟨 Update dependencies
 - 🟪 Implemented chat service functions for Firebase and Pocketbase
@@ -21,7 +31,7 @@
 - *Date:* 2-19-2024
 
 ## 1.5.2
-- 🟩 Add "upgrade" alias to `update` command
+- 🟩 Add "upgrade" alias to `update` command.
 - *Date:* 2-16-2024
 
 ## 1.5.1

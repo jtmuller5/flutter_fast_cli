@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_ab_test_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_analytics_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_ru
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_android_manifest.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_ios_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_billing_dependency.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
@@ -29,7 +32,7 @@ class Wizard extends Command {
 
   @override
   Future<void> run() async {
-     logAmplitudeEvent('command', {'command': 'wizard'});
+    logAmplitudeEvent('command', {'command': 'wizard'});
     // User input for app name
     String? appName;
     while (appName == null || appName.isEmpty || appName.contains(' ')) {
@@ -57,6 +60,8 @@ class Wizard extends Command {
     String? paas;
     String? analyticsOption;
     String? analytics;
+    String? abTestsOption;
+    String? abTests;
     if (!offline) {
       // User input for PaaS
       while (paasOption != 'f' && paasOption != 's' && paasOption != 'a' && paasOption != 'p') {
@@ -80,6 +85,22 @@ class Wizard extends Command {
           : analyticsOption == 'p'
               ? 'posthog'
               : 'amplitude';
+
+      while (abTestsOption != 'y' && abTestsOption != 'n') {
+        stdout.write('Do you want to include A/B tests in your app? (Y/n): ');
+        abTestsOption = stdin.readLineSync() ?? 'y';
+        if (abTestsOption.trim() == '') abTestsOption = 'y';
+      }
+
+      if (abTestsOption == 'y') {
+        while (abTests != 'f' && abTests != 'p') {
+          stdout.write('Enter the platform you want to use for AB tests - (f)irebase, (p)osthog: ');
+          abTests = stdin.readLineSync() ?? '';
+          if (abTests.trim() == '') abTestsOption = 'f';
+        }
+
+        abTests = abTests == 'f' ? 'firebase' : 'posthog';
+      }
     }
 
     // User input for subscriptions
@@ -98,6 +119,7 @@ class Wizard extends Command {
     stdout.writeln('Offline: $offline');
     if (paas != null) stdout.writeln('PaaS: $paas');
     if (analytics != null) stdout.writeln('Analytics: $analytics');
+    if (abTests != null) stdout.writeln('A/B Tests: $abTests');
     stdout.writeln('Subscriptions: $subscriptions');
 
     logAmplitudeEvent('wizard ready', {
@@ -105,6 +127,7 @@ class Wizard extends Command {
       'orgName': orgName,
       'offline': offline.toString(),
       'paas': paas ?? 'none',
+      'abTests': abTests ?? 'none',
       'analytics': analytics ?? 'none',
       'subscriptions': subscriptions.toString(),
     });
@@ -147,6 +170,8 @@ class Wizard extends Command {
 
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
+    await copyAndroidManifest(templatePath, appName, orgName);
+    await copyIosFiles(templatePath);
     await fastlaneSetup(templatePath, appName);
     await createKeyFile();
     if (!subscriptions) removeBillingDependency(templatePath, appName);
@@ -169,6 +194,17 @@ class Wizard extends Command {
 
     if (!subscriptions) {
       await removeSubscriptionFeature();
+    }
+
+    if (abTests == null) {
+      await clearUnusedAbTestFiles('firebase');
+      await clearUnusedAbTestFiles('posthog');
+    } else {
+      if (abTests == 'firebase') {
+        await clearUnusedAbTestFiles('firebase');
+      } else {
+        await clearUnusedAbTestFiles('posthog');
+      }
     }
 
     await removeRunConfigurations();

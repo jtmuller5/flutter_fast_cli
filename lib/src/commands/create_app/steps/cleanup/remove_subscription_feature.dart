@@ -14,4 +14,6 @@ Future<void> removeSubscriptionFeature() async {
   await removeFeatureFromFile('Subscriptions', 'lib/main.dart');
   await removeFeatureFromFile('Subscriptions', 'lib/features/home/ui/home/widgets/drawer.dart');
   await removeFeatureFromFile('Subscriptions', 'lib/app/router.dart');
+  await removeFeatureFromFile('Subscriptions', 'lib/features/home/ui/home/widgets/rail.dart');
+  await removeFeatureFromFile('Subscriptions', 'lib/features/authentication/ui/profile_view.dart');
 }

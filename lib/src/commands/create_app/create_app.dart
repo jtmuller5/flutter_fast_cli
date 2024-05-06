@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_ab_test_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_analytics_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_ru
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_android_manifest.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_ios_files.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_billing_dependency.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
@@ -61,6 +64,14 @@ class CreateApp extends Command {
         allowed: ['firebase', 'supabase', 'appwrite', 'pocketbase'],
       )
       ..addOption(
+        'abtests',
+        abbr: 'b',
+        help: 'The platform to use for AB tests. If left blank, all files will be '
+            'included and you can use --dart-define to choose which one to use.',
+        valueHelp: 'firebase',
+        allowed: ['firebase', 'posthog'],
+      )
+      ..addOption(
         'analytics',
         abbr: 'a',
         help: 'The analytics platform to use for the app. If left blank, all files will be '
@@ -77,6 +88,7 @@ class CreateApp extends Command {
     final offline = argResults?['offline'] as bool;
     final paas = argResults?['paas'] as String?;
     final analytics = argResults?['analytics'] as String?;
+    final abTests = argResults?['abtests'] as String?;
     final subscriptions = argResults?['subs'] as bool;
 
     logAmplitudeEvent('command', {'command': 'app'});
@@ -85,6 +97,7 @@ class CreateApp extends Command {
       'orgName': orgName ?? 'none',
       'offline': offline.toString(),
       'paas': paas ?? 'none',
+      'abtests': abTests ?? 'none',
       'analytics': analytics ?? 'none',
       'subscriptions': subscriptions.toString(),
     });
@@ -123,6 +136,8 @@ class CreateApp extends Command {
 
     progress = logger.progress('Updating native files...');
     await updateAndroidBuildGradle(appName, orgName);
+    await copyAndroidManifest(templatePath, appName, orgName);
+    await copyIosFiles(templatePath);
     await fastlaneSetup(templatePath, appName);
     await createKeyFile();
     if (!subscriptions) removeBillingDependency(templatePath, appName);
@@ -140,6 +155,17 @@ class CreateApp extends Command {
 
     if (!subscriptions) {
       await removeSubscriptionFeature();
+    }
+
+    if (abTests == null) {
+      await clearUnusedAbTestFiles('firebase');
+      await clearUnusedAbTestFiles('posthog');
+    } else {
+      if (abTests == 'firebase') {
+        await clearUnusedAbTestFiles('firebase');
+      } else {
+        await clearUnusedAbTestFiles('posthog');
+      }
     }
 
     await updatePubspecFile(

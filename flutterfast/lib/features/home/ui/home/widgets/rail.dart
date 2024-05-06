@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfast/app/router.dart';
 import 'package:flutterfast/app/services.dart';
@@ -12,48 +13,52 @@ class HomeRail extends StatefulWidget {
 class _HomeRailState extends State<HomeRail> {
   int index = 0;
 
+  final List<Map<String, dynamic>> destinations = [
+    {
+      'icon': const Icon(Icons.person),
+      'label': const Text('Profile'),
+      'route': const ProfileRoute(),
+    },
+    {
+      'icon': const Icon(Icons.thumb_up),
+      'label': const Text('Leave Feedback'),
+      'route': NewFeedbackRoute(),
+    },
+    {
+      'icon': const Icon(Icons.visibility),
+      'label': const Text('View Feedback'),
+      'route': const FeedbackRoute(),
+    },
+    {
+      'icon': const Icon(Icons.settings),
+      'label': const Text('Settings'),
+      'route': const SettingsRoute(),
+    },
+    //* Subscriptions *//
+    {
+      'icon': const Icon(Icons.star),
+      'label': const Text('Subscriptions'),
+      'route': const SubscriptionRoute(),
+    }
+    //* Subscriptions *//
+  ];
+
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
-      destinations: [
-        NavigationRailDestination(
-          icon: const Icon(Icons.person),
-          label: const Text('Profile'),
-        ),
-        NavigationRailDestination(
-          icon: const Icon(Icons.star),
-          label: const Text('Subscriptions'),
-        ),
-        NavigationRailDestination(
-          icon: const Icon(Icons.thumb_up),
-          label: const Text('Leave Feedback'),
-        ),
-        NavigationRailDestination(
-          icon: const Icon(Icons.visibility),
-          label: const Text('View Feedback'),
-        ),
-        NavigationRailDestination(
-          icon: const Icon(Icons.settings),
-          label: const Text('Settings'),
-        ),
-      ],
+      destinations: destinations
+          .map((e) => NavigationRailDestination(
+                icon: e['icon'],
+                label: e['label'],
+              ))
+          .toList(),
       selectedIndex: index,
       onDestinationSelected: (value) {
         setState(() {
           index = value;
         });
 
-        if (index == 0) {
-          router.popAndPush(const ProfileRoute());
-        } else if (index == 1) {
-          router.popAndPush(const SubscriptionRoute());
-        } else if (index == 2) {
-          router.popAndPush(NewFeedbackRoute());
-        } else if (index == 3) {
-          router.popAndPush(const FeedbackRoute());
-        } else if (index == 4) {
-          router.popAndPush(const SettingsRoute());
-        }
+        router.popAndPush(destinations[index]['route'] as PageRouteInfo);
       },
     );
   }

@@ -14,10 +14,7 @@ class PosthogAnalyticsService extends FastAnalyticsService {
 
   @override
   void logEvent(String eventName, {Map<String, dynamic>? eventProperties}) {
-    Posthog().capture(
-      eventName: eventName,
-      properties: eventProperties as Map<String, Object>
-    );
+    Posthog().capture(eventName: eventName, properties: eventProperties as Map<String, Object>);
   }
 
   @override
@@ -30,8 +27,13 @@ class PosthogAnalyticsService extends FastAnalyticsService {
   }
 
   @override
-  void updateUserProperties(Map<String, dynamic> userProperties) {
-    Posthog().identify(userId: authenticationService.id!, userProperties: userProperties as Map<String, Object>);
+  void updateUserProperties(Map<String, dynamic> userProperties, {bool setOnce = false}) {
+    if (setOnce) {
+      Posthog().identify(userId: authenticationService.id!, userPropertiesSetOnce: userProperties as Map<String, Object>);
+      return;
+    } else {
+      Posthog().identify(userId: authenticationService.id!, userProperties: userProperties as Map<String, Object>);
+    }
   }
 
   @override

@@ -1,7 +1,7 @@
 abstract class FastAnalyticsService {
   Future<void> initialize();
 
-  void updateUserProperties(Map<String, dynamic> userProperties);
+  void updateUserProperties(Map<String, dynamic> userProperties, {bool setOnce = false});
 
   void updateUserId(String? userId);
 

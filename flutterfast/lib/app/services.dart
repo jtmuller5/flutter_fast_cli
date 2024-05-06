@@ -1,4 +1,5 @@
 //x Chat x//
+import 'package:flutterfast/features/ab_testing/services/fast_ab_test_service.dart';
 import 'package:flutterfast/features/shared/services/navigation_service.dart';
 import 'package:flutterfast/modules/chat/services/fast_chat_service.dart';
 //x Chat x//
@@ -22,6 +23,8 @@ import 'package:flutterfast/features/subscriptions/services/subscription_service
 AppRouter get router => getIt.get<AppRouter>();
 
 DialogService get dialogService => getIt.get<DialogService>();
+
+FastAbTestService get abTestService => getIt.get<FastAbTestService>();
 
 FastAnalyticsService get analyticsService => getIt.get<FastAnalyticsService>();
 

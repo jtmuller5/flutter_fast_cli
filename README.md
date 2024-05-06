@@ -27,6 +27,7 @@
 - [Getting Started](#getting-started)
 - [Commands](#commands)
 - [Features](#features)
+  - [AB Testing](#ab-testing)
   - [Analytics](#analytics)
   - [Authentication](#authentication)
   - [Automation](#automation)
@@ -65,11 +66,18 @@ To get started, visit the [official docs](https://codeotr.github.io/flutter-fast
 
 # Features
 
+## AB Testing
+|  Method |  Remote Config | Posthog |
+| --- | --- | --- |
+| Feature Flags | ✅ | ✅ |
+| String Values | ✅ | ✅ |
+
 ## Analytics
 |  Method |  Amplitude | Posthog |
 | --- | --- | --- |
 | Events | ✅ | ✅ |
 | User Properties | ✅ | ✅ |
+| User Properties (Set once) | ✅ | ✅ |
 
 ## Authentication
 |  Method | Firebase | Supabase | Appwrite | Pocketbase |

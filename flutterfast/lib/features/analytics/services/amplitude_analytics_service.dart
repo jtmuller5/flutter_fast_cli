@@ -1,4 +1,5 @@
 import 'package:amplitude_flutter/amplitude.dart';
+import 'package:amplitude_flutter/identify.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -35,8 +36,17 @@ class AmplitudeAnalyticsService extends FastAnalyticsService {
   }
 
   @override
-  void updateUserProperties(Map<String, dynamic> userProperties) {
-    amplitude.setUserProperties(userProperties);
+  void updateUserProperties(Map<String, dynamic> userProperties, {bool setOnce = false}) {
+    if (setOnce) {
+      final Identify identify = Identify();
+      userProperties.forEach((key, value) {
+        identify.setOnce(key, value);
+      });
+      amplitude.identify(identify);
+      return;
+    } else {
+      amplitude.setUserProperties(userProperties);
+    }
   }
 
   @override

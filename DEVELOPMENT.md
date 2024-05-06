@@ -16,3 +16,14 @@ dart run ./bin/fast.dart wizard
 1. Increase version number
 2. `flutter pub publish --dry-run`
 3. `flutter pub publish`
+
+# Target Features in File
+
+Wrap the related feature code in one of the following: 
+
+- Dart file: //* Feature *//
+- Pubspec: #* Feature *#
+- Dart imports: //x Feature x//
+- HTML: <!--\* Feature *\-->
+
+Then call `removeFeatureFromFile('feature')` to remove all wrapped code.

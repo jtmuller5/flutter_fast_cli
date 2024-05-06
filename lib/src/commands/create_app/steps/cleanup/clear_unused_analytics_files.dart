@@ -11,10 +11,12 @@ Future<void> clearUnusedAnalyticsFiles(String analytics) async {
     await posthogAnalyticsServiceFile.delete();
     removeFeatureFromFile('Posthog', 'lib/main.dart');
     removeFeatureFromFile('Posthog', 'web/index.html');
+    removeFeatureFromFile('Posthog', 'lib/app/get_it.dart');
   } else if (analytics == 'posthog') {
     await amplitudeAnalyticsServiceFile.delete();
     removeFeatureFromFile('Amplitude', 'lib/main.dart');
     removeFeatureFromFile('Amplitude', 'web/index.html');
+    removeFeatureFromFile('Amplitude', 'lib/app/get_it.dart');
   } else {
     stdout.writeln('Unknown Analytics Plaform: $analytics');
   }

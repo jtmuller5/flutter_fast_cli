@@ -43,7 +43,10 @@ class _ProfileViewState extends State<ProfileView> {
           IconButton(
               onPressed: () async {
                 await authenticationService.signOut();
+
+                //* Subscriptions *//
                 subscriptionService.setPremium(false);
+                //* Subscriptions *//
 
                 if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signed out')));
                 navigationService.navigateToSignIn();

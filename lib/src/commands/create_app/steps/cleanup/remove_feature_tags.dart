@@ -10,7 +10,8 @@ Future<void> removeFeatureTags() async {
       'LogoColorScheme',
       'Subscriptions',
       'Appwrite',
-      'Pocketbase'
+      'Pocketbase',
+      'Posthog',
     ]) {
       final directory = Directory('lib');
 

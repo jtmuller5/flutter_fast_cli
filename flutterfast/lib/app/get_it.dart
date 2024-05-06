@@ -1,7 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutterfast/main.dart';
-
 import 'get_it.config.dart';
 
 const firebase = Environment('firebase');
@@ -23,7 +21,13 @@ Future<void> configureDependencies() async => await $initGetIt(
       environmentFilter: NoEnvOrContainsAny(
         {
           const String.fromEnvironment('PAAS', defaultValue: 'firebase'),
+          //* Amplitude *//
           const String.fromEnvironment('analytics', defaultValue: 'amplitude'),
+          //* Amplitude *//
+
+          //* Posthog *//
+          const String.fromEnvironment('analytics', defaultValue: 'posthog'),
+          //* Posthog *//
         },
       ),
     );
