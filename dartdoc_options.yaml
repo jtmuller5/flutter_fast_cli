@@ -27,7 +27,7 @@ dartdoc:
     "RevenueCat":
       markdown: doc/revenuecat/revenuecat.md
       name: Set up RevenueCat
-categoryOrder:
+  categoryOrder:
     - "Get started"
     - "Firebase"
     - "Supabase"
@@ -37,7 +37,7 @@ categoryOrder:
     - "Amplitude"
     - "Posthog"
     - "RevenueCat"
-showUndocumentedCategories: true
-ignore:
+  showUndocumentedCategories: true
+  ignore:
     - broken-link
     - missing-from-search-index

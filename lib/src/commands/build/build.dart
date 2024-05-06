@@ -5,6 +5,7 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 
+/// A command to run `flutter pub run build_runner build --delete-conflicting-outputs`.
 class Build extends Command {
   @override
   String get description => 'Run flutter pub run build_runner build --delete-conflicting-outputs.';
