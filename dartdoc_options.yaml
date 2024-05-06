@@ -3,6 +3,9 @@ dartdoc:
     "Get started":
       markdown: doc/get-started.md
       name: Get started
+    "Features":
+      markdown: doc/features.md
+      name: Features
     "Firebase":
       markdown: doc/firebase/firebase.md
       name: Firebase
@@ -29,6 +32,7 @@ dartdoc:
       name: RevenueCat
   categoryOrder:
     - "Get started"
+    - "Features"
     - "Firebase"
     - "Supabase"
     - "Pocketbase"

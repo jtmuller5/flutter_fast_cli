@@ -34,7 +34,7 @@ For PocketBase servers hosted on PocketHost, you can find the URL by selecting y
 
 Dashboard -> {Your Project} -> Overview -> Getting Started
 
-![PocketBase connection instructions](./pocketbase-setup.png)
+![PocketBase connection instructions](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/pocketbase/pocketbase-setup.png)
 
 ### Database Updates
 The Flutter Fast template requires two database collection: one for users and one for feedback.

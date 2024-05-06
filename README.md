@@ -26,6 +26,7 @@
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
+  - [Documentation](#documentation)
 - [Features](#features)
   - [AB Testing](#ab-testing)
   - [Analytics](#analytics)
@@ -63,6 +64,19 @@ fast wizard
 | `clean `  | Run flutter clean (use -i to clean ios folder)                    |
 
 To get started, visit the [official docs](https://pub.dev/documentation/flutter_fast_cli/latest/)!
+
+## Documentation
+See the API documentation for details on the following topics:
+
+- [Getting started](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Get%20started-topic.html)
+- [Firebase](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Firebase-topic.html)
+- [Supabase](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Supabase-topic.html)
+- [Pocketbase](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Pocketbase-topic.html)
+- [AppWrite](https://pub.dev/documentation/flutter_fast_cli/latest/topics/AppWrite-topic.html)
+- [Sentry](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Sentry-topic.html)
+- [Amplitude](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Amplitude-topic.html)
+- [Posthog](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Posthog-topic.html)
+- [RevenueCat](https://pub.dev/documentation/flutter_fast_cli/latest/topics/RevenueCat-topic.html)
 
 # Features
 
@@ -108,6 +122,7 @@ The Flutter Fast CLI is a tool for generating a starter Flutter application with
 - 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), [Appwrite](https://appwrite.io/), or [PocketBase](https://pocketbase.io/)
 - 💸 Subscriptions via [RevenueCat](https://www.revenuecat.com/)
 - 🌊 Analytics via [Amplitude](https://amplitude.com/) or [Posthog](https://posthog.com/)
+- 📊 AB Tests via [Remote Config](https://firebase.google.com/docs/remote-config) or [Posthog](https://posthog.com/)
 - 🤖 Crash Reporting via [Sentry](https://sentry.io/welcome/)
 - 🏎️ CI/CD via [Fastlane](https://fastlane.tools/)
 - 🚀 Lots more!

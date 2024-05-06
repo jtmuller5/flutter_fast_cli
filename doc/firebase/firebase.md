@@ -48,7 +48,7 @@ and then add the [google_sign_in](https://pub.dev/packages/google_sign_in) packa
 ### iOS
  You can find your CLIENT_ID in `ios/Runner/GoogleService-Info.plist`. If you don't see it there, you can also navigate to the project settings screen in the Firebase console, select the iOS app from the app list, and download the most up to date file.
 
-![GoogleService-Info.plist](image.png)
+![GoogleService-Info.plist](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image.png)
 Once you've found the client ID, add it to `Info.plist`:
 
 ```plist
@@ -93,7 +93,7 @@ You'll also need to add the following section with your `REVERSED_CLIENT_ID`:
 
 In the Firebase console, enable the Apple sign in method:
 
-![Apple Sign In method](image-1.png)
+![Apple Sign In method](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image-1.png)
 
 If you have not already, create a new App ID in the [Apple Developer Console](https://developer.apple.com/account/resources/identifiers/list/bundleId).
 
@@ -139,7 +139,7 @@ Back in the Firebase console, navigate to the Apple Sign In method and fill in t
 **Apple team ID**
 
 Go to the [identifiers](https://developer.apple.com/account/resources/identifiers) page and find your team ID in the upper right:
-![Apple team ID](image-2.png)
+![Apple team ID](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image-2.png)
 
 **Key ID**
 
@@ -166,13 +166,13 @@ Open your app in Xcode and verify that the `Sign In with Apple` capability is en
 ### Troubleshooting
 If you see an `invalid_request` error when trying to sign in with Apple, it's likely that the callback URL you've added to the Apple Service ID does not match the one in your Firebase console. Make sure they match exactly.
 
-![invalid_request](image-3.png)
+![invalid_request](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image-3.png)
 
 1. Navigate to the Identifiers page and select "Service IDs" from the dropdown at the upper right
 2. Select your service ID
 3. On the next page, select "Configure" by the Sign in with Apple section
 4. Select the add (+) button next to "Website URLs"
 5. Add the callback URL from your Firebase console
-6. ![Firebase callback UrL](image-4.png)
+6. ![Firebase callback UrL](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image-4.png)
 
 Good luck!

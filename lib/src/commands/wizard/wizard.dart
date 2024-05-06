@@ -24,6 +24,7 @@ import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 /// {@category Get started}
+/// {@category Features}
 /// {@category Firebase}
 /// {@category Supabase}
 /// {@category Pocketbase}

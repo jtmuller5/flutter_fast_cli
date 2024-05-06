@@ -14,7 +14,7 @@ Create a new [Appwrite project](https://cloud.appwrite.io/console/organization-6
 
 Create a new collection called "users" in your Appwrite project.
 
-![Users collection in Appwrite](image-3.png)
+![Users collection in Appwrite](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-3.png)
 
 Add the following attributes:
 
@@ -57,7 +57,7 @@ Click on the client you just created and:
 2. Copy the client secret into your Appwrite console
 3. Add the authorized redirect URI from your Appwrite console into the 
 
-![Google OAuth setup](image-4.png)
+![Google OAuth setup](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-4.png)
 
 ### Apple Sign In
 On the Auth tab in the Appwrite console, enable the Apple sign in method.
@@ -78,7 +78,7 @@ Copy your Team ID from the [Membership](https://developer.apple.com/account/#/me
 2. Create a new service ID and enable the Sign in with Apple capability. 
 3. Configure the Sign In with apple capability and add the redirect URI from your Appwrite console. 
 
-![Appwrite callback URL](image-6.png)
+![Appwrite callback URL](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-6.png)
 
 > This Service ID is the "Bundle ID" you will use in your Appwrite console 🙃
 
@@ -96,11 +96,11 @@ If you are seeing an error that says "OAuth provider failed to return email", yo
 ### Feedback
 To support the feedback feature, create a new collection called "feedback" in your Appwrite project.
 
-![Feedback collection in Appwrite](image-2.png)
+![Feedback collection in Appwrite](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-2.png)
 
 Add the following attributes:
 
-![Feedback collection in Appwrite](image-1.png)
+![Feedback collection in Appwrite](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-3.png)
 
 | Attribute | Type | Size |
 |-----------|------|------|
@@ -117,11 +117,11 @@ Add the following attributes:
 
 To support the social chat feed feature, create a new collection called "messages" in your Appwrite project.
 
-![Messages collection in Appwrite](image.png)
+![Messages collection in Appwrite](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image.png)
 
 Add the following attributes:
 
-![Feedback collection in Appwrite](image-1.png)
+![Feedback collection in Appwrite](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/appwrite/image-1.png)
 
 | Attribute | Type | Size |
 |-----------|------|------|

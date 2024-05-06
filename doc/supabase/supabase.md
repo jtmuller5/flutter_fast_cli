@@ -32,7 +32,7 @@ The [Flutter setup steps](https://supabase.com/docs/guides/getting-started/quick
 
 Navigate to the Authentication tab in your Supabase console, select the "Providers" section, and enable Google Sign In.
 
-![Supabase Google Sign In](image.png)
+![Supabase Google Sign In](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image.png)
 
 Next add the [google_sign_in](https://pub.dev/packages/google_sign_in) package to your `pubspec.yaml`.
 
@@ -105,14 +105,14 @@ Lastly, enable the [People API](https://console.cloud.google.com/apis/api/people
 
 Navigate to the Authentication tab in your Supabase console, select the "Providers" section, and enable Apple Sign In.
 
-![Apple Sign in Supabase](image-3.png)
+![Apple Sign in Supabase](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-3.png)
 
 Add the [sign_in_with_apple](https://pub.dev/packages/sign_in_with_apple) package to your `pubspec.yaml`.
 
 ### Android
 To start, navigate to the [identifiers](https://developer.apple.com/account/resources/identifiers/list/bundleId) page in your Apple developer console. Select the "+" button and create a new "Services ID".
 
-![Register new Service ID](image-4.png)
+![Register new Service ID](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-4.png)
 
 Copy the identifier (ex. `com.cotr.flutterfast.apple`) for later.
 
@@ -128,11 +128,11 @@ Use this [tool](https://supabase.com/docs/guides/auth/social-login/auth-apple?pl
 
 Copy the generated secret key into the "Secret Key (for OAuth)" field on the Apple provider tab in your Supabase console.
 
-![Apple Sign In configuration](image-5.png)
+![Apple Sign In configuration](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-5.png)
 
 Copy the callback URL from the Supabase console and add it to the "Return URLs" under Identifiers > Your Apple Sign In identifier > Configure in the Apple Developer Console.
 
-![Sign in with Apple Service configuration](image-6.png)
+![Sign in with Apple Service configuration](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-6.png)
 
 When a user signs in with Apple, a browser window will open to authenticate the user. When they have successfully authenticated, the browser will redirect to the URL you specify in the `redirectTo` field in your app:
 
@@ -158,12 +158,12 @@ For this to work, you need to setup [deep links](https://supabase.com/docs/guide
 
 In your Supabase console, under Authentication > URL Configuration, add the redirect URL (ex. `com.cotr.flutterfast://login-callback`)
 
-![Redirect URL configuration](image-7.png)
+![Redirect URL configuration](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-7.png)
 
 ### iOS
 
 Open your project in Xcode and add the "Sign in with Apple" capability.
-![Sign in with Apple Capability](image-2.png)
+![Sign in with Apple Capability](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/supabase/image-2.png)
 
 [Register iOS App IDs in Supabase dashboard](https://supabase.com/dashboard/project/_/auth/providers)
 
