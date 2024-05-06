@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <a href="https://codeotr.github.io/flutter-fast-guide/">Documentation</a> •
-  <a href="https://codeontherocks.dev/">Code on the Rocks</a> •
+  <a href="https://pub.dev/documentation/flutter_fast_cli/latest/">Documentation</a> •
+  <a href="https://cotr.dev/">Code on the Rocks</a> •
   <a href="https://github.com/sponsors/jtmuller5">Support</a> •
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
