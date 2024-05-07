@@ -10,6 +10,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_fe
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_run_configurations.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_analytics_environment.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_android_manifest.dart';
@@ -151,6 +152,7 @@ class CreateApp extends Command {
 
     if (analytics != null) {
       await clearUnusedAnalyticsFiles(analytics);
+      await updateAnalyticsEnvironment(analytics);
     }
 
     if (!subscriptions) {

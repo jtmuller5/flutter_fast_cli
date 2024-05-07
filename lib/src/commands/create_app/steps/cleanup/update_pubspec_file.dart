@@ -31,10 +31,15 @@ Future<void> updatePubspecFile({
     stdout.writeln('Unknown PaaS: $paas');
   }
 
-  if(analytics == 'amplitude'){
+  if (analytics == 'amplitude') {
     pubspecContents = await removePubspecSection('Posthog', pubspecContents);
-  } else if(analytics == 'posthog'){
+    pubspecContents = await removePubspecSection('Fanalytics', pubspecContents);
+  } else if (analytics == 'posthog') {
     pubspecContents = await removePubspecSection('Amplitude', pubspecContents);
+    pubspecContents = await removePubspecSection('Fanalytics', pubspecContents);
+  } else if (analytics == 'firebase') {
+    pubspecContents = await removePubspecSection('Amplitude', pubspecContents);
+    pubspecContents = await removePubspecSection('Posthog', pubspecContents);
   } else {
     stdout.writeln('Unknown Analytics Plaform: $analytics');
   }

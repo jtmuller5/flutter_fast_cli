@@ -52,7 +52,7 @@ class AmplitudeAnalyticsService extends FastAnalyticsService {
   @override
   void updateVersionId(String? versionId) {
     if (kIsWeb) {
-      amplitude.setUserProperties({'version': versionId});
+      amplitude.setUserProperties({'app_version': versionId});
     }
   }
 }

@@ -1,3 +1,10 @@
+## 1.6.11
+- 🟩 Added Firebase Analytics as analytics option
+- 🟩 Implemented `updateVersionId` in all analytics services
+- 🟩 Added ReCase class for string manipulation
+- 🟨 Automated setting of analytics environment in `get_it`
+- *Date:* 5-7-2024
+
 ## 1.6.10
 - 🟩 Add docs to pub
 - *Date:* 5-6-2024

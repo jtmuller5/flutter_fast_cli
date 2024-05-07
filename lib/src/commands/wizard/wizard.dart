@@ -9,6 +9,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_fe
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_run_configurations.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
+import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_analytics_environment.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_android_manifest.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/crea
 import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
 import 'package:flutter_fast_cli/src/commands/strings.dart';
 import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
+import 'package:flutter_fast_cli/src/commands/utils/cli_inputs.dart';
 import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
 
 /// {@category Get started}
@@ -70,7 +72,6 @@ class Wizard extends Command {
     String? paas;
     String? analyticsOption;
     String? analytics;
-    String? abTestsOption;
     String? abTests;
     if (!offline) {
       // User input for PaaS
@@ -86,41 +87,32 @@ class Wizard extends Command {
                   ? 'pocketbase'
                   : 'appwrite';
 
-      while (analyticsOption != 'a' && analyticsOption != 'p') {
-        stdout.write('Enter the analytics platform you want to use for your app - (a)mplitude, (p)osthog: ');
+      while (analyticsOption != 'a' && analyticsOption != 'p' && analyticsOption != 'f') {
+        stdout.write('Enter the analytics platform you want to use for your app - (a)mplitude, (p)osthog, (f)irebase: ');
         analyticsOption = stdin.readLineSync() ?? 'f';
       }
       analytics = analyticsOption == 'a'
           ? 'amplitude'
           : analyticsOption == 'p'
               ? 'posthog'
-              : 'amplitude';
+              : analyticsOption == 'f'
+                  ? 'firebase'
+                  : 'amplitude';
 
-      while (abTestsOption != 'y' && abTestsOption != 'n') {
-        stdout.write('Do you want to include A/B tests in your app? (Y/n): ');
-        abTestsOption = stdin.readLineSync() ?? 'y';
-        if (abTestsOption.trim() == '') abTestsOption = 'y';
-      }
+      bool includeAbTests = getYesNo('Do you want to include A/B tests in your app?');
 
-      if (abTestsOption == 'y') {
+      if (includeAbTests) {
         while (abTests != 'f' && abTests != 'p') {
           stdout.write('Enter the platform you want to use for AB tests - (f)irebase, (p)osthog: ');
           abTests = stdin.readLineSync() ?? '';
-          if (abTests.trim() == '') abTestsOption = 'f';
+          if (abTests.trim() == '') abTests = 'f';
         }
 
         abTests = abTests == 'f' ? 'firebase' : 'posthog';
       }
     }
 
-    // User input for subscriptions
-    String? subsOption;
-    while (subsOption != 'y' && subsOption != 'n') {
-      stdout.write('Do you want to include subscriptions in your app? (Y/n): ');
-      subsOption = stdin.readLineSync() ?? 'y';
-      if (subsOption.trim() == '') subsOption = 'y';
-    }
-    final bool subscriptions = subsOption == 'y';
+    bool subscriptions = getYesNo('Do you want to include subscriptions in your app?');
 
     // Print out selections
     stdout.writeln('\n🛠️ Your selections:');
@@ -200,6 +192,7 @@ class Wizard extends Command {
 
     if (analytics != null) {
       await clearUnusedAnalyticsFiles(analytics);
+      await updateAnalyticsEnvironment(analytics);
     }
 
     if (!subscriptions) {

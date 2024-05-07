@@ -26,7 +26,7 @@
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
-  - [Documentation](#documentation)
+- [Documentation](#documentation)
 - [Features](#features)
   - [AB Testing](#ab-testing)
   - [Analytics](#analytics)
@@ -65,7 +65,8 @@ fast wizard
 
 To get started, visit the [official docs](https://pub.dev/documentation/flutter_fast_cli/latest/)!
 
-## Documentation
+# Documentation
+
 See the API documentation for details on the following topics:
 
 - [Getting started](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Get%20started-topic.html)
@@ -81,37 +82,42 @@ See the API documentation for details on the following topics:
 # Features
 
 ## AB Testing
-|  Method |  Remote Config | Posthog |
-| --- | --- | --- |
-| Feature Flags | ✅ | ✅ |
-| String Values | ✅ | ✅ |
+
+| Method        | Remote Config | Posthog |
+| ------------- | ------------- | ------- |
+| Feature Flags | ✅            | ✅      |
+| String Values | ✅            | ✅      |
 
 ## Analytics
-|  Method |  Amplitude | Posthog |
-| --- | --- | --- |
-| Events | ✅ | ✅ |
-| User Properties | ✅ | ✅ |
-| User Properties (Set once) | ✅ | ✅ |
+
+| Method                     | Amplitude | Posthog | Firebase Analytics |
+| -------------------------- | --------- | ------- | ------------------ |
+| Events                     | ✅        | ✅      | ✅                 |
+| User Properties            | ✅        | ✅      | ✅                 |
+| User Properties (Set once) | ✅        | ✅      |                    |
 
 ## Authentication
-|  Method | Firebase | Supabase | Appwrite | Pocketbase |
-| --- | --- | --- | --- | --- |
-| Email/Password | ✅ | ✅ | ✅ | ✅ |
-| Google | ✅ | ✅ |  |  |
-| Apple | ✅ | ✅  |  |  |
+
+| Method         | Firebase | Supabase | Appwrite | Pocketbase |
+| -------------- | -------- | -------- | -------- | ---------- |
+| Email/Password | ✅       | ✅       | ✅       | ✅         |
+| Google         | ✅       | ✅       |          |            |
+| Apple          | ✅       | ✅       |          |            |
 
 ## Automation
-|  Method | Android | iOS | Web |
-| --- | --- | --- | --- |
-| Fastlane | ✅ | ✅ | ✅ |
-| GitHub Actions | ✅ | ✅ | ✅ |
-| Shorebird | ✅ | ✅ | ✅ |
+
+| Method         | Android | iOS | Web |
+| -------------- | ------- | --- | --- |
+| Fastlane       | ✅      | ✅  | ✅  |
+| GitHub Actions | ✅      | ✅  | ✅  |
+| Shorebird      | ✅      | ✅  | ✅  |
 
 ## Monetization
-|  Method | RevenueCat | 
-| --- | --- | 
-| Subscriptions | ✅ |  
-| In-App Purchases |  |  
+
+| Method           | RevenueCat |
+| ---------------- | ---------- |
+| Subscriptions    | ✅         |
+| In-App Purchases |            |
 
 # Flutter Fast
 

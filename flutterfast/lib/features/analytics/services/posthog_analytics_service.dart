@@ -38,6 +38,8 @@ class PosthogAnalyticsService extends FastAnalyticsService {
 
   @override
   void updateVersionId(String? versionId) {
-    // TODO: implement updateVersionId
+    Posthog().identify(userId: authenticationService.id!, userProperties: {
+      'app_version': versionId ?? 'unknown',
+    });
   }
 }

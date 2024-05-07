@@ -58,6 +58,10 @@ dependencies:
   firebase_remote_config: ^4.4.4
   #* Firebase *#
 
+  #* Fanalytics *#
+  firebase_analytics: ^10.10.4
+  #* Fanalytics *#
+
   #* Supabase *#
   supabase_flutter: ^2.5.2
   #* Supabase *#
