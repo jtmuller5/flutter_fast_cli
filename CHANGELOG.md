@@ -3,6 +3,7 @@
 - 🟩 Implemented `updateVersionId` in all analytics services
 - 🟩 Added ReCase class for string manipulation
 - 🟨 Automated setting of analytics environment in `get_it`
+- 🟪 Fixed Google sign in with Supabase on web
 - *Date:* 5-7-2024
 
 ## 1.6.10
