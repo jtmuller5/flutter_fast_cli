@@ -30,6 +30,9 @@ dartdoc:
     "RevenueCat":
       markdown: doc/revenuecat/revenuecat.md
       name: RevenueCat
+    "Roadmap":
+      markdown: doc/roadmap.md
+      name: Roadmap
   categoryOrder:
     - "Get started"
     - "Features"
@@ -41,6 +44,7 @@ dartdoc:
     - "Amplitude"
     - "Posthog"
     - "RevenueCat"
+    - "Roadmap"
   showUndocumentedCategories: true
   ignore:
     - broken-link

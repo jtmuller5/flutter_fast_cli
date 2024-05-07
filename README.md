@@ -175,7 +175,7 @@ I love experimenting. I love writing about different tech stacks and understandi
 - Choose to use either Firebase or Supabase as your PaaS
 - Opt into including Subscriptions
 
-You can view the [roadmap](https://codeotr.github.io/flutter-fast-guide/roadmap/plan/) to see additional platforms we plan to support.
+You can view the [roadmap](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Roadmap-topic.html) to see additional platforms we plan to support.
 
 ## How Fast?
 

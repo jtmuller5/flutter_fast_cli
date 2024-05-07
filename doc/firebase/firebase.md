@@ -8,11 +8,11 @@ Create a new [Firebase project](https://firebase.google.com/docs/projects/learn-
 
 In the Firebase Console, create a new Firestore database. Be sure to update the rules so you can make requests
 
-![Firestore rules](firestore-rules.png)
+![Firestore rules](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/firestore-rules.png)
 
 Set up [Firebase Authentication](https://firebase.google.com/docs/auth/flutter/start) and enable email authentication (Authentication -> Sign-in method -> Native providers -> Email/Password)
 
-![Enable email authentication](email_auth.png)
+![Enable email authentication](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/email_auth.png)
 
 ### After Generating Your App
 
@@ -27,14 +27,19 @@ Enable Google Sign In in your Firebase console and follow the [official instruct
 Run `flutterfire config` inside your Flutter app to setup each platform. Its important to run this after enabling Google Sign in so that the generated GoogleServices-Info files contain the correct information.
 
 ### Android
- Next, [add your machine's SHA1](https://developers.google.com/android/guides/client-auth) to your Firebase settings. To do this, you'll first need to create your release key:
+
+Next, [add your machine's SHA1](https://developers.google.com/android/guides/client-auth) to your Firebase settings. To do this, you'll first need to create your release key:
+
 ```shell
 keytool -genkey -v -keystore ~/Dev/keys/flutterfast.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
+
 Then you can list the details of that key to find the SHA1:
+
 ```shell
-keytool -list -v -alias upload  -keystore ~/Dev/keys/flutterfast.jks 
+keytool -list -v -alias upload  -keystore ~/Dev/keys/flutterfast.jks
 ```
+
 The SHA1 and SHA256 will be listed under "Certificate fingerprints". Add these to your Firebase project under Project Settings -> Your Apps -> Android App -> SHA certificate fingerprints.
 
 You will also need to add your debug SHA1 which you can find using this command (password is "android"):
@@ -46,7 +51,8 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
 and then add the [google_sign_in](https://pub.dev/packages/google_sign_in) package and follow the instructions for setting up each platform.
 
 ### iOS
- You can find your CLIENT_ID in `ios/Runner/GoogleService-Info.plist`. If you don't see it there, you can also navigate to the project settings screen in the Firebase console, select the iOS app from the app list, and download the most up to date file.
+
+You can find your CLIENT_ID in `ios/Runner/GoogleService-Info.plist`. If you don't see it there, you can also navigate to the project settings screen in the Firebase console, select the iOS app from the app list, and download the most up to date file.
 
 ![GoogleService-Info.plist](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image.png)
 Once you've found the client ID, add it to `Info.plist`:
@@ -81,9 +87,7 @@ You'll also need to add the following section with your `REVERSED_CLIENT_ID`:
 
 ### Web
 
- :::caution
- Coming Soon
- :::
+> Coming Soon
 
 ## Apple Sign In
 
@@ -133,7 +137,6 @@ Next, you'll need to create an [Sign in with Apple private key](https://develope
 
 > Save this file in a secure place because the key is not saved in your developer account and you won’t be able to download it again. If the Download button is disabled, you previously downloaded the key.
 
-
 Back in the Firebase console, navigate to the Apple Sign In method and fill in the "OAuth code flow configuration" section with the information from above:
 
 **Apple team ID**
@@ -154,6 +157,7 @@ Right click on the `.p8` file you downloaded and open it in a text editor. Copy 
 No additional setup is required for Android.
 
 ### iOS
+
 Open your app in Xcode and verify that the `Sign In with Apple` capability is enabled. You can do this by opening the project settings and selecting the `Signing & Capabilities` tab.
 
 ![Sign in with Apple capability](sign-in-apple.png)
@@ -162,8 +166,8 @@ Open your app in Xcode and verify that the `Sign In with Apple` capability is en
 
 > Coming Soon
 
- 
 ### Troubleshooting
+
 If you see an `invalid_request` error when trying to sign in with Apple, it's likely that the callback URL you've added to the Apple Service ID does not match the one in your Firebase console. Make sure they match exactly.
 
 ![invalid_request](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/firebase/image-3.png)

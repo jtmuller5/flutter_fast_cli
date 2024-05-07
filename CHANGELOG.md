@@ -1,3 +1,8 @@
+## 1.6.12
+- 🟩 Added Roadmap
+- 🟪 Fixed broken doc links
+- *Date:* 5-7-2024
+
 ## 1.6.11
 - 🟩 Added Firebase Analytics as analytics option
 - 🟩 Implemented `updateVersionId` in all analytics services

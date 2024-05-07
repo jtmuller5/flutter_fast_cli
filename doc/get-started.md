@@ -1,7 +1,7 @@
 # Installation
 
 ## Like It
-![Flutter Fast product](ff-product.png)
+![Flutter Fast product](https://github.com/jtmuller5/flutter_fast_cli/raw/main/doc/images/ff-product.png)
 
 You can view the Flutter Fast CLI on [pub.dev](https://pub.dev/packages/flutter_fast_cli). Give it a 👍 if you like it!
 
@@ -78,7 +78,7 @@ For example, if you chose "firebase", you'll need to
 
 If you chose "supabase", you'll need to perform a similar set of setup steps. 
 
-You can find all setup step instructions in the [Setup Steps](/flutter-fast-guide/setup/overview/) section. This will typically be the slowest part of getting started.
+You can find all setup step instructions in the related topic section (ex. [Supabase](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Supabase-topic.html)). This will typically be the slowest part of getting started.
 
 ## Replace the App Logo
 In the `assets/images` folder there is a placeholder image called logo.png. Replace this image with your own but keep the name the same ("logo.png"). Then, run the following command:
@@ -156,9 +156,7 @@ flutter_fast_cli 1.0.1
 ## Create an Upload Keystore
 Follow the instructions [here](https://docs.flutter.dev/deployment/android#signing-the-app) to create an upload keystore for your Android application.
 
-:::note
-The `key.properties` file should not be checked into version control. It is included in the .gitignore file in the android folder
-:::
+> The `key.properties` file should not be checked into version control. It is included in the .gitignore file in the android folder
 
 ## Manually Release First Android App
 I know, its sad. Unfortunately, not everything can be automated. If you try to use the Fastlane files to release the first version of your app, you will see this error:
