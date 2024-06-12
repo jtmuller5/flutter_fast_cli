@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutterfast/app/get_it.dart';
 import 'package:flutterfast/app/services.dart';

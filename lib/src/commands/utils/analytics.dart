@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<void> logAmplitudeEvent(String eventName, [Map<String, String>? properties]) async {
+Future<void> logAmplitudeEvent(String eventName, [Map<String, dynamic>? properties]) async {
   var url = Uri.parse('https://api2.amplitude.com/2/httpapi');
 
   await http.post(

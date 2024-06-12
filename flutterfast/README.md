@@ -30,6 +30,8 @@ In the assets folder of your project, replace the app_logo.png file with your ow
 flutter pub run flutter_launcher_icons
 ```
 
+Or do it manually: https://stackoverflow.com/a/55054303/12806961
+
 ## RevenueCat
 Use structured [product IDs](https://www.revenuecat.com/docs/android-products#tips-for-creating-robust-product-ids):
 

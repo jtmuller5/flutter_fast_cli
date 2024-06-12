@@ -2,28 +2,10 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:cli_util/cli_logging.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_ab_test_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_analytics_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/clear_unused_paas_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_feature_tags.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_injectable_environments.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_run_configurations.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/remove_subscription_feature.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_analytics_environment.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/cleanup/update_pubspec_file.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/load_template_folder.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_android_manifest.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/copy_ios_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/remove_billing_dependency.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/create_key_file.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/fastlane_setup.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/copy_template/copy_template.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/root_updates/create_root_files.dart';
-import 'package:flutter_fast_cli/src/commands/create_app/steps/native_updates/update_android_build_gradle.dart';
-import 'package:flutter_fast_cli/src/commands/strings.dart';
+import 'package:flutter_fast_cli/src/bundles/fast_app_bundle.dart';
 import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
-import 'package:flutter_fast_cli/src/commands/utils/utils.dart';
+import 'package:flutter_fast_cli/src/commands/utils/cli_inputs.dart';
+import 'package:mason/mason.dart';
 
 class CreateApp extends Command {
   @override
@@ -35,169 +17,174 @@ class CreateApp extends Command {
   @override
   ArgParser get argParser {
     return ArgParser()
-      ..addOption('name', abbr: 'n', help: 'The name of the app to create.')
       ..addOption(
-        'org',
-        abbr: 'o',
-        help: 'The organization to use for the app.',
-        valueHelp: 'com.example',
-        defaultsTo: 'com.example',
-      )
-      ..addFlag(
-        'offline',
-        abbr: 'f',
-        help: 'Whether the app should be specifically for offline use.',
-        defaultsTo: false,
-      )
-      ..addFlag(
-        'subs',
-        abbr: 's',
-        help: 'Whether to include subscriptions in the app.',
-        defaultsTo: true,
-        negatable: true,
-      )
-      ..addOption(
-        'paas',
-        abbr: 'p',
-        help: 'The PaaS to use for the app. If left blank, all files will be '
-            'included and you can use --dart-define to choose which one to use.',
+        'auth',
+        abbr: 'a',
+        help: 'The authentication providerto use for the app.',
         valueHelp: 'firebase',
-        allowed: ['firebase', 'supabase', 'appwrite', 'pocketbase'],
+        allowed: [
+          'firebase',
+          'supabase',
+          'appwrite',
+          'pocketbase',
+        ],
       )
       ..addOption(
-        'abtests',
+        'router',
+        abbr: 'r',
+        help: 'The router to use.',
+        valueHelp: 'vanilla',
+        defaultsTo: 'vanilla',
+        allowed: ['auto_route', 'go_router', 'vanilla'],
+      )
+      ..addOption(
+        'notifications',
+        abbr: 'n',
+        help: 'The notifications platform to use.',
+        valueHelp: 'fcm',
+        allowed: ['fcm', 'one_signal'],
+      )
+      ..addOption(
+        'ab_test',
         abbr: 'b',
-        help: 'The platform to use for AB tests. If left blank, all files will be '
-            'included and you can use --dart-define to choose which one to use.',
-        valueHelp: 'firebase',
-        allowed: ['firebase', 'posthog'],
+        help: 'The platform to use for AB tests.',
+        valueHelp: 'firebase_analytics',
+        allowed: ['firebase_remote_config', 'posthog_ab_tests'],
       )
       ..addOption(
         'analytics',
-        abbr: 'a',
+        abbr: 't',
         help: 'The analytics platform to use for the app. If left blank, all files will be '
             'included and you can use --dart-define to choose which one to use.',
         valueHelp: 'amplitude',
-        allowed: ['amplitude', 'posthog'],
+        allowed: ['firebase_analytics', 'amplitude', 'posthog'],
+      )
+      ..addOption(
+        'crash',
+        abbr: 'c',
+        help: 'The crash reporting platform to use for the app.',
+        valueHelp: 'sentry',
+        allowed: ['sentry', 'firebase_crashlytics'],
+      )
+      ..addFlag(
+        'injectable',
+        abbr: 'i',
+        help: 'Set to true to use injectable for dependency injection.',
+        defaultsTo: false,
+        negatable: true,
       );
   }
 
   @override
   Future<void> run() async {
-    final appName = argResults?['name'] as String?;
-    final orgName = argResults?['org'] as String?;
-    final offline = argResults?['offline'] as bool;
-    final paas = argResults?['paas'] as String?;
-    final analytics = argResults?['analytics'] as String?;
-    final abTests = argResults?['abtests'] as String?;
-    final subscriptions = argResults?['subs'] as bool;
+    String? authOption;
+    String? analyticsOption;
+    String? abTestsOption;
+    String? crashOption;
+    String? notificationsOption;
+    String? routerOption;
+
+    String? name;
+    String? auth = argResults?['auth'] as String?;
+    String? crash = argResults?['crash'] as String?;
+    String? notifications = argResults?['notifications'] as String?;
+    String? router = argResults?['router'] as String?;
+    bool? injectable = argResults?['injectable'] as bool?;
+    String? analytics = argResults?['analytics'] as String?;
+    String? abTests = argResults?['ab_test'] as String?;
+
+    // User input for PaaS
+    while (authOption != 'f' && authOption != 's' && authOption != 'a' && authOption != 'p') {
+      stdout.write('Enter the Authentication provider you want to use for your app - (f)irebase, (s)upabase, (a)ppwrite, (p)ocketbase: ');
+      authOption = stdin.readLineSync() ?? 'f';
+    }
+    auth = authOption == 'f'
+        ? 'firebase'
+        : authOption == 's'
+            ? 'supabase'
+            : authOption == 'p'
+                ? 'pocketbase'
+                : 'appwrite';
+
+    while (analyticsOption != 'a' && analyticsOption != 'p' && analyticsOption != 'f') {
+      stdout.write('Enter the analytics platform you want to use for your app - (a)mplitude, (p)osthog, (f)irebase: ');
+      analyticsOption = stdin.readLineSync() ?? 'f';
+    }
+    analytics = analyticsOption == 'a'
+        ? 'amplitude'
+        : analyticsOption == 'p'
+            ? 'posthog'
+            : analyticsOption == 'f'
+                ? 'firebase_analytics'
+                : 'amplitude';
+
+    while (abTestsOption != 'f' && abTestsOption != 'p') {
+      stdout.write('Enter the platform you want to use for AB tests - (f)irebase_remote_config, (p)osthog_ab_tests: ');
+      abTestsOption = stdin.readLineSync() ?? '';
+      if (abTestsOption.trim() == '') abTestsOption = 'f';
+    }
+
+    abTests = abTestsOption == 'f' ? 'firebase_remote_config' : 'posthog_ab_tests';
+
+    while (crashOption != 's' && crashOption != 'f') {
+      stdout.write('Enter the crash reporting platform you want to use for your app - (s)entry, (f)irebase_crashlytics: ');
+      crashOption = stdin.readLineSync() ?? 's';
+    }
+
+    crash = crashOption == 's' ? 'sentry' : 'firebase_crashlytics';
+
+    while (notificationsOption != 'f' && notificationsOption != 'o') {
+      stdout.write('Enter the notifications platform you want to use for your app - (f)cm, (o)ne_signal: ');
+      notificationsOption = stdin.readLineSync() ?? 'f';
+    }
+
+    notifications = notificationsOption == 'f' ? 'fcm' : 'one_signal';
+
+    while (routerOption != 'a' && routerOption != 'g' && routerOption != 'v') {
+      stdout.write('Enter the router you want to use for your app - (a)uto_route, (g)o_router, (v)anilla: ');
+      routerOption = stdin.readLineSync() ?? 'v';
+    }
+
+    router = routerOption == 'a'
+        ? 'auto_route'
+        : routerOption == 'g'
+            ? 'go_router'
+            : 'vanilla';
+
+    injectable = getYesNo('Do you want to use injectable for dependency injection?');
+
+    Map<String, dynamic> vars = {
+      'auth': auth,
+      'crash': crash,
+      'notifications': notifications,
+      'router': router,
+      'injectable': injectable,
+      'analytics': analytics,
+      'ab_test': abTests,
+    };
 
     logAmplitudeEvent('command', {'command': 'app'});
-    logAmplitudeEvent('app ready', {
-      'appName': appName ?? 'none',
-      'orgName': orgName ?? 'none',
-      'offline': offline.toString(),
-      'paas': paas ?? 'none',
-      'abtests': abTests ?? 'none',
-      'analytics': analytics ?? 'none',
-      'subscriptions': subscriptions.toString(),
-    });
+    logAmplitudeEvent('app ready', vars);
 
-    var logger = Logger.standard();
+    var logger = Logger();
+    logger.info(vars.toString());
 
-    if (appName == null || appName.isEmpty) {
-      print('Please provide a name for your app.');
-      return;
-    }
+    MasonBundle bundle = fastAppBundle;
+    final generator = await MasonGenerator.fromBundle(bundle);
 
-    if (orgName == null || orgName.isEmpty) {
-      print('Please provide an organization name for your app (ex. com.example).');
-      return;
-    }
-
-    var progress = logger.progress('Creating app $appName...');
-    await Process.run(flutterPath, ['create', appName, '--empty', '--org', orgName]);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Copying template...');
-    String? path = await loadTemplateFolder(offline);
-
-    if (path == null) {
-      logger.stdout('Template path is null');
-      return;
-    }
-
-    templatePath = path;
-    await copyTemplate(templatePath, appName);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Creating root files...');
-    await createRootFiles(templatePath, appName);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Updating native files...');
-    await updateAndroidBuildGradle(appName, orgName);
-    await copyAndroidManifest(templatePath, appName, orgName);
-    await copyIosFiles(templatePath);
-    await fastlaneSetup(templatePath, appName);
-    await createKeyFile();
-    if (!subscriptions) removeBillingDependency(templatePath, appName);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Performing cleanup...');
-    if (paas != null) {
-      await clearUnusedPaasFiles(paas);
-      await removeInjectableEnvironments();
-    }
-
-    if (analytics != null) {
-      await clearUnusedAnalyticsFiles(analytics);
-      await updateAnalyticsEnvironment(analytics);
-    }
-
-    if (!subscriptions) {
-      await removeSubscriptionFeature();
-    }
-
-    if (abTests == null) {
-      await clearUnusedAbTestFiles('firebase');
-      await clearUnusedAbTestFiles('posthog');
-    } else {
-      if (abTests == 'firebase') {
-        await clearUnusedAbTestFiles('firebase');
-      } else {
-        await clearUnusedAbTestFiles('posthog');
-      }
-    }
-
-    await updatePubspecFile(
-      appName: appName,
-      paas: paas,
-      analytics: analytics,
+    await generator.hooks.preGen(
+      vars: vars,
+      onVarsChanged: (newVars) {
+        vars = newVars;
+      },
     );
+    await generator.generate(
+      DirectoryGeneratorTarget(Directory.current),
+      vars: vars,
+    );
+    await generator.hooks.postGen(vars: vars);
 
-    await removeRunConfigurations();
-
-    await removeFeatureTags();
-
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Running flutter pub get...');
-    await Process.run(flutterPath, ['pub', 'get']);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Running build_runner...');
-    await Process.run(flutterPath, ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
-    progress.finish(showTiming: true);
-
-    progress = logger.progress('Tidying the workspace...');
-    await Process.run('dart', ['format', '.']);
-    progress.finish(showTiming: true);
-
-    logAmplitudeEvent('app complete', {
-      'duration': progress.elapsed.toString(),
-    });
-
-    logger.stdout('Your app is ready! 🚀');
+    logAmplitudeEvent('app complete', vars);
+    logger.success('Your app is ready! 🚀');
   }
 }

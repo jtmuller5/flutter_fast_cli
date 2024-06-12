@@ -1,4 +1,4 @@
-![Flutter Fast Apps](https://github.com/CodeOTR/flutter_fast_cli/raw/main/assets/flutter-fast-banner.png)
+![Flutter Fast Apps](https://github.com/CodeOTR/flutter_fast_cli/raw/main/assets/flutter-faster-banner.png)
 
 <p align="center">                    
 <a href="https://img.shields.io/badge/License-MIT-green"><img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License"></a>
@@ -26,20 +26,21 @@
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
+  - [General](#general)
+  - [Bricks](#bricks)
 - [Documentation](#documentation)
 - [Features](#features)
   - [AB Testing](#ab-testing)
   - [Analytics](#analytics)
   - [Authentication](#authentication)
   - [Automation](#automation)
-  - [Monetization](#monetization)
 - [Flutter Fast](#flutter-fast)
   - [What is Flutter Fast?](#what-is-flutter-fast)
   - [Why Flutter Fast?](#why-flutter-fast)
     - [Faster Setup](#faster-setup)
     - [Less Lock-in](#less-lock-in)
   - [How Fast?](#how-fast)
-  - [Who is this for?](#who-is-this-for)
+  - [Flutter Faster](#flutter-faster)
 
 # Getting Started
 
@@ -48,22 +49,46 @@ dart pub global activate flutter_fast_cli
 ```
 
 ```bash
-fast wizard
+flutter create my_app --empty
+cd my_app
+fast app
 ```
 
 # Commands
 
+## General
+
 | Name      | Description                                                       |
 | --------- | ----------------------------------------------------------------- |
-| `app`     | Create a new Flutter Fast app                                     |
-| `wizard`  | Create a new Flutter Fast app using the step-by-step wizard       |
+| `app`     | Create a new Flutter Fast app using the step-by-step wizard       |
+| `setup`   | Setup your Flutter Faster environment                             |
 | `build`   | Run `dart run build_runner --delete-conflicting-outputs`          |
-| `feature` | Create a new feature with ui, services, and models subdirectories |
-| `view`    | Create a new View for a feature                                   |
 | `update`  | Update flutter_fast_cli                                           |
-| `clean `  | Run flutter clean (use -i to clean ios folder)                    |
 
 To get started, visit the [official docs](https://pub.dev/documentation/flutter_fast_cli/latest/)!
+
+## Bricks
+
+| Command | Brick | Description |
+| --- | --- | --- |
+| `fast ads` | [fast_ads](https://cotr.dev/bricks/fast_ads) | Add a banner ad to your app with AdMod |
+| `fast biometrics` | [fast_biometrics](https://cotr.dev/bricks/fast_biometrics) | Add biometric authentication to your app |
+| `fast feature` | [fast_feature](https://cotr.dev/bricks/fast_feature) | Add an empty feature with ui, models, and services folders |
+| `fast notifications` | [fast_notifications](https://cotr.dev/bricks/fast_notifications) | Add push notifications to your app with Firebase Cloud Messaging |
+| `fast storage` | [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
+| `fast route` | [fast_route](https://cotr.dev/bricks/fast_route) | Add a new route to your app's router |
+| `fast feed` | [fast_feed](https://cotr.dev/bricks/fast_feed) | Add a social media feed to your app |
+| `fast fetch` | [fast_fetch](https://cotr.dev/bricks/fast_fetch) | Add a data fetching module to your app |
+| `fast feedback` | [fast_feedback](https://cotr.dev/bricks/fast_feedback) | Add a feedback module to your app |
+| `fast gallery` | [fast_gallery](https://cotr.dev/bricks/fast_gallery) | Add a photo gallery to your app |
+| `fast rss` | [fast_rss](https://cotr.dev/bricks/fast_rss) | Add an RSS feed to your app |
+| `fast subscriptions` | [fast_subscriptions](https://cotr.dev/bricks/fast_subscriptions) | Monetize your apps on Android and iOS with a RevenueCat integration |
+| `fast webview` | [flutter_inappwebview](https://cotr.dev/bricks/flutter_inappwebview) | Add a webview to your app |
+| `fast getit` | [get_it](https://cotr.dev/bricks/get-it) | Add a service locator to your app |
+| `fast map` | [google_maps_flutter](https://cotr.dev/bricks/google_maps_flutter) | Add a map to your app |
+| `fast storage`| [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
+| `fast audio` | [just_audio](https://cotr.dev/bricks/just_audio) | Add audio to your app |
+| `fast wiredash` | [wiredash](https://cotr.dev/bricks/wiredash) | Add a feedback module to your app |
 
 # Documentation
 
@@ -77,7 +102,6 @@ See the API documentation for details on the following topics:
 - [Sentry](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Sentry-topic.html)
 - [Amplitude](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Amplitude-topic.html)
 - [Posthog](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Posthog-topic.html)
-- [RevenueCat](https://pub.dev/documentation/flutter_fast_cli/latest/topics/RevenueCat-topic.html)
 
 # Features
 
@@ -112,13 +136,6 @@ See the API documentation for details on the following topics:
 | GitHub Actions | ✅      | ✅  | ✅  |
 | Shorebird      | ✅      | ✅  | ✅  |
 
-## Monetization
-
-| Method           | RevenueCat |
-| ---------------- | ---------- |
-| Subscriptions    | ✅         |
-| In-App Purchases |            |
-
 # Flutter Fast
 
 ## What is Flutter Fast?
@@ -126,7 +143,6 @@ See the API documentation for details on the following topics:
 The Flutter Fast CLI is a tool for generating a starter Flutter application with everything you need to start shipping.
 
 - 🔒 Authentication via [Firebase](https://firebase.google.com/), [Supabase](https://supabase.com/), [Appwrite](https://appwrite.io/), or [PocketBase](https://pocketbase.io/)
-- 💸 Subscriptions via [RevenueCat](https://www.revenuecat.com/)
 - 🌊 Analytics via [Amplitude](https://amplitude.com/) or [Posthog](https://posthog.com/)
 - 📊 AB Tests via [Remote Config](https://firebase.google.com/docs/remote-config) or [Posthog](https://posthog.com/)
 - 🤖 Crash Reporting via [Sentry](https://sentry.io/welcome/)
@@ -214,8 +230,14 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Creates abstract service classes for easy extensibility
 - Runs `flutter pub run build_runner build --delete-conflicting-outputs` and `dart format .` so projects are run-ready
 
-## Who is this for?
+## Flutter Faster
 
-The Flutter Fast CLI is for anyone who wants to ship a Flutter app fast.
+The `fast app` command gives you just about everything you need to launch a cross-platform Flutter app...but sometimes that's not enough. The Flutter Faster brick pack is an ever-expanding library of Mason bricks that can accelerate your development process. There are 30+ bricks for adding features, screens, and pizzazz:
 
-It's also a good tool for experimenting with different stacks and learning how to integrate different tools into your Flutter app.
+- Subscription service (fast_subscriptions)
+- User feedback screen (fast_feedback)
+- Google maps setup (google_maps_flutter)
+- Biometric sign in (fast_biometrics)
+- Plus lots more
+
+To get all of the bricks, as well as lifetime updates and all future bricks that are added, check out our [website](https://cotr.dev/flutter-faster)!

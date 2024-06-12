@@ -1,6 +1,6 @@
 name: flutter_fast_cli
 description: Build Flutter Apps Faster. Generate boilerplate code for apps that require authentication, subscriptions, and more
-version: 1.6.12
+version: 2.0.0
 homepage: https://github.com/CodeOTR/flutter_fast_cli
 repository: https://github.com/CodeOTR/flutter_fast_cli
 documentation: https://pub.dev/documentation/flutter_fast_cli/latest/
@@ -15,11 +15,15 @@ dependencies:
   cli_util: ^0.4.0
   http: ^1.0.0
   io: ^1.0.4
+  mason: ^0.1.0-dev.56
   recase: ^4.1.0
 
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.0
+
+assets:
+   - assets/bundles
 
 # https://dart.dev/tools/pub/cmd/pub-global#configuring-package-executables
 executables:

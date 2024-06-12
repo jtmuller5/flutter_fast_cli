@@ -1,3 +1,7 @@
+## 2.0.0
+- 🟩 Flutter Faster
+- *Date:* 6-11-2024
+
 ## 1.6.12
 - 🟩 Added Roadmap
 - 🟪 Fixed broken doc links
