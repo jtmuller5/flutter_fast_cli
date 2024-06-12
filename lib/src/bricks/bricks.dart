@@ -33,23 +33,23 @@ class FastBricks extends Command {
 */
   @override
   Future<void> run() async {
-    stdout.writeln('fast ads - Add a banner ad to your app with AdMod');
-    stdout.writeln('fast biometrics - Add biometric authentication to your app');
-    stdout.writeln('fast feature - Add an empty feature with ui, models, and services folders');
-    stdout.writeln('fast notifications - Add push notifications to your app with Firebase Cloud Messaging');
-    stdout.writeln('fast storage - Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase');
-    stdout.writeln('fast route - Add a new route to your app\'s router');
-    stdout.writeln('fast feed - Add a social media feed to your app');
-    stdout.writeln('fast fetch - Add a data fetching module to your app');
-    stdout.writeln('fast feedback - Add a feedback module to your app');
-    stdout.writeln('fast gallery - Add a photo gallery to your app');
-    stdout.writeln('fast rss - Add an RSS feed to your app');
-    stdout.writeln('fast subscriptions - Monetize your apps on Android and iOS with a RevenueCat integration');
-    stdout.writeln('fast webview - Add a webview to your app');
-    stdout.writeln('fast getit - Add a service locator to your app');
-    stdout.writeln('fast map - Add a map to your app');
-    stdout.writeln('fast storage - Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase');
-    stdout.writeln('fast audio - Add audio to your app');
-    stdout.writeln('fast wiredash - Add a feedback module to your app');
+    stdout.writeln('mason make ads - Add a banner ad to your app with AdMod');
+    stdout.writeln('mason make biometrics - Add biometric authentication to your app');
+    stdout.writeln('mason make feature - Add an empty feature with ui, models, and services folders');
+    stdout.writeln('mason make notifications - Add push notifications to your app with Firebase Cloud Messaging');
+    stdout.writeln('mason make storage - Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase');
+    stdout.writeln('mason make route - Add a new route to your app\'s router');
+    stdout.writeln('mason make feed - Add a social media feed to your app');
+    stdout.writeln('mason make fetch - Add a data fetching module to your app');
+    stdout.writeln('mason make feedback - Add a feedback module to your app');
+    stdout.writeln('mason make gallery - Add a photo gallery to your app');
+    stdout.writeln('mason make rss - Add an RSS feed to your app');
+    stdout.writeln('mason make subscriptions - Monetize your apps on Android and iOS with a RevenueCat integration');
+    stdout.writeln('mason make webview - Add a webview to your app');
+    stdout.writeln('mason make getit - Add a service locator to your app');
+    stdout.writeln('mason make map - Add a map to your app');
+    stdout.writeln('mason make storage - Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase');
+    stdout.writeln('mason make audio - Add audio to your app');
+    stdout.writeln('mason make wiredash - Add a feedback module to your app');
   }
 }

@@ -19,7 +19,7 @@
   <a href="https://pub.dev/packages/flutter_fast_cli/install">Pub.dev</a>
 </p>
 
-<img src="https://github.com/CodeOTR/flutter_fast_cli/raw/main/assets/Wizard.gif"/>
+<img src="https://github.com/CodeOTR/flutter_fast_cli/raw/main/assets/faster.gif"/>
 
 # Table of Contents
 
@@ -71,24 +71,24 @@ To get started, visit the [official docs](https://pub.dev/documentation/flutter_
 
 | Command | Brick | Description |
 | --- | --- | --- |
-| `fast ads` | [fast_ads](https://cotr.dev/bricks/fast_ads) | Add a banner ad to your app with AdMod |
-| `fast biometrics` | [fast_biometrics](https://cotr.dev/bricks/fast_biometrics) | Add biometric authentication to your app |
-| `fast feature` | [fast_feature](https://cotr.dev/bricks/fast_feature) | Add an empty feature with ui, models, and services folders |
-| `fast notifications` | [fast_notifications](https://cotr.dev/bricks/fast_notifications) | Add push notifications to your app with Firebase Cloud Messaging |
-| `fast storage` | [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
-| `fast route` | [fast_route](https://cotr.dev/bricks/fast_route) | Add a new route to your app's router |
-| `fast feed` | [fast_feed](https://cotr.dev/bricks/fast_feed) | Add a social media feed to your app |
-| `fast fetch` | [fast_fetch](https://cotr.dev/bricks/fast_fetch) | Add a data fetching module to your app |
-| `fast feedback` | [fast_feedback](https://cotr.dev/bricks/fast_feedback) | Add a feedback module to your app |
-| `fast gallery` | [fast_gallery](https://cotr.dev/bricks/fast_gallery) | Add a photo gallery to your app |
-| `fast rss` | [fast_rss](https://cotr.dev/bricks/fast_rss) | Add an RSS feed to your app |
-| `fast subscriptions` | [fast_subscriptions](https://cotr.dev/bricks/fast_subscriptions) | Monetize your apps on Android and iOS with a RevenueCat integration |
-| `fast webview` | [flutter_inappwebview](https://cotr.dev/bricks/flutter_inappwebview) | Add a webview to your app |
-| `fast getit` | [get_it](https://cotr.dev/bricks/get-it) | Add a service locator to your app |
-| `fast map` | [google_maps_flutter](https://cotr.dev/bricks/google_maps_flutter) | Add a map to your app |
-| `fast storage`| [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
-| `fast audio` | [just_audio](https://cotr.dev/bricks/just_audio) | Add audio to your app |
-| `fast wiredash` | [wiredash](https://cotr.dev/bricks/wiredash) | Add a feedback module to your app |
+| `mason make fast_ads` | [fast_ads](https://cotr.dev/bricks/fast_ads) | Add a banner ad to your app with AdMod |
+| `mason make fast_biometrics` | [fast_biometrics](https://cotr.dev/bricks/fast_biometrics) | Add biometric authentication to your app |
+| `mason make fast_feature` | [fast_feature](https://cotr.dev/bricks/fast_feature) | Add an empty feature with ui, models, and services folders |
+| `mason make fast_notifications` | [fast_notifications](https://cotr.dev/bricks/fast_notifications) | Add push notifications to your app with Firebase Cloud Messaging |
+| `mason make fast_storage` | [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
+| `mason make fast_route` | [fast_route](https://cotr.dev/bricks/fast_route) | Add a new route to your app's router |
+| `mason make fast_feed` | [fast_feed](https://cotr.dev/bricks/fast_feed) | Add a social media feed to your app |
+| `mason make fast_fetch` | [fast_fetch](https://cotr.dev/bricks/fast_fetch) | Add a data fetching module to your app |
+| `mason make fast_feedback` | [fast_feedback](https://cotr.dev/bricks/fast_feedback) | Add a feedback module to your app |
+| `mason make fast_gallery` | [fast_gallery](https://cotr.dev/bricks/fast_gallery) | Add a photo gallery to your app |
+| `mason make fast_rss` | [fast_rss](https://cotr.dev/bricks/fast_rss) | Add an RSS feed to your app |
+| `mason make fast_subscriptions` | [fast_subscriptions](https://cotr.dev/bricks/fast_subscriptions) | Monetize your apps on Android and iOS with a RevenueCat integration |
+| `mason make flutter_inappwebview` | [flutter_inappwebview](https://cotr.dev/bricks/flutter_inappwebview) | Add a webview to your app |
+| `mason make get_it` | [get_it](https://cotr.dev/bricks/get-it) | Add a service locator to your app |
+| `mason make google_maps_flutter` | [google_maps_flutter](https://cotr.dev/bricks/google_maps_flutter) | Add a map to your app |
+| `mason make fast_storage`| [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
+| `mason make just_audio` | [just_audio](https://cotr.dev/bricks/just_audio) | Add audio to your app |
+| `mason make wiredash` | [wiredash](https://cotr.dev/bricks/wiredash) | Add a feedback module to your app |
 
 # Documentation
 
@@ -188,8 +188,9 @@ The Flutter Fast CLI takes care of nearly all the tedious setup involved in crea
 
 I love experimenting. I love writing about different tech stacks and understanding how competing tools work. With that in mind, the second goal of the Flutter Fast CLI was to create a tool that wouldn't depend on a single platform. While the CLI is still a work in progress, a few examples of this flexibility are ready for use:
 
-- Choose to use either Firebase or Supabase as your PaaS
-- Opt into including Subscriptions
+- Choose to use either Firebase, Supabase, Pocketbaso, or AppWrite as your PaaS
+- Choose between Amplitude and Posthog for analytics
+- Choose between Sentry and Firebase Crashlytics for crash reporting
 
 You can view the [roadmap](https://pub.dev/documentation/flutter_fast_cli/latest/topics/Roadmap-topic.html) to see additional platforms we plan to support.
 
@@ -199,13 +200,12 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 
 - Sets up Sign In, Register, Forgot Password, and Profile screens
 - SSO with Google and Apple
-- Adds a generic Feedback feature that works out-of-the-box with Firestore, Supabase, or Appwrite
 - Adds a settings screen with dark mode toggle
 - Adds a simple onboarding view new users see on account creation
-- Creates an auto_route router and adds it to your MaterialApp
+- Creates a router using auto_route, go_router, or the vanilla navigator and adds it to your MaterialApp
 - Introduces authentication based navigation and route guards
 - Creates an instance of [get_it](https://pub.dev/packages/get_it)
-- Auto registers services in get_it using [injectable](https://pub.dev/packages/injectable)
+- Auto registers services in get_it using [injectable](https://pub.dev/packages/injectable) (optional)
 - Adds an `analysis_options.yaml` file
 - Creates a complete `pubspec.yaml` file with necessary dependencies based on config value
 - Adds the flutter_launcher_icon package and code snippet to quickly swap out logo (includes logic to remove alpha channel on iOS)
@@ -216,13 +216,10 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Adds basic bash scripts with preconfigured run configurations for Fastlane and common Flutter tasks
 - Includes Android and iOS Fastlane files with Flutter-safe methods for incrementing build numbers (doesn't wipe out $(FLUTTER_BUILD_NUMBER))
 - Adds `multiDexEnabled = true` to app/build.gradle
-- Adds billing dependency to app/build.gradle for subscription apps
 - Performs [release signing setup](https://docs.flutter.dev/deployment/android#signing-the-app) and creates empty `key.properties` file
 - Includes [package_info_plus](https://pub.dev/packages/package_info_plus) file and adds version string to home drawer
 - Includes support for [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) and [google_fonts](https://pub.dev/packages/google_fonts) 🎨
 - Includes boilerplate for generating ColorScheme from image
-- Pre-built RSS feed module
-- Pre-build AI Chat module (for Firebase builds)
 - Sets up `config.json` file to be used with --dart-define-from-file run argument
 - Includes support for setting app and organization name at generation time
 - Adds [json_serializable](https://pub.dev/packages/json_serializable) and [json_annotation](https://pub.dev/packages/json_annotation) dependencies
@@ -238,6 +235,10 @@ The `fast app` command gives you just about everything you need to launch a cros
 - User feedback screen (fast_feedback)
 - Google maps setup (google_maps_flutter)
 - Biometric sign in (fast_biometrics)
+- Pre-built RSS feed module
+- Pre-build AI Chat module (for Firebase builds)
+- A generic Feedback feature that works out-of-the-box with Firestore, Supabase, Pocketbase or Appwrite
+- Adds billing dependency to app/build.gradle for subscription apps
 - Plus lots more
 
 To get all of the bricks, as well as lifetime updates and all future bricks that are added, check out our [website](https://cotr.dev/flutter-faster)!

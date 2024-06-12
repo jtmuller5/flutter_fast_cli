@@ -38,13 +38,6 @@ class CreateApp extends Command {
         allowed: ['auto_route', 'go_router', 'vanilla'],
       )
       ..addOption(
-        'notifications',
-        abbr: 'n',
-        help: 'The notifications platform to use.',
-        valueHelp: 'fcm',
-        allowed: ['fcm', 'one_signal'],
-      )
-      ..addOption(
         'ab_test',
         abbr: 'b',
         help: 'The platform to use for AB tests.',
@@ -81,13 +74,11 @@ class CreateApp extends Command {
     String? analyticsOption;
     String? abTestsOption;
     String? crashOption;
-    String? notificationsOption;
     String? routerOption;
 
     String? name;
     String? auth = argResults?['auth'] as String?;
     String? crash = argResults?['crash'] as String?;
-    String? notifications = argResults?['notifications'] as String?;
     String? router = argResults?['router'] as String?;
     bool? injectable = argResults?['injectable'] as bool?;
     String? analytics = argResults?['analytics'] as String?;
@@ -133,13 +124,6 @@ class CreateApp extends Command {
 
     crash = crashOption == 's' ? 'sentry' : 'firebase_crashlytics';
 
-    while (notificationsOption != 'f' && notificationsOption != 'o') {
-      stdout.write('Enter the notifications platform you want to use for your app - (f)cm, (o)ne_signal: ');
-      notificationsOption = stdin.readLineSync() ?? 'f';
-    }
-
-    notifications = notificationsOption == 'f' ? 'fcm' : 'one_signal';
-
     while (routerOption != 'a' && routerOption != 'g' && routerOption != 'v') {
       stdout.write('Enter the router you want to use for your app - (a)uto_route, (g)o_router, (v)anilla: ');
       routerOption = stdin.readLineSync() ?? 'v';
@@ -156,7 +140,6 @@ class CreateApp extends Command {
     Map<String, dynamic> vars = {
       'auth': auth,
       'crash': crash,
-      'notifications': notifications,
       'router': router,
       'injectable': injectable,
       'analytics': analytics,
