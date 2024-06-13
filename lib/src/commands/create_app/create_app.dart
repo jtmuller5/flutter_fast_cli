@@ -18,6 +18,18 @@ class CreateApp extends Command {
   ArgParser get argParser {
     return ArgParser()
       ..addOption(
+        'name',
+        abbr: 'n',
+        help: 'The name of the app to create.',
+        valueHelp: 'my_app',
+      )
+      ..addOption(
+        'org',
+        abbr: 'o',
+        help: 'The organization or company name for the app.',
+        valueHelp: 'com.my_org',
+      )
+      ..addOption(
         'auth',
         abbr: 'a',
         help: 'The authentication providerto use for the app.',
@@ -77,6 +89,7 @@ class CreateApp extends Command {
     String? routerOption;
 
     String? name;
+    String? org;
     String? auth = argResults?['auth'] as String?;
     String? crash = argResults?['crash'] as String?;
     String? router = argResults?['router'] as String?;
@@ -84,7 +97,16 @@ class CreateApp extends Command {
     String? analytics = argResults?['analytics'] as String?;
     String? abTests = argResults?['ab_test'] as String?;
 
-    // User input for PaaS
+    while (name == null || name.isEmpty) {
+      stdout.write('Enter the name of your app: ');
+      name = stdin.readLineSync();
+    }
+
+    while (org == null || org.isEmpty) {
+      stdout.write('Enter the organization or company name for your app: ');
+      org = stdin.readLineSync();
+    }
+
     while (authOption != 'f' && authOption != 's' && authOption != 'a' && authOption != 'p') {
       stdout.write('Enter the Authentication provider you want to use for your app - (f)irebase, (s)upabase, (a)ppwrite, (p)ocketbase: ');
       authOption = stdin.readLineSync() ?? 'f';
@@ -138,6 +160,8 @@ class CreateApp extends Command {
     injectable = getYesNo('Do you want to use injectable for dependency injection?');
 
     Map<String, dynamic> vars = {
+      'name': name,
+      'org': org,
       'auth': auth,
       'crash': crash,
       'router': router,
@@ -155,6 +179,12 @@ class CreateApp extends Command {
     MasonBundle bundle = fastAppBundle;
     final generator = await MasonGenerator.fromBundle(bundle);
 
+    // Ask for confirmation
+    if (!getYesNo('Do you want to create a new Flutter app with these settings?')) {
+      return;
+    }
+
+    logger.info('Creating app...');
     await generator.hooks.preGen(
       vars: vars,
       onVarsChanged: (newVars) {

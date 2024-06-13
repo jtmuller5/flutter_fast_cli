@@ -1,3 +1,11 @@
+## 2.0.2
+- 🟨 `fast app` now generates complete flutter app
+- *Date:* 6-13-2024
+
+## 2.0.1
+- 🟩 Update README
+- *Date:* 6-12-2024
+
 ## 2.0.0
 - 🟩 Flutter Faster
 - *Date:* 6-12-2024

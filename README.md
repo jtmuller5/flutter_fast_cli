@@ -40,7 +40,7 @@
     - [Faster Setup](#faster-setup)
     - [Less Lock-in](#less-lock-in)
   - [How Fast?](#how-fast)
-  - [Flutter Faster](#flutter-faster)
+- [Flutter Faster](#flutter-faster)
 
 # Getting Started
 
@@ -49,8 +49,6 @@ dart pub global activate flutter_fast_cli
 ```
 
 ```bash
-flutter create my_app --empty
-cd my_app
 fast app
 ```
 
@@ -227,7 +225,7 @@ Below is an incomplete list of all the things the Flutter Fast CLI does for you:
 - Creates abstract service classes for easy extensibility
 - Runs `flutter pub run build_runner build --delete-conflicting-outputs` and `dart format .` so projects are run-ready
 
-## Flutter Faster
+# Flutter Faster
 
 The `fast app` command gives you just about everything you need to launch a cross-platform Flutter app...but sometimes that's not enough. The Flutter Faster brick pack is an ever-expanding library of Mason bricks that can accelerate your development process. There are 30+ bricks for adding features, screens, and pizzazz:
 
