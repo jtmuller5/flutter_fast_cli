@@ -63,13 +63,13 @@ screenshots:
     path: assets/flutter_faster.png
 
 false_secrets:
-  - /flutterfast/android/app/google-services.json
-  - /flutterfast/ios/Runner/GoogleService-Info.plist
-  - /flutterfast/macos/Runner/GoogleService-Info.plist
-  - /flutterfast_offline/android/app/google-services.json
-  - /flutterfast_offline/ios/Runner/GoogleService-Info.plist
-  - /flutterfast_offline/macos/Runner/GoogleService-Info.plist
+  - /**/GoogleService-Info.plist
+  - /**/google-services.json
+  - /**/firebase-options.dart
+  - /**/firebase_options.dart
   - /flutterfast/web/index.html
+  - /**/internal-config.json
+
 
 topics:
   - boilerplate

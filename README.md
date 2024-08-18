@@ -67,6 +67,11 @@ fast app --offline
 
 These commands will prompt you for your app name (my_app) and organization (com.example).
 
+The generated app contains code for all third-party services and is thus bloated (eg. don't ship this code). Once you've decided which services you want to use, you can remove the unused code.
+
+For templates that use specific services, see [cotr.dev/flutter-faster]
+(https://cotr.dev/flutter-faster).
+
 # What is it?
 
 The Flutter Fast CLI is used to generate either an online or offline app.
