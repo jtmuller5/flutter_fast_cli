@@ -114,6 +114,10 @@ class _RegisterViewState extends State<RegisterView> {
                         email: emailController.text,
                         password: passwordController.text,
                       );
+                      router.pushAndPopUntil(
+                        const HomeRoute(),
+                        predicate: (route) => false,
+                      );
                     } catch (e) {
                       debugPrint(e.toString());
                       if (context.mounted) {
@@ -170,6 +174,10 @@ class _RegisterViewState extends State<RegisterView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithGoogle();
+                            router.pushAndPopUntil(
+                              const HomeRoute(),
+                              predicate: (route) => false,
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -188,6 +196,10 @@ class _RegisterViewState extends State<RegisterView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithApple();
+                            router.pushAndPopUntil(
+                              const HomeRoute(),
+                              predicate: (route) => false,
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

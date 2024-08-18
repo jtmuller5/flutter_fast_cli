@@ -1,6 +1,0 @@
-framework module amplitude_flutter {
-  umbrella header "amplitude_flutter-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -49,12 +49,6 @@ Activate the CLI:
 dart pub global activate flutter_fast_cli
 ```
 
-Create your new directory:
-```bash
-mkdir my_app
-cd my_app
-```
-
 Create an online app:
 ```bash
 fast app

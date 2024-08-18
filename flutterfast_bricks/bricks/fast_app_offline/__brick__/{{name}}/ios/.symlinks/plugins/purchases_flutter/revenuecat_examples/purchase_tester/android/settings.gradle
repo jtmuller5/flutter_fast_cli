@@ -1,0 +1,22 @@
+include ':app'
+
+def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
+
+def plugins = new Properties()
+def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
+if (pluginsFile.exists()) {
+    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+}
+
+plugins.each { name, path ->
+    def pluginDirectory = flutterProjectRoot.resolve(path).resolve('android').toFile()
+    include ":$name"
+    project(":$name").projectDir = pluginDirectory
+}
+
+// Run enableLocalBuild task to enable building purchases-hybrid-common from your local copy
+if (file(".composite-enable").exists()) {
+    String path = new File(".composite-enable").text
+    includeBuild (path)
+}
+

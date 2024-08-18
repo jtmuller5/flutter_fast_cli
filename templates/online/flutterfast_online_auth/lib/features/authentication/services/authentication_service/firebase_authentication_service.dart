@@ -34,19 +34,6 @@ class FirebaseAuthenticationService extends FastAuthenticationService {
   @override
   Future<void> initialize() async {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
-        userService.createUser().then(
-          ((value) {
-            onSignedIn(user.uid);
-            navigationService.navigateToHome();
-          }),
-        );
-      } else {
-        onSignedOut();
-      }
-    });
   }
 
   @override

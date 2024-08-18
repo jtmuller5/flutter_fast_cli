@@ -10,12 +10,12 @@ class SocialLoginButton extends StatelessWidget {
   final bool isWide;
 
   const SocialLoginButton({
-    Key? key,
+    super.key,
     required this.image,
     required this.provider,
     required this.onPressed,
     this.isWide = false,
-  }) : super(key: key);
+  });
 
   const SocialLoginButton.wide({
     Key? key,
@@ -51,7 +51,7 @@ class SocialLoginButton extends StatelessWidget {
                 Text(
                   'Continue with $provider',
                   style: context.bodyLarge.bold.copyWith(
-                    color: provider == 'Apple' ? Colors.white : context.primary,
+                    color: Colors.white,
                   ),
                 ),
               ]

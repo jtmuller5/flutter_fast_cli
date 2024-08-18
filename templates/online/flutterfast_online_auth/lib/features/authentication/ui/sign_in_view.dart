@@ -12,10 +12,10 @@ import 'package:flutterfast_online_auth/features/shared/ui/app_logo.dart';
 @RoutePage()
 class SignInView extends StatefulWidget {
   const SignInView({
-    Key? key,
+    super.key,
     this.email,
     this.password,
-  }) : super(key: key);
+  });
 
   final String? email;
   final String? password;
@@ -139,6 +139,10 @@ class _SignInViewState extends State<SignInView> {
                           email: emailController.text,
                           password: passwordController.text,
                         );
+                        router.pushAndPopUntil(
+                          const HomeRoute(),
+                          predicate: (route) => false,
+                        );
                       } catch (e) {
                         if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
                       }
@@ -199,6 +203,10 @@ class _SignInViewState extends State<SignInView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithGoogle();
+                            router.pushAndPopUntil(
+                              const HomeRoute(),
+                              predicate: (route) => false,
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -218,6 +226,10 @@ class _SignInViewState extends State<SignInView> {
                         await runWithLoading(() async {
                           try {
                             await authenticationService.signInWithApple();
+                            router.pushAndPopUntil(
+                              const HomeRoute(),
+                              predicate: (route) => false,
+                            );
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

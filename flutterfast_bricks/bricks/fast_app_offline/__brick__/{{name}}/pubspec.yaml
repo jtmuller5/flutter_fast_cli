@@ -1,0 +1,76 @@
+name: {{ name }}
+description: Build Flutter apps fast.
+publish_to: none
+version: 0.0.4+4
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  amplitude_flutter: ^3.16.0
+  auto_route: ^7.8.3
+  collection: ^1.17.2
+  flex_color_scheme: ^7.3.1
+  flutter_animate: ^4.2.0+1
+  get_it: ^7.6.4
+  google_fonts: ^5.1.0
+  injectable: ^2.3.0
+  intl: ^0.18.1
+  json_annotation: ^4.8.1
+  package_info_plus: ^4.1.0
+  sentry_flutter: ^7.10.1
+  shared_preferences: ^2.2.1
+  transparent_image: ^2.0.1
+  url_launcher: ^6.1.14
+
+  #* RSS *#
+  http: 1.0.0
+  webfeed_revised: ^0.7.2
+  #* RSS *#
+
+  #* Subscriptions *#
+  purchases_flutter: ^5.6.5
+  #* Subscriptions *#
+
+# Build command
+# flutter pub run build_runner build --delete-conflicting-outputs
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: ^7.3.1
+  build_runner: ^2.1.11
+  flutter_lints: ^2.0.3
+  flutter_launcher_icons: ^0.13.1
+  injectable_generator: ^2.4.0
+  json_serializable: ^6.7.1
+  mocktail: ^1.0.0
+  monarch: ^3.5.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+# flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "logo"
+  adaptive_icon_background: "#ffffff"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/logo.png"
+  image_path_ios: "assets/logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/logo.png"
+    background_color: "#ffffff"
+  # windows:
+  #   generate: true
+  #   image_path: "assets/logo.png"
+  #   icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/logo.png"

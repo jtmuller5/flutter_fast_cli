@@ -2,8 +2,9 @@ import 'dart:io';
 
 Future<void> main() async {
   await copyAndReplace(
-    '../templates/online/flutterfast_online_auth',
-    '../flutterfast_bricks/bricks/fast_app_online_auth/__brick__',
+    sourceDir: '../templates/online/flutterfast_online_auth',
+    destDir: '../flutterfast_bricks/bricks/fast_app_online_auth/__brick__/{{name}}',
+    oldName: 'flutterfast_online_auth',
   );
 
   /* await copyAndReplace(
@@ -12,15 +13,17 @@ Future<void> main() async {
   ); */
 
   await copyAndReplace(
-    '../templates/offline/flutterfast_offline',
-    '../flutterfast_bricks/bricks/fast_app_offline/__brick__',
+    sourceDir: '../templates/offline/flutterfast_offline',
+    destDir: '../flutterfast_bricks/bricks/fast_app_offline/__brick__/{{name}}',
+    oldName: 'flutterfast_offline',
   );
 }
 
-Future<void> copyAndReplace(
-  String sourceDir,
-  String destDir,
-) async {
+Future<void> copyAndReplace({
+  required String sourceDir,
+  required String destDir,
+  required String oldName,
+}) async {
   final sourceDirectory = Directory(sourceDir);
   final destinationDirectory = Directory(destDir);
 
@@ -48,7 +51,7 @@ Future<void> copyAndReplace(
     if (entity is File) {
       try {
         final relativePath = entity.path.replaceFirst(sourceDirectory.path, '');
-        final newFilePath = destinationDirectory.path + relativePath;
+        final newFilePath = destinationDirectory.path + relativePath.replaceAll(oldName, '{{name}}');
         final newFile = File(newFilePath);
 
         await newFile.create(recursive: true);
@@ -71,12 +74,12 @@ Future<void> copyAndReplace(
         } else {
           // Otherwise, read it as a string and replace content
           String content = await entity.readAsString();
-          if(sourceDir.contains('offline')) {
+          if (sourceDir.contains('offline')) {
             content = content.replaceAll('flutterfast_offline', '{{ name }}');
           } else {
             content = content.replaceAll('flutterfast_online_auth', '{{ name }}');
           }
-          
+
           content = content.replaceAll('com.cotr', '{{ org }}');
           await newFile.writeAsString(content);
         }
