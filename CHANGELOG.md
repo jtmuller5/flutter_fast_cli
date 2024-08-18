@@ -1,3 +1,10 @@
+## 3.0.1
+- 🟪 Fixed misnamed directories in native apps
+- 🟪 Added missing Amplitude and Posthog code to `web/index.html`
+- 🟪 Fixed broken navigation with Firebase authentication
+- 🟩 Added `--fresh` option to generate online app without Flutter Fast Firebase setup
+- *Date:* 8-17-2024
+
 ## 3.0.0
 - 🟨 `fast app` now generates Flutter app with all third-party implementations
 - 🟩 Added `--offline` option to generate Flutter app with basic Flutter Fast architecture

@@ -32,9 +32,14 @@ class CreateApp extends Command {
       )
       ..addFlag(
         'offline',
-        abbr: 'f',
+        abbr: 'x',
         help: 'Create the app without any online features.',
         negatable: false,
+      )
+      ..addFlag(
+        'fresh',
+        abbr: 'f',
+        help: 'Create the app without the Flutter Fast Firebase setup.',
       );
   }
 
@@ -44,6 +49,7 @@ class CreateApp extends Command {
     String? name = argResults?['name'] as String?;
     String? org = argResults?['org'] as String?;
     bool offline = argResults?['offline'] as bool? ?? false;
+    bool fresh = argResults?['fresh'] as bool? ?? false;
 
     while (name == null || name.isEmpty) {
       stdout.write('Enter the name of your app: ');
@@ -59,14 +65,17 @@ class CreateApp extends Command {
       'name': name,
       'org': org,
       'offline': offline,
+      'fresh': fresh,
     };
 
     logAmplitudeEvent('command', {'command': 'app'});
     logAmplitudeEvent('app ready', vars);
 
     var logger = Logger();
-    logger.info(vars.toString());
-
+    vars.forEach((key, value) {
+      logger.info('$key: $value');
+    });
+    
     MasonBundle bundle = offline ? fastAppOfflineBundle : fastAppOnlineAuthBundle;
     final generator = await MasonGenerator.fromBundle(bundle);
 
@@ -87,6 +96,22 @@ class CreateApp extends Command {
       vars: vars,
     );
     await generator.hooks.postGen(vars: vars);
+
+    if (fresh) {
+// Delete specific files in the generated directory
+      final filesToDelete = [
+        '$name/lib/firebase_options.dart',
+        '$name/firebase.json',
+        '$name/.firebaserc',
+      ];
+
+      for (var filePath in filesToDelete) {
+        final file = File(filePath);
+        if (await file.exists()) {
+          await file.delete();
+        }
+      }
+    }
 
     logAmplitudeEvent('app complete', vars);
     logger.success('Your app is ready! 🚀');
