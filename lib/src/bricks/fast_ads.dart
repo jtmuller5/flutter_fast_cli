@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -54,7 +53,7 @@ class FastAds extends Command {
       return;
     }
 
-    var process = await Process.run('mason', [
+    await Process.run('mason', [
       'make',
       'fast_ads',
       '--android_app_id',

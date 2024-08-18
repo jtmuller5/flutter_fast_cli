@@ -1,3 +1,7 @@
+## 3.0.3
+- 🟪 Fixed missing documentation
+- *Date:* 8-17-2024
+
 ## 3.0.1
 - 🟪 Fixed misnamed directories in native apps
 - 🟪 Added missing Amplitude and Posthog code to `web/index.html`

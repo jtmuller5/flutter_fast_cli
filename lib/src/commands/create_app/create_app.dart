@@ -8,6 +8,17 @@ import 'package:flutter_fast_cli/src/commands/utils/analytics.dart';
 import 'package:flutter_fast_cli/src/commands/utils/cli_inputs.dart';
 import 'package:mason/mason.dart';
 
+/// {@category Get started}
+/// {@category Features}
+/// {@category Firebase}
+/// {@category Supabase}
+/// {@category Pocketbase}
+/// {@category AppWrite}
+/// {@category Sentry}
+/// {@category Amplitude}
+/// {@category Posthog}
+/// {@category RevenueCat}
+/// {@category Roadmap}
 class CreateApp extends Command {
   @override
   String get description => 'Create a new Flutter app with ALL the bells and whistles.';
@@ -75,7 +86,7 @@ class CreateApp extends Command {
     vars.forEach((key, value) {
       logger.info('$key: $value');
     });
-    
+
     MasonBundle bundle = offline ? fastAppOfflineBundle : fastAppOnlineAuthBundle;
     final generator = await MasonGenerator.fromBundle(bundle);
 
