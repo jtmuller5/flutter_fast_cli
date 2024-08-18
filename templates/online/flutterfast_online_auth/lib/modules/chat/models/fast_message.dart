@@ -15,6 +15,9 @@ class FastMessage {
   @JsonKey(name: 'created_at', fromJson: getDateTimeFromTimestamp, toJson: getTimestampFromDateTime)
   DateTime? createdAt;
 
+  @JsonKey()
+  int? likes;
+
   FastMessage({
     this.id,
     this.message,

@@ -14,7 +14,7 @@ enum FeedbackType {
 
 @RoutePage()
 class NewFeedbackView extends StatelessWidget {
-  NewFeedbackView({Key? key}) : super(key: key);
+  NewFeedbackView({super.key});
 
   TextEditingController feedbackController = TextEditingController();
 
@@ -72,7 +72,7 @@ class NewFeedbackView extends StatelessWidget {
                                         label: Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Text(type.name.toUpperCase()),
+                                            Expanded(child: Text(type.name.toUpperCase())),
                                           ],
                                         ),
                                         onSelected: (value) {

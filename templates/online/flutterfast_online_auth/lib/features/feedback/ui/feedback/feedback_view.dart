@@ -8,7 +8,7 @@ import 'package:flutterfast_online_auth/features/shared/ui/layout.dart';
 
 @RoutePage()
 class FeedbackView extends StatefulWidget {
-  const FeedbackView({Key? key}) : super(key: key);
+  const FeedbackView({super.key});
 
   @override
   State<FeedbackView> createState() => _FeedbackViewState();

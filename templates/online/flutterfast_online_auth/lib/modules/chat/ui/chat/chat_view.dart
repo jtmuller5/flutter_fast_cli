@@ -5,13 +5,13 @@ import 'package:flutterfast_online_auth/modules/chat/ui/chat/widgets/chat_feed.d
 
 @RoutePage()
 class ChatView extends StatelessWidget {
-  const ChatView({Key? key}) : super(key: key);
+  const ChatView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChatViewModelBuilder(
       builder: (context, model) {
-        return Scaffold(
+        return const Scaffold(
           body: ChatFeed(),
         );
       },

@@ -26,7 +26,7 @@ class FirebaseFeedbackService extends FastFeedbackService {
   Future<List<Feedback>> getLatestFeedback() {
     return FirebaseFirestore.instance
         .collection('feedback')
-        .orderBy('createdAt', descending: true)
+        .orderBy('created_at', descending: true)
         .limit(10)
         .get()
         .then((value) => value.docs.map((e) => Feedback.fromJson(e.data())).toList());

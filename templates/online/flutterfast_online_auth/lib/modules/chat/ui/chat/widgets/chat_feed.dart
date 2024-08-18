@@ -36,6 +36,7 @@ class ChatFeed extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.stretch,
                                         children: [
                                           MessageBubble(message: message),
+                                          Divider(height: 1),
                                           if (index == 0) const SizedBox(height: 80),
                                         ],
                                       );
