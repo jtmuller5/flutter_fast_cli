@@ -25,9 +25,9 @@
 
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
+- [What is it?](#what-is-it)
 - [Commands](#commands)
   - [General](#general)
-  - [Bricks](#bricks)
 - [Documentation](#documentation)
 - [Features](#features)
   - [AB Testing](#ab-testing)
@@ -44,49 +44,66 @@
 
 # Getting Started
 
+Activate the CLI:
 ```bash
 dart pub global activate flutter_fast_cli
 ```
 
+Create your new directory:
+```bash
+mkdir my_app
+cd my_app
+```
+
+Create an online app:
 ```bash
 fast app
+```
+
+Create an offline app:
+```bash
+fast app --offline
+```
+
+These commands will prompt you for your app name (my_app) and organization (com.example).
+
+# What is it?
+
+The Flutter Fast CLI is used to generate either an online or offline app.
+
+The online app supports _all_ of the third-party platforms listed below:
+
+- Firebase
+- Supabase
+- Appwrite
+- Pocketbase
+- Amplitude
+- Posthog
+- Sentry
+- Fastlane
+- GitHub Actions
+- Shorebird
+- RevenueCat
+
+The offline app is a stripped-down version of the online app that doesn't require any third-party services.
+
+Once you've generated the app, you can control which platforms are used by modifying the `dart-define` variables used to run the app. For example, to run an app with Firebase and Amplitude, you would run:
+
+```bash
+flutter run --dart-define=PAAS=firebase --dart-define=analytics=amplitude
 ```
 
 # Commands
 
 ## General
 
-| Name      | Description                                                       |
-| --------- | ----------------------------------------------------------------- |
-| `app`     | Create a new Flutter Fast app using the step-by-step wizard       |
-| `setup`   | Setup your Flutter Faster environment                             |
-| `build`   | Run `dart run build_runner --delete-conflicting-outputs`          |
-| `update`  | Update flutter_fast_cli                                           |
+| Name     | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| `app`    | Create a new Flutter Fast app using the step-by-step wizard |
+| `build`  | Run `dart run build_runner --delete-conflicting-outputs`    |
+| `update` | Update flutter_fast_cli                                     |
 
 To get started, visit the [official docs](https://pub.dev/documentation/flutter_fast_cli/latest/)!
-
-## Bricks
-
-| Command | Brick | Description |
-| --- | --- | --- |
-| `mason make fast_ads` | [fast_ads](https://cotr.dev/bricks/fast_ads) | Add a banner ad to your app with AdMod |
-| `mason make fast_biometrics` | [fast_biometrics](https://cotr.dev/bricks/fast_biometrics) | Add biometric authentication to your app |
-| `mason make fast_feature` | [fast_feature](https://cotr.dev/bricks/fast_feature) | Add an empty feature with ui, models, and services folders |
-| `mason make fast_notifications` | [fast_notifications](https://cotr.dev/bricks/fast_notifications) | Add push notifications to your app with Firebase Cloud Messaging |
-| `mason make fast_storage` | [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
-| `mason make fast_route` | [fast_route](https://cotr.dev/bricks/fast_route) | Add a new route to your app's router |
-| `mason make fast_feed` | [fast_feed](https://cotr.dev/bricks/fast_feed) | Add a social media feed to your app |
-| `mason make fast_fetch` | [fast_fetch](https://cotr.dev/bricks/fast_fetch) | Add a data fetching module to your app |
-| `mason make fast_feedback` | [fast_feedback](https://cotr.dev/bricks/fast_feedback) | Add a feedback module to your app |
-| `mason make fast_gallery` | [fast_gallery](https://cotr.dev/bricks/fast_gallery) | Add a photo gallery to your app |
-| `mason make fast_rss` | [fast_rss](https://cotr.dev/bricks/fast_rss) | Add an RSS feed to your app |
-| `mason make fast_subscriptions` | [fast_subscriptions](https://cotr.dev/bricks/fast_subscriptions) | Monetize your apps on Android and iOS with a RevenueCat integration |
-| `mason make flutter_inappwebview` | [flutter_inappwebview](https://cotr.dev/bricks/flutter_inappwebview) | Add a webview to your app |
-| `mason make get_it` | [get_it](https://cotr.dev/bricks/get-it) | Add a service locator to your app |
-| `mason make google_maps_flutter` | [google_maps_flutter](https://cotr.dev/bricks/google_maps_flutter) | Add a map to your app |
-| `mason make fast_storage`| [fast_storage](https://cotr.dev/bricks/fast_storage) | Add cloud storage to your app with Firebase Storage, Supabase, or Pocketbase |
-| `mason make just_audio` | [just_audio](https://cotr.dev/bricks/just_audio) | Add audio to your app |
-| `mason make wiredash` | [wiredash](https://cotr.dev/bricks/wiredash) | Add a feedback module to your app |
 
 # Documentation
 
@@ -147,11 +164,10 @@ The Flutter Fast CLI is a tool for generating a starter Flutter application with
 - 🏎️ CI/CD via [Fastlane](https://fastlane.tools/)
 - 🚀 Lots more!
 
-The Flutter Fast stack is opinionated in order to make building as fast as possible. For that reason, the following components of the stack can not be substituted (for now):
+The Flutter Fast stack is opinionated to enable flexibility of choice regarding third-party technologies. For that reason, the following components of the stack are used regardless of the platform:
 
 - [auto_route](https://pub.dev/packages/auto_route) for navigation
 - [get_it](https://pub.dev/packages/get_it) and [injectable](https://pub.dev/packages/injectable) for services
-- [simple_mvvm](https://pub.dev/packages/simple_mvvm) for state management
 
 Similarly, Flutter Fast apps use a consistent project structure:
 
@@ -164,7 +180,6 @@ Similarly, Flutter Fast apps use a consistent project structure:
 │  │       ├── 📁 models
 │  │       ├── 📁 ui
 │  │       │   ├── 📄 two_view.dart
-│  │       │   └── 📄 two_view_model.dart
 │  │       └── 📁 services
 │  └── 📄 main.dart
 ├── 📄 CHANGELOG.md

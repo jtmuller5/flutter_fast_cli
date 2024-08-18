@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354395306946",
+    "project_id": "flutter-fast",
+    "storage_bucket": "flutter-fast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354395306946:android:5ad2ca246b86fbe936345b",
+        "android_client_info": {
+          "package_name": "com.cotr.flutterfast_offline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354395306946-vmm65p3t7rktslpr3do624koh2hssgj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJGIPFadopnLxrkGCSF7AjDVNHQV5EM90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354395306946-vmm65p3t7rktslpr3do624koh2hssgj1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,8 @@
+## 3.0.0
+- 🟨 `fast app` now generates Flutter app with all third-party implementations
+- 🟩 Added `--offline` option to generate Flutter app with basic Flutter Fast architecture
+- *Date:* 8-17-2024
+
 ## 2.0.2
 - 🟨 `fast app` now generates complete flutter app
 - *Date:* 6-13-2024

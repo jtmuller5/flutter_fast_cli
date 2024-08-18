@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: package_info_plus,package_info_plus_platform_interface
+dependency_overrides:
+  package_info_plus:
+    path: ..
+  package_info_plus_platform_interface:
+    path: ../../package_info_plus_platform_interface

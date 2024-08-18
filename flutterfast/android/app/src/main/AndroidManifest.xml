@@ -3,6 +3,10 @@
         android:label="flutterfast"
         android:name="${applicationName}"
         android:icon="@mipmap/logo">
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544/6300978111" />
         <meta-data android:name="com.posthog.posthog.API_KEY" android:value="${POSTHOG_KEY}" />
         <meta-data android:name="com.posthog.posthog.POSTHOG_HOST"
             android:value="https://app.posthog.com" />
